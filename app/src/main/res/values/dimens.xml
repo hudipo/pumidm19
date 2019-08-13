@@ -14,4 +14,7 @@
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="dialog_elevation">24dp</dimen>
     <dimen name="nav_drawer_elevation">16dp</dimen>
+    <dimen name="margin_vertical_login">80dp</dimen>
+    <dimen name="font_login">16sp</dimen>
+    <dimen name="margin_horizontal_login">32dp</dimen>
 </resources>
