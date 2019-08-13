@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--corner-->
+    <dimen name="main_corner">4dp</dimen>
+
+    <!--padding-->
+    <dimen name="main_padding">16dp</dimen>
+
+    <!--margin-->
+    <dimen name="main_margin">16dp</dimen>
+
+    <!--elevetaion-->
+    <dimen name="button_elevation">2dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="dialog_elevation">24dp</dimen>
+    <dimen name="nav_drawer_elevation">16dp</dimen>
+</resources>
