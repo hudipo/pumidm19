@@ -8,10 +8,16 @@
 
     <!--margin-->
     <dimen name="main_margin">16dp</dimen>
+    <dimen name="margin_horizontal_login">32dp</dimen>
+    <dimen name="margin_vertical_login">50dp</dimen>
 
     <!--elevetaion-->
     <dimen name="button_elevation">2dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="dialog_elevation">24dp</dimen>
     <dimen name="nav_drawer_elevation">16dp</dimen>
+
+    <!--login-->
+    <dimen name="font_login">16sp</dimen>
+    <dimen name="width_logo">250dp</dimen>
 </resources>
