@@ -1,14 +1,10 @@
 package com.hudipo.pum_indomaret.features.login.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.TextView;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -42,12 +38,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validate() {
         boolean isValid = true;
-        if(etNIK.getText().toString().trim().length()==0){
+        if(etNIK.getText().toString().isEmpty()){
             etNIK.setError(getString(R.string.err_nik));
             isValid = false;
         }
 
-        if(etPassword.getText().toString().trim().length()==0){
+        if(etPassword.getText().toString().isEmpty()){
             etPassword.setError(getString(R.string.err_password));
             isValid = false;
         }
