@@ -4,4 +4,8 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="nik">NIK</string>
+
+    <!--VALIDATION LOGIN-->
+    <string name="err_nik">NIK can\'t be empty</string>
+    <string name="err_password">Password can\'t be empty</string>
 </resources>

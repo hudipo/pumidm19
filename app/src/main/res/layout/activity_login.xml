@@ -9,11 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="@dimen/margin_vertical_login"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="@dimen/width_logo"
+        android:layout_height="@dimen/width_logo"
+        android:src="@drawable/logo_pums"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +48,7 @@
         app:passwordToggleEnabled="true"
         app:hintEnabled="false">
         <EditText
-            android:id="@+id/tvPassword"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_input_login"
