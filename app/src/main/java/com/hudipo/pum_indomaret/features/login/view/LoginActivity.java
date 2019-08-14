@@ -1,11 +1,10 @@
 package com.hudipo.pum_indomaret.features.login.view;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
@@ -36,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
     void login(){
         if(validate()){
             loadingProgress.showCustomDialog(this);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                loadingProgress.closeCustomDialog();
+            }, 1200);
         }
     }
 
