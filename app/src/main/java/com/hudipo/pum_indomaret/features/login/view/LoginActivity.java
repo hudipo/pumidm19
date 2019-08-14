@@ -49,11 +49,15 @@ public class LoginActivity extends AppCompatActivity {
         if(etNIK.getText().toString().isEmpty()){
             tilNIK.setError(getString(R.string.err_nik));
             isValid = false;
+        }else {
+            tilNIK.setError(null);
         }
 
         if(etPassword.getText().toString().isEmpty()){
             tilPassword.setError(getString(R.string.err_password));
             isValid = false;
+        }else {
+            tilPassword.setError(null);
         }
         return isValid;
     }
