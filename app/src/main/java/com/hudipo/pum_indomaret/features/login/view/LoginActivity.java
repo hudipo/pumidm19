@@ -3,16 +3,19 @@ package com.hudipo.pum_indomaret.features.login.view;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.EditText;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.register.view.RegisterActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
+import com.hudipo.pum_indomaret.utils.StartActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
+
     @BindView(R.id.etNIK)
     EditText etNIK;
     @BindView(R.id.etPassword)
@@ -36,15 +39,13 @@ public class LoginActivity extends AppCompatActivity {
         if(validate()){
             loadingProgress.showCustomDialog(this);
             Handler handler = new Handler();
-            handler.postDelayed(() -> {
-                loadingProgress.closeCustomDialog();
-            }, 1200);
+            handler.postDelayed(() -> loadingProgress.closeCustomDialog(), 1200);
         }
     }
 
     @OnClick(R.id.tvSignUp)
     void signUp(){
-        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
+        StartActivity.goTo(this, RegisterActivity.class);
     }
 
     private boolean validate() {
