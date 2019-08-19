@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_login"
+    tools:context=".features.login.view.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/width_logo"
+        android:layout_height="@dimen/width_logo"
+        android:src="@drawable/logo_pums"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNIKReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal_login"
+        android:layout_marginEnd="@dimen/margin_horizontal_login"
+        android:layout_marginBottom="20dp"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorAppearanceLogin"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/tilPasswordReg"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNIKReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_login"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="8dp"
+            android:hint="@string/nik"
+            android:inputType="numberSigned"
+            android:textColor="@color/white"
+            android:theme="@style/AppTheme.EditText.Login" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPasswordReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal_login"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_horizontal_login"
+        android:layout_marginBottom="20dp"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorAppearanceLogin"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/tilPinReg"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPasswordReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_login"
+            android:drawableStart="@drawable/ic_password"
+            android:drawablePadding="8dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:theme="@style/AppTheme.EditText.Login" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPinReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal_login"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_horizontal_login"
+        android:layout_marginBottom="20dp"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorAppearanceLogin"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@id/btnRegister"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:clickable="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPinReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_login"
+            android:drawableStart="@drawable/ic_pin"
+            android:drawablePadding="8dp"
+            android:hint="@string/pin"
+            android:inputType="numberPassword"
+            android:textColor="@color/white"
+            android:theme="@style/AppTheme.EditText.Login" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal_login"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_horizontal_login"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/bg_button_login"
+        android:elevation="5dp"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_login"
+        app:layout_constraintBottom_toTopOf="@id/tvLogin"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal_login"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_horizontal_login"
+        android:layout_marginBottom="@dimen/margin_vertical_login"
+        android:text="@string/hint_to_sign_in"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
