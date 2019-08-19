@@ -14,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static final int REQUEST_TIMEOUT = 30;
+    private static Retrofit retrofit;
 
     public static Retrofit client() {
         Gson gson = new GsonBuilder()
@@ -30,15 +31,14 @@ public class RetrofitClient {
                 .connectTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
                 .build();
-
-        Retrofit retrofit;
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BuildConfig.BASE_URL)
-                .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-
-                .build();
+        if(retrofit==null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BuildConfig.BASE_URL)
+                    .client(client)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+        }
         return retrofit;
     }
 }

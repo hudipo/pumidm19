@@ -6,14 +6,15 @@ import java.util.HashMap;
 
 import io.reactivex.Single;
 import okhttp3.RequestBody;
-import retrofit2.http.FormUrlEncoded;
+import retrofit2.Response;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
 
 public interface APIService {
 
-    @FormUrlEncoded
+    @Multipart
     @POST("login")
-    Single<LoginResponse> login(@PartMap HashMap<String, RequestBody> params);
+    Single<Response<LoginResponse>> login(@PartMap HashMap<String, RequestBody> params);
 
 }

@@ -8,7 +8,10 @@ import com.hudipo.pum_indomaret.features.login.view.LoginContract;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.networking.APIService;
 import com.hudipo.pum_indomaret.networking.RetrofitClient;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -17,12 +20,17 @@ import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginPresenter implements LoginContract.LoginPresenterView<LoginContract.LoginView>  {
     private Context context;
     private LoginContract.LoginView mView;
     private CompositeDisposable disposables = new CompositeDisposable();
     private APIService apiService;
+    private HawkStorage hawkStorage;
 
     private static final String TAG = "LOGIN_PRESENTER";
 
@@ -34,6 +42,7 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
     @Override
     public void onAttach(LoginContract.LoginView view) {
         mView = view;
+        hawkStorage = new HawkStorage(context);
     }
 
     @Override
@@ -78,24 +87,38 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
         disposables.add(apiService.login(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<LoginResponse>() {
+                .subscribeWith(new DisposableSingleObserver<Response<LoginResponse>>() {
                     @Override
-                    public void onSuccess(LoginResponse loginResponse) {
+                    public void onSuccess(Response<LoginResponse> response) {
                         mView.dismissLoading();
-                        if(loginResponse.getError()){
-                            mView.failedLogin(loginResponse.getMessage());
-                        }else {
+                        if(response.code()==200){
+                            LoginResponse loginResponse = response.body();
                             mView.loginSuccess();
-                            // TODO: 19/08/19 save user data to preferences
+                            hawkStorage.setUserData(loginResponse.getUser());
+                            hawkStorage.setLogin(true);
+                        }else {
+                            //kalau response code tidak 200
+                            //convert responseBody terlebih dahulu
+                            Converter<ResponseBody, LoginResponse> errorConverter =
+                                    RetrofitClient.client().responseBodyConverter(LoginResponse.class, new Annotation[0]);
+                            LoginResponse error;
+                            try {
+                                assert response.errorBody() != null;
+                                error = errorConverter.convert(response.errorBody());
 
+                                assert error != null;
+                                mView.failedLogin(error.getMessage());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG, "onError: "+e.getMessage());
-                        mView.dismissLoading();
                         mView.errorServer();
+                        mView.dismissLoading();
                     }
                 })
         );

@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class    LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginContract.LoginView {
     @BindView(R.id.etNIK)
     EditText etNIK;
     @BindView(R.id.etPassword)
@@ -61,7 +61,7 @@ public class    LoginActivity extends AppCompatActivity implements LoginContract
 
     @Override
     public void failedLogin(String message) {
-        // TODO: 16/08/19 toast or dialog
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -76,7 +76,12 @@ public class    LoginActivity extends AppCompatActivity implements LoginContract
 
     @Override
     public void loginSuccess() {
-        // TODO: 16/08/19 start activy home
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void errorServer() {
+        Toast.makeText(this, getString(R.string.err_server), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.login.view.LoginActivity;
+import com.hudipo.pum_indomaret.features.login.activity.LoginActivity;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
 public class SplashActivity extends AppCompatActivity {
