@@ -17,6 +17,7 @@ public class LoginContract {
         void showLoading();
         void dismissLoading();
         void loginSuccess();
+        void errorServer();
     }
 
 }
