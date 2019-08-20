@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/tvTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_approval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:layout_marginBottom="45dp"
+        >
+
+        <Button
+            android:id="@+id/btn_approve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bginput"
+
+            android:padding="18dp"
+            android:text="Approve"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginEnd="22dp"/>
+        <Button
+            android:id="@+id/btn_reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bginput4"
+            android:padding="18dp"
+            android:text="Reject"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/btn_approve"
+            android:layout_marginStart="22dp"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
