@@ -26,13 +26,12 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/container_approval"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="108dp"
-        android:layout_marginBottom="55dp">
-    </RelativeLayout>
+        android:layout_below="@id/title_page"
+        android:layout_above="@id/bottom_menu_approval"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_menu_approval"
@@ -42,8 +41,6 @@
         android:background="@color/colorPrimary"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        app:menu="@menu/bottom_menu_approval">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottom_menu_approval"/>
 
 </RelativeLayout>

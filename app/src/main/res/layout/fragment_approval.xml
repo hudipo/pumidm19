@@ -2,56 +2,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <TextView
-        android:id="@+id/tvTest"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/search"
+        android:background="@drawable/bg_search_view"
+        app:defaultQueryHint="@string/search"
+        app:iconifiedByDefault="false"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_approval"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:layout_height="match_parent"
+        android:layout_above="@id/relativeLayout"
+        android:layout_below="@id/search"/>
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:padding="8dp"
-        android:layout_marginBottom="45dp"
-        >
-
+        android:layout_centerHorizontal="true">
         <Button
             android:id="@+id/btn_approve"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bginput"
-
-            android:padding="18dp"
-            android:text="Approve"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_approve"
+            android:padding="12dp"
+            android:text="@string/approve"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:layout_marginEnd="22dp"/>
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/btn_reject"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bginput4"
-            android:padding="18dp"
-            android:text="Reject"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_reject"
+            android:padding="12dp"
+            android:text="@string/reject"
             android:textAllCaps="false"
+            android:textSize="16sp"
             android:textColor="@color/white"
-            android:layout_toRightOf="@+id/btn_approve"
-            android:layout_marginStart="22dp"
+            android:layout_toEndOf="@+id/btn_approve"
             />
-
     </RelativeLayout>
-
-
 </RelativeLayout>
