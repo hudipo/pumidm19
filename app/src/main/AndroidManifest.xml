@@ -10,10 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.register.view.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+        <activity android:name=".features.requestpum.view.SearchDocumentActivity"></activity>
+        <activity android:name=".features.requestpum.view.DepartmenActivity" />
+        <activity
+            android:name=".features.register.view.RegisterActivity"
+            android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:configChanges="orientation">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
