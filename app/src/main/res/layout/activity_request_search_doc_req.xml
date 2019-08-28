@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.SearchDocumentActivity">
+    tools:context=".features.requestpum.view.SearchDocumentReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -26,15 +26,16 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="@dimen/dp18"
         android:layout_marginStart="@dimen/dp18"
+        android:layout_marginEnd="@dimen/dp18"
         android:background="@drawable/bg_circle_white"
         android:hint="Search by Document"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,14 +65,15 @@
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toBottomOf="@id/sectionTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/rcvSearchDoc"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingEnd="@dimen/dp18"
-        tools:listitem="@layout/item_search_document"
         android:paddingStart="@dimen/dp18"
-        android:paddingBottom="@dimen/dp18"/>
+        android:paddingEnd="@dimen/dp18"
+        android:paddingBottom="@dimen/dp18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sectionTitle"
+        tools:listitem="@layout/item_search_document" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

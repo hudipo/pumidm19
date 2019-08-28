@@ -10,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.requestpum.view.SearchDocumentActivity"></activity>
-        <activity android:name=".features.requestpum.view.DepartmenActivity" />
+        <activity android:name=".features.requestpum.view.FundReqActivity"></activity>
+        <activity android:name=".features.requestpum.view.EmployeeReqActivity" />
+        <activity android:name=".features.requestpum.view.SearchDocumentReqActivity" />
+        <activity android:name=".features.requestpum.view.DepartmenReqActivity" />
         <activity
             android:name=".features.register.view.RegisterActivity"
             android:configChanges="orientation"

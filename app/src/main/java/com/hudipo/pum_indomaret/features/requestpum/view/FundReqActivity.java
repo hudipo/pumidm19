@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.hudipo.pum_indomaret.R;
 
-public class SearchDocumentActivity extends AppCompatActivity {
+public class FundReqActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_search_doc);
+        setContentView(R.layout.activity_fund_req);
     }
 }
