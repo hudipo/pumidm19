@@ -44,7 +44,7 @@
         </LinearLayout>
         <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
@@ -53,12 +53,13 @@
             android:layout_alignParentBottom="true"
             android:id="@+id/search"
             android:background="@drawable/bg_search_view"
+            app:queryBackground="@android:color/transparent"
             app:searchIcon="@null"
             app:defaultQueryHint="@string/search"
             app:iconifiedByDefault="false"/>
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
@@ -76,8 +77,8 @@
             android:layout_alignParentBottom="true"
             android:button="@drawable/bg_checkbox"
             android:id="@+id/cbApproval"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
