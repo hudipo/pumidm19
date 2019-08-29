@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_approval_item"
+        android:background="@drawable/bg_approval_item"
         android:orientation="vertical">
         <View
             android:layout_width="1dp"
@@ -23,7 +23,7 @@
             android:id="@+id/view"
             android:layout_width="20dp"
             android:layout_height="0dp"
-            android:background="@drawable/gradient_approval_right_1"
+            android:background="@drawable/gradient_approval_right_approve"
             app:layout_constraintTop_toTopOf="@id/linearLayout"
             app:layout_constraintBottom_toBottomOf="@id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -45,44 +45,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pum_number"
-                android:textSize="@dimen/font_title_item_approval"
-                android:textColor="@color/white" />
+                android:textSize="@dimen/font_title_item_approval"/>
             <TextView
                 android:id="@+id/tvPumNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 tools:text="2000102102012012012"
-                android:textSize="@dimen/font_body_item_approval"
-                android:textColor="@color/white" />
+                android:textSize="@dimen/font_body_item_approval"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pum_requester"
-                android:textSize="@dimen/font_title_item_approval"
-                android:textColor="@color/white" />
+                android:textSize="@dimen/font_title_item_approval" />
             <TextView
                 android:id="@+id/tvPumRequester"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 tools:text="Fakhri Abdullah"
-                android:textSize="@dimen/font_body_item_approval"
-                android:textColor="@color/white" />
+                android:textSize="@dimen/font_body_item_approval" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amount"
-                android:textSize="@dimen/font_title_item_approval"
-                android:textColor="@color/white" />
+                android:textSize="@dimen/font_title_item_approval" />
             <TextView
                 android:id="@+id/tvAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 tools:text="Rp 200.000"
-                android:textSize="@dimen/font_body_item_approval"
-                android:textColor="@color/white" />
+                android:textSize="@dimen/font_body_item_approval" />
         </LinearLayout>
         <CheckBox
             android:id="@+id/cbApproval"

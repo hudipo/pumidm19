@@ -2,12 +2,89 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_header_approval"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/bg_approval_header">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_chevron_left"/>
+        <LinearLayout
+            android:id="@+id/layout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:gravity="end">
+            <TextView
+                android:id="@+id/title_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp"
+                android:gravity="center"
+                android:text="@string/approval"
+                android:fontFamily="@font/lemon_milk"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/history"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toStartOf="@id/ivSearch"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/search"
+            android:background="@drawable/bg_search_view"
+            app:searchIcon="@null"
+            app:defaultQueryHint="@string/search"
+            app:iconifiedByDefault="false"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/cbApproval"
+            android:layout_alignParentBottom="true"
+            android:padding="6dp"
+            android:id="@+id/ivSearch"
+            android:background="@drawable/bg_search_view"
+            android:src="@drawable/ic_search"/>
+        <CheckBox
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:button="@drawable/bg_checkbox"
+            android:id="@+id/cbApproval"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_approval"
+        android:layout_below="@id/layout_header"
+        tools:listitem="@layout/item_approval_history"
         android:paddingBottom="70dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"

@@ -38,4 +38,10 @@
     <string name="amount">Amount</string>
     <string name="pum_requester">Pum Requester</string>
     <string name="delete">Delete</string>
+    <string name="detail">Detail</string>
+    <string name="department">Department</string>
+    <string name="trx_date">Trx Date</string>
+    <string name="use_date">Use Date</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="description">Description</string>
 </resources>

@@ -3,70 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:id="@+id/layout_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:background="@drawable/bg_approval_header">
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_chevron_left"/>
-        <TextView
-            android:id="@+id/title_page"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/approval"
-            android:fontFamily="@font/lemon_milk"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-        <androidx.appcompat.widget.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_toStartOf="@id/ivSearch"
-            android:layout_below="@id/title_page"
-            android:id="@+id/search"
-            android:background="@drawable/bg_search_view"
-            app:searchIcon="@null"
-            app:defaultQueryHint="@string/search"
-            app:iconifiedByDefault="false"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toStartOf="@id/cbApproval"
-            android:layout_below="@id/title_page"
-            android:padding="6dp"
-            android:id="@+id/ivSearch"
-            android:background="@drawable/bg_search_view"
-            android:src="@drawable/ic_search"/>
-        <CheckBox
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/title_page"
-            android:button="@drawable/bg_checkbox"
-            android:id="@+id/cbApproval"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/container_approval"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/layout_header"
         android:layout_above="@id/bottom_menu_approval"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -75,8 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bg_approval_bottom"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/selector_approval_navigation"
+        app:itemTextColor="@color/selector_approval_navigation"
         app:menu="@menu/bottom_menu_approval"/>
 
 </RelativeLayout>
