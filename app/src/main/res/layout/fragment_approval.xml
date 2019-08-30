@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <LinearLayout
-                android:id="@+id/btn_approve"
+                android:id="@+id/btnApprove"
                 android:layout_width="@dimen/width_button_approve"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -93,6 +93,7 @@
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 android:background="@drawable/bg_approve"
+                android:foreground="?attr/selectableItemBackground"
                 android:orientation="vertical"
                 android:layout_centerInParent="true">
                 <ImageView
@@ -115,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1">
             <LinearLayout
-                android:id="@+id/btn_reject"
+                android:id="@+id/btnReject"
                 android:layout_width="@dimen/width_button_approve"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -123,6 +124,7 @@
                 android:paddingTop="6dp"
                 android:paddingBottom="6dp"
                 android:background="@drawable/bg_reject"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_centerInParent="true"
                 android:orientation="vertical">
                 <ImageView

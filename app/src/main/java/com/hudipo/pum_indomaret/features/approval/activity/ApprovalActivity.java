@@ -1,12 +1,9 @@
 package com.hudipo.pum_indomaret.features.approval.activity;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hudipo.pum_indomaret.R;
@@ -31,19 +28,16 @@ public class ApprovalActivity extends AppCompatActivity {
     }
 
     private void setClick() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch(menuItem.getItemId()){
-                    case R.id.menu_approval:
-                        loadFragment(new ApprovalFragment());
-                        break;
-                    case R.id.menu_history:
-                        loadFragment(new ApprovalHistoryFragment());
-                        break;
-                }
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            switch(menuItem.getItemId()){
+                case R.id.menu_approval:
+                    loadFragment(new ApprovalFragment());
+                    break;
+                case R.id.menu_history:
+                    loadFragment(new ApprovalHistoryFragment());
+                    break;
             }
+            return true;
         });
     }
 

@@ -5,6 +5,7 @@ public class ApprovalModel {
     private String pumRequester;
     private int amount;
     private boolean isChecked;
+    private int type;
 
     public void setPumNumber(String pumNumber) {
         this.pumNumber = pumNumber;
@@ -36,5 +37,13 @@ public class ApprovalModel {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

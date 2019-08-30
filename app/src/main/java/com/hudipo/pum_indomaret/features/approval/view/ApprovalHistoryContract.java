@@ -5,9 +5,9 @@ import com.hudipo.pum_indomaret.view.MainView;
 
 import java.util.List;
 
-public class ApprovalContract {
+public class ApprovalHistoryContract {
 
-    public interface ApprovalPresenterView<T extends MainView>{
+    public interface ApprovalHistoryPresenterView<T extends MainView>{
         void onAttach(T view);
         void onDetach();
         void getData();
@@ -16,7 +16,7 @@ public class ApprovalContract {
         void reject(List<ApprovalModel> approvalModels);
     }
 
-    public interface ApprovalView extends MainView{
+    public interface ApprovalHistoryView extends MainView{
         void showData(List<ApprovalModel> approvalModels);
         void errorNotSelected(String message);
         void error(String message);

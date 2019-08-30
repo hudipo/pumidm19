@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.approval.activity.ApprovalDetail"></activity>
+        <activity android:name=".features.approval.activity.ApprovalDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".features.approval.activity.ApprovalActivity"
             android:configChanges="orientation"
@@ -51,6 +53,9 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".features.approval.activity.ApprovalDetailHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
