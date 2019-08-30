@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.requestpum.view.ValidationReqActivity"></activity>
+        <activity android:name=".features.requestpum.view.ValidationReqActivity"/>
         <activity android:name=".features.requestpum.view.FundReqActivity" />
         <activity android:name=".features.requestpum.view.EmployeeReqActivity" />
         <activity android:name=".features.requestpum.view.SearchDocumentReqActivity" />
