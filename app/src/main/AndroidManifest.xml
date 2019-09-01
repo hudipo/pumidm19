@@ -10,10 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.register.view.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+        <activity android:name=".features.requestpum.view.ValidationReqActivity"/>
+        <activity android:name=".features.requestpum.view.FundReqActivity" />
+        <activity android:name=".features.requestpum.view.EmployeeReqActivity" />
+        <activity android:name=".features.requestpum.view.SearchDocumentReqActivity" />
+        <activity android:name=".features.requestpum.view.DepartmenReqActivity" />
+        <activity
+            android:name=".features.register.view.RegisterActivity"
+            android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:configChanges="orientation">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
