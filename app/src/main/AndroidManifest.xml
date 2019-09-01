@@ -10,11 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.requestpum.view.ValidationReqActivity"/>
-        <activity android:name=".features.requestpum.view.FundReqActivity" />
-        <activity android:name=".features.requestpum.view.EmployeeReqActivity" />
-        <activity android:name=".features.requestpum.view.SearchDocumentReqActivity" />
-        <activity android:name=".features.requestpum.view.DepartmenReqActivity" />
+        <activity android:name=".features.requestpum.view.ValidationReqActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".features.requestpum.view.FundReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.requestpum.view.EmployeeReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.requestpum.view.SearchDocumentReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.requestpum.view.DepartmenReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.register.view.RegisterActivity"
             android:configChanges="orientation"
