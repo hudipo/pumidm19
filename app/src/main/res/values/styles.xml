@@ -24,4 +24,152 @@
         <item name="android:textColor">@color/redError</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <!-- TextAppearance Style-->
+    <style name="TextAppearance"/>
+
+    <!-- TextAppearance Style Headline4-->
+
+    <style name="TextAppearance.Headline4">
+        <item name="android:textSize">@dimen/textAppearanceH4</item>
+    </style>
+
+    <style name="TextAppearance.Headline4.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Headline4.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Headline4.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style Headline5-->
+
+    <style name="TextAppearance.Headline5">
+        <item name="android:textSize">@dimen/textAppearanceH5</item>
+    </style>
+
+    <style name="TextAppearance.Headline5.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Headline5.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Headline5.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style Headline6-->
+
+    <style name="TextAppearance.Headline6">
+        <item name="android:textSize">@dimen/textAppearanceH6</item>
+    </style>
+
+    <style name="TextAppearance.Headline6.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Headline6.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Headline6.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style Subtitle1-->
+
+    <style name="TextAppearance.Subtitle1">
+        <item name="android:textSize">@dimen/textAppearanceSubtitle1</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle1.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle1.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle1.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style Subtitle2-->
+
+    <style name="TextAppearance.Subtitle2">
+        <item name="android:textSize">@dimen/textAppearanceSubtitle2</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle2.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle2.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Subtitle2.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style Body1-->
+
+    <style name="TextAppearance.Body1">
+        <item name="android:textSize">@dimen/textAppearanceBody1</item>
+    </style>
+
+    <style name="TextAppearance.Body1.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Body1.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Body1.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style Body2-->
+
+    <style name="TextAppearance.Body2">
+        <item name="android:textSize">@dimen/textAppearanceBody2</item>
+    </style>
+
+    <style name="TextAppearance.Body2.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.Body2.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.Body2.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- TextAppearance Style caption-->
+
+    <style name="TextAppearance.caption">
+        <item name="android:textSize">@dimen/textAppearanceCaption</item>
+    </style>
+
+    <style name="TextAppearance.caption.Dark">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextAppearance.caption.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.caption.Primary">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

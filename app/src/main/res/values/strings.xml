@@ -8,4 +8,13 @@
     <!--VALIDATION LOGIN-->
     <string name="err_nik">NIK can\'t be empty</string>
     <string name="err_password">Password can\'t be empty</string>
+    <string name="request">Request</string>
+    <string name="approval">Approval</string>
+    <string name="inbox">Inbox</string>
+    <string name="response">Response</string>
+    <string name="setting">Setting</string>
+    <string name="report">Report</string>
+    <string name="example_name">Danny Hudi</string>
+    <string name="example_nip">2001618636</string>
+    <string name="example_position">My Position</string>
 </resources>
