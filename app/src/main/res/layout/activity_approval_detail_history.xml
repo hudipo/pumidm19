@@ -147,6 +147,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/trx_date"
+                                    android:fontFamily="@font/montserrat_bold"
                                     android:textSize="@dimen/font_title_item_approval" />
                                 <TextView
                                     android:id="@+id/tvTrxDate"
