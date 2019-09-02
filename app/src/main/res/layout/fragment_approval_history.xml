@@ -30,16 +30,18 @@
                 android:paddingBottom="0dp"
                 android:gravity="center"
                 android:text="@string/approval"
-                android:fontFamily="@font/lemon_milk"
+                android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="32sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/history"
+                android:layout_marginTop="-10dp"
                 android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_semibold"
                 android:textSize="18sp"/>
         </LinearLayout>
         <androidx.appcompat.widget.SearchView

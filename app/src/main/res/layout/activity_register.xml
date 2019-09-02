@@ -42,6 +42,7 @@
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="8dp"
             android:hint="@string/nik"
+            android:fontFamily="@font/montserrat_regular"
             android:inputType="numberSigned"
             android:textColor="@color/white"
             android:theme="@style/AppTheme.EditText.Login" />
@@ -71,6 +72,7 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="8dp"
             android:hint="@string/password"
+            android:fontFamily="@font/montserrat_regular"
             android:inputType="textPassword"
             android:textColor="@color/white"
             android:theme="@style/AppTheme.EditText.Login" />
@@ -100,6 +102,7 @@
             android:drawableStart="@drawable/ic_pin"
             android:drawablePadding="8dp"
             android:hint="@string/pin"
+            android:fontFamily="@font/montserrat_regular"
             android:inputType="numberPassword"
             android:textColor="@color/white"
             android:theme="@style/AppTheme.EditText.Login" />
@@ -118,6 +121,7 @@
         android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="@dimen/font_login"
+        android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintBottom_toTopOf="@id/tvLogin"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent" />
@@ -131,6 +135,7 @@
         android:layout_marginEnd="@dimen/margin_horizontal_login"
         android:layout_marginBottom="@dimen/margin_vertical_login"
         android:text="@string/hint_to_sign_in"
+        android:fontFamily="@font/montserrat_regular"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/font_login"

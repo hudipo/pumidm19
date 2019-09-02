@@ -45,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pum_number"
+                android:fontFamily="@font/montserrat_bold"
                 android:textSize="@dimen/font_title_item_approval"/>
             <TextView
                 android:id="@+id/tvPumNumber"
@@ -52,23 +53,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 tools:text="2000102102012012012"
+                android:fontFamily="@font/montserrat_regular"
                 android:textSize="@dimen/font_body_item_approval"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pum_requester"
+                android:fontFamily="@font/montserrat_bold"
                 android:textSize="@dimen/font_title_item_approval" />
             <TextView
                 android:id="@+id/tvPumRequester"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                tools:text="Fakhri Abdullah"
+                tools:text="Emp Name"
+                android:fontFamily="@font/montserrat_regular"
                 android:textSize="@dimen/font_body_item_approval" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/amount"
+                android:fontFamily="@font/montserrat_bold"
                 android:textSize="@dimen/font_title_item_approval" />
             <TextView
                 android:id="@+id/tvAmount"
@@ -76,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 tools:text="Rp 200.000"
+                android:fontFamily="@font/montserrat_regular"
                 android:textSize="@dimen/font_body_item_approval" />
         </LinearLayout>
         <CheckBox
