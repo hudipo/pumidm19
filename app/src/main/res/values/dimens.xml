@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--corner-->
-    <dimen name="main_corner">4dp</dimen>
+    <dimen name="main_corner">8dp</dimen>
     <dimen name="home_corner">18dp</dimen>
 
     <!--padding-->
@@ -35,6 +35,10 @@
     <dimen name="textAppearanceBody2">14sp</dimen>
     <dimen name="textAppearanceCaption">12sp</dimen>
 
+    <!--height-->
+    <dimen name="heightAppBar">120dp</dimen>
+
+    <!--size-->
     <dimen name="dp32">32dp</dimen>
     <dimen name="dp12">12dp</dimen>
     <dimen name="dp6">6dp</dimen>

@@ -39,4 +39,19 @@
     <string name="btn_backspace">Back</string>
     <string name="please_enter_your_pin">Please Enter Your PIN</string>
     <string name="pin">PIN</string>
+    <string name="trx_number">Trx Number</string>
+    <string name="example_trx_number">200100300/107/2019</string>
+    <string name="status">Status</string>
+    <string name="New">New</string>
+    <string name="create_responsibility">Create Responsibility</string>
+    <string name="pum_number">PUM Number</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="example_transaction_type">Stores Needs 1</string>
+    <string name="description">Description</string>
+    <string name="example_description">This Description will be appear in this field . . .</string>
+    <string name="amount">Amount</string>
+    <string name="example_amount">Rp 40.000.000</string>
+    <string name="amount_remaining">Amount Remaining</string>
+    <string name="full">Full</string>
+    <string name="partial">Partial</string>
 </resources>
