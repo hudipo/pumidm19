@@ -10,6 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".features.home.HomeActivity"
+
         <activity android:name=".features.requestpum.view.ValidationReqActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".features.requestpum.view.FundReqActivity"
@@ -39,6 +42,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".features.splash.SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".features.login.view.LoginActivity"
