@@ -2,12 +2,15 @@
     <string name="app_name">Pum Indomaret</string>
     <string name="hint_to_sign_up">Need Account? Register Here</string>
     <string name="login">Login</string>
+    <string name="register">Register</string>
     <string name="password">Password</string>
     <string name="nik">NIK</string>
+    <string name="hint_to_sign_in">Already have an Account?\nClick to Login</string>
 
     <!--VALIDATION LOGIN-->
     <string name="err_nik">NIK can\'t be empty</string>
     <string name="err_password">Password can\'t be empty</string>
+
     <string name="request">Request</string>
     <string name="approval">Approval</string>
     <string name="inbox">Inbox</string>
@@ -17,4 +20,23 @@
     <string name="example_name">Danny Hudi</string>
     <string name="example_nip">2001618636</string>
     <string name="example_position">My Position</string>
+
+    <string name="err_null_pin">PIN can\'t be empty</string>
+    <string name="err_pin">PIN must be 6 digits number</string>
+
+    <!-- CUSTOM KEYBOARD -->
+    <string name="number_zero">0</string>
+    <string name="number_one">1</string>
+    <string name="number_two">2</string>
+    <string name="number_three">3</string>
+    <string name="number_four">4</string>
+    <string name="number_five">5</string>
+    <string name="number_six">6</string>
+    <string name="number_seven">7</string>
+    <string name="number_eight">8</string>
+    <string name="number_nine">9</string>
+    <string name="btn_clear">C</string>
+    <string name="btn_backspace">Back</string>
+    <string name="please_enter_your_pin">Please Enter Your PIN</string>
+    <string name="pin">PIN</string>
 </resources>

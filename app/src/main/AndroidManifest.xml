@@ -12,6 +12,28 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".features.home.HomeActivity"
+
+        <activity android:name=".features.requestpum.view.ValidationReqActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".features.requestpum.view.FundReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.requestpum.view.EmployeeReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.requestpum.view.SearchDocumentReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.requestpum.view.DepartmenReqActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.register.view.RegisterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".features.splash.SplashActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
