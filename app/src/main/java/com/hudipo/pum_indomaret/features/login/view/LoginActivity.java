@@ -1,11 +1,13 @@
 package com.hudipo.pum_indomaret.features.login.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.register.view.RegisterActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.StartActivity;
@@ -39,7 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         if(validate()){
             loadingProgress.showCustomDialog(this);
             Handler handler = new Handler();
-            handler.postDelayed(() -> loadingProgress.closeCustomDialog(), 1200);
+            handler.postDelayed(() ->{
+                startActivity(new Intent(this, HomeActivity.class));
+                loadingProgress.closeCustomDialog();
+            },  1200);
         }
     }
 

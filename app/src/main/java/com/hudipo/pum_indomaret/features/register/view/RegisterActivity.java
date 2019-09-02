@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.login.view.LoginActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.CustomKeyboard;
 
@@ -64,6 +66,20 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    @OnClick(R.id.btnRegister)
+    void register() {
+        if (validate()) {
+            loadingProgress.showCustomDialog(this);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> loadingProgress.closeCustomDialog(), 1200);
+        }
+    }
+
+    @OnClick(R.id.tvLogin)
+    void login(){
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
     private void showKeyboard() {
         Log.d("TAG", "keyboad");
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Objects.requireNonNull(this));
@@ -81,15 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
         alertDialog.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
 
         alertDialog.show();
-    }
-
-    @OnClick(R.id.btnRegister)
-    void register() {
-        if (validate()) {
-            loadingProgress.showCustomDialog(this);
-            Handler handler = new Handler();
-            handler.postDelayed(() -> loadingProgress.closeCustomDialog(), 1200);
-        }
     }
 
     private boolean validate() {
