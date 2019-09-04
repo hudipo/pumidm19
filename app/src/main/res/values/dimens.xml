@@ -10,6 +10,8 @@
     <dimen name="main_margin">16dp</dimen>
     <dimen name="margin_horizontal_login">32dp</dimen>
     <dimen name="margin_vertical_login">50dp</dimen>
+    <dimen name="dp18">18dp</dimen>
+
 
     <!--elevetaion-->
     <dimen name="button_elevation">2dp</dimen>
@@ -20,6 +22,21 @@
     <!--login-->
     <dimen name="font_login">16sp</dimen>
     <dimen name="width_logo">250dp</dimen>
+
+
+    <!--font-->
+    <dimen name="textAppearanceH4">34sp</dimen>
+    <dimen name="textAppearanceH5">24sp</dimen>
+    <dimen name="textAppearanceH6">20sp</dimen>
+    <dimen name="textAppearanceSubtitle1">16sp</dimen>
+    <dimen name="textAppearanceSubtitle2">14sp</dimen>
+    <dimen name="textAppearanceBody1">16sp</dimen>
+    <dimen name="textAppearanceBody2">14sp</dimen>
+    <dimen name="textAppearanceCaption">12sp</dimen>
+
+    <dimen name="dp32">32dp</dimen>
+    <dimen name="dp12">12dp</dimen>
+    <dimen name="dp6">6dp</dimen>
 
     <!--apprval-->
     <dimen name="font_title_item_approval">14sp</dimen>
