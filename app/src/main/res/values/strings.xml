@@ -40,7 +40,6 @@
     <string name="please_enter_your_pin">Please Enter Your PIN</string>
     <string name="pin">PIN</string>
     <string name="err_server">Server Busy</string>
-    <string name="approval">Approval</string>
     <string name="history">History</string>
     <string name="reject">Reject</string>
     <string name="approve">Approve</string>

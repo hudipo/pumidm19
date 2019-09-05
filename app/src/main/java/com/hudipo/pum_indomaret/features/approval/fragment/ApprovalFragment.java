@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
@@ -20,6 +22,7 @@ import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
 import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,10 +37,14 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     LinearLayout btnApprove;
     @BindView(R.id.btnReject)
     LinearLayout btnReject;
+    @BindView(R.id.llAction)
+    LinearLayout llAction;
 
     private View view;
     private ApprovalAdapter approvalAdapter;
     private ApprovalPresenter presenter;
+    private List<ApprovalModel> approvalSelectedList = new ArrayList<>();
+    private List<ApprovalModel> approvalModelList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -53,12 +60,29 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     private void setView() {
         rvApproval.setLayoutManager(new LinearLayoutManager(getActivity()));
-        cbApproval.setOnCheckedChangeListener((compoundButton, b) -> approvalAdapter.setAllChecked(b));
+        cbApproval.setOnCheckedChangeListener((compoundButton, b) ->{
+            approvalAdapter.setAllChecked(b);
+            if(b){
+                approvalSelectedList.clear();
+                approvalSelectedList.addAll(approvalModelList);
+            }else approvalSelectedList.clear();
+            initAction();
+        });
     }
 
     @Override
     public void showData(List<ApprovalModel> approvalModels) {
-        approvalAdapter = new ApprovalAdapter(approvalModels);
+        approvalModelList.clear();
+        approvalModelList.addAll(approvalModels);
+
+        approvalAdapter = new ApprovalAdapter(approvalModels, (approvalModel, checked) -> {
+            if(checked){
+                approvalSelectedList.add(approvalModel);
+            }else {
+                approvalSelectedList.remove(approvalModel);
+            }
+            initAction();
+        });
         rvApproval.setAdapter(approvalAdapter);
     }
 
@@ -88,6 +112,24 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     }
 
     @Override
+    public void showAction() {
+        if(llAction.getVisibility() == View.GONE){
+            Animation slideUp = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_up);
+            llAction.setVisibility(View.VISIBLE);
+            llAction.startAnimation(slideUp);
+        }
+    }
+
+    @Override
+    public void closeAction() {
+        if(llAction.getVisibility() == View.VISIBLE){
+            Animation slideDown = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_down_out);
+            llAction.setVisibility(View.GONE);
+            llAction.startAnimation(slideDown);
+        }
+    }
+
+    @Override
     public void onAttachView() {
         presenter.onAttach(this);
     }
@@ -103,5 +145,11 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
         presenter = new ApprovalPresenter(getActivity());
         onAttachView();
+    }
+
+    private void initAction(){
+        if(approvalSelectedList.size()>0){
+            showAction();
+        }else closeAction();
     }
 }

@@ -20,12 +20,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> {
+    public interface OnItemClickCallback {
+        void onItemChecked(ApprovalModel approvalModel, boolean checked);
+    }
 
     private List<ApprovalModel> listApproval;
     private boolean isAllChecked = false;
+    private ApprovalAdapter.OnItemClickCallback onItemClickCallback;
 
-    public ApprovalHistoryAdapter(List<ApprovalModel> listApproval) {
+    public ApprovalHistoryAdapter(List<ApprovalModel> listApproval, ApprovalAdapter.OnItemClickCallback onItemClickCallback) {
         this.listApproval = listApproval;
+        this.onItemClickCallback = onItemClickCallback;
     }
 
     @NonNull
@@ -72,6 +77,8 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
                 Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
                 itemView.getContext().startActivity(intent);
             });
+
+            cbApproval.setOnClickListener(view -> onItemClickCallback.onItemChecked(approvalModel, cbApproval.isChecked()));
 
             if(approvalModel.getType()==1)//1 for approve 2 for rejected sementara
             {

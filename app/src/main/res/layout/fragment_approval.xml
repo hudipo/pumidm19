@@ -75,10 +75,11 @@
         android:paddingEnd="8dp"
         android:clipToPadding="false"/>
     <LinearLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/llAction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_alignParentBottom="true">
         <RelativeLayout
             android:layout_width="0dp"

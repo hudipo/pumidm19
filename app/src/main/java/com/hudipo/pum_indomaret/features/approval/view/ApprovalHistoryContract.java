@@ -23,5 +23,7 @@ public class ApprovalHistoryContract {
         void showLoading();
         void dismissLoading();
         void success(String message);
+        void showAction();
+        void closeAction();
     }
 }

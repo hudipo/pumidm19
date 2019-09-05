@@ -44,4 +44,5 @@
     <dimen name="width_button_approve">120dp</dimen>
     <dimen name="height_header_approval">130dp</dimen>
     <dimen name="height_header_approval2">100dp</dimen>
+    <dimen name="home_corner">18dp</dimen>
 </resources>

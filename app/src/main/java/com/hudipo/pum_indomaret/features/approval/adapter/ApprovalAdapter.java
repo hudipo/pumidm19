@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,12 +21,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.ApprovalViewHolder> {
+    public interface OnItemClickCallback {
+        void onItemChecked(ApprovalModel approvalModel, boolean checked);
+    }
 
     private List<ApprovalModel> listApproval;
     private boolean isAllChecked = false;
+    private OnItemClickCallback onItemClickCallback;
 
-    public ApprovalAdapter(List<ApprovalModel> listApproval) {
+    public ApprovalAdapter(List<ApprovalModel> listApproval, OnItemClickCallback onItemClickCallback) {
         this.listApproval = listApproval;
+        this.onItemClickCallback = onItemClickCallback;
     }
 
     @NonNull
@@ -70,6 +76,8 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.Approv
                 Intent intent = new Intent(itemView.getContext(), ApprovalDetailActivity.class);
                 itemView.getContext().startActivity(intent);
             });
+
+            cbApproval.setOnClickListener(view -> onItemClickCallback.onItemChecked(approvalModel, cbApproval.isChecked()));
         }
     }
 
