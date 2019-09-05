@@ -5,10 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,17 +29,14 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
     @BindView(R.id.rvHistory)
     RecyclerView rvHistory;
     @BindView(R.id.cbApproval)
-    CheckBox cbApproval;
-    @BindView(R.id.btnDelete)
-    LinearLayout btnDelete;
-    @BindView(R.id.llAction)
-    LinearLayout llAction;
+    ImageView cbApproval;
 
     private View view;
     private ApprovalHistoryAdapter approvalAdapter;
     private ApprovalHistoryPresenter presenter;
     private List<ApprovalModel> approvalSelectedList = new ArrayList<>();
     private List<ApprovalModel> approvalModelList = new ArrayList<>();
+    private boolean isCheckedAll = false;
 
     @Nullable
     @Override
@@ -58,13 +52,15 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
 
     private void setView() {
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
-        cbApproval.setOnCheckedChangeListener((compoundButton, b) ->{
-            approvalAdapter.setAllChecked(b);
-            if(b){
+        cbApproval.setOnClickListener(view1 -> {
+            if(isCheckedAll){
+                approvalSelectedList.clear();
+                isCheckedAll = false;
+            }else {
                 approvalSelectedList.clear();
                 approvalSelectedList.addAll(approvalModelList);
-            }else approvalSelectedList.clear();
-            initAction();
+                isCheckedAll = true;
+            }
         });
     }
 
@@ -79,7 +75,6 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
             }else {
                 approvalSelectedList.remove(approvalModel);
             }
-            initAction();
         });
         rvHistory.setAdapter(approvalAdapter);
     }
@@ -110,24 +105,6 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
     }
 
     @Override
-    public void showAction() {
-        if(llAction.getVisibility() == View.GONE){
-            Animation slideUp = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_up);
-            llAction.setVisibility(View.VISIBLE);
-            llAction.startAnimation(slideUp);
-        }
-    }
-
-    @Override
-    public void closeAction() {
-        if(llAction.getVisibility() == View.VISIBLE){
-            Animation slideDown = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_down_out);
-            llAction.setVisibility(View.GONE);
-            llAction.startAnimation(slideDown);
-        }
-    }
-
-    @Override
     public void onAttachView() {
         presenter.onAttach(this);
     }
@@ -143,11 +120,5 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
 
         presenter = new ApprovalHistoryPresenter(getActivity());
         onAttachView();
-    }
-
-    private void initAction(){
-        if(approvalSelectedList.size()>0){
-            showAction();
-        }else closeAction();
     }
 }

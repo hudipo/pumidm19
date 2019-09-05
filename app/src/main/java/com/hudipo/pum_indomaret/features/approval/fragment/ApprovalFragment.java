@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -32,7 +32,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     @BindView(R.id.rvApproval)
     RecyclerView rvApproval;
     @BindView(R.id.cbApproval)
-    CheckBox cbApproval;
+    ImageView cbApproval;
     @BindView(R.id.btnApprove)
     LinearLayout btnApprove;
     @BindView(R.id.btnReject)
@@ -45,6 +45,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     private ApprovalPresenter presenter;
     private List<ApprovalModel> approvalSelectedList = new ArrayList<>();
     private List<ApprovalModel> approvalModelList = new ArrayList<>();
+    private boolean isCheckedAll = false;
 
     @Nullable
     @Override
@@ -60,12 +61,15 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     private void setView() {
         rvApproval.setLayoutManager(new LinearLayoutManager(getActivity()));
-        cbApproval.setOnCheckedChangeListener((compoundButton, b) ->{
-            approvalAdapter.setAllChecked(b);
-            if(b){
+        cbApproval.setOnClickListener(view1 -> {
+            if(isCheckedAll){
+                approvalSelectedList.clear();
+                isCheckedAll = false;
+            }else {
                 approvalSelectedList.clear();
                 approvalSelectedList.addAll(approvalModelList);
-            }else approvalSelectedList.clear();
+                isCheckedAll = true;
+            }
             initAction();
         });
     }
