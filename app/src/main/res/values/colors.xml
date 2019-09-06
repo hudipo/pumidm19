@@ -11,7 +11,12 @@
     <color name="colorLoginForm">#11000000</color>
     <color name="colorLoginButton">#03A9F4</color>
     <color name="redError">#DA0E0E</color>
-
+    
+    <!--for response-->
+    <color name="colorButtonMenuChoice">#286FE5</color>
+    
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="yellow">#FFE200</color>
+    <color name="black_jet">#343434</color>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--corner-->
-    <dimen name="main_corner">4dp</dimen>
+    <dimen name="main_corner">8dp</dimen>
     <dimen name="home_corner">18dp</dimen>
 
     <!--padding-->
@@ -12,6 +12,9 @@
     <dimen name="margin_horizontal_login">32dp</dimen>
     <dimen name="margin_vertical_login">50dp</dimen>
     <dimen name="dp18">18dp</dimen>
+    <dimen name="min_margin">8dp</dimen>
+    <dimen name="large_margin">24dp</dimen>
+    <dimen name="dialog_fragment_margin">40dp</dimen>
 
 
     <!--elevetaion-->
@@ -35,6 +38,16 @@
     <dimen name="textAppearanceBody2">14sp</dimen>
     <dimen name="textAppearanceCaption">12sp</dimen>
 
+    <!--height-->
+    <dimen name="heightAppBar">100dp</dimen>
+    <dimen name="buttonHeight">56dp</dimen>
+    <dimen name="editTextHeight">56dp</dimen>
+
+    <!--Width-->
+    <dimen name="buttonWidth">125dp</dimen>
+    <dimen name="dialogWidth">240dp</dimen>
+
+    <!--size-->
     <dimen name="dp32">32dp</dimen>
     <dimen name="dp12">12dp</dimen>
     <dimen name="dp6">6dp</dimen>
