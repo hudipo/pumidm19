@@ -5,22 +5,20 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.createresponse.CreateResponseActivity;
+import com.hudipo.pum_indomaret.features.response.subfeatures.responsehistory.ResponseHistoryActivity;
 import com.hudipo.pum_indomaret.model.ResponseModel;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ResponseAdapter extends RecyclerView.Adapter<ResponseAdapter.ViewHolder>{
     private ArrayList<ResponseModel> listResponse;
@@ -56,28 +54,23 @@ public class ResponseAdapter extends RecyclerView.Adapter<ResponseAdapter.ViewHo
         TextView tvStatus;
         @BindView(R.id.tvTrxNumber)
         TextView tvTrxNumber;
-        @BindView(R.id.btnFlag)
-        ImageButton btnFlag;
-        @BindView(R.id.btnEye)
-        ImageButton btnEye;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            onClick();
         }
 
         void bindItem(ResponseModel itemResponse){
         }
 
-        private void onClick() {
-            btnFlag.setOnClickListener(view -> {
-                context.startActivity(new Intent(context, CreateResponseActivity.class));
-            });
+        @OnClick(R.id.btnFlag)
+        void btnFlag(){
+            context.startActivity(new Intent(context, CreateResponseActivity.class));
+        }
 
-            btnEye.setOnClickListener(view -> {
-                Toast.makeText(context, "Eye", Toast.LENGTH_SHORT).show();
-            });
+        @OnClick(R.id.btnEye)
+        void btnEye(){
+            context.startActivity(new Intent(context, ResponseHistoryActivity.class));
         }
     }
 }

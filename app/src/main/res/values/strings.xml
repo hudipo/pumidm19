@@ -54,4 +54,30 @@
     <string name="amount_remaining">Amount Remaining</string>
     <string name="full">Full</string>
     <string name="partial">Partial</string>
+    <string name="store_code">Store Code</string>
+    <string name="pdf_jpg_png">(pdf, jpg, png)</string>
+    <string name="upload_file">Upload File</string>
+    <string name="add">Add</string>
+    <string name="response_cart">Response Cart</string>
+    <string name="example_store_code">IDM123</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="create_another_response">Create another response</string>
+    <string name="partial_response_sent">Partial Response Sent !</string>
+    <string name="you_have_successfully_sent_npartial_responsibility">You have successfully sent \n Partial Responsibility</string>
+    <string name="partial_response_added">Partial Response Added !</string>
+    <string name="you_have_successfully_added_npartial_responsibility">You have successfully added  \nPartial Responsibility</string>
+    <string name="view_response_cart">View Response Cart</string>
+    <string name="add_another_response">Add another Response</string>
+    <string name="full_response_added">Full Response Added !</string>
+    <string name="you_have_successfully_added_full_responsibility">You have successfully added \nFull Responsibility</string>
+    <string name="history">History</string>
+    <string name="responsibility_number">Responsibility Number</string>
+    <string name="responsibility_date">Responsibility Date</string>
+    <string name="example_date">20-08-2019</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choose_file_from">Choose file from</string>
 </resources>

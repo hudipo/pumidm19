@@ -2,12 +2,15 @@ package com.hudipo.pum_indomaret.features.response.subfeatures.createresponse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.response.subfeatures.responsefull.ResponseFullActivity;
+import com.hudipo.pum_indomaret.features.response.subfeatures.responsepartial.ResponsePartialActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,11 +32,11 @@ public class CreateResponseActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnFull)
     void btnFull(){
-        Toast.makeText(this, "Full", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ResponseFullActivity.class));
     }
 
     @OnClick(R.id.btnPartial)
     void btnPartial(){
-        Toast.makeText(this, "Partial", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ResponsePartialActivity.class));
     }
 }

@@ -15,14 +15,16 @@
 
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
+        android:layout_marginStart="@dimen/main_margin"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintHorizontal_bias="0.0"/>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -182,24 +184,26 @@
 
             <Button
                 android:id="@+id/btnFull"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/buttonWidth"
                 android:layout_height="wrap_content"
                 android:text="@string/full"
                 android:textAllCaps="false"
                 style="@style/TextAppearance.Headline6.Light"
                 android:background="@drawable/bg_rounded_green_30dp"
+                android:layout_marginBottom="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnPartial"/>
 
             <Button
                 android:id="@+id/btnPartial"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/buttonWidth"
                 android:layout_height="wrap_content"
                 android:text="@string/partial"
                 android:textAllCaps="false"
                 style="@style/TextAppearance.Headline6.Light"
                 android:background="@drawable/bg_rounded_yellow"
+                android:layout_marginBottom="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btnFull"/>

@@ -3,6 +3,7 @@ package com.hudipo.pum_indomaret.features.response.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,8 @@ public class ResponseActivity extends AppCompatActivity {
     RecyclerView rvResponse;
     @BindView(R.id.btnBack)
     ImageButton btnBack;
+    @BindView(R.id.swipeRefreshResponse)
+    SwipeRefreshLayout swipeRefreshResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,14 @@ public class ResponseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setAdapter();
+        initSwipeRefresh();
         onClick();
+    }
+
+    private void initSwipeRefresh() {
+        swipeRefreshResponse.setOnRefreshListener(() -> {
+            swipeRefreshResponse.setRefreshing(false);
+        });
     }
 
     private void onClick() {

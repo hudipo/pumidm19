@@ -12,6 +12,9 @@
     <dimen name="margin_horizontal_login">32dp</dimen>
     <dimen name="margin_vertical_login">50dp</dimen>
     <dimen name="dp18">18dp</dimen>
+    <dimen name="min_margin">8dp</dimen>
+    <dimen name="large_margin">24dp</dimen>
+    <dimen name="dialog_fragment_margin">40dp</dimen>
 
 
     <!--elevetaion-->
@@ -36,7 +39,13 @@
     <dimen name="textAppearanceCaption">12sp</dimen>
 
     <!--height-->
-    <dimen name="heightAppBar">120dp</dimen>
+    <dimen name="heightAppBar">100dp</dimen>
+    <dimen name="buttonHeight">56dp</dimen>
+    <dimen name="editTextHeight">56dp</dimen>
+
+    <!--Width-->
+    <dimen name="buttonWidth">125dp</dimen>
+    <dimen name="dialogWidth">240dp</dimen>
 
     <!--size-->
     <dimen name="dp32">32dp</dimen>
