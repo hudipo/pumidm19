@@ -19,7 +19,7 @@ public class SearchDocumentReqActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_search_doc_req);
+        setContentView(R.layout.activity_request_search_doc);
         rcvSearchDoc.setHasFixedSize(true);
         rcvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
         rcvSearchDoc.setAdapter(new SearchDocumentAdapter());

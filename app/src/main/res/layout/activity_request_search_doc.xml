@@ -73,7 +73,7 @@
         android:paddingBottom="@dimen/dp18"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sectionTitle"
-        tools:listitem="@layout/item_search_document" />
+        tools:listitem="@layout/item_request_search_document" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
