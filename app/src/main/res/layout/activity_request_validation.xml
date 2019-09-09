@@ -44,7 +44,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="@dimen/dp18"
+        android:layout_margin="@dimen/dp18"
         app:layout_constraintBottom_toTopOf="@+id/btnSubmitReq"
         app:layout_constraintTop_toBottomOf="@+id/sectionTitle"
         tools:layout_editor_absoluteX="0dp">
@@ -286,7 +286,7 @@
     <Button
         android:id="@+id/btnSubmitReq"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:background="@drawable/bg_rounded_top_submit"
         android:text="submit"
         android:textSize="24sp"
