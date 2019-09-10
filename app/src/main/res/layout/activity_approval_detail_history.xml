@@ -16,9 +16,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_chevron_left"
+            android:id="@+id/ivBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/left_arrow"
+            android:layout_marginStart="16dp"
             android:layout_centerVertical="true"/>
         <LinearLayout
             android:id="@+id/layout_title"

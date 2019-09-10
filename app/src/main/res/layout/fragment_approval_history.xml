@@ -15,13 +15,12 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_centerVertical="true"
             android:background="@android:color/transparent"
             android:src="@drawable/left_arrow"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/layout_title"
-            app:layout_constraintBottom_toBottomOf="@id/layout_title"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/search"/>
 
         <LinearLayout
             android:id="@+id/layout_title"
@@ -56,13 +55,14 @@
         </LinearLayout>
         <androidx.appcompat.widget.SearchView
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_toStartOf="@id/ivSearch"
             android:layout_alignParentBottom="true"
+            android:theme="@style/AppSearchView"
             android:id="@+id/search"
             android:background="@drawable/bg_search_view"
             app:searchIcon="@null"
@@ -75,7 +75,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="45dp"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
@@ -96,7 +96,7 @@
         <View
             android:id="@+id/view2"
             android:layout_width="45dp"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
@@ -107,8 +107,8 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_filter"
-            android:padding="6dp"
-            android:id="@+id/btnCheck"
+            android:padding="9dp"
+            android:id="@+id/btnFilter"
             app:layout_constraintStart_toStartOf="@id/view2"
             app:layout_constraintEnd_toEndOf="@id/view2"
             app:layout_constraintTop_toTopOf="@id/view2"

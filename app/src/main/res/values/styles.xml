@@ -197,4 +197,9 @@
     <style name="keyboard_number_button" parent="keyboard_button">
         <item name="android:tag">number_button</item>
     </style>
+
+    <!--Text size of search view-->
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

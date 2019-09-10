@@ -70,6 +70,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
                 approvalSelectedList.addAll(approvalModelList);
                 isCheckedAll = true;
             }
+            approvalAdapter.setAllChecked(isCheckedAll);
             initAction();
         });
     }

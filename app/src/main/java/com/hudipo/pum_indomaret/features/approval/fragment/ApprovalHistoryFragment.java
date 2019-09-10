@@ -28,8 +28,8 @@ import butterknife.ButterKnife;
 public class ApprovalHistoryFragment extends Fragment implements ApprovalHistoryContract.ApprovalHistoryView {
     @BindView(R.id.rvHistory)
     RecyclerView rvHistory;
-    @BindView(R.id.cbApproval)
-    ImageView cbApproval;
+    @BindView(R.id.btnFilter)
+    ImageView btnFilter;
 
     private View view;
     private ApprovalHistoryAdapter approvalAdapter;
@@ -52,16 +52,6 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
 
     private void setView() {
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity()));
-        cbApproval.setOnClickListener(view1 -> {
-            if(isCheckedAll){
-                approvalSelectedList.clear();
-                isCheckedAll = false;
-            }else {
-                approvalSelectedList.clear();
-                approvalSelectedList.addAll(approvalModelList);
-                isCheckedAll = true;
-            }
-        });
     }
 
     @Override
@@ -69,13 +59,7 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
         approvalModelList.clear();
         approvalModelList.addAll(approvalModels);
 
-        approvalAdapter = new ApprovalHistoryAdapter(approvalModels, (approvalModel, checked) -> {
-            if(checked){
-                approvalSelectedList.add(approvalModel);
-            }else {
-                approvalSelectedList.remove(approvalModel);
-            }
-        });
+        approvalAdapter = new ApprovalHistoryAdapter(approvalModels);
         rvHistory.setAdapter(approvalAdapter);
     }
 
