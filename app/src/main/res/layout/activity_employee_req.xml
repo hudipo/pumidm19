@@ -9,7 +9,7 @@
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/heightAppBar"
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,11 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="REQUEST"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:text="@string/request"
+        android:textAllCaps="true"
         android:textStyle="bold"
+        style="@style/TextAppearance.Headline4.Light"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.response.subfeatures.responsefull.ResponseFullActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
+
+        <View
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/heightAppBar"
+            android:background="@drawable/gradient_top_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/left_arrow"
+            android:layout_marginStart="@dimen/main_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintEnd_toStartOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/topView"
+            app:layout_constraintTop_toTopOf="@id/topView"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/response"
+            android:textStyle="bold"
+            style="@style/TextAppearance.Headline4.Light"
+            app:layout_constraintBottom_toBottomOf="@id/topView"
+            app:layout_constraintEnd_toEndOf="@id/topView"
+            app:layout_constraintStart_toStartOf="@id/topView"
+            app:layout_constraintTop_toTopOf="@id/topView" />
+
+        <TextView
+            android:id="@+id/tvPartial"
+            style="@style/TextAppearance.Headline6.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/full"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/main_margin"
+            app:layout_constraintBottom_toBottomOf="@id/topView"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+
+        <ImageButton
+            android:id="@+id/btnFolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/folder"
+            android:scaleType="centerCrop"
+            android:background="@android:color/transparent"
+            android:layout_marginEnd="@dimen/main_margin"
+            app:layout_constraintTop_toTopOf="@id/btnBack"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/main_padding"
+            app:layout_constraintTop_toBottomOf="@id/topView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <Button
+                android:id="@+id/btnTransactionType"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/buttonHeight"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+                android:text="@string/transaction_type"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.Body1.Dark"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingEnd="@dimen/main_padding"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/editTextHeight"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:hint="@string/description"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/main_margin"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingEnd="@dimen/main_padding"
+                style="@style/TextAppearance.Body1.Dark"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnTransactionType"/>
+
+            <EditText
+                android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/editTextHeight"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:hint="@string/amount"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/main_margin"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingEnd="@dimen/main_padding"
+                style="@style/TextAppearance.Body1.Dark"
+                android:inputType="numberDecimal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etDescription"/>
+
+            <EditText
+                android:id="@+id/etStoreCode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/editTextHeight"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:hint="@string/store_code"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:layout_marginTop="@dimen/main_margin"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingEnd="@dimen/main_padding"
+                style="@style/TextAppearance.Body1.Dark"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etAmount"/>
+
+            <TextView
+                android:id="@+id/tvPdfJpgPng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pdf_jpg_png"
+                android:textColor="@android:color/holo_red_dark"
+                style="@style/TextAppearance.caption.Dark"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/etStoreCode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
+
+            <EditText
+                android:id="@+id/etUploadFile"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/editTextHeight"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:hint="@string/upload_file"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:paddingStart="@dimen/main_padding"
+                android:paddingEnd="@dimen/main_padding"
+                style="@style/TextAppearance.Body1.Dark"
+                android:layout_marginEnd="8dp"
+                android:enabled="false"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPdfJpgPng"
+                app:layout_constraintEnd_toStartOf="@id/btnUploadFile"/>
+
+            <FrameLayout
+                android:id="@+id/btnUploadFile"
+                android:layout_width="@dimen/buttonHeight"
+                android:layout_height="@dimen/buttonHeight"
+                android:background="@drawable/bg_rounded_border_black_solid_green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/etUploadFile"
+                app:layout_constraintBottom_toBottomOf="@id/etUploadFile">
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/upload_folder"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="@dimen/buttonWidth"
+                android:layout_height="wrap_content"
+                android:text="@string/add"
+                android:background="@drawable/bg_rounded_green_30dp"
+                style="@style/TextAppearance.Headline6.Light"
+                android:textAllCaps="false"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintTop_toBottomOf="@id/etUploadFile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
