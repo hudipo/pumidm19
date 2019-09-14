@@ -206,4 +206,13 @@
     <style name="keyboard_number_button" parent="keyboard_button">
         <item name="android:tag">number_button</item>
     </style>
+
+    <!-- Spinner -->
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+
+    </style>
 </resources>

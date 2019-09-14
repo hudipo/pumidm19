@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdapterSpinner extends RecyclerView.Adapter<AdapterSpinner.ViewHolder>{
+
     private ArrayList<OptionItem> listSpinner;
     private ItemClickListener itemClickListener;
 

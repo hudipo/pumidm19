@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.EmployeeReqActivity">
+    tools:context=".features.requestpum.view.DocumentReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imgBack"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@android:color/transparent"
@@ -42,119 +43,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
-        android:text="Employee"
+        android:text="Document"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
-    <TextView
-        android:id="@+id/tvEmployeeNameEmp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:gravity="center_vertical"
-        android:hint="Employee Name"
-        android:maxLines="1"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:text="Employee Name"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sectionTitle" />
-
     <Spinner
-        android:id="@+id/spnEmployeeDepartmentEmp"
+        android:id="@+id/spnDocType"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginTop="@dimen/main_margin"
+        android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
         android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-        android:gravity="center_vertical"
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="42dp"
-        android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-        android:textStyle="normal"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEmployeeNameEmp" />
-
+        app:layout_constraintTop_toBottomOf="@id/sectionTitle" />
 
     <ImageView
-        android:layout_marginEnd="@dimen/dp12"
-        app:layout_constraintBottom_toBottomOf="@id/spnEmployeeDepartmentEmp"
-        app:layout_constraintTop_toTopOf="@id/spnEmployeeDepartmentEmp"
-        app:layout_constraintEnd_toEndOf="@id/spnEmployeeDepartmentEmp"
         android:src="@drawable/ic_arrow_drop_down_black_30dp"
         android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/spnDocType"
+        app:layout_constraintBottom_toBottomOf="@id/spnDocType"
+        app:layout_constraintEnd_toEndOf="@id/spnDocType"
+        android:layout_marginEnd="@dimen/dp12"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/tvUseDateEmp"
+        android:id="@+id/tvDocNum"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
-        android:layout_marginEnd="0dp"
         android:background="@drawable/bg_rounded_border_black_solid_black"
         android:gravity="center_vertical"
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="Use Date"
+        android:text="DOC Number"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgUseDateEmp"
+        app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spnEmployeeDepartmentEmp" />
+        app:layout_constraintTop_toBottomOf="@id/spnDocType" />
 
-    <ImageView
-        android:id="@+id/imgUseDateEmp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/main_margin"
-        android:background="@drawable/bg_rounded_border_black_solid_green"
-        android:padding="6dp"
-        android:src="@drawable/calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spnEmployeeDepartmentEmp" />
-
-    <TextView
-        android:id="@+id/tvRespDateEmp"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_margin="@dimen/main_margin"
-        android:layout_marginEnd="0dp"
-        android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:text="Resp Date"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgUseDateEmp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUseDateEmp" />
-
-    <ImageView
-        android:id="@+id/imgRespDateEmp"
+    <ImageButton
+        android:id="@+id/imgSearcDoc"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
         android:background="@drawable/bg_rounded_red"
         android:padding="6dp"
-        android:src="@drawable/calendar"
+        android:src="@drawable/ic_search_white_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgUseDateEmp" />
+        app:layout_constraintTop_toBottomOf="@id/spnDocType" />
 
     <Button
-        android:id="@+id/btnNextEmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/main_margin"

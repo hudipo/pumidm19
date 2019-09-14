@@ -9,64 +9,75 @@
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/heightAppBar"
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toStartOf="@id/activityTitle"
+        app:layout_constraintStart_toStartOf="@id/topView"
+        app:layout_constraintTop_toTopOf="@id/topView" />
+
     <TextView
         android:id="@+id/activityTitle"
-        android:layout_width="match_parent"
+        style="@style/TextAppearance.Headline4.Light"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="REQUEST"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:text="@string/request"
+        android:textAllCaps="true"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView"
-        app:layout_constraintBottom_toBottomOf="@id/topView"/>
+        app:layout_constraintTop_toTopOf="@id/topView" />
 
     <TextView
         android:id="@+id/sectionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp18"
-        android:layout_marginEnd="@dimen/dp18"
-        android:layout_marginTop="@dimen/dp18"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
         android:text="Fund"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
-    <Spinner
+    <Button
         android:id="@+id/spinnerFundTrxType"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="@dimen/dp18"
-        android:layout_marginEnd="@dimen/dp18"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textStyle="normal"
+        android:text="Report Type"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/sectionTitle" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp18"
-        android:src="@drawable/ic_arrow_drop_down_black_30dp"
-        app:layout_constraintBottom_toBottomOf="@id/spinnerFundTrxType"
-        app:layout_constraintEnd_toEndOf="@id/spinnerFundTrxType"
-        app:layout_constraintTop_toTopOf="@id/spinnerFundTrxType" />
 
     <EditText
         android:id="@+id/edtFundDesc"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="@dimen/dp18"
-        android:layout_marginEnd="@dimen/dp18"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
         android:gravity="center_vertical"
         android:maxLines="1"
@@ -82,37 +93,42 @@
         android:id="@+id/edtFundAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp18"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="@dimen/dp12"
+        android:layout_marginEnd="@dimen/main_margin"
         app:errorEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtFundDesc">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@drawable/bg_rounded_border_black_solid_black"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:text="Amount"
             android:textColor="@color/black"
-            android:textSize="24sp"
-            android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:text="Amount"/>
+            android:textSize="24sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        style="@style/spinnerItemStyle"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_margin="@dimen/dp18"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/dp12"
+        android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:gravity="center_vertical"
+        android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:gravity="center_vertical"
+        android:popupBackground="@color/bg_spinner"
         android:text="Upload File"
-        android:textColor="@color/black"
         android:textSize="24sp"
-        android:maxLines="1"
         app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edtFundAmount" />
@@ -121,7 +137,9 @@
         android:id="@+id/imgSearcDoc"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="@dimen/dp18"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/dp12"
+        android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_green"
         android:padding="6dp"
         android:src="@drawable/upload_folder"
@@ -129,16 +147,19 @@
         app:layout_constraintTop_toBottomOf="@id/edtFundAmount" />
 
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/main_margin"
         android:background="@drawable/bg_circle_color_accent"
-        android:layout_marginBottom="@dimen/dp18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:text="Next"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSearcDoc"
+        app:layout_constraintVertical_bias="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
