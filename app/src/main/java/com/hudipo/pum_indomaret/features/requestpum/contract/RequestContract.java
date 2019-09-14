@@ -1,5 +1,7 @@
 package com.hudipo.pum_indomaret.features.requestpum.contract;
 
+import com.hudipo.pum_indomaret.features.requestpum.model.DocumentDetailRequestModel;
+
 import java.util.ArrayList;
 
 public interface RequestContract {
@@ -41,9 +43,19 @@ public interface RequestContract {
         void onDestroy();
     }
 
-    interface RequestIntractor {
+    interface SearchDocumentView{
+        void setDocumentList(ArrayList<DocumentDetailRequestModel> documentDetailRequestModels);
+    }
 
-        interface OnFinishedListener {
+    interface SearchDocumentPresenter{
+        void onDetach();
+
+        void getDocumentList();
+    }
+
+    interface RequestInteractor {
+
+        interface OnFinishedListenerEmployee {
 
             void onDepartmentFetched(ArrayList<String> departmentList);
 
@@ -51,13 +63,30 @@ public interface RequestContract {
 
             void onEmployeeNameFetched(String employeName);
 
-            void onDocumentTypeFetched(ArrayList<String> documentTypeList);
+
         }
 
-        void getEmployeeName(OnFinishedListener onFinishedListener);
+        interface OnFinishedListenerDocument{
 
-        void getDepartmentList(OnFinishedListener onFinishedListener);
+            void onDocumentTypeFetched(ArrayList<String> documentTypeList);
 
-        void getDocumentTypeList(OnFinishedListener onFinishedListener);
+            void onFailure(Throwable t);
+
+        }
+
+        interface OnFinishedListenerSearchDocument{
+
+            void onDocumentDetailFetched(ArrayList<DocumentDetailRequestModel>documentDetailRequestModels);
+
+            void onFailure(Throwable t);
+        }
+
+        void getEmployeeName(OnFinishedListenerEmployee onFinishedListenerEmployee);
+
+        void getDepartmentList(OnFinishedListenerEmployee onFinishedListenerEmployee);
+
+        void getDocumentTypeList(OnFinishedListenerDocument onFinishedListenerDocument);
+
+        void getDocumentDetailList(OnFinishedListenerSearchDocument onFinishedListenerSearchDocument);
     }
 }

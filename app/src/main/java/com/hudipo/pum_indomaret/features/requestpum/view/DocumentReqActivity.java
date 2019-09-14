@@ -5,16 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
-import com.hudipo.pum_indomaret.features.requestpum.model.RequestIntractorImpl;
+import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.DocumentPresenterImpl;
 import com.hudipo.pum_indomaret.model.RequestModel;
 
@@ -50,7 +47,7 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
     }
 
     private void initView() {
-        presenter = new DocumentPresenterImpl(this, new RequestIntractorImpl());
+        presenter = new DocumentPresenterImpl(this, new RequestInteractorImpl());
         presenter.getDocumentType();
     }
 

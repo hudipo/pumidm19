@@ -4,39 +4,30 @@ import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 
 import java.util.ArrayList;
 
-public class DocumentPresenterImpl implements RequestContract.DocumentPresenter,RequestContract.RequestIntractor.OnFinishedListener {
+public class DocumentPresenterImpl implements RequestContract.DocumentPresenter,RequestContract.RequestInteractor.OnFinishedListenerDocument {
 
     private RequestContract.DocumentView documentView;
-    private RequestContract.RequestIntractor intractor;
+    private RequestContract.RequestInteractor interactor;
 
-    public DocumentPresenterImpl(RequestContract.DocumentView documentView,RequestContract.RequestIntractor intractor){
+    public DocumentPresenterImpl(RequestContract.DocumentView documentView,RequestContract.RequestInteractor interactor){
         this.documentView = documentView;
-        this.intractor = intractor;
+        this.interactor = interactor;
     }
 
 
     @Override
     public void getDocumentType() {
-        intractor.getDocumentTypeList(this);
+        interactor.getDocumentTypeList(this);
     }
 
     @Override
     public void onDestroy() {
-
-    }
-
-    @Override
-    public void onDepartmentFetched(ArrayList<String> departmentList) {
-
+        this.documentView = null;
+        this.interactor = null;
     }
 
     @Override
     public void onFailure(Throwable t) {
-
-    }
-
-    @Override
-    public void onEmployeeNameFetched(String employeName) {
 
     }
 

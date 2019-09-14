@@ -14,7 +14,7 @@ package com.hudipo.pum_indomaret.features.requestpum.view;
 
         import com.hudipo.pum_indomaret.R;
         import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
-        import com.hudipo.pum_indomaret.features.requestpum.model.RequestIntractorImpl;
+        import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
         import com.hudipo.pum_indomaret.features.requestpum.presenter.EmployeePresenterImpl;
         import com.hudipo.pum_indomaret.model.RequestModel;
 
@@ -53,7 +53,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_employee);
         ButterKnife.bind(this);
-        presenter = new EmployeePresenterImpl(this, new RequestIntractorImpl());
+        presenter = new EmployeePresenterImpl(this, new RequestInteractorImpl());
         initView();
 
 

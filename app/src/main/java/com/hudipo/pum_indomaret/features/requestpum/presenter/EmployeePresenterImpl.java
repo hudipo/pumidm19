@@ -5,19 +5,20 @@ import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class EmployeePresenterImpl implements RequestContract.EmployeePresenter, RequestContract.RequestIntractor.OnFinishedListener {
+public class EmployeePresenterImpl implements RequestContract.EmployeePresenter, RequestContract.RequestInteractor.OnFinishedListenerEmployee {
 
     private RequestContract.EmployeeView employeeView;
-    private RequestContract.RequestIntractor intractor;
+    private RequestContract.RequestInteractor interactor;
 
-    public EmployeePresenterImpl (RequestContract.EmployeeView employeeView, RequestContract.RequestIntractor intractor){
+    public EmployeePresenterImpl (RequestContract.EmployeeView employeeView, RequestContract.RequestInteractor interactor){
         this.employeeView = employeeView;
-        this.intractor = intractor;
+        this.interactor = interactor;
     }
 
     @Override
     public void onDestroy() {
         this.employeeView = null;
+        this.interactor = null;
     }
 
     @Override
@@ -27,12 +28,12 @@ public class EmployeePresenterImpl implements RequestContract.EmployeePresenter,
 
     @Override
     public void getDepartmentList() {
-        intractor.getDepartmentList(this);
+        interactor.getDepartmentList(this);
     }
 
     @Override
     public void getEmployeeName() {
-        intractor.getEmployeeName(this);
+        interactor.getEmployeeName(this);
     }
 
     @Override
@@ -67,8 +68,4 @@ public class EmployeePresenterImpl implements RequestContract.EmployeePresenter,
         employeeView.setEmployeeName(employeName);
     }
 
-    @Override
-    public void onDocumentTypeFetched(ArrayList<String> documentTypeList) {
-
-    }
 }
