@@ -1,6 +1,7 @@
 package com.hudipo.pum_indomaret.features.approval.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,22 +15,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.activity.ApprovalFilterActivity;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalHistoryAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalHistoryPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalHistoryContract;
 import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
+import com.hudipo.pum_indomaret.utils.RequestCode;
+import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ApprovalHistoryFragment extends Fragment implements ApprovalHistoryContract.ApprovalHistoryView {
     @BindView(R.id.rvHistory)
     RecyclerView rvHistory;
-    @BindView(R.id.btnFilter)
-    ImageView btnFilter;
 
     private View view;
     private ApprovalHistoryAdapter approvalAdapter;
@@ -61,6 +65,12 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
 
         approvalAdapter = new ApprovalHistoryAdapter(approvalModels);
         rvHistory.setAdapter(approvalAdapter);
+    }
+
+    @OnClick(R.id.btnFilter)
+    void filter(){
+        Intent intent = new Intent(getActivity(), ApprovalFilterActivity.class);
+        Objects.requireNonNull(getActivity()).startActivityForResult(intent, RequestCode.CODE_FILTER);
     }
 
     @Override

@@ -8,10 +8,10 @@
     <RelativeLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_header_approval"
+        android:layout_height="@dimen/heightAppBar"
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
-        android:background="@drawable/bg_approval_header"
+        android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

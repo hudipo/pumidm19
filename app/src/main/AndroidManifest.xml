@@ -14,7 +14,7 @@
             android:name=".features.response.subfeatures.responsehistory.ResponseHistoryActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.response.subfeatures.fullresponsesent.FullResponseSentActivity"
             android:configChanges="orientation"
@@ -64,7 +64,7 @@
             android:name=".features.response.activity.ResponseActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.splash.SplashActivity"
             android:configChanges="orientation"
@@ -119,23 +119,26 @@
             android:name=".features.login.view.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.approval.activity.ApprovalActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.approval.activity.ApprovalDetailHistoryActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.approval.activity.ApprovalDetailActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".features.approval.activity.ApprovalFilterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

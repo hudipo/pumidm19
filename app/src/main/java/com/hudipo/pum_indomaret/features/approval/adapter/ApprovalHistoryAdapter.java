@@ -18,6 +18,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_APPROVAL_HISTORY_TYPE;
+
 public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> {
 
     private List<ApprovalModel> listApproval;
@@ -65,6 +67,7 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
+                intent.putExtra(EXTRA_APPROVAL_HISTORY_TYPE, approvalModel.getType());
                 itemView.getContext().startActivity(intent);
             });
 

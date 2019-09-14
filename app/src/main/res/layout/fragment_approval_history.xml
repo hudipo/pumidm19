@@ -8,10 +8,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_header_approval"
+        android:layout_height="@dimen/heightAppBar"
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
-        android:background="@drawable/bg_approval_header">
+        android:background="@drawable/gradient_top_blue">
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -41,7 +41,7 @@
                 android:text="@string/approval"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/white"
-                android:textSize="32sp"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -59,7 +59,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_toStartOf="@id/ivSearch"
             android:layout_alignParentBottom="true"
             android:theme="@style/AppSearchView"
@@ -77,7 +76,6 @@
             android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/bg_search_view"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +96,6 @@
             android:layout_width="45dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_search_view"
             app:layout_constraintBottom_toBottomOf="parent"
