@@ -11,6 +11,6 @@ public class FundReqActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fund_req);
+        setContentView(R.layout.activity_request_fund);
     }
 }
