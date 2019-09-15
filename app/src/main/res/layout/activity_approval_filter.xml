@@ -150,6 +150,14 @@
                 android:paddingStart="@dimen/main_padding"
                 android:paddingEnd="@dimen/main_padding"
                 android:gravity="center_vertical"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp18"
+                android:src="@drawable/ic_arrow_drop_down_black_30dp"
+                app:layout_constraintBottom_toBottomOf="@id/spTrxStatus"
+                app:layout_constraintEnd_toEndOf="@id/spTrxStatus"
+                app:layout_constraintTop_toTopOf="@id/spTrxStatus" />
             <TextView
                 app:layout_constraintTop_toBottomOf="@id/spTrxStatus"
                 app:layout_constraintStart_toStartOf="parent"
