@@ -102,4 +102,10 @@
     <string name="no">No</string>
     <string name="message_dialog_reject">Are you sure want to Reject all selected Requests ?</string>
     <string name="hint_dialog_reject">Read the reason validation</string>
+    <string name="title_request_approved">Request Approved</string>
+    <string name="you_have_successfully_approve_pum_request">You have successfully approve PUM request</string>
+    <string name="view_approval_history">View Approval History</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="title_request_rejected">Request Rejected !</string>
+    <string name="you_have_successfully_reject_pum_request">You have successfully reject PUM request</string>
 </resources>
