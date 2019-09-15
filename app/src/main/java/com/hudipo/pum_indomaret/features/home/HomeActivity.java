@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
+import com.hudipo.pum_indomaret.features.status.StatusActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,9 +33,9 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(this, "Approval", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.btnInbox)
+    @OnClick(R.id.btnStatus)
     public void clickInbox(View view){
-        Toast.makeText(this, "Inbox", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, StatusActivity.class));
     }
 
     @OnClick(R.id.btnResponse)
