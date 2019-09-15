@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.DepartmenReqActivity">
+    tools:context=".features.requestpum.view.FundReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -32,58 +32,101 @@
         android:id="@+id/sectionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp18"
-        android:text="Department"
+        android:layout_marginStart="@dimen/dp18"
+        android:layout_marginEnd="@dimen/dp18"
+        android:layout_marginTop="@dimen/dp18"
+        android:text="Fund"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
     <Spinner
-        android:id="@+id/spinnerReqDep"
+        android:id="@+id/spinnerFundTrxType"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="@dimen/dp18"
-        android:background="@drawable/bg_rounded_primary"
+        android:layout_marginStart="@dimen/dp18"
+        android:layout_marginEnd="@dimen/dp18"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
         app:layout_constraintTop_toBottomOf="@id/sectionTitle" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dp18"
-        android:src="@drawable/ic_arrow_drop_down_white_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/spinnerReqDep"
-        app:layout_constraintEnd_toEndOf="@id/spinnerReqDep"
-        app:layout_constraintTop_toTopOf="@id/spinnerReqDep" />
+        android:src="@drawable/ic_arrow_drop_down_black_30dp"
+        app:layout_constraintBottom_toBottomOf="@id/spinnerFundTrxType"
+        app:layout_constraintEnd_toEndOf="@id/spinnerFundTrxType"
+        app:layout_constraintTop_toTopOf="@id/spinnerFundTrxType" />
+
+    <EditText
+        android:id="@+id/edtFundDesc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/dp18"
+        android:layout_marginEnd="@dimen/dp18"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:text="Description"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerFundTrxType" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edtFundAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@id/edtFundDesc">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:background="@drawable/bg_rounded_border_black_solid_black"
+            android:text="Amount"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/dp18"
-        android:layout_marginEnd="0dp"
-        android:background="@drawable/bg_rounded_primary"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:gravity="center_vertical"
-        android:text="DOC DETAIL"
-        android:textColor="@color/white"
+        android:text="Upload File"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:maxLines="1"
-        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerReqDep" />
+        app:layout_constraintTop_toBottomOf="@id/edtFundAmount" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imgSearcDoc"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/dp18"
-        android:background="@drawable/bg_rounded_red"
+        android:background="@drawable/bg_rounded_border_black_solid_green"
         android:padding="6dp"
-        android:src="@drawable/ic_search_white_24dp"
+        android:src="@drawable/upload_folder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerReqDep" />
+        app:layout_constraintTop_toBottomOf="@id/edtFundAmount" />
 
     <Button
         android:background="@drawable/bg_circle_color_accent"

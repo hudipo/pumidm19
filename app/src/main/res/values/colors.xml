@@ -12,9 +12,11 @@
     <color name="colorLoginButton">#03A9F4</color>
     <color name="redError">#DA0E0E</color>
 
+    <!--for request-->
+    <color name="submit_btn">#48595d</color>
     <!--for response-->
     <color name="colorButtonMenuChoice">#286FE5</color>
-
+    
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="yellow">#FFE200</color>
