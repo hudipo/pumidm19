@@ -97,4 +97,9 @@
     <string name="trx_start_date">Trx Start Date</string>
     <string name="trx_until_date">Trx Until Date</string>
     <string name="trx_status">Trx Status</string>
+    <string name="message_dialog_approve">Are sure want to Approve all selected Requests ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="message_dialog_reject">Are you sure want to Reject all selected Requests ?</string>
+    <string name="hint_dialog_reject">Read the reason validation</string>
 </resources>

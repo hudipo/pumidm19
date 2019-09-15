@@ -220,16 +220,19 @@
                                 android:textStyle="bold"
                                 android:fontFamily="@font/montserrat_bold"
                                 android:textSize="@dimen/font_title_item_approval" />
+
                             <TextView
                                 android:id="@+id/tvFileUploaded"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="6dp"
                                 android:layout_below="@id/textView"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginStart="6dp"
+                                android:layout_marginBottom="0dp"
                                 android:layout_toStartOf="@id/btnDetail"
-                                tools:text="Jeex"
                                 android:fontFamily="@font/montserrat_regular"
-                                android:textSize="@dimen/font_body_item_approval"/>
+                                android:textSize="@dimen/font_body_item_approval"
+                                tools:text="Jeex" />
                             <Button
                                 android:id="@+id/btnDetail"
                                 android:layout_width="wrap_content"
@@ -246,6 +249,7 @@
                             android:paddingTop="12dp"
                             android:id="@+id/linearLayout">
                             <ImageButton
+                                android:id="@+id/btnApprove"
                                 android:layout_width="0dp"
                                 android:layout_height="45dp"
                                 android:layout_weight="1"
@@ -254,6 +258,7 @@
                                 android:src="@drawable/ic_approve"
                                 android:background="@drawable/bg_approve"/>
                             <ImageButton
+                                android:id="@+id/btnReject"
                                 android:layout_width="0dp"
                                 android:layout_height="45dp"
                                 android:layout_weight="1"
