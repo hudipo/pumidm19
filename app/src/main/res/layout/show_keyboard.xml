@@ -8,6 +8,6 @@
     <com.hudipo.pum_indomaret.utils.CustomKeyboard
         android:id="@+id/customKeyboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

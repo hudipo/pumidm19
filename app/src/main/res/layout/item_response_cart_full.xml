@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/transaction_type"
+            android:fontFamily="@font/mbold"
             style="@style/TextAppearance.caption.Dark"/>
 
         <TextView
@@ -27,12 +28,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/transaction_type"
+            android:fontFamily="@font/mregular"
+            android:layout_marginStart="@dimen/dp6"
             style="@style/TextAppearance.Headline5.Dark"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/amount"
+            android:fontFamily="@font/mbold"
             android:layout_marginTop="@dimen/min_margin"
             style="@style/TextAppearance.caption.Dark"/>
 
@@ -41,12 +45,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/example_amount"
+            android:fontFamily="@font/mregular"
+            android:layout_marginStart="@dimen/dp6"
             style="@style/TextAppearance.Headline5.Dark"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/store_code"
+            android:fontFamily="@font/mbold"
             android:layout_marginTop="@dimen/min_margin"
             style="@style/TextAppearance.caption.Dark"/>
 
@@ -55,6 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/example_store_code"
+            android:fontFamily="@font/mregular"
+            android:layout_marginStart="@dimen/dp6"
             style="@style/TextAppearance.Headline5.Dark"/>
 
     </LinearLayout>

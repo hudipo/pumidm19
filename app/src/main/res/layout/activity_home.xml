@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/ivAppBar"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="270dp"
             android:outlineProvider="background"
             android:paddingBottom="@dimen/main_padding"
             android:scaleType="centerCrop"
@@ -26,7 +26,7 @@
             android:id="@+id/constraintLayoutProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="52dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/ivAppBar"
             app:layout_constraintEnd_toEndOf="@id/guideline">
@@ -46,20 +46,22 @@
                     style="@style/TextAppearance.Headline5.Light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/msemibold"
                     android:text="@string/example_name" />
 
                 <TextView
                     style="@style/TextAppearance.Headline6.Light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/example_nip" />
+                    android:text="@string/example_nip"
+                    android:fontFamily="@font/mregular"/>
 
                 <TextView
                     style="@style/TextAppearance.Headline6.Light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/example_position" />
+                    android:text="@string/example_position"
+                    android:fontFamily="@font/mregular"/>
 
             </LinearLayout>
 
@@ -77,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="42dp"
             android:layout_marginBottom="@dimen/main_margin"
             app:layout_constraintTop_toBottomOf="@id/constraintLayoutProfile"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/request"
+                        android:fontFamily="@font/mregular"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
@@ -136,6 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/approval"
+                        android:fontFamily="@font/mregular"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
@@ -165,6 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/inbox"
+                        android:fontFamily="@font/mregular"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
@@ -194,6 +199,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/response"
+                        android:fontFamily="@font/mregular"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
@@ -223,6 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/setting"
+                        android:fontFamily="@font/mregular"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
@@ -252,6 +259,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/report"
+                        android:fontFamily="@font/mregular"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
