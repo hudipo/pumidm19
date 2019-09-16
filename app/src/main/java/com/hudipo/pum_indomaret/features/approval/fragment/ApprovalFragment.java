@@ -60,9 +60,14 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         ButterKnife.bind(this, view);
 
         setView();
-        presenter.getData();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.getData();
     }
 
     private void setView() {
