@@ -11,6 +11,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
 import com.hudipo.pum_indomaret.features.requestpum.view.EmployeeReqActivity;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
+import com.hudipo.pum_indomaret.features.status.StatusActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,9 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(this, ApprovalActivity.class));
     }
 
-    @OnClick(R.id.btnInbox)
+    @OnClick(R.id.btnStatus)
     public void clickInbox(View view){
-        Toast.makeText(this, "Inbox", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, StatusActivity.class));
     }
 
     @OnClick(R.id.btnResponse)
