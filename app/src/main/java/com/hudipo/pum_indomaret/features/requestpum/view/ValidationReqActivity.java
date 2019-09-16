@@ -23,22 +23,14 @@ public class ValidationReqActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSubmitReq)
     void onClick(){
-        new AlertDialog.Builder(this)
-                .setTitle("Nuke planet Jupiter?")
-                .setMessage("Note that nuking planet Jupiter will destroy everything in there.")
-                .setPositiveButton("Nuke", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Log.d("MainActivity", "Sending atomic bombs to Jupiter");
-                    }
-                })
-                .setNegativeButton("Abort", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Log.d("MainActivity", "Aborting mission...");
-                    }
+        new AlertDialog.Builder(this,R.style.CustomDialogTheme)
+                .setTitle("Submit")
+                .setMessage("Are you sure want to make this request?")
+                .setPositiveButton("Yes", (dialog, which) -> startActivity(new Intent(ValidationReqActivity.this,SentReqActivity.class)))
+                .setNegativeButton("No", (dialog, which) -> {
+                    //Log.d("MainActivity", "Aborting mission...");
                 })
                 .show();
-        //startActivity(new Intent(ValidationReqActivity.this,SentReqActivity.class));
+        //
     }
 }
