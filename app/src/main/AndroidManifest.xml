@@ -81,10 +81,11 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".features.home.HomeActivity"
@@ -155,14 +156,26 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".features.approval.activity.RequestApprovedActivity"
+        <activity
+            android:name=".features.approval.activity.RequestApprovedActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".features.approval.activity.RequestRejectedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.approval.activity.RequestRejectedActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.setting.activity.SettingActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.setting.activity.ChangePinActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

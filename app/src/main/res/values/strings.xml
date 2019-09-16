@@ -115,4 +115,9 @@
     <string name="view_approval_history">View Approval History</string>
     <string name="title_request_rejected">Request Rejected !</string>
     <string name="you_have_successfully_reject_pum_request">You have successfully reject PUM request</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="enter_current_pin">Enter Current PIN</string>
+    <string name="confirm_new_pin">Confirm new PIN</string>
+    <string name="enter_new_pin">Enter new PIN</string>
 </resources>
