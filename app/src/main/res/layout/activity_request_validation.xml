@@ -19,9 +19,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="REQUEST"
+        android:fontFamily="@font/msemibold"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
@@ -36,6 +37,7 @@
         android:layout_marginTop="@dimen/dp18"
         android:layout_marginEnd="@dimen/dp18"
         android:text="Validation"
+        android:fontFamily="@font/msemibold"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/topView" />
@@ -66,8 +68,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Employee"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,6 +79,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Doc Num"
+                    android:fontFamily="@font/mbold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/empLabel"
                     app:layout_constraintEnd_toStartOf="@id/empLabel"
@@ -87,8 +91,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
                     android:text="200100300/100/2019"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/empDepLabel" />
 
                 <TextView
@@ -96,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Use Date"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/empDep" />
 
@@ -105,8 +112,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
                     android:text="31/08/2019"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/useDateLabel" />
 
                 <TextView
@@ -114,6 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Resp Date"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/useDate" />
 
@@ -122,8 +132,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="31/08/2018"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/respDateLabel" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -141,8 +153,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Document"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,6 +164,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Doc Type"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/docLabel"
                     app:layout_constraintEnd_toStartOf="@id/docLabel"
@@ -162,8 +176,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
                     android:text="Pre-Order"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/docTypeLabel" />
 
                 <TextView
@@ -171,6 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Document Number"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/docType" />
 
@@ -180,8 +197,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
                     android:text="1002000/31/08/2019"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/docNumLabel" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -199,8 +218,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fund"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -209,6 +229,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Trx Type"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/fundLabel"
                     app:layout_constraintEnd_toStartOf="@id/fundLabel"
@@ -220,8 +241,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
                     android:text="Store Needs 1"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/trxTypeLabel" />
 
                 <TextView
@@ -229,6 +252,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Amount"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/trxType" />
 
@@ -238,15 +262,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
                     android:text="Rp 40.0000.000"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/amountLabel" />
 
                 <TextView
                     android:id="@+id/fileLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Amaount"
+                    android:text="File Uploaded"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/amount" />
 
@@ -255,8 +282,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Document.pdf"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:layout_marginStart="@dimen/dp6"
                     app:layout_constraintTop_toBottomOf="@id/fileLabel" />
 
                 <TextView
@@ -264,6 +293,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Description"
+                    android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/file" />
 
@@ -272,6 +302,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="This is the description"
+                    android:fontFamily="@font/mregular"
+                    android:layout_marginStart="@dimen/dp6"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     app:layout_constraintTop_toBottomOf="@id/descLabel" />

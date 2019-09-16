@@ -11,6 +11,7 @@
         android:paddingTop="@dimen/dp12"
         android:paddingBottom="@dimen/dp12"
         android:text="@string/please_enter_your_pin"
+        android:fontFamily="@font/mregular"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -43,17 +44,20 @@
             <TextView
                 android:id="@+id/t9_key_1"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_one" />
+                android:text="@string/number_one"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_2"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_two" />
+                android:text="@string/number_two"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_3"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_three" />
+                android:text="@string/number_three"
+                android:fontFamily="@font/mlight"/>
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -61,17 +65,20 @@
             <TextView
                 android:id="@+id/t9_key_4"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_four" />
+                android:text="@string/number_four"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_5"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_five" />
+                android:text="@string/number_five"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_6"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_six" />
+                android:text="@string/number_six"
+                android:fontFamily="@font/mlight"/>
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -79,17 +86,20 @@
             <TextView
                 android:id="@+id/t9_key_7"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_seven" />
+                android:text="@string/number_seven"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_8"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_eight" />
+                android:text="@string/number_eight"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_9"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_nine" />
+                android:text="@string/number_nine"
+                android:fontFamily="@font/mlight"/>
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -97,12 +107,14 @@
             <TextView
                 android:id="@+id/t9_key_clear"
                 style="@style/keyboard_number_button"
-                android:text="@string/btn_clear" />
+                android:text="@string/btn_clear"
+                android:fontFamily="@font/mlight"/>
 
             <TextView
                 android:id="@+id/t9_key_0"
                 style="@style/keyboard_number_button"
-                android:text="@string/number_zero" />
+                android:text="@string/number_zero"
+                android:fontFamily="@font/mlight"/>
 
             <ImageView
                 android:id="@+id/t9_key_backspace"

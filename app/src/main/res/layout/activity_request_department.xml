@@ -13,15 +13,27 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toStartOf="@+id/activityTitle"
+        app:layout_constraintStart_toStartOf="@+id/topView"
+        app:layout_constraintTop_toTopOf="@+id/topView" />
+
     <TextView
         android:id="@+id/activityTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="REQUEST"
+        android:fontFamily="@font/mregular"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
@@ -34,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp18"
         android:text="Department"
+        android:fontFamily="@font/msemibold"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/topView" />
@@ -64,7 +77,8 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:gravity="center_vertical"
-        android:text="DOC DETAIL"
+        android:text="doc detail"
+        android:fontFamily="@font/mlight"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:maxLines="1"
@@ -90,6 +104,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Next"
+        android:fontFamily="@font/msemibold"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"

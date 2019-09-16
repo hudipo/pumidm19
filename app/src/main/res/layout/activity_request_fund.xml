@@ -13,15 +13,27 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toStartOf="@+id/activityTitle"
+        app:layout_constraintStart_toStartOf="@+id/topView"
+        app:layout_constraintTop_toTopOf="@+id/topView" />
+
     <TextView
         android:id="@+id/activityTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="REQUEST"
+        android:fontFamily="@font/msemibold"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
@@ -36,6 +48,7 @@
         android:layout_marginEnd="@dimen/dp18"
         android:layout_marginTop="@dimen/dp18"
         android:text="Fund"
+        android:fontFamily="@font/msemibold"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -73,6 +86,7 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:text="Description"
+        android:fontFamily="@font/mlight"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +111,8 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:text="Amount"/>
+            android:text="Amount"
+            android:fontFamily="@font/mlight"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,6 +125,7 @@
         android:paddingEnd="12dp"
         android:gravity="center_vertical"
         android:text="Upload File"
+        android:fontFamily="@font/mlight"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:maxLines="1"
@@ -135,6 +151,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Next"
+        android:fontFamily="@font/msemibold"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
