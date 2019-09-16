@@ -60,6 +60,7 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode==DOC_DETAIL_REQ_CODE){
             if (resultCode==RESULT_OK){
+                assert data != null;
                 tvDocNum.setText(data.getStringExtra("result"));
             }
         }
@@ -81,5 +82,16 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
                 R.layout.spinner_item_layout, documentType);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         spnDocType.setAdapter(dataAdapter);
+    }
+
+    @OnClick(R.id.btnNextDoc)
+    void onClick(){
+        startActivity(new Intent(DocumentReqActivity.this,FundReqActivity.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onDetach();
+        super.onDestroy();
     }
 }

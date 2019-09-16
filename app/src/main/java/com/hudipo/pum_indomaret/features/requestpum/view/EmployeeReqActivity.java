@@ -108,7 +108,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     @Override
     public void displayDatePickerDialog(int year, int month, int day,int dateCode) {
         DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener,
-                year, 50, day);
+                year, month, day);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
         this.dateCode=dateCode;

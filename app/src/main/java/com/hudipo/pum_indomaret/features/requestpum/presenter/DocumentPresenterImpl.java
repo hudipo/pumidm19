@@ -21,7 +21,7 @@ public class DocumentPresenterImpl implements RequestContract.DocumentPresenter,
     }
 
     @Override
-    public void onDestroy() {
+    public void onDetach() {
         this.documentView = null;
         this.interactor = null;
     }

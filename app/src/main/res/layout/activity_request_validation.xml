@@ -9,20 +9,28 @@
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/heightAppBar"
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toStartOf="@id/activityTitle"
+        app:layout_constraintStart_toStartOf="@id/topView"
+        app:layout_constraintTop_toTopOf="@id/topView" />
+
     <TextView
         android:id="@+id/activityTitle"
-        android:layout_width="match_parent"
+        style="@style/TextAppearance.Headline4.Light"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="REQUEST"
-        android:fontFamily="@font/msemibold"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="32sp"
+        android:text="@string/request"
+        android:textAllCaps="true"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
@@ -33,20 +41,20 @@
         android:id="@+id/sectionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp18"
-        android:layout_marginTop="@dimen/dp18"
-        android:layout_marginEnd="@dimen/dp18"
-        android:text="Validation"
-        android:fontFamily="@font/msemibold"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
+        android:text="Fund"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/dp18"
+        android:layout_margin="@dimen/main_margin"
         app:layout_constraintBottom_toTopOf="@+id/btnSubmitReq"
         app:layout_constraintTop_toBottomOf="@+id/sectionTitle"
         tools:layout_editor_absoluteX="0dp">
@@ -143,7 +151,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp18"
+                android:layout_marginTop="@dimen/main_margin"
                 android:background="@drawable/bg_rounded_border_black_solid_black"
                 android:orientation="vertical"
                 android:padding="@dimen/dp12">
@@ -208,7 +216,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp18"
+                android:layout_marginTop="@dimen/main_margin"
                 android:background="@drawable/bg_rounded_border_black_solid_black"
                 android:orientation="vertical"
                 android:padding="@dimen/dp12">
@@ -310,7 +318,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         </LinearLayout>
 
     </ScrollView>
@@ -318,7 +325,7 @@
     <Button
         android:id="@+id/btnSubmitReq"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:background="@drawable/bg_rounded_top_submit"
         android:text="submit"
         android:textSize="24sp"

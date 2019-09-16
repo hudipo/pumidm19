@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:elevation="@dimen/dp6"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dp18"
-    android:layout_marginTop="18dp"
+    android:padding="@dimen/main_margin"
+    android:layout_marginTop="@dimen/main_margin"
     android:background="@drawable/bg_rounded_border_black_solid_black">
 
     <TextView

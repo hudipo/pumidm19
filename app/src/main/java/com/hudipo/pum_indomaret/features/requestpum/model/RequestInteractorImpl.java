@@ -38,5 +38,14 @@ public class RequestInteractorImpl implements RequestContract.RequestInteractor 
         onFinishedListenerSearchDocument.onDocumentDetailFetched(documentDetailRequestModels);
     }
 
+    @Override
+    public void getTransactionTypeList(OnFinishedListenerFund onFinishedListenerFund) {
+        ArrayList<String>transactionTypeList = new ArrayList<>();
+        for (int i = 0;i<10;i++){
+            transactionTypeList.add("Transaction Type "+i);
+        }
+        onFinishedListenerFund.onTransactionTypeFetched(transactionTypeList);
+    }
+
 
 }

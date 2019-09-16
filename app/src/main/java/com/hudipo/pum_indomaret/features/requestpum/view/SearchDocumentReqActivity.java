@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
@@ -25,16 +27,18 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
 
     @BindView(R.id.rcvSearchDoc)
     RecyclerView rcvSearchDoc;
+    @BindView(R.id.searchBox)
+    EditText searchBox;
 
     RequestContract.SearchDocumentPresenter presenter;
     private SearchDocumentAdapter.ItemClickListener itemClickListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_search_doc);
         ButterKnife.bind(this);
-
         presenter = new SearchDocumentPresenterImpl(this,new RequestInteractorImpl());
         initView();
     }
@@ -53,5 +57,10 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }
