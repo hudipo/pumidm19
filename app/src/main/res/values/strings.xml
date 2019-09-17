@@ -76,6 +76,7 @@
     <string name="responsibility_number">Responsibility Number</string>
     <string name="responsibility_date">Responsibility Date</string>
     <string name="example_date">20-08-2019</string>
+    <string name="file_uploaded">File Uploaded</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -92,4 +93,31 @@
     <string name="approval_2">Approval 2:</string>
     <string name="approval_3">Approval 3:</string>
     <string name="approval_4">Approval 4:</string>
+    <string name="err_server">Server Busy</string>
+    <string name="reject">Reject</string>
+    <string name="approve">Approve</string>
+    <string name="search">Search</string>
+    <string name="pum_requester">Pum Requester</string>
+    <string name="delete">Delete</string>
+    <string name="filter">Filter</string>
+    <string name="note">Note :</string>
+    <string name="note_approval_filter">* The selected transaction period only 31 days.</string>
+    <string name="trx_start_date">Trx Start Date</string>
+    <string name="trx_until_date">Trx Until Date</string>
+    <string name="trx_status">Trx Status</string>
+    <string name="message_dialog_approve">Are sure want to Approve all selected Requests ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="message_dialog_reject">Are you sure want to Reject all selected Requests ?</string>
+    <string name="hint_dialog_reject">Read the reason validation</string>
+    <string name="title_request_approved">Request Approved</string>
+    <string name="you_have_successfully_approve_pum_request">You have successfully approve PUM request</string>
+    <string name="view_approval_history">View Approval History</string>
+    <string name="title_request_rejected">Request Rejected !</string>
+    <string name="you_have_successfully_reject_pum_request">You have successfully reject PUM request</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="change_pin">Change PIN</string>
+    <string name="enter_current_pin">Enter Current PIN</string>
+    <string name="confirm_new_pin">Confirm new PIN</string>
+    <string name="enter_new_pin">Enter new PIN</string>
 </resources>

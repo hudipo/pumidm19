@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.login.view.LoginActivity"
+    tools:context=".features.login.activity.LoginActivity"
     android:background="@drawable/gradient_login">
 
     <ImageView
@@ -39,7 +39,7 @@
             android:background="@drawable/bg_input_login"
             android:textColor="@color/white"
             android:hint="@string/nik"
-            android:fontFamily="@font/mregular"
+            android:fontFamily="@font/montserrat_regular"
             android:inputType="numberSigned"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_person"/>
@@ -68,6 +68,7 @@
             android:background="@drawable/bg_input_login"
             android:inputType="textPassword"
             android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="@string/password"
             android:fontFamily="@font/mregular"
             android:drawablePadding="8dp"
@@ -83,7 +84,7 @@
         android:layout_marginBottom="28dp"
         android:textSize="@dimen/font_login"
         android:text="@string/login"
-        android:fontFamily="@font/msemibold"
+        android:fontFamily="@font/montserrat_semibold"
         android:textColor="@color/white"
         android:elevation="5dp"
         android:background="@drawable/bg_button_login"
@@ -101,7 +102,7 @@
         android:textAlignment="center"
         android:textSize="@dimen/font_login"
         android:text="@string/hint_to_sign_up"
-        android:fontFamily="@font/mregular"
+        android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="parent"

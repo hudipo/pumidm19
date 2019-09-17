@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_approval_item"
+        android:orientation="vertical">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@id/linearLayout"
+            app:layout_constraintEnd_toStartOf="@id/view"/>
+        <View
+            android:id="@+id/view"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_approval_right_approve"
+            app:layout_constraintTop_toTopOf="@id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/cbApproval"
+            android:layout_marginStart="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/view">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pum_number"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/font_title_item_approval"/>
+            <TextView
+                android:id="@+id/tvPumNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                tools:text="2000102102012012012"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="@dimen/font_body_item_approval"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pum_requester"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/font_title_item_approval" />
+            <TextView
+                android:id="@+id/tvPumRequester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                tools:text="Emp Name"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="@dimen/font_body_item_approval" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amount"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/font_title_item_approval" />
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                tools:text="Rp 200.000"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="@dimen/font_body_item_approval" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

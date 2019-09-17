@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
     <!-- Base application theme. -->
@@ -14,6 +15,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
     <style name="AppTheme.EditText.Login" parent="AppTheme">
@@ -207,6 +209,10 @@
         <item name="android:tag">number_button</item>
     </style>
 
+    <!--Text size of search view-->
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <item name="android:textSize">14sp</item>
+    </style>
     <!-- Spinner -->
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"/>
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"/>

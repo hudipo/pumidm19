@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
+import com.hudipo.pum_indomaret.features.requestpum.view.EmployeeReqActivity;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
+import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
 
 import butterknife.ButterKnife;
@@ -25,12 +28,12 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnRequest)
     public void clickRequest(View view){
-        Toast.makeText(this, "Request", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, EmployeeReqActivity.class));
     }
 
     @OnClick(R.id.btnApproval)
     public void clickApproval(View view){
-        Toast.makeText(this, "Approval", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ApprovalActivity.class));
     }
 
     @OnClick(R.id.btnStatus)
@@ -45,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSetting)
     public void clickSetting(View view){
-        Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, SettingActivity.class));
     }
 
     @OnClick(R.id.btnReport)

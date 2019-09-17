@@ -51,4 +51,9 @@
     <dimen name="dp32">32dp</dimen>
     <dimen name="dp12">12dp</dimen>
     <dimen name="dp6">6dp</dimen>
+
+    <!--apprval-->
+    <dimen name="font_title_item_approval">14sp</dimen>
+    <dimen name="font_body_item_approval">22sp</dimen>
+    <dimen name="width_button_approve">120dp</dimen>
 </resources>
