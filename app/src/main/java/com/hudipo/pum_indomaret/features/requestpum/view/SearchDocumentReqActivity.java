@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SearchDocumentReqActivity extends AppCompatActivity implements RequestContract.SearchDocumentView {
 
@@ -57,6 +58,11 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }));
+    }
+
+    @OnClick(R.id.imgBack)
+    void backPressed(){
+        super.onBackPressed();
     }
 
     @Override

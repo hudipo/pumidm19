@@ -47,6 +47,11 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
         startActivity(new Intent(FundReqActivity.this, ValidationReqActivity.class));
     }
 
+    @OnClick(R.id.imgBack)
+    void onBackClick(){
+        super.onBackPressed();
+    }
+
     @Override
     public void setTransactionType(ArrayList<String> transactionTypeList) {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,

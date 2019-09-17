@@ -40,7 +40,7 @@ public class EmployeePresenterImpl implements RequestContract.EmployeePresenter,
     public void onDateSet(int year, int month, int dayOfMonth,int dateCode) {
         month = month + 1;
         String date = dayOfMonth + "/" + month + "/" + year;
-       employeeView.setDate(date,dateCode);
+        employeeView.setDate(date,dateCode);
     }
 
     @Override

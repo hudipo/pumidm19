@@ -33,4 +33,9 @@ public class ValidationReqActivity extends AppCompatActivity {
                 .show();
         //
     }
+
+    @OnClick(R.id.imgBack)
+    void onBackClicked(){
+        super.onBackPressed();
+    }
 }
