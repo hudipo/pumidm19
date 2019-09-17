@@ -58,6 +58,7 @@
                 style="@style/keyboard_number_button"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/number_three" />
+          
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -79,6 +80,7 @@
                 style="@style/keyboard_number_button"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/number_six" />
+
         </TableRow>
 
         <TableRow style="@style/keyboard_row">
@@ -100,6 +102,7 @@
                 style="@style/keyboard_number_button"
                 android:fontFamily="@font/montserrat_regular"
                 android:text="@string/number_nine" />
+
         </TableRow>
 
         <TableRow style="@style/keyboard_row">

@@ -70,6 +70,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat_regular"
             android:hint="@string/password"
+            android:fontFamily="@font/mregular"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_password"/>
     </com.google.android.material.textfield.TextInputLayout>

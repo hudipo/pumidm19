@@ -119,6 +119,7 @@
         android:background="@drawable/bg_button_login"
         android:elevation="5dp"
         android:text="@string/register"
+        android:fontFamily="@font/msemibold"
         android:textColor="@color/white"
         android:textSize="@dimen/font_login"
         android:fontFamily="@font/montserrat_semibold"

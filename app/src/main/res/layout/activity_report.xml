@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.report.view.ReportActivity">
+
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/heightAppBar"
+        android:background="@drawable/gradient_top_blue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toStartOf="@id/activityTitle"
+        app:layout_constraintStart_toStartOf="@id/topView"
+        app:layout_constraintTop_toTopOf="@id/topView" />
+
+    <TextView
+        android:id="@+id/activityTitle"
+        style="@style/TextAppearance.Headline4.Light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Report"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topView"
+        app:layout_constraintEnd_toEndOf="@id/topView"
+        app:layout_constraintStart_toStartOf="@id/topView"
+        app:layout_constraintTop_toTopOf="@id/topView" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvReportTypeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_margin"
+                android:text="Report Type"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/spnReportTypeRep"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Report Type"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvReportTypeLabel" />
+
+            <TextView
+                android:id="@+id/tvEmpNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_margin"
+                android:text="Employee Name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/spnReportTypeRep" />
+
+            <Button
+                android:id="@+id/spnEmployeeNameRep"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Employee Name"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEmpNameLabel" />
+
+
+            <TextView
+                android:id="@+id/tvEmpDepartmentLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_margin"
+                android:text="Employee Department"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/spnEmployeeNameRep" />
+
+            <Button
+                android:id="@+id/spnEmployeeDepartmentRep"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Employe Department"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEmpDepartmentLabel" />
+
+            <TextView
+                android:id="@+id/tvStartDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_margin"
+                android:text="Pum Creation Date"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/spnEmployeeDepartmentRep" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Start Date"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/imgStartDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvStartDateLabel"
+                app:layout_goneMarginEnd="@dimen/main_margin" />
+
+            <ImageView
+                android:id="@+id/imgStartDate"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_green"
+                android:padding="6dp"
+                android:src="@drawable/calendar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvStartDateLabel" />
+
+            <TextView
+                android:id="@+id/tvEndDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_margin"
+                android:text="Pum Creation Start Date"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvStartDate" />
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="Resp Date"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/imgEndDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEndDateLabel" />
+
+            <ImageView
+                android:id="@+id/imgEndDate"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_red"
+                android:padding="6dp"
+                android:src="@drawable/calendar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEndDateLabel" />
+
+            <TextView
+                android:id="@+id/tvGroupByLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_margin"
+                android:text="Group by"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvEndDate" />
+
+            <Button
+                android:id="@+id/spnGroupBy"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="@dimen/dp12"
+                android:text="Group by"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvGroupByLabel" />
+
+
+            <TextView
+                android:id="@+id/tvNoteLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/main_margin"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:text="Note :"
+                android:textColor="@color/redError"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/spnGroupBy" />
+
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/dp6"
+                android:layout_marginEnd="@dimen/main_margin"
+                android:text="* The selected transaction period is only 31 days."
+                android:textColor="@color/redError"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/tvNoteLabel" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/main_margin"
+                android:layout_marginBottom="@dimen/main_margin"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/main_margin"
+                app:layout_constraintTop_toBottomOf="@id/tvNote">
+
+                <Button
+                    android:id="@+id/btnViewRep"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/main_margin"
+                    android:layout_marginEnd="9dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_circle_color_accent"
+                    android:text="View"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginEnd="@dimen/main_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_red_30dp"
+                    android:text="Reset"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
