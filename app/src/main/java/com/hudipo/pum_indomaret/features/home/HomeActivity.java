@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
+import com.hudipo.pum_indomaret.features.report.view.ReportActivity;
 import com.hudipo.pum_indomaret.features.requestpum.view.EmployeeReqActivity;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
 import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
@@ -53,6 +54,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnReport)
     public void clickReport(View view){
-        Toast.makeText(this, "Report", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ReportActivity.class));
     }
 }
