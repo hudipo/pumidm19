@@ -39,7 +39,7 @@
     <dimen name="textAppearanceCaption">12sp</dimen>
 
     <!--height-->
-    <dimen name="heightAppBar">100dp</dimen>
+    <dimen name="heightAppBar">115dp</dimen>
     <dimen name="buttonHeight">56dp</dimen>
     <dimen name="editTextHeight">56dp</dimen>
 
