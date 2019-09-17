@@ -6,12 +6,11 @@ import android.os.Bundle;
 
 import com.hudipo.pum_indomaret.R;
 
-public class DepartmenReqActivity extends AppCompatActivity {
+public class SentReqActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_department);
+        setContentView(R.layout.activity_request_sent);
     }
-
 }

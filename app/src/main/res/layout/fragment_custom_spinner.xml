@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/choose_file_from"
+            android:fontFamily="@font/mregular"
             android:textStyle="bold"
             style="@style/TextAppearance.Headline6.Dark"/>
 

@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent"
     tools:context=".features.requestpum.view.SearchDocumentReqActivity">
 
@@ -13,25 +15,41 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="62dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toTopOf="@+id/searchBox"
+        app:layout_constraintEnd_toStartOf="@+id/titleRequest"
+        app:layout_constraintStart_toStartOf="@+id/topView"
+        app:layout_constraintTop_toTopOf="@+id/topView" />
+
     <TextView
         android:id="@+id/titleRequest"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp12"
+        android:fontFamily="@font/msemibold"
         android:gravity="center"
         android:text="REQUEST"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="32sp"
+        android:textSize="28sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/searchBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
+        android:id="@+id/searchBox"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="@dimen/dp18"
-        android:layout_marginEnd="@dimen/dp18"
+        android:layout_height="32dp"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_circle_white"
         android:hint="Search by Document"
         android:paddingStart="12dp"
@@ -44,8 +62,8 @@
     <ImageView
         android:id="@+id/imgSearcDoc"
         android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="@dimen/dp18"
+        android:layout_height="32dp"
+        android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_circle_white"
         android:padding="6dp"
         android:src="@drawable/ic_search_blue_24dp"
@@ -57,8 +75,9 @@
         android:id="@+id/sectionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp18"
+        android:layout_margin="@dimen/main_margin"
         android:text="Department"
+        android:fontFamily="@font/msemibold"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -68,9 +87,9 @@
         android:id="@+id/rcvSearchDoc"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingStart="@dimen/dp18"
-        android:paddingEnd="@dimen/dp18"
-        android:paddingBottom="@dimen/dp18"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="@dimen/main_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sectionTitle"
         tools:listitem="@layout/item_request_search_document" />

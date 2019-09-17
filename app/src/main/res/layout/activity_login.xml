@@ -39,6 +39,7 @@
             android:background="@drawable/bg_input_login"
             android:textColor="@color/white"
             android:hint="@string/nik"
+            android:fontFamily="@font/mregular"
             android:inputType="numberSigned"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_person"/>
@@ -68,6 +69,7 @@
             android:inputType="textPassword"
             android:textColor="@color/white"
             android:hint="@string/password"
+            android:fontFamily="@font/mregular"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_password"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +83,7 @@
         android:layout_marginBottom="28dp"
         android:textSize="@dimen/font_login"
         android:text="@string/login"
+        android:fontFamily="@font/msemibold"
         android:textColor="@color/white"
         android:elevation="5dp"
         android:background="@drawable/bg_button_login"
@@ -98,6 +101,7 @@
         android:textAlignment="center"
         android:textSize="@dimen/font_login"
         android:text="@string/hint_to_sign_up"
+        android:fontFamily="@font/mregular"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="parent"

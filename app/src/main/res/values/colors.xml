@@ -14,6 +14,9 @@
     
     <!--for request-->
     <color name="submit_btn">#48595d</color>
+    <color name="next_btn">#22C9F0</color>
+    <color name="btn_home_text">#969494</color>
+    <color name="bg_spinner">#F5F5F5</color>
     <!--for response-->
     <color name="colorButtonMenuChoice">#286FE5</color>
     
