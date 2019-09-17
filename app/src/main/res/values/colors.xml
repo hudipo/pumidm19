@@ -5,6 +5,25 @@
     <color name="colorPrimaryLight">#00FDE5</color>
     <color name="colorAccent">#54C3F4</color>
 
+    <!--for login-->
+    <color name="colorLogin">#1085DE</color>
+    <color name="colorLoginLight">#00C5F4</color>
+    <color name="colorLoginForm">#11000000</color>
+    <color name="colorLoginButton">#03A9F4</color>
+    <color name="redError">#DA0E0E</color>
+
+    <!--for request-->
+    <color name="submit_btn">#48595d</color>
+    <color name="next_btn">#22C9F0</color>
+    <color name="btn_home_text">#969494</color>
+    <color name="bg_spinner">#F5F5F5</color>
+    <!--for response-->
+    <color name="colorButtonMenuChoice">#286FE5</color>
+    
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="yellow">#FFE200</color>
+    <color name="black_jet">#343434</color>
+    <color name="grey">#48595D</color>
+    <color name="lightGrey">#B9BCBE</color>
 </resources>

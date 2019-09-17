@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_rounded_border_black_solid_black"
+    android:padding="@dimen/main_padding"
+    android:layout_marginBottom="@dimen/main_margin">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnRemove">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_type"
+            android:fontFamily="@font/mbold"
+            style="@style/TextAppearance.caption.Dark"/>
+
+        <TextView
+            android:id="@+id/tvTransactionType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_type"
+            android:fontFamily="@font/mregular"
+            android:layout_marginStart="@dimen/dp6"
+            style="@style/TextAppearance.Headline5.Dark"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:fontFamily="@font/mbold"
+            android:layout_marginTop="@dimen/min_margin"
+            style="@style/TextAppearance.caption.Dark"/>
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/example_amount"
+            android:fontFamily="@font/mregular"
+            android:layout_marginStart="@dimen/dp6"
+            style="@style/TextAppearance.Headline5.Dark"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/store_code"
+            android:fontFamily="@font/mbold"
+            android:layout_marginTop="@dimen/min_margin"
+            style="@style/TextAppearance.caption.Dark"/>
+
+        <TextView
+            android:id="@+id/tvStoreCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/example_store_code"
+            android:fontFamily="@font/mregular"
+            android:layout_marginStart="@dimen/dp6"
+            style="@style/TextAppearance.Headline5.Dark"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:layout_constraintBottom_toBottomOf="@id/container"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

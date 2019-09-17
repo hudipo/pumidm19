@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.response.subfeatures.responsehistory.ResponseHistoryActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/heightAppBar"
+            android:background="@drawable/gradient_top_blue"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/left_arrow"
+            android:layout_marginStart="@dimen/main_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/topView"
+            app:layout_constraintEnd_toStartOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/topView"
+            app:layout_constraintTop_toTopOf="@id/topView"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/response"
+            android:fontFamily="@font/msemibold"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            style="@style/TextAppearance.Headline4.Light"
+            app:layout_constraintBottom_toBottomOf="@id/topView"
+            app:layout_constraintEnd_toEndOf="@id/topView"
+            app:layout_constraintStart_toStartOf="@id/topView"
+            app:layout_constraintTop_toTopOf="@id/topView" />
+
+        <TextView
+            android:id="@+id/tvPartial"
+            style="@style/TextAppearance.Headline6.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/history"
+            android:fontFamily="@font/msemibold"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/main_margin"
+            app:layout_constraintBottom_toBottomOf="@id/topView"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvResponseHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/main_padding"
+            tools:listitem="@layout/item_response_history"
+            app:layout_constraintTop_toBottomOf="@id/topView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
