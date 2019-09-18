@@ -209,6 +209,25 @@
         <item name="android:tag">number_button</item>
     </style>
 
+    <style name="keyboard_button2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/keyboard_button_bg2</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="keyboard_number_button2" parent="keyboard_button2">
+        <item name="android:tag">number_button</item>
+    </style>
+
     <!--Text size of search view-->
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
         <item name="android:textSize">14sp</item>

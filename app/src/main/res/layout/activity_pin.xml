@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_request_sent"
+    tools:context=".features.pin.PinActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingEnd="@dimen/main_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgLock"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/locked_padlock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEnterPinLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Your PIN"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgLock"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="to make sure that's realy you"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgLock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgLock"
+            app:layout_constraintTop_toBottomOf="@id/tvEnterPinLabel" />
+
+        <LinearLayout
+            android:id="@+id/tvPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/bg_rounded_white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_constraintTop_toBottomOf="@id/imgLock">
+
+            <TextView
+                android:id="@+id/tvPin1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tvPin2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tvPin3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tvPin4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tvPin5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tvPin6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="*"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvPassword">
+
+            <TableRow style="@style/keyboard_row">
+
+                <TextView
+                    android:id="@+id/key_1"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_one" />
+
+                <TextView
+                    android:id="@+id/key_2"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_two" />
+
+                <TextView
+                    android:id="@+id/key_3"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_three" />
+
+            </TableRow>
+
+            <TableRow style="@style/keyboard_row">
+
+                <TextView
+                    android:id="@+id/key_4"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_four" />
+
+                <TextView
+                    android:id="@+id/key_5"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_five" />
+
+                <TextView
+                    android:id="@+id/key_6"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_six" />
+
+            </TableRow>
+
+            <TableRow style="@style/keyboard_row">
+
+                <TextView
+                    android:id="@+id/key_7"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_seven" />
+
+                <TextView
+                    android:id="@+id/key_8"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_eight" />
+
+                <TextView
+                    android:id="@+id/key_9"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_nine" />
+
+            </TableRow>
+
+            <TableRow style="@style/keyboard_row">
+
+                <ImageView
+                    android:id="@+id/key_fingerprint"
+                    style="@style/keyboard_button2"
+                    android:src="@drawable/ic_fingerprint_white_24dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/key_0"
+                    style="@style/keyboard_number_button2"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/number_zero" />
+
+                <ImageView
+                    android:id="@+id/key_backspace"
+                    style="@style/keyboard_button2"
+                    android:src="@drawable/ic_backspace_white_24dp"
+                    tools:ignore="ContentDescription" />
+
+            </TableRow>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
