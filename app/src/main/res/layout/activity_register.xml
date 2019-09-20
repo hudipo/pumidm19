@@ -122,7 +122,6 @@
         android:fontFamily="@font/msemibold"
         android:textColor="@color/white"
         android:textSize="@dimen/font_login"
-        android:fontFamily="@font/montserrat_semibold"
         app:layout_constraintBottom_toTopOf="@id/tvLogin"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent" />

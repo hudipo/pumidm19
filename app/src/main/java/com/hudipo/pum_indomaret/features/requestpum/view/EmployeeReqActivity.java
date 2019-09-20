@@ -59,11 +59,15 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
 
     }
 
-
     private void initView() {
         presenter.getEmployeeName();
         presenter.getDepartmentList();
         mDateSetListener = (view, year, month, dayOfMonth) -> presenter.onDateSet(year, month, dayOfMonth,dateCode);
+    }
+
+    @OnClick(R.id.imgBack)
+    void backPressed(){
+        super.onBackPressed();
     }
 
     @OnClick(R.id.imgUseDateEmp)
