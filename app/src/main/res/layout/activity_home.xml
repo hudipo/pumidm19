@@ -170,7 +170,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/inbox"
                         android:fontFamily="@font/mregular"
-                        android:text="@string/status"
                         style="@style/TextAppearance.Headline6.Dark"/>
 
                 </LinearLayout>
