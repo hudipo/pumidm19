@@ -27,9 +27,6 @@ package com.hudipo.pum_indomaret.features.requestpum.view;
 
 public class EmployeeReqActivity extends AppCompatActivity implements RequestContract.EmployeeView {
 
-    public static final int USE_DATE_CODE=0;
-    public static final int RESP_DATE_CODE=1;
-
     private int dateCode;
 
     @BindView(R.id.tvEmployeeNameEmp)

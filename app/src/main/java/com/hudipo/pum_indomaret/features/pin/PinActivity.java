@@ -1,18 +1,25 @@
 package com.hudipo.pum_indomaret.features.pin;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.requestpum.view.SentReqActivity;
 
 import org.w3c.dom.Text;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,12 +65,23 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
     private String pin="";
     private boolean isReset = false;
+    private int requestCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
 
         ButterKnife.bind(this);
+        Toast.makeText(this, "PIN = 000000", Toast.LENGTH_SHORT).show();
+
+        if (savedInstanceState!=null){
+            restoreView(Objects.requireNonNull(savedInstanceState.getString("PIN")).length());
+        }
+
+        if (getIntent()!=null){
+            requestCode = getIntent().getIntExtra("requestCode",0);
+        }
+
         key0.setOnClickListener(this);
         key1.setOnClickListener(this);
         key2.setOnClickListener(this);
@@ -77,6 +95,37 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         keyFingerprint.setOnClickListener(this);
         keyBackspace.setOnClickListener(this);
 
+    }
+
+    private void restoreView(int pinLength) {
+        if (pinLength==1){
+            tvPin1.setVisibility(View.VISIBLE);
+        }else if(pinLength==2){
+            tvPin1.setVisibility(View.VISIBLE);
+            tvPin2.setVisibility(View.VISIBLE);
+        }else if(pinLength==3){
+            tvPin1.setVisibility(View.VISIBLE);
+            tvPin2.setVisibility(View.VISIBLE);
+            tvPin3.setVisibility(View.VISIBLE);
+        }else if(pinLength==4){
+            tvPin1.setVisibility(View.VISIBLE);
+            tvPin2.setVisibility(View.VISIBLE);
+            tvPin3.setVisibility(View.VISIBLE);
+            tvPin4.setVisibility(View.VISIBLE);
+        }else if(pinLength==5){
+            tvPin1.setVisibility(View.VISIBLE);
+            tvPin2.setVisibility(View.VISIBLE);
+            tvPin3.setVisibility(View.VISIBLE);
+            tvPin4.setVisibility(View.VISIBLE);
+            tvPin5.setVisibility(View.VISIBLE);
+        }else {
+            tvPin1.setVisibility(View.VISIBLE);
+            tvPin2.setVisibility(View.VISIBLE);
+            tvPin3.setVisibility(View.VISIBLE);
+            tvPin4.setVisibility(View.VISIBLE);
+            tvPin5.setVisibility(View.VISIBLE);
+            tvPin6.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -100,13 +149,36 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
             }else if (pin.length()==5){
                 tvPin5.setVisibility(View.VISIBLE);
             }else tvPin6.setVisibility(View.VISIBLE);
+        }else{
+            switch (view.getId()){
+                case R.id.key_backspace :
+                    pin = pin.substring(0,pin.length()-1);
+                    deletePin();
+                    break;
+
+                case R.id.key_fingerprint :
+                    Toast.makeText(this, "fingerprint", Toast.LENGTH_SHORT).show();
+                    break;
+            }
         }
 
         if (pin.length()==6){
-            Toast.makeText(this, pin, Toast.LENGTH_SHORT).show();
-            Handler handler = new Handler();
-            handler.postDelayed(this::wrongPin,300);
+            checkPin();
         }
+    }
+
+    private void deletePin() {
+        if (pin.length()==1){
+            tvPin2.setVisibility(View.INVISIBLE);
+        }else if (pin.length()==2){
+            tvPin3.setVisibility(View.INVISIBLE);
+        }else if (pin.length()==3){
+            tvPin4.setVisibility(View.INVISIBLE);
+        }else if (pin.length()==4){
+            tvPin5.setVisibility(View.INVISIBLE);
+        }else if (pin.length()==5){
+            tvPin6.setVisibility(View.INVISIBLE);
+        }else tvPin1.setVisibility(View.INVISIBLE);
     }
 
     private void hideTv() {
@@ -124,13 +196,26 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         tvPin6.setTextColor(Color.BLACK);
     }
 
-    private void wrongPin(){
+    private void checkPin(){
+        if (pin.equals("000000")){
+            startActivity(new Intent(PinActivity.this, SentReqActivity.class));
+        }else {
+            tvPin1.setTextColor(getResources().getColor(R.color.redError));
+            tvPin2.setTextColor(getResources().getColor(R.color.redError));
+            tvPin3.setTextColor(getResources().getColor(R.color.redError));
+            tvPin4.setTextColor(getResources().getColor(R.color.redError));
+            tvPin5.setTextColor(getResources().getColor(R.color.redError));
+            tvPin6.setTextColor(getResources().getColor(R.color.redError));
+        }
         isReset=true;
-        tvPin1.setTextColor(getResources().getColor(R.color.redError));
-        tvPin2.setTextColor(getResources().getColor(R.color.redError));
-        tvPin3.setTextColor(getResources().getColor(R.color.redError));
-        tvPin4.setTextColor(getResources().getColor(R.color.redError));
-        tvPin5.setTextColor(getResources().getColor(R.color.redError));
-        tvPin6.setTextColor(getResources().getColor(R.color.redError));
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (pin.length()!=0){
+            outState.putString("PIN",pin);
+        }
+        super.onSaveInstanceState(outState);
     }
 }
