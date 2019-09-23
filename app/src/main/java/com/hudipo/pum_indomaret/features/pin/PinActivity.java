@@ -152,8 +152,10 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         }else{
             switch (view.getId()){
                 case R.id.key_backspace :
-                    pin = pin.substring(0,pin.length()-1);
-                    deletePin();
+                    if (pin.length()>0){
+                        pin = pin.substring(0,pin.length()-1);
+                        deletePin();
+                    }
                     break;
 
                 case R.id.key_fingerprint :
