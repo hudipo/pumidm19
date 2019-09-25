@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.pin.PinActivity;
+import com.hudipo.pum_indomaret.utils.RequestCode;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,7 +28,14 @@ public class ValidationReqActivity extends AppCompatActivity {
         new AlertDialog.Builder(this,R.style.CustomDialogTheme)
                 .setTitle("Submit")
                 .setMessage("Are you sure want to make this request?")
-                .setPositiveButton("Yes", (dialog, which) -> startActivity(new Intent(ValidationReqActivity.this,SentReqActivity.class)))
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(ValidationReqActivity.this, PinActivity.class);
+                        intent.putExtra("requestCode", RequestCode.PIN_REQUESTPUM_CODE);
+                        startActivity(intent);
+                    }
+                })
                 .setNegativeButton("No", (dialog, which) -> {
                     //Log.d("MainActivity", "Aborting mission...");
                 })
