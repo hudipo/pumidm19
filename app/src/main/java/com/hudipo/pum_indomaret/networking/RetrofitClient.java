@@ -16,24 +16,25 @@ public class RetrofitClient {
     private static final int REQUEST_TIMEOUT = 30;
     private static Retrofit retrofit;
 
-    public static Retrofit client() {
+    public static Retrofit client(String baseUrl) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
-        interceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.level(HttpLoggingInterceptor.Level.BASIC);
+        interceptor.level(HttpLoggingInterceptor.Level.HEADERS);
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .connectTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
                 .build();
+
         if(retrofit==null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("HTTP")
+                    .baseUrl(baseUrl)
                     .client(client)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))

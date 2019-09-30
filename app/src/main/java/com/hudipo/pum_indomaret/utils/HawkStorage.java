@@ -2,7 +2,7 @@ package com.hudipo.pum_indomaret.utils;
 
 import android.content.Context;
 
-import com.hudipo.pum_indomaret.model.login.UserData;
+import com.hudipo.pum_indomaret.model.login.User;
 import com.orhanobut.hawk.Hawk;
 
 public class HawkStorage {
@@ -14,11 +14,15 @@ public class HawkStorage {
         this.context = context;
     }
 
-    public void setUserData(UserData userData){
+    public void instance(){
+        Hawk.init(context).build();
+    }
+
+    public void setUserData(User userData){
         Hawk.put(USER_DATA, userData);
     }
 
-    public UserData getUserData(){
+    public User getUserData(){
         return Hawk.get(USER_DATA);
     }
 

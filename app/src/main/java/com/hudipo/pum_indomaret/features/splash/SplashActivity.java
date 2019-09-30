@@ -1,15 +1,13 @@
 package com.hudipo.pum_indomaret.features.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.os.Handler;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hudipo.pum_indomaret.MainActivity;
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
-import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.login.activity.LoginActivity;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -22,10 +20,19 @@ public class SplashActivity extends AppCompatActivity {
         delayAndGoTo();
     }
 
-    private void delayAndGoTo() {
-        new Handler().postDelayed(() -> {
-            StartActivity.goTo(this, HomeActivity.class);
+    private void checkLogin() {
+        HawkStorage hawkStorage = new HawkStorage(this);
+        hawkStorage.instance();
+        if (hawkStorage.getLogin()){
+            StartActivity.goTo(this, MainActivity.class);
             finish();
-        },1200);
+        }else {
+            StartActivity.goTo(this, LoginActivity.class);
+            finish();
+        }
+    }
+
+    private void delayAndGoTo() {
+        new Handler().postDelayed(this::checkLogin,1200);
     }
 }

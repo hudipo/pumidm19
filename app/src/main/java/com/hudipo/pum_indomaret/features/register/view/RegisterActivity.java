@@ -15,7 +15,7 @@ import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.login.view.LoginActivity;
+import com.hudipo.pum_indomaret.features.login.activity.LoginActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.CustomKeyboard;
 
