@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
-import com.hudipo.pum_indomaret.features.login.activity.LoginActivity;
+import com.hudipo.pum_indomaret.features.login.LoginActivity;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 

@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.login.view;
+package com.hudipo.pum_indomaret.features.login;
 
 import com.hudipo.pum_indomaret.view.MainView;
 

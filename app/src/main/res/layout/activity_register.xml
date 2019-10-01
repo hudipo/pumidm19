@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_login"
-    tools:context=".features.login.view.LoginActivity">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".features.register.RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -42,6 +44,7 @@
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="8dp"
             android:hint="@string/nik"
+            android:text="2002002759"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="numberSigned"
             android:textColor="@color/white"
@@ -72,6 +75,7 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="8dp"
             android:hint="@string/password"
+            android:text="123456789"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="textPassword"
             android:textColor="@color/white"
@@ -102,6 +106,7 @@
             android:drawableStart="@drawable/ic_pin"
             android:drawablePadding="8dp"
             android:hint="@string/pin"
+            android:text="123456"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="numberPassword"
             android:textColor="@color/white"

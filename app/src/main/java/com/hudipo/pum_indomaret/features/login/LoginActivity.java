@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.login.activity;
+package com.hudipo.pum_indomaret.features.login;
 
 import android.os.Bundle;
 import android.widget.EditText;
@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
-import com.hudipo.pum_indomaret.features.login.presenter.LoginPresenter;
-import com.hudipo.pum_indomaret.features.login.view.LoginContract;
-import com.hudipo.pum_indomaret.features.register.view.RegisterActivity;
+import com.hudipo.pum_indomaret.features.register.RegisterActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 

@@ -29,4 +29,8 @@ public class HawkStorage {
         return Hawk.get(IS_LOGIN, false);
     }
 
+    public void deleteAll(){
+        Hawk.deleteAll();
+    }
+
 }
