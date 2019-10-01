@@ -7,8 +7,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.hudipo.pum_indomaret.MainActivity;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.login.presenter.LoginPresenter;
 import com.hudipo.pum_indomaret.features.login.view.LoginContract;
 import com.hudipo.pum_indomaret.features.register.view.RegisterActivity;
@@ -78,7 +78,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void loginSuccess() {
-        StartActivity.goTo(this, MainActivity.class);
+        StartActivity.goTo(this, HomeActivity.class);
+        finishAffinity();
     }
 
     @Override

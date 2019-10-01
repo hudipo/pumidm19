@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hudipo.pum_indomaret.MainActivity;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.login.activity.LoginActivity;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 import com.hudipo.pum_indomaret.utils.StartActivity;
@@ -17,14 +17,14 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        delayAndGoTo();
+        checkLogin();
+//        delayAndGoTo();
     }
 
     private void checkLogin() {
         HawkStorage hawkStorage = new HawkStorage(this);
-        hawkStorage.instance();
         if (hawkStorage.getLogin()){
-            StartActivity.goTo(this, MainActivity.class);
+            StartActivity.goTo(this, HomeActivity.class);
             finish();
         }else {
             StartActivity.goTo(this, LoginActivity.class);

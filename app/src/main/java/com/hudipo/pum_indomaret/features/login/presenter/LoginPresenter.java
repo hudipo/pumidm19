@@ -33,7 +33,6 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
     public void onAttach(LoginContract.LoginView view) {
         mView = view;
         hawkStorage = new HawkStorage(context);
-        hawkStorage.instance();
     }
 
     @Override

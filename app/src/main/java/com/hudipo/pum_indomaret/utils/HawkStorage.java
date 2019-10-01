@@ -6,15 +6,10 @@ import com.hudipo.pum_indomaret.model.login.User;
 import com.orhanobut.hawk.Hawk;
 
 public class HawkStorage {
-    private Context context;
     private static final String USER_DATA = "USER_DATA";
     private static final String IS_LOGIN = "IS_LOGIN";
 
     public HawkStorage(Context context) {
-        this.context = context;
-    }
-
-    public void instance(){
         Hawk.init(context).build();
     }
 
@@ -31,7 +26,7 @@ public class HawkStorage {
     }
 
     public boolean getLogin(){
-        return Hawk.get(IS_LOGIN);
+        return Hawk.get(IS_LOGIN, false);
     }
 
 }
