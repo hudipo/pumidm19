@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.register.view;
+package com.hudipo.pum_indomaret.features.register;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.login.activity.LoginActivity;
+import com.hudipo.pum_indomaret.features.login.LoginActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.CustomKeyboard;
+import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import java.util.Objects;
 
@@ -25,12 +27,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements RegisterContract.RegisterView{
 
     @BindView(R.id.etNIKReg)
     EditText etNIKReg;
     @BindView(R.id.etPasswordReg)
     EditText etPasswordReg;
+    @BindView(R.id.etPinReg)
     EditText etPinReg;
     @BindView(R.id.tilNIKReg)
     TextInputLayout tilNIKReg;
@@ -40,21 +43,20 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputLayout tilPinReg;
 
     private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
+    private RegisterPresenter registerPresenter;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        etPinReg = findViewById(R.id.etPinReg);
+
+        onAttachView();
+        keyboardPinReg();
+    }
+
+    private void keyboardPinReg() {
         etPinReg.setCursorVisible(false);
-
-        etPinReg.setOnTouchListener((view, motionEvent) -> {
-            etPinReg.requestFocus();
-            return true;
-        });
-
         etPinReg.setOnFocusChangeListener((view, b) -> {
             if (view.equals(etPinReg) && b) {
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(
@@ -66,12 +68,19 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        onDetachView();
+    }
+
     @OnClick(R.id.btnRegister)
     void register() {
         if (validate()) {
-            loadingProgress.showCustomDialog(this);
-            Handler handler = new Handler();
-            handler.postDelayed(() -> loadingProgress.closeCustomDialog(), 1200);
+            registerPresenter.registerToServer(
+                    etNIKReg.getText().toString().trim(),
+                    etPasswordReg.getText().toString().trim(),
+                    etPinReg.getText().toString().trim());
         }
     }
 
@@ -80,11 +89,11 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 
+    @SuppressLint("InflateParams")
     private void showKeyboard() {
-        Log.d("TAG", "keyboad");
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Objects.requireNonNull(this));
         LayoutInflater inflater = this.getLayoutInflater();
-        @SuppressLint("InflateParams") View custom_dialog = inflater.inflate(R.layout.show_keyboard, null);
+        View custom_dialog = inflater.inflate(R.layout.show_keyboard, null);
         CustomKeyboard customKeyboard = custom_dialog.findViewById(R.id.customKeyboard);
         alertDialog.setView(custom_dialog);
         alertDialog.setOnDismissListener(dialogInterface -> etPinReg.clearFocus());
@@ -125,6 +134,43 @@ public class RegisterActivity extends AppCompatActivity {
             tilPinReg.setError(null);
         }
         return isValid;
+    }
+
+    @Override
+    public void showLoading() {
+        loadingProgress.showCustomDialog(this);
+    }
+
+    @Override
+    public void hideLoading() {
+        loadingProgress.closeCustomDialog();
+    }
+
+    @Override
+    public void failedRegister(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void registerSuccess() {
+        StartActivity.goTo(this, LoginActivity.class);
+        finish();
+    }
+
+    @Override
+    public void errorServer() {
+        Toast.makeText(this, getString(R.string.err_server), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAttachView() {
+        registerPresenter = new RegisterPresenter();
+        registerPresenter.onAttach(this);
+    }
+
+    @Override
+    public void onDetachView() {
+        registerPresenter.onDetach();
     }
 }
 

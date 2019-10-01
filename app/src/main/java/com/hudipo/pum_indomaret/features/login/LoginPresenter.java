@@ -1,11 +1,10 @@
-package com.hudipo.pum_indomaret.features.login.presenter;
+package com.hudipo.pum_indomaret.features.login;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.login.view.LoginContract;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
@@ -74,15 +73,12 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
         params.put("emp_num", user);
         params.put("password", pass);
 
-        composite.add(new ApiServices().getLoginServices().login(params)
+        composite.add(new ApiServices().getApiPumServices().login(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {
                     mView.dismissLoading();
-                    Gson gson = new Gson();
-                    Log.d(TAG, "response "+gson.toJson(loginResponse));
                     if (loginResponse.isError()){
-                        mView.dismissLoading();
                         mView.failedLogin(loginResponse.getMessage());
                     }else {
                         hawkStorage.setUserData(loginResponse.getUser());
@@ -92,7 +88,6 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
                 }, throwable -> {
                     mView.dismissLoading();
                     mView.errorServer();
-                    Log.d(TAG, "error : "+ throwable.getMessage());
                 })
         );
     }

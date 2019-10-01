@@ -106,4 +106,20 @@
         android:textColor="@color/white"
         style="@style/TextAppearance.Body1"
         android:id="@+id/btnChangePin"/>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnChangePin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:layout_marginStart="@dimen/large_margin"
+        android:layout_marginEnd="@dimen/large_margin"
+        android:background="@drawable/bg_rounded_blue"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        style="@style/TextAppearance.Body1"
+        android:id="@+id/btnLogout"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

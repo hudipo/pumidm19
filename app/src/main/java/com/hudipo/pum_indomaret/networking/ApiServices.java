@@ -4,7 +4,7 @@ import com.hudipo.pum_indomaret.BuildConfig;
 
 public class ApiServices {
 
-    public PumApiServices getLoginServices(){
+    public PumApiServices getApiPumServices(){
         return RetrofitClient
                 .client(BuildConfig.BASE_URL)
                 .create(PumApiServices.class);
