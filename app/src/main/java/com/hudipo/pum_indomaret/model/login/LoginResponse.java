@@ -1,37 +1,39 @@
 package com.hudipo.pum_indomaret.model.login;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
+public class LoginResponse{
 
-    @SerializedName("error")
-    @Expose
-    private Boolean error;
-    @SerializedName("message")
-    @Expose
-    private String message;
-    @SerializedName("user")
-    @Expose
-    private UserData user;
+	@SerializedName("error")
+	private boolean error;
 
-    public Boolean getError() {
-        return error;
-    }
+	@SerializedName("message")
+	private String message;
 
-    public void setError(Boolean error) {
-        this.error = error;
-    }
+	@SerializedName("user")
+	private User user;
 
-    public String getMessage() {
-        return message;
-    }
+	public void setError(boolean error){
+		this.error = error;
+	}
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+	public boolean isError(){
+		return error;
+	}
 
-    public UserData getUser() {
-        return user;
-    }
+	public void setMessage(String message){
+		this.message = message;
+	}
+
+	public String getMessage(){
+		return message;
+	}
+
+	public void setUser(User user){
+		this.user = user;
+	}
+
+	public User getUser(){
+		return user;
+	}
 }

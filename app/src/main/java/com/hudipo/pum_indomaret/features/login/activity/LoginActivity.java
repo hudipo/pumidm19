@@ -8,9 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.login.presenter.LoginPresenter;
 import com.hudipo.pum_indomaret.features.login.view.LoginContract;
+import com.hudipo.pum_indomaret.features.register.view.RegisterActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
+import com.hudipo.pum_indomaret.utils.StartActivity;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,8 +38,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        presenter = new LoginPresenter(this);
-
         onAttachView();
     }
 
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @OnClick(R.id.tvSignUp)
     void signUp(){
-        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
+        StartActivity.goTo(this, RegisterActivity.class);
     }
 
     @Override
@@ -76,7 +78,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void loginSuccess() {
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        StartActivity.goTo(this, HomeActivity.class);
+        finishAffinity();
     }
 
     @Override
@@ -86,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onAttachView() {
+        presenter = new LoginPresenter(this);
         presenter.onAttach(this);
     }
 

@@ -39,6 +39,7 @@
             android:background="@drawable/bg_input_login"
             android:textColor="@color/white"
             android:hint="@string/nik"
+            android:text="2008900726"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="numberSigned"
             android:drawablePadding="8dp"
@@ -70,6 +71,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat_regular"
             android:hint="@string/password"
+            android:text="123456789"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_password"/>
     </com.google.android.material.textfield.TextInputLayout>

@@ -24,25 +24,26 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutProfile"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="@id/gridLayout"
             app:layout_constraintTop_toTopOf="@id/ivAppBar"
-            app:layout_constraintEnd_toEndOf="@id/guideline">
+            app:layout_constraintBottom_toTopOf="@id/gridLayout"
+            app:layout_constraintEnd_toEndOf="@id/gridLayout">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/main_margin"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@id/ciPhotoProfile"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/ciPhotoProfile"
                 app:layout_constraintTop_toTopOf="@id/ciPhotoProfile">
 
                 <TextView
+                    android:id="@+id/tvNameHome"
                     style="@style/TextAppearance.Headline5.Light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -50,13 +51,17 @@
                     android:text="@string/example_name" />
 
                 <TextView
+                    android:id="@+id/tvEmpNumHome"
                     style="@style/TextAppearance.Headline6.Light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/example_nip"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:fontFamily="@font/mregular"/>
 
                 <TextView
+                    android:id="@+id/tvPositionHome"
                     style="@style/TextAppearance.Headline6.Light"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,11 +76,13 @@
                 android:layout_height="90dp"
                 android:src="@drawable/person"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <GridLayout
+            android:id="@+id/gridLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:columnCount="2"
@@ -267,13 +274,6 @@
             </androidx.cardview.widget.CardView>
 
         </GridLayout>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="344dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

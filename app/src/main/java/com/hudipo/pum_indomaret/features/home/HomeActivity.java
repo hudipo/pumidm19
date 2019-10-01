@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
@@ -14,17 +15,39 @@ import com.hudipo.pum_indomaret.features.requestpum.view.EmployeeReqActivity;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
 import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
+
+    @BindView(R.id.tvNameHome)
+    TextView tvNameHome;
+
+    @BindView(R.id.tvPositionHome)
+    TextView tvPositionHome;
+
+    @BindView(R.id.tvEmpNumHome)
+    TextView tvEmpNumHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+
+        setView();
+    }
+
+    private void setView() {
+        HawkStorage hawkStorage = new HawkStorage(this);
+        if (hawkStorage.getUserData() != null){
+            tvNameHome.setText(hawkStorage.getUserData().getName());
+            tvPositionHome.setText(hawkStorage.getUserData().getPosition());
+            tvEmpNumHome.setText(hawkStorage.getUserData().getEmpNum());
+        }
     }
 
     @OnClick(R.id.btnRequest)
