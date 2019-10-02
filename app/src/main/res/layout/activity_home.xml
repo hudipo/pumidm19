@@ -99,6 +99,7 @@
                 android:layout_height="135dp"
                 android:layout_margin="12dp"
                 app:cardElevation="@dimen/card_elevation"
+
                 app:cardCornerRadius="@dimen/home_corner">
 
                 <LinearLayout

@@ -1,14 +1,23 @@
 package com.hudipo.pum_indomaret.features.requestpum.model;
 
+import android.content.Context;
+
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import java.util.ArrayList;
 
 public class RequestInteractorImpl implements RequestContract.RequestInteractor {
 
+    private HawkStorage hawkStorage;
+
+    public RequestInteractorImpl(Context context) {
+        hawkStorage = new HawkStorage(context);
+    }
+
     @Override
     public void getEmployeeName(OnFinishedListenerEmployee onFinishedListenerEmployee) {
-        onFinishedListenerEmployee.onEmployeeNameFetched("Ade Kurniawan");
+        onFinishedListenerEmployee.onEmployeeNameFetched(hawkStorage.getUserData().getName());
     }
 
     @Override

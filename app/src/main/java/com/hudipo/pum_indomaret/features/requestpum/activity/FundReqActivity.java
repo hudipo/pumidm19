@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.view;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,14 +7,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.FundPresenterImpl;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -38,7 +35,7 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_fund);
         ButterKnife.bind(this);
-        presenter = new FundPresenterImpl(this,new RequestInteractorImpl());
+        presenter = new FundPresenterImpl(this,new RequestInteractorImpl(this));
         presenter.getTransactionTypeList();
     }
 

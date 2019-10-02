@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.view;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
         import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,10 +50,8 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_employee);
         ButterKnife.bind(this);
-        presenter = new EmployeePresenterImpl(this, new RequestInteractorImpl());
+        presenter = new EmployeePresenterImpl(this, new RequestInteractorImpl(this));
         initView();
-
-
     }
 
     private void initView() {

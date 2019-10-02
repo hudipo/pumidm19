@@ -6,7 +6,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.SearchDocumentReqActivity">
+    tools:context=".features.requestpum.activity.SearchDocumentReqActivity">
 
     <View
         android:id="@+id/topView"

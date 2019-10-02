@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.view;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,7 +47,7 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
     }
 
     private void initView() {
-        presenter = new DocumentPresenterImpl(this, new RequestInteractorImpl());
+        presenter = new DocumentPresenterImpl(this, new RequestInteractorImpl(this));
         presenter.getDocumentType();
     }
 

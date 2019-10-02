@@ -1,11 +1,7 @@
 package com.hudipo.pum_indomaret.features.register;
 
-import android.util.Log;
-
 import com.hudipo.pum_indomaret.networking.ApiServices;
-
 import java.util.HashMap;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
