@@ -105,7 +105,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:listitem="@layout/item_adapter_status"
-                android:padding="@dimen/main_padding"
+                android:padding="@dimen/dp6"
                 android:clipToPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
