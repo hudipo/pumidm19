@@ -26,6 +26,8 @@ public class StatusPresenterImpl implements StatusContract.StatusPresenter, Stat
 
     @Override
     public void getStatusList() {
+        Log.d("presenter","getStatList");
+        view.showLoading();
         interactor.getStatusList(this);
     }
 
@@ -43,6 +45,7 @@ public class StatusPresenterImpl implements StatusContract.StatusPresenter, Stat
 
     @Override
     public void onFailure(Throwable t) {
+        view.hideLoading();
         view.toast(t.getMessage());
     }
 }
