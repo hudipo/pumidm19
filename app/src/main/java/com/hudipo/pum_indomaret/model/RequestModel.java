@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class RequestModel implements Serializable {
 
     private String stringEmployeeName;
+    private int idEmployee;
     private String stringEmployeeDepartment;
     private String stringUseDate;
     private String stringRespDate;
     private String stringDocType;
     private String stringDocNumber;
     private String stringTrxType;
+    private int idTrxType;
     private int intAmount;
     private String stringDescription;
     private String stringFileUri;
@@ -18,21 +20,20 @@ public class RequestModel implements Serializable {
     public RequestModel() {
     }
 
-    public RequestModel(String stringEmployeeName, String stringEmployeeDepartment,
-                        String stringUseDate, String stringRespDate, String stringDocType,
-                        String stringDocNumber, String stringTrxType, int intAmount,
-                        String stringDescription, String stringFileUri) {
+    public int getIdEmployee() {
+        return idEmployee;
+    }
 
-        this.stringEmployeeName = stringEmployeeName;
-        this.stringEmployeeDepartment = stringEmployeeDepartment;
-        this.stringUseDate = stringUseDate;
-        this.stringRespDate = stringRespDate;
-        this.stringDocType = stringDocType;
-        this.stringDocNumber = stringDocNumber;
-        this.stringTrxType = stringTrxType;
-        this.intAmount = intAmount;
-        this.stringDescription = stringDescription;
-        this.stringFileUri = stringFileUri;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
+    }
+
+    public int getIdTrxType() {
+        return idTrxType;
+    }
+
+    public void setIdTrxType(int idTrxType) {
+        this.idTrxType = idTrxType;
     }
 
     public String getStringEmployeeName() {

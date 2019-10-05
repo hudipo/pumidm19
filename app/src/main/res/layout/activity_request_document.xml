@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.DocumentReqActivity">
+    tools:context=".features.requestpum.activity.DocumentReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -82,7 +82,7 @@
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="DOC Number"
+        android:hint="DOC Number"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"

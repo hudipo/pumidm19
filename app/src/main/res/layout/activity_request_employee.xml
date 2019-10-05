@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.EmployeeReqActivity">
+    tools:context=".features.requestpum.activity.EmployeeReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -95,8 +95,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/tvUseDateEmp"
+    <EditText
+        android:enabled="false"
+        android:id="@+id/etUseDateEmp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -106,7 +107,7 @@
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="Use Date"
+        android:hint="Use Date"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@id/imgUseDateEmp"
@@ -124,8 +125,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spnEmployeeDepartmentEmp" />
 
-    <TextView
-        android:id="@+id/tvRespDateEmp"
+    <EditText
+        android:enabled="false"
+        android:id="@+id/etRespDateEmp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -135,12 +137,12 @@
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="Resp Date"
+        android:hint="Resp Date"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@id/imgUseDateEmp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUseDateEmp" />
+        app:layout_constraintTop_toBottomOf="@id/etUseDateEmp" />
 
     <ImageView
         android:id="@+id/imgRespDateEmp"

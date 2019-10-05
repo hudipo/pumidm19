@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusInteractorImpl;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.features.status.presenter.StatusPresenterImpl;
 import com.hudipo.pum_indomaret.features.status.statusdetail.StatusDetailActivity;
+import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import java.util.List;
 
@@ -111,6 +113,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
 
     @OnClick(R.id.btnBack)
     void btnBack(){
-        onBackPressed();
+        StartActivity.goTo(this, HomeActivity.class);
+        finishAffinity();
     }
 }

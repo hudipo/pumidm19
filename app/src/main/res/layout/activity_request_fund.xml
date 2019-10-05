@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.FundReqActivity">
+    tools:context=".features.requestpum.activity.FundReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -92,6 +92,7 @@
         android:gravity="center_vertical"
         android:hint="Description"
         android:maxLines="1"
+        android:inputType="text"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textColor="@color/black"
@@ -146,6 +147,7 @@
         app:layout_constraintBottom_toBottomOf="@id/contentWrapper" />
 
     <TextView
+        android:id="@+id/tvSelectAFile"
         style="@style/spinnerItemStyle"
         android:layout_width="0dp"
         android:layout_height="60dp"

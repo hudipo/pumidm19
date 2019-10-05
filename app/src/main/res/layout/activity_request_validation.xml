@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.view.ValidationReqActivity">
+    tools:context=".features.requestpum.activity.ValidationReqActivity">
 
     <View
         android:id="@+id/topView"
@@ -87,7 +87,7 @@
                     android:id="@+id/empDepLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Doc Num"
+                    android:text="Emp Dept"
                     android:fontFamily="@font/mbold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/empLabel"
@@ -95,11 +95,10 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/empDep"
+                    android:id="@+id/tvEmpDept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
-                    android:text="200100300/100/2019"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -113,14 +112,13 @@
                     android:text="Use Date"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/empDep" />
+                    app:layout_constraintTop_toBottomOf="@id/tvEmpDept" />
 
                 <TextView
-                    android:id="@+id/useDate"
+                    android:id="@+id/tvUseDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
-                    android:text="31/08/2019"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -134,13 +132,12 @@
                     android:text="Resp Date"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/useDate" />
+                    app:layout_constraintTop_toBottomOf="@id/tvUseDate" />
 
                 <TextView
-                    android:id="@+id/respDate"
+                    android:id="@+id/tvRespDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="31/08/2018"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -180,11 +177,10 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/docType"
+                    android:id="@+id/tvDocType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
-                    android:text="Pre-Order"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -198,14 +194,13 @@
                     android:text="Document Number"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/docType" />
+                    app:layout_constraintTop_toBottomOf="@id/tvDocType" />
 
                 <TextView
-                    android:id="@+id/docNum"
+                    android:id="@+id/tvDocNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
-                    android:text="1002000/31/08/2019"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -245,11 +240,10 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/trxType"
+                    android:id="@+id/tvTrxType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
-                    android:text="Store Needs 1"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -263,14 +257,13 @@
                     android:text="Amount"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/trxType" />
+                    app:layout_constraintTop_toBottomOf="@id/tvTrxType" />
 
                 <TextView
-                    android:id="@+id/amount"
+                    android:id="@+id/tvAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp6"
-                    android:text="Rp 40.0000.000"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -284,13 +277,12 @@
                     android:text="File Uploaded"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/amount" />
+                    app:layout_constraintTop_toBottomOf="@id/tvAmount" />
 
                 <TextView
-                    android:id="@+id/file"
+                    android:id="@+id/tvFile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Document.pdf"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
                     android:textSize="24sp"
@@ -304,13 +296,12 @@
                     android:text="Description"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@id/file" />
+                    app:layout_constraintTop_toBottomOf="@id/tvFile" />
 
                 <TextView
-                    android:id="@+id/desc"
+                    android:id="@+id/tvDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This is the description"
                     android:fontFamily="@font/mregular"
                     android:layout_marginStart="@dimen/dp6"
                     android:textColor="@color/black"

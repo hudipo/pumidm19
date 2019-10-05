@@ -16,14 +16,18 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".features.report.view.ReportActivity"/>
+        <activity
+            android:name=".features.report.view.ReportActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".features.pin.PinActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.requestpum.view.SentReqActivity"
+            android:name=".features.requestpum.activity.SentReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -94,7 +98,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.requestpum.view.EmployeeReqActivity"
+            android:name=".features.requestpum.activity.EmployeeReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
@@ -108,12 +112,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.requestpum.view.ValidationReqActivity"
+            android:name=".features.requestpum.activity.ValidationReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.requestpum.view.FundReqActivity"
+            android:name=".features.requestpum.activity.FundReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -129,12 +133,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.requestpum.view.SearchDocumentReqActivity"
+            android:name=".features.requestpum.activity.SearchDocumentReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.requestpum.view.DocumentReqActivity"
+            android:name=".features.requestpum.activity.DocumentReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

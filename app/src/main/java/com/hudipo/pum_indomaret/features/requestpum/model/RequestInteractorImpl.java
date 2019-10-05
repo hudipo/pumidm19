@@ -1,21 +1,32 @@
 package com.hudipo.pum_indomaret.features.requestpum.model;
 
+import android.content.Context;
+
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
+import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
+import com.hudipo.pum_indomaret.model.trxtype.TrxItem;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import java.util.ArrayList;
 
 public class RequestInteractorImpl implements RequestContract.RequestInteractor {
 
+    private HawkStorage hawkStorage;
+
+    public RequestInteractorImpl(Context context) {
+        hawkStorage = new HawkStorage(context);
+    }
+
     @Override
     public void getEmployeeName(OnFinishedListenerEmployee onFinishedListenerEmployee) {
-        onFinishedListenerEmployee.onEmployeeNameFetched("Ade Kurniawan");
+        onFinishedListenerEmployee.onEmployeeNameFetched(hawkStorage.getUserData().getName());
     }
 
     @Override
     public void getDepartmentList(OnFinishedListenerEmployee onFinishedListenerEmployee) {
         ArrayList<String>departmentList = new ArrayList<>();
-        for (int i=0;i<10;i++){
-            departmentList.add("Department "+i);
+        for (DepartmentItem dept : hawkStorage.getDepartment().getDepartment()) {
+            departmentList.add(dept.getDescription());
         }
         onFinishedListenerEmployee.onDepartmentFetched(departmentList);
     }
@@ -23,9 +34,10 @@ public class RequestInteractorImpl implements RequestContract.RequestInteractor 
     @Override
     public void getDocumentTypeList(OnFinishedListenerDocument onFinishedListenerDocument) {
         ArrayList<String>documentTypeList = new ArrayList<>();
-        for (int i = 0;i<10;i++){
-            documentTypeList.add("Document Type "+i);
-        }
+        documentTypeList.add("-");
+        documentTypeList.add("SP");
+        documentTypeList.add("PP");
+        documentTypeList.add("PO");
         onFinishedListenerDocument.onDocumentTypeFetched(documentTypeList);
     }
 
@@ -41,8 +53,8 @@ public class RequestInteractorImpl implements RequestContract.RequestInteractor 
     @Override
     public void getTransactionTypeList(OnFinishedListenerFund onFinishedListenerFund) {
         ArrayList<String>transactionTypeList = new ArrayList<>();
-        for (int i = 0;i<10;i++){
-            transactionTypeList.add("Transaction Type "+i);
+        for (TrxItem trxItem: hawkStorage.getTrxTypeData().getTrx()){
+            transactionTypeList.add(trxItem.getDESCRIPTION());
         }
         onFinishedListenerFund.onTransactionTypeFetched(transactionTypeList);
     }
