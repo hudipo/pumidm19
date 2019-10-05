@@ -16,7 +16,11 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".features.report.view.ReportActivity"/>
+        <activity
+            android:name=".features.report.view.ReportActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".features.pin.PinActivity"
             android:configChanges="orientation"

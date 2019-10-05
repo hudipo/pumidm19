@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.hudipo.pum_indomaret.R;
@@ -15,6 +16,7 @@ import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 import com.hudipo.pum_indomaret.features.requestpum.model.DocumentDetailRequestModel;
 import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.SearchDocumentPresenterImpl;
+import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,8 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
     @BindView(R.id.searchBox)
     EditText searchBox;
 
+    public static final String KEY_DATA_DOC_TYPE = "KEY_DATA_DOC_TYPE";
+
     RequestContract.SearchDocumentPresenter presenter;
     private SearchDocumentAdapter.ItemClickListener itemClickListener;
 
@@ -39,20 +43,25 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
         setContentView(R.layout.activity_request_search_doc);
         ButterKnife.bind(this);
         presenter = new SearchDocumentPresenterImpl(this,new RequestInteractorImpl(this));
-        initView();
+
+        getDataIntent();
     }
 
-    private void initView() {
-        presenter.getDocumentList();
+    private void getDataIntent() {
+        if (getIntent() != null){
+            String docType = getIntent().getStringExtra(KEY_DATA_DOC_TYPE);
+            presenter.getDocumentList(docType);
+        }
     }
+
 
     @Override
-    public void setDocumentList(ArrayList<DocumentDetailRequestModel> documentDetailRequestModels) {
+    public void setDocumentList(DocDetailResponse docDetailResponse) {
         rcvSearchDoc.setHasFixedSize(true);
         rcvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
-        rcvSearchDoc.setAdapter(new SearchDocumentAdapter(documentDetailRequestModels, docNum -> {
+        rcvSearchDoc.setAdapter(new SearchDocumentAdapter(docDetailResponse, dataItem -> {
             Intent returnIntent = new Intent();
-            returnIntent.putExtra("result",docNum);
+            returnIntent.putExtra("result",dataItem.getDocNum());
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }));

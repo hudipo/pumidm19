@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.model.DocumentDetailRequestModel;
+import com.hudipo.pum_indomaret.model.docdetail.DataItem;
+import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 
-import org.w3c.dom.Text;
-
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,14 +22,16 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
 
     private ItemClickListener itemClickListener;
     private ArrayList<DocumentDetailRequestModel> documentDetailRequestModels;
+    private DocDetailResponse docDetailResponse;
 
-    public SearchDocumentAdapter(ArrayList<DocumentDetailRequestModel> documentDetailRequestModel,ItemClickListener itemClickListener){
-        this.documentDetailRequestModels = documentDetailRequestModel;
+    public SearchDocumentAdapter(DocDetailResponse docDetailResponse, ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
+        this.docDetailResponse = docDetailResponse;
     }
 
+
     public interface ItemClickListener{
-        void onItemClick(String docNum);
+        void onItemClick(DataItem dataItem);
     }
 
     @NonNull
@@ -42,15 +42,13 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bindItem(documentDetailRequestModels.get(position),itemClickListener);
+        holder.bindItem(docDetailResponse.getDocument().getData().get(position), itemClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return documentDetailRequestModels.size();
+        return docDetailResponse.getDocument().getData().size();
     }
-
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -66,13 +64,13 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
             ButterKnife.bind(this,itemView);
         }
 
-        void bindItem(DocumentDetailRequestModel documentDetailRequestModel, ItemClickListener itemClickListener) {
-            tvDocNume.setText(documentDetailRequestModel.getStringDocNumber());
-            tvDocDate.setText(documentDetailRequestModel.getStringDocDate());
-            String string = "Rp "+ documentDetailRequestModel.getLongAmount();
+        void bindItem(DataItem dataItem, ItemClickListener itemClickListener) {
+            tvDocNume.setText(dataItem.getDocNum());
+            tvDocDate.setText(dataItem.getDocDate());
+            String string = "Rp "+ dataItem.getDocAmount();
             tvAmount.setText(string);
 
-            itemView.setOnClickListener(view -> itemClickListener.onItemClick(documentDetailRequestModel.getStringDocNumber()));
+            itemView.setOnClickListener(view -> itemClickListener.onItemClick(dataItem));
         }
     }
 

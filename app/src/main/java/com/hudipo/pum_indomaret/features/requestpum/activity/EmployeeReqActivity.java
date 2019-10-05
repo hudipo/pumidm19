@@ -7,16 +7,22 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
         import android.graphics.Color;
         import android.graphics.drawable.ColorDrawable;
         import android.os.Bundle;
+        import android.util.Log;
         import android.widget.ArrayAdapter;
+        import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.Spinner;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import com.hudipo.pum_indomaret.R;
         import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
         import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
         import com.hudipo.pum_indomaret.features.requestpum.presenter.EmployeePresenterImpl;
         import com.hudipo.pum_indomaret.model.RequestModel;
+        import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
+        import com.hudipo.pum_indomaret.utils.HawkStorage;
+        import com.hudipo.pum_indomaret.utils.PumDateFormat;
 
         import java.util.ArrayList;
         import java.util.Objects;
@@ -33,10 +39,10 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     TextView tvEmployeeName;
     @BindView(R.id.spnEmployeeDepartmentEmp)
     Spinner spnEmployeeDepartment;
-    @BindView(R.id.tvUseDateEmp)
-    TextView tvUseDate;
-    @BindView(R.id.tvRespDateEmp)
-    TextView tvRespDate;
+    @BindView(R.id.etUseDateEmp)
+    EditText etUseDateEmp;
+    @BindView(R.id.etRespDateEmp)
+    EditText etRespDate;
     @BindView(R.id.imgUseDateEmp)
     ImageView imgUseDate;
     @BindView(R.id.imgRespDateEmp)
@@ -44,6 +50,8 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
 
     RequestContract.EmployeePresenter presenter;
     DatePickerDialog.OnDateSetListener mDateSetListener;
+    private HawkStorage hawkStorage;
+    private Boolean validate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +59,13 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
         setContentView(R.layout.activity_request_employee);
         ButterKnife.bind(this);
         presenter = new EmployeePresenterImpl(this, new RequestInteractorImpl(this));
+
+        initHawkStorage();
         initView();
+    }
+
+    private void initHawkStorage() {
+        hawkStorage = new HawkStorage(this);
     }
 
     private void initView() {
@@ -77,18 +91,57 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
 
     @OnClick(R.id.btnNextEmp)
     void next(){
-        Intent intent = new Intent(EmployeeReqActivity.this, DocumentReqActivity.class);
-        String employeeName = tvEmployeeName.getText().toString();
-        String employeeDepartment = spnEmployeeDepartment.getSelectedItem().toString();
-        String useDate = tvUseDate.getText().toString();
-        String respDate = tvRespDate.getText().toString();
-        RequestModel requestModel = new RequestModel();
-        requestModel.setStringEmployeeName(employeeName);
-        requestModel.setStringEmployeeDepartment(employeeDepartment);
-        requestModel.setStringUseDate(useDate);
-        requestModel.setStringRespDate(respDate);
-        intent.putExtra("CURRENT_REQUEST", requestModel);
-        startActivity(intent);
+        checkValidateData();
+        goToNextDocumentActivity();
+    }
+
+    private void goToNextDocumentActivity() {
+        if (validate){
+            Intent intent = new Intent(EmployeeReqActivity.this, DocumentReqActivity.class);
+
+            String employeeName = tvEmployeeName.getText().toString();
+            int empId = hawkStorage.getUserData().getEmpId();
+            String employeeDepartment = spnEmployeeDepartment.getSelectedItem().toString();
+            String useDate = etUseDateEmp.getText().toString();
+            String respDate = etRespDate.getText().toString();
+
+            RequestModel requestModel = new RequestModel();
+
+            for (DepartmentItem dept: hawkStorage.getDepartment().getDepartment()){
+                if (dept.getDescription().equals(employeeDepartment)){
+                    employeeDepartment = dept.getName();
+                }
+            }
+
+            requestModel.setIdEmployee(empId);
+            requestModel.setStringEmployeeName(employeeName);
+            requestModel.setStringEmployeeDepartment(employeeDepartment);
+            requestModel.setStringUseDate(PumDateFormat.rawToDateFormat(useDate));
+            requestModel.setStringRespDate(PumDateFormat.rawToDateFormat(respDate));
+
+            intent.putExtra(DocumentReqActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
+            startActivity(intent);
+        }
+    }
+
+    private void checkValidateData() {
+        if (etUseDateEmp.getText().toString().isEmpty()){
+            etUseDateEmp.setError("Please Input Date");
+            Toast.makeText(this, "Date cannot be empty", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }else {
+            etUseDateEmp.setError(null);
+            validate = true;
+        }
+
+        if (etRespDate.getText().toString().isEmpty()){
+            etRespDate.setError("Please input Resp Date");
+            Toast.makeText(this, "Date cannot be empty", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }else {
+            etRespDate.setError(null);
+            validate = true;
+        }
     }
 
     @Override
@@ -117,8 +170,8 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     @Override
     public void setDate(String date, int dateCode) {
         if (dateCode==0){
-            tvUseDate.setText(date);
-        }else tvRespDate.setText(date);
+            etUseDateEmp.setText(date);
+        }else etRespDate.setText(date);
     }
 
     @Override

@@ -12,11 +12,21 @@ import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.activity.SentReqActivity;
+import com.hudipo.pum_indomaret.model.RequestModel;
+import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
+import com.hudipo.pum_indomaret.networking.ApiServices;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class PinActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -60,13 +70,19 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
     private String pin="";
     private boolean isReset = false;
     private int requestCode;
+
+    public static final String KEY_REQUEST_DATA = "KEY_REQUEST_DATA";
+    private RequestModel requestModel;
+    private CompositeDisposable composite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
 
         ButterKnife.bind(this);
-        Toast.makeText(this, "PIN = 000000", Toast.LENGTH_SHORT).show();
+
+        initComposite();
 
         if (savedInstanceState!=null){
             restoreView(Objects.requireNonNull(savedInstanceState.getString("PIN")).length());
@@ -74,6 +90,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
         if (getIntent()!=null){
             requestCode = getIntent().getIntExtra("requestCode",0);
+            requestModel = (RequestModel) getIntent().getSerializableExtra(KEY_REQUEST_DATA);
         }
 
         key0.setOnClickListener(this);
@@ -89,6 +106,10 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         keyFingerprint.setOnClickListener(this);
         keyBackspace.setOnClickListener(this);
 
+    }
+
+    private void initComposite() {
+        composite = new CompositeDisposable();
     }
 
     private void restoreView(int pinLength) {
@@ -159,8 +180,52 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         }
 
         if (pin.length()==6){
-            checkPin();
+            if (requestModel != null){
+                createPumToServer(requestModel, pin);
+            }
         }
+    }
+
+    private void createPumToServer(RequestModel requestModel, String pinString) {
+        HashMap<String, RequestBody> params = new HashMap<>();
+        RequestBody empId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdEmployee()));
+        RequestBody empDept = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringEmployeeDepartment());
+        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringUseDate());
+        RequestBody respDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringRespDate());
+        RequestBody docNum = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDocNumber());
+        RequestBody trxType = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdTrxType()));
+        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
+        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
+        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
+        RequestBody pin = RequestBody.create(MediaType.parse("text/plain"), pinString);
+
+        params.put("emp_id", empId);
+        params.put("emp_dept", empDept);
+        params.put("use_date", useDate);
+        params.put("resp_date", respDate);
+        params.put("doc_num", docNum);
+        params.put("trx_type", trxType);
+        params.put("description", description);
+        params.put("amount", amount);
+        params.put("upload_file", uploadFile);
+        params.put("pin", pin);
+
+        composite.add(new ApiServices()
+                .getApiPumServices()
+                .createPum(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(createPumResponse -> {
+                    if (createPumResponse.isError()){
+                        failedCreatePum();
+                        Toast.makeText(this, "message: "+createPumResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        successCreatePum();
+                    }
+                }, throwable -> {
+                    failedCreatePum();
+                    Toast.makeText(this, "message: "+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                }));
     }
 
     private void deletePin() {
@@ -192,19 +257,19 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         tvPin6.setTextColor(Color.BLACK);
     }
 
-    private void checkPin(){
-        if (pin.equals("000000")){
-            startActivity(new Intent(PinActivity.this, SentReqActivity.class));
-        }else {
-            tvPin1.setTextColor(getResources().getColor(R.color.redError));
-            tvPin2.setTextColor(getResources().getColor(R.color.redError));
-            tvPin3.setTextColor(getResources().getColor(R.color.redError));
-            tvPin4.setTextColor(getResources().getColor(R.color.redError));
-            tvPin5.setTextColor(getResources().getColor(R.color.redError));
-            tvPin6.setTextColor(getResources().getColor(R.color.redError));
-        }
+    private void successCreatePum(){
+        startActivity(new Intent(PinActivity.this, SentReqActivity.class));
         isReset=true;
+    }
 
+    private void failedCreatePum(){
+        tvPin1.setTextColor(getResources().getColor(R.color.redError));
+        tvPin2.setTextColor(getResources().getColor(R.color.redError));
+        tvPin3.setTextColor(getResources().getColor(R.color.redError));
+        tvPin4.setTextColor(getResources().getColor(R.color.redError));
+        tvPin5.setTextColor(getResources().getColor(R.color.redError));
+        tvPin6.setTextColor(getResources().getColor(R.color.redError));
+        isReset=true;
     }
 
     @Override

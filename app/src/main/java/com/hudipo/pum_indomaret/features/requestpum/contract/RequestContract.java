@@ -1,6 +1,7 @@
 package com.hudipo.pum_indomaret.features.requestpum.contract;
 
 import com.hudipo.pum_indomaret.features.requestpum.model.DocumentDetailRequestModel;
+import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,7 @@ public interface RequestContract {
 
     interface SearchDocumentView{
 
-        void setDocumentList(ArrayList<DocumentDetailRequestModel> documentDetailRequestModels);
+        void setDocumentList(DocDetailResponse docDetailResponse);
 
     }
 
@@ -57,7 +58,7 @@ public interface RequestContract {
 
         void onDetach();
 
-        void getDocumentList();
+        void getDocumentList(String docType);
 
     }
 

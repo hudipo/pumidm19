@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
 import com.hudipo.pum_indomaret.features.status.statusdetail.StatusDetailActivity;
+import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,6 +66,7 @@ public class StatusActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnBack)
     void btnBack(){
-        onBackPressed();
+        StartActivity.goTo(this, HomeActivity.class);
+        finishAffinity();
     }
 }

@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:id="@+id/btnViewRequestSent"
             android:background="@drawable/bg_rounded_green_12dp"
             android:textSize="24sp"
             android:textAllCaps="false"
@@ -53,6 +54,7 @@
             android:layout_height="50dp"/>
 
         <Button
+            android:id="@+id/btnBackHomeRequestSent"
             android:background="@drawable/bg_rounded_white_12dp"
             android:textSize="24sp"
             android:textAllCaps="false"
