@@ -3,6 +3,9 @@ package com.hudipo.pum_indomaret.features.status;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,21 +15,30 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
+import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
+import com.hudipo.pum_indomaret.features.status.model.StatusInteractorImpl;
+import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
+import com.hudipo.pum_indomaret.features.status.presenter.StatusPresenterImpl;
 import com.hudipo.pum_indomaret.features.status.statusdetail.StatusDetailActivity;
 import com.hudipo.pum_indomaret.utils.StartActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class StatusActivity extends AppCompatActivity {
+public class StatusActivity extends AppCompatActivity implements StatusContract.StatusView {
 
     @BindView(R.id.rvStatus)
     RecyclerView rvStatus;
     @BindView(R.id.swipeRefreshStatus)
     SwipeRefreshLayout swipeRefreshStatus;
+    @BindView(R.id.etSearchByPumNumber)
+    EditText etSearch;
 
-    StatusAdapter adapterStatus;
+    private StatusAdapter adapterStatus;
+    private StatusContract.StatusPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +46,70 @@ public class StatusActivity extends AppCompatActivity {
         setContentView(R.layout.activity_status);
         ButterKnife.bind(this);
 
-        showLoading();
+        presenter = new StatusPresenterImpl(this, new StatusInteractorImpl(this));
+
         initSwipeRefreshStatus();
-        setAdapterStatus();
+        initRecyclerView();
+        startListener();
     }
 
-    private void showLoading() {
-        swipeRefreshStatus.post(() -> swipeRefreshStatus.setRefreshing(true));
-        new Handler().postDelayed(() ->
-                swipeRefreshStatus.post(() -> swipeRefreshStatus.setRefreshing(false))
-        , 2000);
+    private void startListener() {
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapterStatus.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void initRecyclerView() {
+        rvStatus.setHasFixedSize(true);
+        rvStatus.setLayoutManager(new LinearLayoutManager(this));
+        adapterStatus = new StatusAdapter(currentStatus -> {
+            Intent intent = new Intent(StatusActivity.this, StatusDetailActivity.class);
+            intent.putExtra("CURRENT_STATUS", currentStatus);
+            startActivity(intent);
+        });
+        rvStatus.setAdapter(adapterStatus);
+        presenter.getStatusList();
+    }
+
+
+    @Override
+    public void setStatusList(List<StatusResponse.StatusModel> statusList) {
+        adapterStatus.setStatusModelList(statusList);
+    }
+
+    @Override
+    public void showLoading() {
+        swipeRefreshStatus.setRefreshing(true);
+    }
+
+    @Override
+    public void hideLoading() {
+        swipeRefreshStatus.setRefreshing(false);
+    }
+
+    @Override
+    public void toast(String stringMessage) {
+        Toast.makeText(this, stringMessage, Toast.LENGTH_SHORT).show();
     }
 
     private void initSwipeRefreshStatus() {
-        swipeRefreshStatus.setOnRefreshListener(() -> swipeRefreshStatus.setRefreshing(false));
+        swipeRefreshStatus.setOnRefreshListener(() -> presenter.getStatusList()
+        );
     }
 
-    private void setAdapterStatus() {
-        adapterStatus = new StatusAdapter(view -> {
-            goToStatusDetail();
-        });
-        adapterStatus.notifyDataSetChanged();
-
-        rvStatus.setLayoutManager(new LinearLayoutManager(this));
-        rvStatus.setAdapter(adapterStatus);
-    }
-
-    private void goToStatusDetail() {
-        startActivity(new Intent(this, StatusDetailActivity.class));
-    }
 
     @OnClick(R.id.btnBack)
     void btnBack(){
