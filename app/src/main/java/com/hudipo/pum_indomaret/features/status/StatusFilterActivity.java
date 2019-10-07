@@ -85,7 +85,6 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
                 R.layout.spinner_item_layout, statusList);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         spnTrxStatus.setAdapter(dataAdapter);
-        Toast.makeText(this, statusList.get(0), Toast.LENGTH_SHORT).show();
     }
 
     @Override
