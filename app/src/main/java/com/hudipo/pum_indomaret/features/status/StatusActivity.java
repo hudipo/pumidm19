@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
+import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.features.status.model.StatusInteractorImpl;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.features.status.presenter.StatusPresenterImpl;
@@ -30,12 +32,20 @@ import butterknife.OnClick;
 
 public class StatusActivity extends AppCompatActivity implements StatusContract.StatusView {
 
+    public static final int STATUS_REQUEST_CODE = 0;
+    public static final int STATUS_FILTER_REQUEST_CODE = 1;
+    private StatusFilterRequestBody statusFilterRequestBody;
+
     @BindView(R.id.rvStatus)
     RecyclerView rvStatus;
     @BindView(R.id.swipeRefreshStatus)
     SwipeRefreshLayout swipeRefreshStatus;
     @BindView(R.id.etSearchByPumNumber)
     EditText etSearch;
+    @OnClick(R.id.btnFilterStatus)
+    void goToStatusFilterAct(){
+        startActivityForResult(new Intent(StatusActivity.this,StatusFilterActivity.class),STATUS_FILTER_REQUEST_CODE);
+    }
 
     private StatusAdapter adapterStatus;
     private StatusContract.StatusPresenter presenter;
@@ -106,14 +116,13 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     }
 
     private void initSwipeRefreshStatus() {
-        swipeRefreshStatus.setOnRefreshListener(() -> presenter.getStatusList()
+        swipeRefreshStatus.setOnRefreshListener(() -> presenter.onRefresh()
         );
     }
 
 
     @OnClick(R.id.btnBack)
     void btnBack(){
-        StartActivity.goTo(this, HomeActivity.class);
-        finishAffinity();
+        super.onBackPressed();
     }
 }

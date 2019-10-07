@@ -3,7 +3,6 @@ package com.hudipo.pum_indomaret.features.status.model;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.networking.ApiServices;
@@ -35,15 +34,26 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
                     if (!statusResponse.getError()){
                         onFinishedListenerStatus.onStatusListFetched(statusResponse.getMessage());
                     }else {
-                        Log.d("interactor","error true");
+                        onFinishedListenerStatus.onFailure("SERVER ERROR!");
                     }
-                }, onFinishedListenerStatus::onFailure)
+                },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
         );
     }
 
     @Override
-    public void getFilteredStatusList(OnFinishedListenerStatus onFinishedListenerStatus, FilterStatusModel filterStatusModel) {
-
+    public void getFilteredStatusList(OnFinishedListenerStatus onFinishedListenerStatus, StatusFilterRequestBody filterRequestBody) {
+        Log.d("interactor",""+hawkStorage.getUserData().getEmpId());
+        composite.add(new ApiServices().getApiPumServices().getFilteredStatusListFromNetwork(filterRequestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(statusResponse -> {
+                    if (!statusResponse.getError()){
+                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getMessage());
+                    }else {
+                        onFinishedListenerStatus.onFailure("SERVER ERROR!");
+                    }
+                },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
+        );
     }
 
 }
