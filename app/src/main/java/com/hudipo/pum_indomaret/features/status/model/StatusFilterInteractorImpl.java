@@ -17,8 +17,8 @@ public class StatusFilterInteractorImpl implements StatusContract.StatusFilterIn
     @Override
     public void getStatusList(OnFinishedListenerStatusFilter onFinishedListenerStatusFilter) {
         ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("New");
         arrayList.add("Processing");
-        arrayList.add("Waiting");
         arrayList.add("Approved");
         arrayList.add("Rejected");
         onFinishedListenerStatusFilter.onStatusListFetched(arrayList);

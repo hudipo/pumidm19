@@ -33,9 +33,11 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(statusResponse -> {
                     if (!statusResponse.getError()){
-                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
+                        if (statusResponse.getData().size()>0){
+                            onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
+                        }else onFinishedListenerStatus.onFailure("No data available!");
                     }else {
-                        onFinishedListenerStatus.onFailure("SERVER ERROR!");
+                        onFinishedListenerStatus.onFailure("Please check your internet connection!");
                     }
                 },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
         );
@@ -48,9 +50,11 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(statusResponse -> {
                     if (!statusResponse.getError()){
-                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
+                        if (statusResponse.getData().size()>0){
+                            onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
+                        }else onFinishedListenerStatus.onFailure("No data available!");
                     }else {
-                        onFinishedListenerStatus.onFailure(statusResponse.getMessage());
+                        onFinishedListenerStatus.onFailure("Please check your internet connection!");
                     }
                 },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
         );

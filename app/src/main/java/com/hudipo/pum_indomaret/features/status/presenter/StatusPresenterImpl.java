@@ -47,7 +47,8 @@ public class StatusPresenterImpl implements StatusContract.StatusPresenter, Stat
         this.untilDate = untilDate;
         this.status = status;
         requestCode = StatusActivity.STATUS_FILTER_REQUEST_CODE;
-        if (status.equals("Waiting")){
+        view.showLoading();
+        if (status.equals("New")){
             status = "N";
         }else if (status.equals("Processing")){
             status = "APP1";
@@ -62,7 +63,6 @@ public class StatusPresenterImpl implements StatusContract.StatusPresenter, Stat
     @Override
     public void onStatusListFetched(List<StatusResponse.StatusModel> statusList) {
         view.hideLoading();
-        view.toast(statusList.get(0).getTrx_num());
         view.setStatusList(statusList);
     }
 

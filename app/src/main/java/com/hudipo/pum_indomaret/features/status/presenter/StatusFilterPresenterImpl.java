@@ -27,9 +27,9 @@ public class StatusFilterPresenterImpl implements StatusContract.StatusFilterPre
 
     @Override
     public void validateDate(String startDate, String untilDate, String status) {
-        if (startDate.equals("Start Date")){
+        if (startDate.equals("--")){
             view.toast("Please Select Start Date!");
-        }else if (untilDate.equals("Until Date")){
+        }else if (untilDate.equals("--")){
             view.toast("Please Select Until Date");
         }else {
             try {

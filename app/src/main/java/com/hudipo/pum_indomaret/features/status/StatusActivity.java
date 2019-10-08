@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +18,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
+import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.features.requestpum.activity.DocumentReqActivity;
 import com.hudipo.pum_indomaret.features.requestpum.activity.SearchDocumentReqActivity;
+import com.hudipo.pum_indomaret.features.requestpum.activity.ValidationReqActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
@@ -26,6 +29,7 @@ import com.hudipo.pum_indomaret.features.status.model.StatusInteractorImpl;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.features.status.presenter.StatusPresenterImpl;
 import com.hudipo.pum_indomaret.features.status.statusdetail.StatusDetailActivity;
+import com.hudipo.pum_indomaret.utils.RequestCode;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import java.util.List;
@@ -135,7 +139,11 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
 
     @Override
     public void toast(String stringMessage) {
-        Toast.makeText(this, stringMessage, Toast.LENGTH_SHORT).show();
+        new AlertDialog.Builder(this,R.style.CustomDialogTheme)
+                .setTitle("Attention!")
+                .setMessage(stringMessage)
+                .setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss())
+                .show();
     }
 
     private void initSwipeRefreshStatus() {

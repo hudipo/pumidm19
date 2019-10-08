@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.features.status;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -65,6 +66,10 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     void validate(){
         presenter.validateDate(tvTrxStartDate.getText().toString(),tvTrxUntilDate.getText().toString(),spnTrxStatus.getSelectedItem().toString());
     }
+    @OnClick(R.id.btnReset) void resetView(){
+        tvTrxStartDate.setText("--");
+        tvTrxUntilDate.setText("--");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
         presenter = new StatusFilterPresenterImpl(this, new StatusFilterInteractorImpl(this));
         presenter.getStatusList();
         datePickerListener = (datePicker, year, month, day) -> presenter.onDateSet(year,month,day);
+        resetView();
 
     }
     @Override
@@ -101,7 +107,7 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     @Override
     public void setDatePickerView(int year, int month, int day) {
         DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, datePickerListener,
-                year, day, month);
+                year, month, day);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
@@ -119,7 +125,11 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
 
     @Override
     public void toast(String stringMessage) {
-        Toast.makeText(this, stringMessage, Toast.LENGTH_SHORT).show();
+        new AlertDialog.Builder(this,R.style.CustomDialogTheme)
+                .setTitle("Attention!")
+                .setMessage(stringMessage)
+                .setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss())
+                .show();
     }
 
     @Override
