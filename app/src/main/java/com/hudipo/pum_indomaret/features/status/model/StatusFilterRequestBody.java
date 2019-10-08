@@ -1,6 +1,8 @@
 package com.hudipo.pum_indomaret.features.status.model;
 
-public class StatusFilterRequestBody {
+import java.io.Serializable;
+
+public class StatusFilterRequestBody implements Serializable {
 
     private int emp_id;
     private String status;
@@ -12,6 +14,9 @@ public class StatusFilterRequestBody {
         this.status = status;
         this.start_date = start_date;
         this.finish_date = finish_date;
+    }
+
+    public StatusFilterRequestBody() {
     }
 
     public int getEmp_id() {

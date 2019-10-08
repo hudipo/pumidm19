@@ -12,19 +12,15 @@ public class StatusFilterInteractorImpl implements StatusContract.StatusFilterIn
     private HawkStorage hawkStorage;
 
     public StatusFilterInteractorImpl(Context context){
-        hawkStorage = new HawkStorage(context);
-        if (!hawkStorage.getStatusTypeData().isEmpty()){
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add("Processing");
-            arrayList.add("Waiting");
-            arrayList.add("Approved");
-            arrayList.add("Rejected");
-            hawkStorage.setStatusTypeData(arrayList);
-        }
     }
 
     @Override
     public void getStatusList(OnFinishedListenerStatusFilter onFinishedListenerStatusFilter) {
-        onFinishedListenerStatusFilter.onStatusListFetched(hawkStorage.getStatusTypeData());
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Processing");
+        arrayList.add("Waiting");
+        arrayList.add("Approved");
+        arrayList.add("Rejected");
+        onFinishedListenerStatusFilter.onStatusListFetched(arrayList);
     }
 }

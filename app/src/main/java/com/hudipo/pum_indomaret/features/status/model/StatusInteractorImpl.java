@@ -17,6 +17,7 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
     private Context context;
     private HawkStorage hawkStorage;
     private CompositeDisposable composite = new CompositeDisposable();
+    StatusFilterRequestBody filterRequestBody = new StatusFilterRequestBody();
 
     public StatusInteractorImpl(Context context){
         this.context = context;
@@ -32,7 +33,7 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(statusResponse -> {
                     if (!statusResponse.getError()){
-                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getMessage());
+                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
                     }else {
                         onFinishedListenerStatus.onFailure("SERVER ERROR!");
                     }
@@ -41,16 +42,21 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
     }
 
     @Override
-    public void getFilteredStatusList(OnFinishedListenerStatus onFinishedListenerStatus, StatusFilterRequestBody filterRequestBody) {
+    public void getFilteredStatusList(OnFinishedListenerStatus onFinishedListenerStatus, String startDate, String untilDate, String status) {
         Log.d("interactor",""+hawkStorage.getUserData().getEmpId());
-        composite.add(new ApiServices().getApiPumServices().getFilteredStatusListFromNetwork(filterRequestBody)
+        filterRequestBody.setEmp_id(hawkStorage.getUserData().getEmpId());
+        filterRequestBody.setStart_date(startDate);
+        filterRequestBody.setFinish_date(untilDate);
+        filterRequestBody.setStatus(status);
+        composite.add(new ApiServices().getApiPumServices().getFilteredStatusListFromNetwork(hawkStorage.getUserData().getEmpId(),startDate,untilDate,status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(statusResponse -> {
+                    onFinishedListenerStatus.onFailure(statusResponse.getMessage());
                     if (!statusResponse.getError()){
-                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getMessage());
+                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
                     }else {
-                        onFinishedListenerStatus.onFailure("SERVER ERROR!");
+                        onFinishedListenerStatus.onFailure(statusResponse.getMessage());
                     }
                 },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
         );

@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -51,6 +52,6 @@ public interface PumApiServices {
 
     @FormUrlEncoded
     @POST("filterhistorycreatepum")
-    Observable<StatusResponse> getFilteredStatusListFromNetwork(@PartMap StatusFilterRequestBody requestBody);
+    Observable<StatusResponse> getFilteredStatusListFromNetwork(@Field("emp_id") int emp_id,@Field("start_date") String start_date,@Field("finish_date") String finish_date,@Field("status") String status);
 
 }

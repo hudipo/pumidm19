@@ -5,11 +5,13 @@ import java.util.List;
 
 public class StatusResponse {
     private Boolean error;
-    private List<StatusModel> message;
+    private String message;
+    private List<StatusModel> data;
 
-    public StatusResponse(Boolean error, List<StatusModel> message) {
+    public StatusResponse(Boolean error, String message, List<StatusModel> data) {
         this.error = error;
         this.message = message;
+        this.data = data;
     }
 
     public Boolean getError() {
@@ -20,12 +22,20 @@ public class StatusResponse {
         this.error = error;
     }
 
-    public List<StatusModel> getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(List<StatusModel> message) {
+    public void setMessage(String message) {
         this.message = message;
+    }
+
+    public List<StatusModel> getData() {
+        return data;
+    }
+
+    public void setData(List<StatusModel> data) {
+        this.data = data;
     }
 
     public class StatusModel implements Serializable {

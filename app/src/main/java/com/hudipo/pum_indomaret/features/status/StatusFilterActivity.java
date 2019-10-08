@@ -2,7 +2,9 @@ package com.hudipo.pum_indomaret.features.status;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
@@ -18,7 +20,9 @@ import android.widget.Toast;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterInteractorImpl;
+import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.features.status.presenter.StatusFilterPresenterImpl;
+import com.orhanobut.hawk.Hawk;
 
 import org.w3c.dom.Text;
 
@@ -36,6 +40,8 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     public static final int UNTIL_DATE_CODE = 1;
     private StatusContract.StatusFilterPresenter presenter;
     private DatePickerDialog.OnDateSetListener datePickerListener;
+    private StatusFilterRequestBody data = new StatusFilterRequestBody();
+    ArrayAdapter<String> dataAdapter;
 
     @BindView(R.id.spnTrxStatus)
     Spinner spnTrxStatus;
@@ -55,6 +61,10 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     void btnBack(){
         super.onBackPressed();
     }
+    @OnClick(R.id.btnView)
+    void validate(){
+        presenter.validateDate(tvTrxStartDate.getText().toString(),tvTrxUntilDate.getText().toString(),spnTrxStatus.getSelectedItem().toString());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +78,7 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
         presenter = new StatusFilterPresenterImpl(this, new StatusFilterInteractorImpl(this));
         presenter.getStatusList();
         datePickerListener = (datePicker, year, month, day) -> presenter.onDateSet(year,month,day);
+
     }
     @Override
     public void setStartDate(String date) {
@@ -81,7 +92,7 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
 
     @Override
     public void setStatusList(ArrayList<String> statusList) {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
+        dataAdapter = new ArrayAdapter<>(this,
                 R.layout.spinner_item_layout, statusList);
         dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         spnTrxStatus.setAdapter(dataAdapter);
@@ -96,8 +107,19 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     }
 
     @Override
-    public void toast(String stringMessage) {
+    public void goBackToStatusAct(String startDate, String untilDate, String status) {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("startDate",startDate);
+        returnIntent.putExtra("untilDate",untilDate);
+        returnIntent.putExtra("status",status);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
 
+    }
+
+    @Override
+    public void toast(String stringMessage) {
+        Toast.makeText(this, stringMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -105,4 +127,6 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
         presenter.onDetach();
         super.onDestroy();
     }
+
+
 }

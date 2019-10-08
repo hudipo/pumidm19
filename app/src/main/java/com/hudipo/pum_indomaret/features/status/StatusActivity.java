@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
+import com.hudipo.pum_indomaret.features.requestpum.activity.DocumentReqActivity;
+import com.hudipo.pum_indomaret.features.requestpum.activity.SearchDocumentReqActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
@@ -44,7 +48,8 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     EditText etSearch;
     @OnClick(R.id.btnFilterStatus)
     void goToStatusFilterAct(){
-        startActivityForResult(new Intent(StatusActivity.this,StatusFilterActivity.class),STATUS_FILTER_REQUEST_CODE);
+        Intent intent = new Intent(StatusActivity.this, StatusFilterActivity.class);
+        startActivityForResult(intent,STATUS_FILTER_REQUEST_CODE);
     }
 
     private StatusAdapter adapterStatus;
@@ -80,6 +85,24 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == STATUS_FILTER_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                assert data != null;
+//                Toast.makeText(this,data.getStringExtra("startDate"),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,data.getStringExtra("untilDate"),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,data.getStringExtra("status"),Toast.LENGTH_SHORT).show();
+
+                String startDate = data.getStringExtra("startDate");
+                String untilDate = data.getStringExtra("untilDate");
+                String status = data.getStringExtra("status");
+                presenter.getFilteredStatusList(startDate,untilDate,status);
+            }
+        }
     }
 
     private void initRecyclerView() {

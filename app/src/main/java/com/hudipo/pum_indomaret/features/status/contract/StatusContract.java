@@ -1,7 +1,6 @@
 package com.hudipo.pum_indomaret.features.status.contract;
 
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
-import com.hudipo.pum_indomaret.features.status.model.StatusModel;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 
 import java.util.ArrayList;
@@ -19,10 +18,14 @@ public interface StatusContract {
 
         void setDatePickerView(int year, int month, int day);
 
+        void goBackToStatusAct(String startDate, String untilDate, String status);
+
         void toast(String stringMessage);
     }
 
     interface StatusFilterPresenter {
+
+        void validateDate(String startDate, String untilDate, String status);
 
         void onDateSet(int year, int month, int day);
 
@@ -67,7 +70,7 @@ public interface StatusContract {
 
         void onRefresh();
 
-        void getFilteredStatusList(StatusFilterRequestBody filterRequestBody);
+        void getFilteredStatusList(String startDate, String untilDate, String status);
     }
 
     interface StatusInteractor {
@@ -80,6 +83,6 @@ public interface StatusContract {
 
         void getStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus);
 
-        void getFilteredStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus, StatusFilterRequestBody filterRequestBody);
+        void getFilteredStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus, String startDate, String untilDate, String status);
     }
 }
