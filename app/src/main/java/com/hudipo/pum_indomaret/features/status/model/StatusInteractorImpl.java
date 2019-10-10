@@ -3,7 +3,6 @@ package com.hudipo.pum_indomaret.features.status.model;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.networking.ApiServices;
@@ -18,6 +17,7 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
     private Context context;
     private HawkStorage hawkStorage;
     private CompositeDisposable composite = new CompositeDisposable();
+    StatusFilterRequestBody filterRequestBody = new StatusFilterRequestBody();
 
     public StatusInteractorImpl(Context context){
         this.context = context;
@@ -33,17 +33,31 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(statusResponse -> {
                     if (!statusResponse.getError()){
-                        onFinishedListenerStatus.onStatusListFetched(statusResponse.getMessage());
+                        if (statusResponse.getData().size()>0){
+                            onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
+                        }else onFinishedListenerStatus.onFailure("No data available!");
                     }else {
-                        Log.d("interactor","error true");
+                        onFinishedListenerStatus.onFailure("Please check your internet connection!");
                     }
-                }, onFinishedListenerStatus::onFailure)
+                },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
         );
     }
 
     @Override
-    public void getFilteredStatusList(OnFinishedListenerStatus onFinishedListenerStatus, FilterStatusModel filterStatusModel) {
-
+    public void getFilteredStatusList(OnFinishedListenerStatus onFinishedListenerStatus, String startDate, String untilDate, String status) {
+        composite.add(new ApiServices().getApiPumServices().getFilteredStatusListFromNetwork(hawkStorage.getUserData().getEmpId(),startDate,untilDate,status)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(statusResponse -> {
+                    if (!statusResponse.getError()){
+                        if (statusResponse.getData().size()>0){
+                            onFinishedListenerStatus.onStatusListFetched(statusResponse.getData());
+                        }else onFinishedListenerStatus.onFailure("No data available!");
+                    }else {
+                        onFinishedListenerStatus.onFailure("Please check your internet connection!");
+                    }
+                },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
+        );
     }
 
 }

@@ -116,17 +116,17 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
             });
             tvPumNumber.setText(statusModel.getTrx_num());
             if (statusModel.getPum_status().equals("N")){
-                tvStatus.setText("Waiting");
+                tvStatus.setText("New");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_waiting));
-            }else if (statusModel.getPum_status().equals("I")){
-                tvStatus.setText("Reject");
+            }else if (statusModel.getPum_status().equals("R")){
+                tvStatus.setText("Rejected");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
-            }else if (statusModel.getPum_status().equals("A")){
+            }else if (statusModel.getPum_status().equals("A")||statusModel.getPum_status().equals("I")){
                 tvStatus.setText("Approved");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
             }else{
-                tvStatus.setText("Process");
-                bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
+                tvStatus.setText("Processing");
+                bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
             }
         }
     }

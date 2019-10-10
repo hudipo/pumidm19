@@ -1,9 +1,9 @@
 package com.hudipo.pum_indomaret.networking;
 
+import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
-import com.hudipo.pum_indomaret.features.status.model.FilterStatusModel;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
@@ -12,7 +12,6 @@ import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -51,7 +50,11 @@ public interface PumApiServices {
     @POST("historycreatepum")
     Observable<StatusResponse> getStatusListFromNetwork(@Field("emp_id") int emp_id);
 
+    @FormUrlEncoded
     @POST("filterhistorycreatepum")
-    Observable<Single<StatusResponse>> getFilteredStatusListFromNetwork(@Body FilterStatusModel filterStatusModel);
+    Observable<StatusResponse> getFilteredStatusListFromNetwork(@Field("emp_id") int emp_id,
+                                                                @Field("start_date") String start_date,
+                                                                @Field("finish_date") String finish_date,
+                                                                @Field("status") String status);
 
 }

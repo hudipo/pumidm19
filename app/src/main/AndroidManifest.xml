@@ -17,6 +17,11 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity
+            android:name=".features.status.StatusFilterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".features.report.view.ReportActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
