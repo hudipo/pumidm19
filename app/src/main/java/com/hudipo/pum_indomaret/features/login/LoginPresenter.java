@@ -5,16 +5,24 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
+import com.hudipo.pum_indomaret.networking.RetrofitClient;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
+import retrofit2.Response;
 
 public class LoginPresenter implements LoginContract.LoginPresenterView<LoginContract.LoginView>  {
     private Context context;
@@ -24,7 +32,7 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
 
     private static final String TAG = "LOGIN_PRESENTER";
 
-    public LoginPresenter(Context context) {
+    LoginPresenter(Context context) {
         this.context = context;
     }
 
@@ -76,15 +84,36 @@ public class LoginPresenter implements LoginContract.LoginPresenterView<LoginCon
         composite.add(new ApiServices().getApiPumServices().login(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(loginResponse -> {
+                .subscribe(response -> {
                     mView.dismissLoading();
-                    if (loginResponse.isError()){
-                        mView.failedLogin(loginResponse.getMessage());
+                    if (response.code() == 200){
+                        LoginResponse loginResponse = response.body();
+                        if (loginResponse != null){
+                            if (!loginResponse.isError()){
+                                mView.failedLogin(loginResponse.getMessage());
+                            }else {
+                                hawkStorage.setUserData(loginResponse.getUser());
+                                hawkStorage.setLogin(true);
+                                mView.loginSuccess();
+                            }
+                        }
                     }else {
-                        hawkStorage.setUserData(loginResponse.getUser());
-                        hawkStorage.setLogin(true);
-                        mView.loginSuccess();
+                        Converter<ResponseBody, LoginResponse> errorConverter =
+                                RetrofitClient.client().responseBodyConverter(LoginResponse.class, new Annotation[0]);
+                        LoginResponse errorResponse;
+                        try {
+                            if (response.errorBody() != null){
+                                errorResponse = errorConverter.convert(response.errorBody());
+
+                                if (errorResponse != null){
+                                    mView.failedLogin(errorResponse.getMessage());
+                                }
+                            }
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
                     }
+
                 }, throwable -> {
                     mView.dismissLoading();
                     mView.errorServer();

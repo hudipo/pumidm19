@@ -152,7 +152,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     @Override
-    public void registerSuccess() {
+    public void registerSuccess(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         StartActivity.goTo(this, LoginActivity.class);
         finish();
     }

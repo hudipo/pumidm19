@@ -27,10 +27,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="@id/gridLayout"
+            app:layout_constraintStart_toStartOf="@id/rvHome"
             app:layout_constraintTop_toTopOf="@id/ivAppBar"
-            app:layout_constraintBottom_toTopOf="@id/gridLayout"
-            app:layout_constraintEnd_toEndOf="@id/gridLayout">
+            app:layout_constraintBottom_toTopOf="@id/rvHome"
+            app:layout_constraintEnd_toEndOf="@id/rvHome">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -81,200 +81,21 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <GridLayout
-            android:id="@+id/gridLayout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="2"
             android:layout_marginTop="42dp"
-            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_marginBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:itemCount="6"
+            app:spanCount="2"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_home"
             app:layout_constraintTop_toBottomOf="@id/constraintLayoutProfile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnRequest"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_margin="12dp"
-                app:cardElevation="@dimen/card_elevation"
-
-                app:cardCornerRadius="@dimen/home_corner">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_request"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/request"
-                        android:fontFamily="@font/mregular"
-                        style="@style/TextAppearance.Headline6.Dark"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnApproval"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_margin="12dp"
-                app:cardElevation="@dimen/card_elevation"
-                app:cardCornerRadius="@dimen/home_corner">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_approval"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/approval"
-                        android:fontFamily="@font/mregular"
-                        style="@style/TextAppearance.Headline6.Dark"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnStatus"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_margin="12dp"
-                app:cardElevation="@dimen/card_elevation"
-                app:cardCornerRadius="@dimen/home_corner">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_inbox"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/inbox"
-                        android:fontFamily="@font/mregular"
-                        style="@style/TextAppearance.Headline6.Dark"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnResponse"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_margin="12dp"
-                app:cardElevation="@dimen/card_elevation"
-                app:cardCornerRadius="@dimen/home_corner">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_response"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/response"
-                        android:fontFamily="@font/mregular"
-                        style="@style/TextAppearance.Headline6.Dark"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnSetting"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_margin="12dp"
-                app:cardElevation="@dimen/card_elevation"
-                app:cardCornerRadius="@dimen/home_corner">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_settings"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/setting"
-                        android:fontFamily="@font/mregular"
-                        style="@style/TextAppearance.Headline6.Dark"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnReport"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_margin="12dp"
-                app:cardElevation="@dimen/card_elevation"
-                app:cardCornerRadius="@dimen/home_corner">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_report"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/report"
-                        android:fontFamily="@font/mregular"
-                        style="@style/TextAppearance.Headline6.Dark"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </GridLayout>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

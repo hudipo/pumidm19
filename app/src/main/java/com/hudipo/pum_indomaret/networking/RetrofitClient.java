@@ -16,7 +16,7 @@ public class RetrofitClient {
     private static final int REQUEST_TIMEOUT = 30;
     private static Retrofit retrofit;
 
-    public static Retrofit client(String baseUrl) {
+    public static Retrofit client() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -33,6 +33,7 @@ public class RetrofitClient {
                 .build();
 
         if(retrofit==null){
+            String baseUrl = BuildConfig.BASE_URL;
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
                     .client(client)

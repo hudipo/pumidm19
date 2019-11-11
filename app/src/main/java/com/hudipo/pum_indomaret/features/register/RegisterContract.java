@@ -14,7 +14,7 @@ public class RegisterContract {
         void showLoading();
         void hideLoading();
         void failedRegister(String message);
-        void registerSuccess();
+        void registerSuccess(String message);
         void errorServer();
     }
 }

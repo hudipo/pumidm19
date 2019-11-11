@@ -7,44 +7,23 @@ public class User{
 	@SerializedName("DEPT_ID")
 	private String deptId;
 
-	@SerializedName("INACTIVE_DATE")
-	private String inActiveDate;
-
-	@SerializedName("CREATED_BY")
-	private int createdBy;
-
-	@SerializedName("LAST_UPDATED_BY")
-	private int lastUpdatedBy;
-
 	@SerializedName("ORG_ID")
 	private int orgId;
 
 	@SerializedName("MAX_CREATE_PUM")
 	private int maxCreatePum;
 
-	@SerializedName("ACTIVE_FLAG")
-	private String activeFlag;
-
-	@SerializedName("EMAIL_OTP")
-	private String emailOtp;
-
-	@SerializedName("CREATION_DATE")
-	private String creationDate;
-
 	@SerializedName("MAX_AMOUNT")
-	private int maxAmount;
+	private long maxAmount;
 
 	@SerializedName("EMP_NUM")
 	private String empNum;
 
-	@SerializedName("EMAIL")
-	private String email;
+	@SerializedName("USER_ID")
+	private int userId;
 
-	@SerializedName("LAST_UPDATE_DATE")
-	private String lastUpdateDate;
-
-	@SerializedName("respname")
-	private String respname;
+	@SerializedName("MENU_ID")
+	private int menuId;
 
 	@SerializedName("NAME")
 	private String name;
@@ -55,17 +34,14 @@ public class User{
 	@SerializedName("EMP_ID")
 	private int empId;
 
-	@SerializedName("PROXY_AMOUNT_TO")
-	private int proxyAmountTo;
-
-	@SerializedName("role_id")
+	@SerializedName("ROLE_ID")
 	private int roleId;
 
-	@SerializedName("FLAG_APR")
-	private String flagApr;
+	@SerializedName("RESP_ID")
+	private int respId;
 
-	@SerializedName("menu_id")
-	private int menuId;
+	@SerializedName("RESP_NAME")
+	private String respName;
 
 	public String getDeptId() {
 		return deptId;
@@ -73,30 +49,6 @@ public class User{
 
 	public void setDeptId(String deptId) {
 		this.deptId = deptId;
-	}
-
-	public String getInActiveDate() {
-		return inActiveDate;
-	}
-
-	public void setInActiveDate(String inActiveDate) {
-		this.inActiveDate = inActiveDate;
-	}
-
-	public int getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(int createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public int getLastUpdatedBy() {
-		return lastUpdatedBy;
-	}
-
-	public void setLastUpdatedBy(int lastUpdatedBy) {
-		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
 	public int getOrgId() {
@@ -115,35 +67,11 @@ public class User{
 		this.maxCreatePum = maxCreatePum;
 	}
 
-	public String getActiveFlag() {
-		return activeFlag;
-	}
-
-	public void setActiveFlag(String activeFlag) {
-		this.activeFlag = activeFlag;
-	}
-
-	public String getEmailOtp() {
-		return emailOtp;
-	}
-
-	public void setEmailOtp(String emailOtp) {
-		this.emailOtp = emailOtp;
-	}
-
-	public String getCreationDate() {
-		return creationDate;
-	}
-
-	public void setCreationDate(String creationDate) {
-		this.creationDate = creationDate;
-	}
-
-	public int getMaxAmount() {
+	public long getMaxAmount() {
 		return maxAmount;
 	}
 
-	public void setMaxAmount(int maxAmount) {
+	public void setMaxAmount(long maxAmount) {
 		this.maxAmount = maxAmount;
 	}
 
@@ -155,28 +83,20 @@ public class User{
 		this.empNum = empNum;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public String getLastUpdateDate() {
-		return lastUpdateDate;
+	public int getMenuId() {
+		return menuId;
 	}
 
-	public void setLastUpdateDate(String lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
-	}
-
-	public String getRespname() {
-		return respname;
-	}
-
-	public void setRespname(String respname) {
-		this.respname = respname;
+	public void setMenuId(int menuId) {
+		this.menuId = menuId;
 	}
 
 	public String getName() {
@@ -203,14 +123,6 @@ public class User{
 		this.empId = empId;
 	}
 
-	public int getProxyAmountTo() {
-		return proxyAmountTo;
-	}
-
-	public void setProxyAmountTo(int proxyAmountTo) {
-		this.proxyAmountTo = proxyAmountTo;
-	}
-
 	public int getRoleId() {
 		return roleId;
 	}
@@ -219,19 +131,19 @@ public class User{
 		this.roleId = roleId;
 	}
 
-	public String getFlagApr() {
-		return flagApr;
+	public int getRespId() {
+		return respId;
 	}
 
-	public void setFlagApr(String flagApr) {
-		this.flagApr = flagApr;
+	public void setRespId(int respId) {
+		this.respId = respId;
 	}
 
-	public int getMenuId() {
-		return menuId;
+	public String getRespName() {
+		return respName;
 	}
 
-	public void setMenuId(int menuId) {
-		this.menuId = menuId;
+	public void setRespName(String respName) {
+		this.respName = respName;
 	}
 }

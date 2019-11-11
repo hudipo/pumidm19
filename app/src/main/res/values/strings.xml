@@ -7,6 +7,26 @@
     <string name="nik">NIK</string>
     <string name="hint_to_sign_in">Already have an Account?\nClick to Login</string>
 
+
+    <!--DATA HOME-->
+    <string-array name="data_title_home">
+        <item>Request</item>
+        <item>Approval</item>
+        <item>Status</item>
+        <item>Response</item>
+        <item>Settings</item>
+        <item>Reports</item>
+    </string-array>
+
+    <array name="data_image">
+        <item>@drawable/ic_request</item>
+        <item>@drawable/ic_approval</item>
+        <item>@drawable/ic_status</item>
+        <item>@drawable/ic_response</item>
+        <item>@drawable/ic_settings</item>
+        <item>@drawable/ic_report</item>
+    </array>
+
     <!--VALIDATION LOGIN-->
     <string name="err_nik">NIK can\'t be empty</string>
     <string name="err_password">Password can\'t be empty</string>

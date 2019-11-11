@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -26,11 +27,11 @@ public interface PumApiServices {
 
     @Multipart
     @POST("login")
-    Observable<LoginResponse> login(@PartMap HashMap<String, RequestBody> params);
+    Observable<Response<LoginResponse>> login(@PartMap HashMap<String, RequestBody> params);
 
     @Multipart
-    @POST("register")
-    Observable<RegisterResponse> register(@PartMap HashMap<String, RequestBody> params);
+    @POST("registerpin")
+    Observable<Response<RegisterResponse>> register(@PartMap HashMap<String, RequestBody> params);
 
     @GET("getdept")
     Observable<DepartmentResponse> getDepartement();

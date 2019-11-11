@@ -1,8 +1,13 @@
-package com.hudipo.pum_indomaret.model.login;
+package com.hudipo.pum_indomaret.model.approval;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse{
+import java.util.List;
+
+public class ApprovalListResponse{
+
+	@SerializedName("data")
+	private List<DataItem> data;
 
 	@SerializedName("error")
 	private boolean error;
@@ -10,8 +15,13 @@ public class LoginResponse{
 	@SerializedName("message")
 	private String message;
 
-	@SerializedName("data")
-	private User user;
+	public void setData(List<DataItem> data){
+		this.data = data;
+	}
+
+	public List<DataItem> getData(){
+		return data;
+	}
 
 	public void setError(boolean error){
 		this.error = error;
@@ -27,13 +37,5 @@ public class LoginResponse{
 
 	public String getMessage(){
 		return message;
-	}
-
-	public void setUser(User user){
-		this.user = user;
-	}
-
-	public User getUser(){
-		return user;
 	}
 }

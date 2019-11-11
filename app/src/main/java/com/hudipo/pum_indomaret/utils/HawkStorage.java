@@ -8,7 +8,6 @@ import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HawkStorage {
     private static final String USER_DATA = "USER_DATA";
