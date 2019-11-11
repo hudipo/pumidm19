@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class DepartmentItem{
 
-	@SerializedName("name")
+	@SerializedName("NAME")
 	private String name;
 
-	@SerializedName("description")
+	@SerializedName("DESCRIPTION")
 	private String description;
 
-	@SerializedName("dept_id")
+	@SerializedName("DEPT_ID")
 	private int deptId;
 
 	public void setName(String name){

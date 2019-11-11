@@ -2,28 +2,27 @@ package com.hudipo.pum_indomaret.model.trxtype;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TrxItem{
+public class TrxItem {
 
 	@SerializedName("PUM_TRX_TYPE_ID")
-	private int pUMTRXTYPEID;
+	private int pumTrxTypeId;
 
 	@SerializedName("DESCRIPTION")
-	private String dESCRIPTION;
+	private String description;
 
-	public void setPUMTRXTYPEID(int pUMTRXTYPEID){
-		this.pUMTRXTYPEID = pUMTRXTYPEID;
+	public int getPumTrxTypeId() {
+		return pumTrxTypeId;
 	}
 
-	public int getPUMTRXTYPEID(){
-		return pUMTRXTYPEID;
+	public void setPumTrxTypeId(int pumTrxTypeId) {
+		this.pumTrxTypeId = pumTrxTypeId;
 	}
 
-	public void setDESCRIPTION(String dESCRIPTION){
-		this.dESCRIPTION = dESCRIPTION;
+	public String getDescription() {
+		return description;
 	}
 
-	public String getDESCRIPTION(){
-		return dESCRIPTION;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
 }

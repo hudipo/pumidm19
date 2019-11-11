@@ -2,13 +2,12 @@ package com.hudipo.pum_indomaret.features.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,17 +20,13 @@ import com.hudipo.pum_indomaret.features.requestpum.activity.EmployeeReqActivity
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
 import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
-import com.hudipo.pum_indomaret.model.home.HomeModel;
-import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeActivity extends AppCompatActivity {
@@ -46,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     TextView tvEmpNumHome;
     @BindView(R.id.rvHome)
     RecyclerView rvHome;
+    @BindView(R.id.swipeRefreshHome)
+    SwipeRefreshLayout swipeRefreshHome;
 
     private CompositeDisposable composite = new CompositeDisposable();
     private HawkStorage hawkStorage;
@@ -59,10 +56,16 @@ public class HomeActivity extends AppCompatActivity {
 
         initHawkStorage();
         initAdapter();
-        checkMenu();
-        setView();
+        initSwipeRefresh();
         getDeptAndSaveToHawkStorage();
         getTrxTypeAndSaveToHawkStorage();
+    }
+
+    private void initSwipeRefresh() {
+        swipeRefreshHome.setOnRefreshListener(() -> {
+            swipeRefreshHome.setRefreshing(false);
+            initAdapter();
+        });
     }
 
     private void checkMenu() {
@@ -123,6 +126,9 @@ public class HomeActivity extends AppCompatActivity {
         adapter.setListDataHome(Data.dataHome(this));
         rvHome.setLayoutManager(new GridLayoutManager(this, 2));
         rvHome.setAdapter(adapter);
+
+        checkMenu();
+        setView();
     }
 
     private void initHawkStorage() {
@@ -139,19 +145,18 @@ public class HomeActivity extends AppCompatActivity {
                         hawkStorage.setTrxTypeData(trxTypeResponse);
                     }
                 }, throwable -> {
-
+                    Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 }));
     }
 
     private void getDeptAndSaveToHawkStorage() {
         composite.add(new ApiServices().getApiPumServices()
-        .getDepartement()
+        .getDepartment(hawkStorage.getUserData().getOrgId())
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(departmentResponse -> {
             if (departmentResponse != null){
                 hawkStorage.setDepartmentData(departmentResponse);
-            }else {
             }
         }, throwable -> Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show()));
     }

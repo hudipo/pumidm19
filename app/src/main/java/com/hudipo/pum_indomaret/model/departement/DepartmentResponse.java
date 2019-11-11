@@ -9,7 +9,10 @@ public class DepartmentResponse {
 	@SerializedName("error")
 	private boolean error;
 
-	@SerializedName("department")
+	@SerializedName("message")
+	private String message;
+
+	@SerializedName("data")
 	private ArrayList<DepartmentItem> department;
 
 	public void setError(boolean error){
@@ -26,5 +29,13 @@ public class DepartmentResponse {
 
 	public ArrayList<DepartmentItem> getDepartment(){
 		return department;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

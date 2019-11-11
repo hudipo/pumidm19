@@ -1,6 +1,5 @@
 package com.hudipo.pum_indomaret.networking;
 
-import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
@@ -33,8 +32,9 @@ public interface PumApiServices {
     @POST("registerpin")
     Observable<Response<RegisterResponse>> register(@PartMap HashMap<String, RequestBody> params);
 
-    @GET("getdept")
-    Observable<DepartmentResponse> getDepartement();
+    @FormUrlEncoded
+    @POST("getdept")
+    Observable<DepartmentResponse> getDepartment(@Field("org_id") int orgId);
 
     @FormUrlEncoded
     @POST("getdocdetail")

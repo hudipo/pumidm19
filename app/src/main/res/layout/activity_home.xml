@@ -1,102 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.home.HomeActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:outlineProvider="background"
-            android:paddingBottom="@dimen/main_padding"
-            android:scaleType="centerCrop"
-            android:src="@drawable/appbar_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutProfile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="@id/rvHome"
-            app:layout_constraintTop_toTopOf="@id/ivAppBar"
-            app:layout_constraintBottom_toTopOf="@id/rvHome"
-            app:layout_constraintEnd_toEndOf="@id/rvHome">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/ivAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:outlineProvider="background"
+                android:paddingBottom="@dimen/main_padding"
+                android:scaleType="centerCrop"
+                android:src="@drawable/appbar_home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutProfile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="@id/ciPhotoProfile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ciPhotoProfile"
-                app:layout_constraintTop_toTopOf="@id/ciPhotoProfile">
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="@id/rvHome"
+                app:layout_constraintTop_toTopOf="@id/ivAppBar"
+                app:layout_constraintBottom_toTopOf="@id/rvHome"
+                app:layout_constraintEnd_toEndOf="@id/rvHome">
 
-                <TextView
-                    android:id="@+id/tvNameHome"
-                    style="@style/TextAppearance.Headline5.Light"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/msemibold"
-                    android:text="@string/example_name" />
+                    android:layout_marginStart="@dimen/main_margin"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@id/ciPhotoProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ciPhotoProfile"
+                    app:layout_constraintTop_toTopOf="@id/ciPhotoProfile">
 
-                <TextView
-                    android:id="@+id/tvEmpNumHome"
-                    style="@style/TextAppearance.Headline6.Light"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/example_nip"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/mregular"/>
+                    <TextView
+                        android:id="@+id/tvNameHome"
+                        style="@style/TextAppearance.Headline5.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/msemibold"
+                        android:text="@string/example_name" />
 
-                <TextView
-                    android:id="@+id/tvPositionHome"
-                    style="@style/TextAppearance.Headline6.Light"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/example_position"
-                    android:fontFamily="@font/mregular"/>
+                    <TextView
+                        android:id="@+id/tvEmpNumHome"
+                        style="@style/TextAppearance.Headline6.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/example_nip"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/mregular"/>
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvPositionHome"
+                        style="@style/TextAppearance.Headline6.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/example_position"
+                        android:fontFamily="@font/mregular"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ciPhotoProfile"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/person"
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ciPhotoProfile"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/person"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:layout_marginBottom="16dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:itemCount="6"
+                app:spanCount="2"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_home"
+                app:layout_constraintTop_toBottomOf="@id/constraintLayoutProfile"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="16dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:itemCount="6"
-            app:spanCount="2"
-            android:clipToPadding="false"
-            tools:listitem="@layout/item_home"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayoutProfile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.core.widget.NestedScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

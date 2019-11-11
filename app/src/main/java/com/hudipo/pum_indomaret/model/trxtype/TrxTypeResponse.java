@@ -5,18 +5,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class TrxTypeResponse{
 
-	@SerializedName("trx")
+	@SerializedName("data")
 	private List<TrxItem> trx;
 
 	@SerializedName("error")
 	private boolean error;
 
-	public void setTrx(List<TrxItem> trx){
-		this.trx = trx;
+	@SerializedName("message")
+	private String message;
+
+	public List<TrxItem> getTrx() {
+		return trx;
 	}
 
-	public List<TrxItem> getTrx(){
-		return trx;
+	public void setTrx(List<TrxItem> trx) {
+		this.trx = trx;
 	}
 
 	public void setError(boolean error){
@@ -27,4 +30,11 @@ public class TrxTypeResponse{
 		return error;
 	}
 
+	public void setMessage(String message){
+		this.message = message;
+	}
+
+	public String getMessage(){
+		return message;
+	}
 }

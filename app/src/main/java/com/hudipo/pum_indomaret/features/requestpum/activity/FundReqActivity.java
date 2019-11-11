@@ -95,9 +95,9 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
             String uploadFile = tvSelectAFile.getText().toString();
 
             for (TrxItem trxItem: hawkStorage.getTrxTypeData().getTrx()){
-                if (trxItem.getDESCRIPTION().equals(trxTypeDesc)){
-                    requestModel.setStringTrxType(trxItem.getDESCRIPTION());
-                    requestModel.setIdTrxType(trxItem.getPUMTRXTYPEID());
+                if (trxItem.getDescription().equals(trxTypeDesc)){
+                    requestModel.setStringTrxType(trxItem.getDescription());
+                    requestModel.setIdTrxType(trxItem.getPumTrxTypeId());
                 }
             }
 

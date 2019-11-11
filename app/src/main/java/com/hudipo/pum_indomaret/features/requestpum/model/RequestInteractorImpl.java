@@ -54,7 +54,7 @@ public class RequestInteractorImpl implements RequestContract.RequestInteractor 
     public void getTransactionTypeList(OnFinishedListenerFund onFinishedListenerFund) {
         ArrayList<String>transactionTypeList = new ArrayList<>();
         for (TrxItem trxItem: hawkStorage.getTrxTypeData().getTrx()){
-            transactionTypeList.add(trxItem.getDESCRIPTION());
+            transactionTypeList.add(trxItem.getDescription());
         }
         onFinishedListenerFund.onTransactionTypeFetched(transactionTypeList);
     }
