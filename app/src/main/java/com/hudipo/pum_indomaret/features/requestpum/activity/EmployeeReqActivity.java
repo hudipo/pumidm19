@@ -7,7 +7,6 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
         import android.graphics.Color;
         import android.graphics.drawable.ColorDrawable;
         import android.os.Bundle;
-        import android.util.Log;
         import android.widget.ArrayAdapter;
         import android.widget.EditText;
         import android.widget.ImageView;
@@ -17,8 +16,9 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
 
         import com.hudipo.pum_indomaret.R;
         import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
-        import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
-        import com.hudipo.pum_indomaret.features.requestpum.presenter.EmployeePresenterImpl;
+        import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractionImpl;
+        import com.hudipo.pum_indomaret.features.requestpum.presenter.EmployeePresenter;
+        import com.hudipo.pum_indomaret.features.searchdept.SearchDeptActivity;
         import com.hudipo.pum_indomaret.model.RequestModel;
         import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
         import com.hudipo.pum_indomaret.utils.HawkStorage;
@@ -58,7 +58,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_employee);
         ButterKnife.bind(this);
-        presenter = new EmployeePresenterImpl(this, new RequestInteractorImpl(this));
+        presenter = new EmployeePresenter(this, new RequestInteractionImpl(this));
 
         initHawkStorage();
         initView();
@@ -93,6 +93,11 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     void next(){
         checkValidateData();
         goToNextDocumentActivity();
+    }
+
+    @OnClick(R.id.btnSearchDepartment)
+    void searchDept(){
+        startActivity(new Intent(this, SearchDeptActivity.class));
     }
 
     private void goToNextDocumentActivity() {

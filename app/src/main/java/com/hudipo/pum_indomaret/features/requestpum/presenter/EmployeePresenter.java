@@ -6,12 +6,12 @@ import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class EmployeePresenterImpl implements RequestContract.EmployeePresenter, RequestContract.RequestInteractor.OnFinishedListenerEmployee {
+public class EmployeePresenter implements RequestContract.EmployeePresenter, RequestContract.RequestInteractor.OnFinishedListenerEmployee {
 
     private RequestContract.EmployeeView employeeView;
     private RequestContract.RequestInteractor interactor;
 
-    public EmployeePresenterImpl (RequestContract.EmployeeView employeeView, RequestContract.RequestInteractor interactor){
+    public EmployeePresenter(RequestContract.EmployeeView employeeView, RequestContract.RequestInteractor interactor){
         this.employeeView = employeeView;
         this.interactor = interactor;
     }

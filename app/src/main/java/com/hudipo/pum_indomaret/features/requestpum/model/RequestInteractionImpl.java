@@ -9,11 +9,11 @@ import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import java.util.ArrayList;
 
-public class RequestInteractorImpl implements RequestContract.RequestInteractor {
+public class RequestInteractionImpl implements RequestContract.RequestInteractor {
 
     private HawkStorage hawkStorage;
 
-    public RequestInteractorImpl(Context context) {
+    public RequestInteractionImpl(Context context) {
         hawkStorage = new HawkStorage(context);
     }
 

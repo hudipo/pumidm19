@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
-import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
+import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractionImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.DocumentPresenterImpl;
 import com.hudipo.pum_indomaret.model.RequestModel;
 
@@ -57,7 +57,7 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
     }
 
     private void initView() {
-        presenter = new DocumentPresenterImpl(this, new RequestInteractorImpl(this));
+        presenter = new DocumentPresenterImpl(this, new RequestInteractionImpl(this));
         presenter.getDocumentType();
 
         spnDocType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

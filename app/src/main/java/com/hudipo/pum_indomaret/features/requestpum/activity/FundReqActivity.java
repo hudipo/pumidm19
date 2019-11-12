@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
-import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractorImpl;
+import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractionImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.FundPresenterImpl;
 import com.hudipo.pum_indomaret.model.OptionItem;
 import com.hudipo.pum_indomaret.model.RequestModel;
@@ -71,7 +71,7 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
     }
 
     private void initPresenter() {
-        presenter = new FundPresenterImpl(this,new RequestInteractorImpl(this));
+        presenter = new FundPresenterImpl(this,new RequestInteractionImpl(this));
         presenter.getTransactionTypeList();
     }
 

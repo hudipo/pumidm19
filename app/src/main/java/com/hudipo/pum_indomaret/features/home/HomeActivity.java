@@ -151,14 +151,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private void getDeptAndSaveToHawkStorage() {
         composite.add(new ApiServices().getApiPumServices()
-        .getDepartment(hawkStorage.getUserData().getOrgId())
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(departmentResponse -> {
-            if (departmentResponse != null){
-                hawkStorage.setDepartmentData(departmentResponse);
-            }
-        }, throwable -> Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show()));
+            .getDepartment(hawkStorage.getUserData().getOrgId())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(departmentResponse -> {
+                if (departmentResponse != null){
+                    hawkStorage.setDepartmentData(departmentResponse);
+                }
+            }, throwable -> Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show()));
     }
 
     private void setView() {
