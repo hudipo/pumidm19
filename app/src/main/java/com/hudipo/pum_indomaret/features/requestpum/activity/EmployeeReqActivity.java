@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.features.requestpum.activity;
 
+        import androidx.annotation.Nullable;
         import androidx.appcompat.app.AppCompatActivity;
 
         import android.app.DatePickerDialog;
@@ -8,6 +9,7 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
         import android.graphics.drawable.ColorDrawable;
         import android.os.Bundle;
         import android.widget.ArrayAdapter;
+        import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.Spinner;
@@ -34,6 +36,7 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
 public class EmployeeReqActivity extends AppCompatActivity implements RequestContract.EmployeeView {
 
     private int dateCode;
+    static public int REQUEST_CODE = 100;
 
     @BindView(R.id.tvEmployeeNameEmp)
     TextView tvEmployeeName;
@@ -47,6 +50,8 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     ImageView imgUseDate;
     @BindView(R.id.imgRespDateEmp)
     ImageView imgRespDate;
+    @BindView(R.id.btnSearchDepartment)
+    Button btnSearchDept;
 
     RequestContract.EmployeePresenter presenter;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -97,7 +102,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
 
     @OnClick(R.id.btnSearchDepartment)
     void searchDept(){
-        startActivity(new Intent(this, SearchDeptActivity.class));
+        startActivityForResult(new Intent(this, SearchDeptActivity.class), REQUEST_CODE);
     }
 
     private void goToNextDocumentActivity() {
@@ -183,5 +188,21 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE){
+            if (resultCode == SearchDeptActivity.RESULT_CODE){
+                if (data != null) {
+                    DepartmentItem departmentItem = (DepartmentItem) data.getSerializableExtra(SearchDeptActivity.DATA_SELECTED_VALUE);
+                    if (departmentItem != null) {
+                        btnSearchDept.setText(departmentItem.getDescription());
+                    }
+                }
+            }
+        }
     }
 }

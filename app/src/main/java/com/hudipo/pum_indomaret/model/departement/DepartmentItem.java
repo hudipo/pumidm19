@@ -1,8 +1,12 @@
 package com.hudipo.pum_indomaret.model.departement;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class DepartmentItem{
+import java.io.Serializable;
+
+public class DepartmentItem implements Serializable {
 
 	@SerializedName("NAME")
 	private String name;

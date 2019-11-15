@@ -1,16 +1,16 @@
 package com.hudipo.pum_indomaret.features.searchdept;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.SearchDeptAdapter;
-import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.repository.Repository;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
@@ -22,6 +22,8 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     private SearchDeptPresenter presenter;
     private Repository repository;
+    static public int RESULT_CODE = 110;
+    static public String DATA_SELECTED_VALUE = "selected_data_search_department";
 
     @BindView(R.id.rvSearchDept)
     RecyclerView rvSearchDept;
@@ -77,7 +79,10 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     private void setAdapter(DepartmentResponse departmentResponse) {
         SearchDeptAdapter adapter = new SearchDeptAdapter(departmentItem -> {
-            Toast.makeText(this, "item : " + departmentItem.getName(), Toast.LENGTH_SHORT).show();
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra(DATA_SELECTED_VALUE, departmentItem);
+            setResult(RESULT_CODE, resultIntent);
+            finish();
         });
         adapter.setDepartmentResponse(departmentResponse);
 
