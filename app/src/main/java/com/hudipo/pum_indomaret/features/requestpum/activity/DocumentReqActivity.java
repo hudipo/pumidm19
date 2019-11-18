@@ -41,7 +41,6 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
     private RequestModel requestModel;
 
     private RequestContract.DocumentPresenter presenter;
-    private Boolean isValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,8 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
         if (requestCode == DOC_DETAIL_REQ_CODE) {
             if (resultCode == RESULT_OK) {
                 assert data != null;
-                tvDocNum.setText(data.getStringExtra("result"));
+                String result = data.getStringExtra("result");
+                tvDocNum.setText(result);
             }
         }
     }
@@ -119,29 +119,15 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
 
     @OnClick(R.id.btnNextDoc)
     void onClick(){
-        checkValidateData();
         goToFundReqActivity();
     }
 
     private void goToFundReqActivity() {
-        if (isValid){
-            Intent intent = new Intent(DocumentReqActivity.this,FundReqActivity.class);
-            requestModel.setStringDocNumber(tvDocNum.getText().toString());
-            requestModel.setStringDocType(spnDocType.getSelectedItem().toString());
-            intent.putExtra(FundReqActivity.KEY_DATA_REQUEST_DOCUMENT, requestModel);
-            startActivity(intent);
-        }
-    }
-
-    private void checkValidateData() {
-        if (tvDocNum.getText().toString().isEmpty()){
-            tvDocNum.setError("Doc number cannot be empty");
-            Toast.makeText(this, "Doc number cannot be empty", Toast.LENGTH_SHORT).show();
-            isValid = false;
-        }else {
-            tvDocNum.setError(null);
-            isValid = true;
-        }
+        Intent intent = new Intent(DocumentReqActivity.this,FundReqActivity.class);
+        requestModel.setStringDocNumber(tvDocNum.getText().toString());
+        requestModel.setStringDocType(spnDocType.getSelectedItem().toString());
+        intent.putExtra(FundReqActivity.KEY_DATA_REQUEST_DOCUMENT, requestModel);
+        startActivity(intent);
     }
 
     @Override

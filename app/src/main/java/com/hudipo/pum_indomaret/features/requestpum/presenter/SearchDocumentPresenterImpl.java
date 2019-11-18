@@ -2,14 +2,12 @@ package com.hudipo.pum_indomaret.features.requestpum.presenter;
 
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 import com.hudipo.pum_indomaret.features.requestpum.model.DocumentDetailRequestModel;
-import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 
 import java.util.ArrayList;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class SearchDocumentPresenterImpl implements RequestContract.SearchDocumentPresenter,RequestContract.RequestInteractor.OnFinishedListenerSearchDocument {

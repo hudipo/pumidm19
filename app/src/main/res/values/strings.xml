@@ -142,4 +142,5 @@
     <string name="logout">Logout</string>
     <string name="warning_31days">* The selected transaction period is only 31 days.</string>
     <string name="search_department">Search Department</string>
+    <string name="transaction">Transaction</string>
 </resources>

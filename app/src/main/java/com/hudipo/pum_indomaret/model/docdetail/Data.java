@@ -2,9 +2,10 @@ package com.hudipo.pum_indomaret.model.docdetail;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Document{
+public class Data implements Serializable {
 
 	@SerializedName("first_page_url")
 	private String firstPageUrl;
@@ -137,5 +138,4 @@ public class Document{
 	public int getCurrentPage(){
 		return currentPage;
 	}
-
 }

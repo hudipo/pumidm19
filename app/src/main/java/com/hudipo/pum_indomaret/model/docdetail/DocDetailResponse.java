@@ -2,20 +2,25 @@ package com.hudipo.pum_indomaret.model.docdetail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DocDetailResponse{
+import java.io.Serializable;
 
-	@SerializedName("document")
-	private Document document;
+public class DocDetailResponse implements Serializable {
+
+	@SerializedName("data")
+	private Data data;
 
 	@SerializedName("error")
 	private boolean error;
 
-	public void setDocument(Document document){
-		this.document = document;
+	@SerializedName("message")
+	private String message;
+
+	public void setData(Data data){
+		this.data = data;
 	}
 
-	public Document getDocument(){
-		return document;
+	public Data getData(){
+		return data;
 	}
 
 	public void setError(boolean error){
@@ -26,4 +31,11 @@ public class DocDetailResponse{
 		return error;
 	}
 
+	public void setMessage(String message){
+		this.message = message;
+	}
+
+	public String getMessage(){
+		return message;
+	}
 }

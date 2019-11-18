@@ -2,10 +2,12 @@ package com.hudipo.pum_indomaret.model.docdetail;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DataItem{
+import java.io.Serializable;
+
+public class DataItem implements Serializable {
 
 	@SerializedName("doc_amount")
-	private double docAmount;
+	private int docAmount;
 
 	@SerializedName("doc_num")
 	private String docNum;
@@ -13,11 +15,11 @@ public class DataItem{
 	@SerializedName("doc_date")
 	private String docDate;
 
-	public void setDocAmount(double docAmount){
+	public void setDocAmount(int docAmount){
 		this.docAmount = docAmount;
 	}
 
-	public double getDocAmount(){
+	public int getDocAmount(){
 		return docAmount;
 	}
 
@@ -36,5 +38,4 @@ public class DataItem{
 	public String getDocDate(){
 		return docDate;
 	}
-
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -85,6 +86,11 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
     void onClick(){
         checkValidData();
         goToValidationActivity();
+    }
+
+    @OnClick(R.id.btnSearchTrx)
+    void btnSearchTrx(){
+        
     }
 
     private void goToValidationActivity() {

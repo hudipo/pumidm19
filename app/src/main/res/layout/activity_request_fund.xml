@@ -51,6 +51,26 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
+    <Button
+        android:id="@+id/btnSearchTrx"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginTop="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:hint="Search TRX"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textAlignment="textStart"
+        android:paddingStart="@dimen/dp12"
+        android:drawablePadding="@dimen/dp12"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sectionTitle"/>
+
     <Spinner
         android:id="@+id/spnFundTrxType"
         android:layout_width="match_parent"
@@ -70,7 +90,8 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@id/sectionTitle" />
+        app:layout_constraintTop_toBottomOf="@id/sectionTitle"
+        android:visibility="gone"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -79,7 +100,8 @@
         android:src="@drawable/ic_arrow_drop_down_black_30dp"
         app:layout_constraintBottom_toBottomOf="@id/spnFundTrxType"
         app:layout_constraintEnd_toEndOf="@id/spnFundTrxType"
-        app:layout_constraintTop_toTopOf="@id/spnFundTrxType" />
+        app:layout_constraintTop_toTopOf="@id/spnFundTrxType"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/edtFundDesc"
@@ -98,7 +120,7 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spnFundTrxType" />
+        app:layout_constraintTop_toBottomOf="@id/btnSearchTrx" />
 
     <LinearLayout
         android:id="@+id/contentWrapper"

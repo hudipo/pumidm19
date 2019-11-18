@@ -42,7 +42,6 @@ public class SearchDeptPresenter implements SearchDeptContract.SearchDeptPresent
             public void onDataLoad(DepartmentResponse departmentResponse) {
                 view.hideProgress();
                 if (departmentResponse != null){
-                    Log.d("coba", "data : "+departmentResponse.getMessage());
                     view.setDataDept(departmentResponse);
                 }else {
                     view.setDataEmpty();

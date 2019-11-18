@@ -8,6 +8,7 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
         import android.graphics.Color;
         import android.graphics.drawable.ColorDrawable;
         import android.os.Bundle;
+        import android.util.Log;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
         import android.widget.EditText;
@@ -57,6 +58,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
     DatePickerDialog.OnDateSetListener mDateSetListener;
     private HawkStorage hawkStorage;
     private Boolean validate = false;
+    private RequestModel requestModel = new RequestModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,21 +113,11 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
 
             String employeeName = tvEmployeeName.getText().toString();
             int empId = hawkStorage.getUserData().getEmpId();
-            String employeeDepartment = spnEmployeeDepartment.getSelectedItem().toString();
             String useDate = etUseDateEmp.getText().toString();
             String respDate = etRespDate.getText().toString();
 
-            RequestModel requestModel = new RequestModel();
-
-            for (DepartmentItem dept: hawkStorage.getDepartment().getDepartment()){
-                if (dept.getDescription().equals(employeeDepartment)){
-                    employeeDepartment = dept.getName();
-                }
-            }
-
             requestModel.setIdEmployee(empId);
             requestModel.setStringEmployeeName(employeeName);
-            requestModel.setStringEmployeeDepartment(employeeDepartment);
             requestModel.setStringUseDate(PumDateFormat.rawToDateFormat(useDate));
             requestModel.setStringRespDate(PumDateFormat.rawToDateFormat(respDate));
 
@@ -200,6 +192,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
                     DepartmentItem departmentItem = (DepartmentItem) data.getSerializableExtra(SearchDeptActivity.DATA_SELECTED_VALUE);
                     if (departmentItem != null) {
                         btnSearchDept.setText(departmentItem.getDescription());
+                        requestModel.setStringEmployeeDepartment(departmentItem.getName());
                     }
                 }
             }

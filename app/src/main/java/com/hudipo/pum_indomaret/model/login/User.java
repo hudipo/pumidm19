@@ -43,6 +43,17 @@ public class User{
 	@SerializedName("RESP_NAME")
 	private String respName;
 
+	@SerializedName("PHOTO_PROFILE")
+	private String photoProfile;
+
+	public String getPhotoProfile() {
+		return photoProfile;
+	}
+
+	public void setPhotoProfile(String photoProfile) {
+		this.photoProfile = photoProfile;
+	}
+
 	public String getDeptId() {
 		return deptId;
 	}

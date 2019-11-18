@@ -42,12 +42,12 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bindItem(docDetailResponse.getDocument().getData().get(position), itemClickListener);
+        holder.bindItem(docDetailResponse.getData().getData().get(position), itemClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return docDetailResponse.getDocument().getData().size();
+        return docDetailResponse.getData().getData().size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -2,8 +2,8 @@ package com.hudipo.pum_indomaret.networking;
 
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
-import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
+import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
@@ -12,9 +12,7 @@ import java.util.HashMap;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
-import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;

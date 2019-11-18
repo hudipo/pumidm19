@@ -57,7 +57,7 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
         rcvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
         rcvSearchDoc.setAdapter(new SearchDocumentAdapter(docDetailResponse, dataItem -> {
             Intent returnIntent = new Intent();
-            returnIntent.putExtra("result",dataItem.getDocNum());
+            returnIntent.putExtra("result", dataItem.getDocNum());
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }));

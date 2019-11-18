@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+        <activity android:name=".features.searchtrx.SearchTrxActivity"></activity>
         <activity
             android:name=".features.searchdept.SearchDeptActivity"
             android:configChanges="orientation"
