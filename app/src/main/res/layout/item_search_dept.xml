@@ -14,9 +14,4 @@
         android:textSize="24sp"
         android:textColor="@color/black"/>
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_recent"/>
-
 </LinearLayout>

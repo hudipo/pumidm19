@@ -9,9 +9,9 @@ public class SearchTrxPresenter implements SearchTrxContract.SearchTrxPresenterV
 
     private SearchTrxContract.SearchTrxView mView;
     private Repository repository;
-    private CompositeDisposable composite;
+    private CompositeDisposable composite = new CompositeDisposable();
 
-    public SearchTrxPresenter(Repository repository) {
+    SearchTrxPresenter(Repository repository) {
         this.repository = repository;
     }
 
@@ -39,7 +39,7 @@ public class SearchTrxPresenter implements SearchTrxContract.SearchTrxPresenterV
             public void onDataLoad(TrxTypeResponse trxTypeResponse) {
                 mView.hideProgress();
                 if (trxTypeResponse != null){
-                    if (trxTypeResponse.isError() == false){
+                    if (!trxTypeResponse.isError()){
                         mView.setDataTrxType(trxTypeResponse);
                     }
                 }else {

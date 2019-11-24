@@ -71,8 +71,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearchTrx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/main_margin"
         android:clipToPadding="false"
         android:padding="8dp"
@@ -80,6 +80,7 @@
         android:background="@drawable/bg_rounded_border_black_solid_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etSearchTransaction"/>
+        app:layout_constraintTop_toBottomOf="@id/etSearchTransaction"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

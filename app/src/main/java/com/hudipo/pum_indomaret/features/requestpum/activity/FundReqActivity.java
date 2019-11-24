@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.features.requestpum.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,9 +16,11 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractionImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.FundPresenterImpl;
+import com.hudipo.pum_indomaret.features.searchtrx.SearchTrxActivity;
 import com.hudipo.pum_indomaret.model.OptionItem;
 import com.hudipo.pum_indomaret.model.RequestModel;
 import com.hudipo.pum_indomaret.model.trxtype.TrxItem;
+import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 import com.hudipo.pum_indomaret.utils.Global;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 import com.hudipo.pum_indomaret.utils.Key;
@@ -40,6 +43,8 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
     EditText edtFundAmount;
     @BindView(R.id.tvSelectAFile)
     TextView tvSelectAFile;
+    @BindView(R.id.btnSearchTrx)
+    Button btnSearchTrx;
 
     private ArrayList<OptionItem> optionUploadFiles = new ArrayList<>();
 
@@ -48,6 +53,7 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
     public static String KEY_DATA_REQUEST_DOCUMENT = "KEY_DATA_REQUEST_DOCUMENT";
     private HawkStorage hawkStorage;
     private Boolean isValid = false;
+    private int REQUEST_CODE_SEARCH_TRX = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +96,8 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
 
     @OnClick(R.id.btnSearchTrx)
     void btnSearchTrx(){
-        
+        Intent intent = new Intent(this, SearchTrxActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_SEARCH_TRX);
     }
 
     private void goToValidationActivity() {
@@ -175,6 +182,21 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
     public void onOptionItemSelected(OptionItem optionItem, int requestCode) {
         if (requestCode == RequestCode.CODE_OPTION_UPLOAD_FILE){
             tvSelectAFile.setText(optionItem.getLabel());
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SEARCH_TRX){
+            if (resultCode == SearchTrxActivity.RESULT_CODE_SELECTED){
+                if (data != null) {
+                    TrxItem trxItem = data.getParcelableExtra(SearchTrxActivity.EXTRA_SELECTED);
+                    if (trxItem != null) {
+                        btnSearchTrx.setText(String.valueOf(trxItem.getDescription()));
+                    }
+                }
+            }
         }
     }
 }

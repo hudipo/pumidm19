@@ -16,7 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".features.searchtrx.SearchTrxActivity"></activity>
+        <activity android:name=".features.requestpum.activity.ReqDocumentActivity"></activity>
+        <activity
+            android:name=".features.requestpum.activity.ReqEmployeeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.searchtrx.SearchTrxActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".features.searchdept.SearchDeptActivity"
             android:configChanges="orientation"

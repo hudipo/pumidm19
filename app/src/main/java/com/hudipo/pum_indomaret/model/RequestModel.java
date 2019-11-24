@@ -6,6 +6,7 @@ public class RequestModel implements Serializable {
 
     private String stringEmployeeName;
     private int idEmployee;
+    private int idEmpDept;
     private String stringEmployeeDepartment;
     private String stringUseDate;
     private String stringRespDate;
@@ -18,6 +19,14 @@ public class RequestModel implements Serializable {
     private String stringFileUri;
 
     public RequestModel() {
+    }
+
+    public int getIdEmpDept() {
+        return idEmpDept;
+    }
+
+    public void setIdEmpDept(int idEmpDept) {
+        this.idEmpDept = idEmpDept;
     }
 
     public int getIdEmployee() {

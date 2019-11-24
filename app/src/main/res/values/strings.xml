@@ -143,4 +143,11 @@
     <string name="warning_31days">* The selected transaction period is only 31 days.</string>
     <string name="search_department">Search Department</string>
     <string name="transaction">Transaction</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="next">Next</string>
+    <string name="employee">Employee</string>
+    <string name="please_input_date">Please input date</string>
+    <string name="please_input_dept">Please input department</string>
+    <string name="document">Document</string>
+    <string name="doc_number">DOC Number</string>
 </resources>

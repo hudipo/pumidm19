@@ -17,6 +17,7 @@ import com.hudipo.pum_indomaret.data.Data;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
 import com.hudipo.pum_indomaret.features.report.view.ReportActivity;
 import com.hudipo.pum_indomaret.features.requestpum.activity.EmployeeReqActivity;
+import com.hudipo.pum_indomaret.features.requestpum.activity.ReqEmployeeActivity;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
 import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
@@ -104,7 +105,7 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new HomeAdapter(homeItem -> {
             switch (homeItem.getId()){
                 case 0 :
-                    startActivity(new Intent(this, EmployeeReqActivity.class));
+                    startActivity(new Intent(this, ReqEmployeeActivity.class));
                     break;
                 case 1 :
                     startActivity(new Intent(this, ApprovalActivity.class));

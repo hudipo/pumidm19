@@ -8,7 +8,6 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
         import android.graphics.Color;
         import android.graphics.drawable.ColorDrawable;
         import android.os.Bundle;
-        import android.util.Log;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
         import android.widget.EditText;
@@ -161,8 +160,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
 
     @Override
     public void displayDatePickerDialog(int year, int month, int day,int dateCode) {
-        DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener,
-                year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
         this.dateCode=dateCode;
@@ -193,6 +191,7 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
                     if (departmentItem != null) {
                         btnSearchDept.setText(departmentItem.getDescription());
                         requestModel.setStringEmployeeDepartment(departmentItem.getName());
+                        requestModel.setIdEmpDept(departmentItem.getDeptId());
                     }
                 }
             }
