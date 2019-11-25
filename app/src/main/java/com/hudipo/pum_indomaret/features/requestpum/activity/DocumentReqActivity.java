@@ -124,8 +124,8 @@ public class DocumentReqActivity extends AppCompatActivity implements RequestCon
 
     private void goToFundReqActivity() {
         Intent intent = new Intent(DocumentReqActivity.this,FundReqActivity.class);
-        requestModel.setStringDocNumber(tvDocNum.getText().toString());
-        requestModel.setStringDocType(spnDocType.getSelectedItem().toString());
+        requestModel.setDocNum(tvDocNum.getText().toString());
+        requestModel.setDocNum(spnDocType.getSelectedItem().toString());
         intent.putExtra(FundReqActivity.KEY_DATA_REQUEST_DOCUMENT, requestModel);
         startActivity(intent);
     }

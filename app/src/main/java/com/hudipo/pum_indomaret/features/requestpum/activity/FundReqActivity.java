@@ -3,6 +3,7 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -109,15 +110,15 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
 
             for (TrxItem trxItem: hawkStorage.getTrxTypeData().getTrx()){
                 if (trxItem.getDescription().equals(trxTypeDesc)){
-                    requestModel.setStringTrxType(trxItem.getDescription());
-                    requestModel.setIdTrxType(trxItem.getPumTrxTypeId());
+//                    requestModel.setStringTrxType(trxItem.getDescription());
+//                    requestModel.setIdTrxType(trxItem.getPumTrxTypeId());
                 }
             }
 
-            requestModel.setStringDescription(description);
-            requestModel.setStringFileUri(uploadFile);
-            requestModel.setIntAmount(Integer.parseInt(amount));
-            requestModel.setStringTrxType(trxTypeDesc);
+//            requestModel.setStringDescription(description);
+//            requestModel.setStringFileUri(uploadFile);
+//            requestModel.setIntAmount(Integer.parseInt(amount));
+//            requestModel.setStringTrxType(trxTypeDesc);
 
             if (requestModel != null){
                 Intent intent = new Intent(FundReqActivity.this, ValidationReqActivity.class);
@@ -189,7 +190,7 @@ public class FundReqActivity extends AppCompatActivity implements RequestContrac
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SEARCH_TRX){
-            if (resultCode == SearchTrxActivity.RESULT_CODE_SELECTED){
+            if (resultCode == Activity.RESULT_OK){
                 if (data != null) {
                     TrxItem trxItem = data.getParcelableExtra(SearchTrxActivity.EXTRA_SELECTED);
                     if (trxItem != null) {

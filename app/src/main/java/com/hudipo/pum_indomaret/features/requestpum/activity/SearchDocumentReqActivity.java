@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.requestpum.adapter.SearchDocumentAdapter;
+import com.hudipo.pum_indomaret.adapter.SearchDocumentAdapter;
 import com.hudipo.pum_indomaret.features.requestpum.contract.RequestContract;
 import com.hudipo.pum_indomaret.features.requestpum.model.RequestInteractionImpl;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.SearchDocumentPresenterImpl;
@@ -28,10 +28,9 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
     EditText searchBox;
 
     public static final String KEY_DATA_DOC_TYPE = "KEY_DATA_DOC_TYPE";
+    public static final String EXTRA_SELECTED_DOC = "extra_selected_doc";
 
     RequestContract.SearchDocumentPresenter presenter;
-    private SearchDocumentAdapter.ItemClickListener itemClickListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
         rcvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
         rcvSearchDoc.setAdapter(new SearchDocumentAdapter(docDetailResponse, dataItem -> {
             Intent returnIntent = new Intent();
-            returnIntent.putExtra("result", dataItem.getDocNum());
+            returnIntent.putExtra(EXTRA_SELECTED_DOC, dataItem.getDocNum());
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }));

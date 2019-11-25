@@ -34,7 +34,7 @@ public class SearchDocumentPresenterImpl implements RequestContract.SearchDocume
                 .getDocDetail(docType).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(docDetailResponse -> {
-                    searchDocumentView.setDocumentList(docDetailResponse);
+//                    searchDocumentView.setDocumentList(docDetailResponse);
                 }, throwable -> {
 
                 }));

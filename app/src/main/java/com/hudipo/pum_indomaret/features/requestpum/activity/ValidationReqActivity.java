@@ -67,23 +67,23 @@ public class ValidationReqActivity extends AppCompatActivity {
     }
 
     private void initView(RequestModel requestModel) {
-        tvEmpDept.setText(requestModel.getStringEmployeeDepartment());
-
-        tvUseDate.setText(requestModel.getStringUseDate());
-
-        tvRespDate.setText(requestModel.getStringRespDate());
-
-        tvDocType.setText(requestModel.getStringDocType());
-
-        tvDocNum.setText(requestModel.getStringDocNumber());
-
-        tvTrxType.setText(requestModel.getStringTrxType());
-
-        tvAmount.setText(String.valueOf(requestModel.getIntAmount()));
-
-        tvFile.setText(requestModel.getStringFileUri());
-
-        tvDescription.setText(requestModel.getStringDescription());
+//        tvEmpDept.setText(requestModel.getStringEmployeeDepartment());
+//
+//        tvUseDate.setText(requestModel.getStringUseDate());
+//
+//        tvRespDate.setText(requestModel.getStringRespDate());
+//
+//        tvDocType.setText(requestModel.getStringDocType());
+//
+//        tvDocNum.setText(requestModel.getStringDocNumber());
+//
+//        tvTrxType.setText(requestModel.getStringTrxType());
+//
+//        tvAmount.setText(String.valueOf(requestModel.getIntAmount()));
+//
+//        tvFile.setText(requestModel.getStringFileUri());
+//
+//        tvDescription.setText(requestModel.getStringDescription());
     }
 
     @OnClick(R.id.btnSubmitReq)

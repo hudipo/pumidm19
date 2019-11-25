@@ -39,7 +39,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     private String TAG_USE_DATE = "tag_use_date";
     private int REQUEST_CODE_SEARCH_DEPT = 100;
-    private Boolean isValid = false;
+    private Boolean isValid = true;
 
     /**
      * All function from
@@ -64,8 +64,8 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
                 if (data != null){
                     DepartmentItem departmentItem = (DepartmentItem) data.getSerializableExtra(SearchDeptActivity.DATA_SELECTED_VALUE);
                     if (departmentItem != null){
-                        btnSearchDept.setText(departmentItem.getName());
-                        requestModel.setIdEmpDept(departmentItem.getDeptId());
+                        btnSearchDept.setText(departmentItem.getDescription());
+                        requestModel.setEmpDeptId(departmentItem.getDeptId());
                     }
                 }
             }
@@ -104,15 +104,15 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         String respDate = etRespDate.getText().toString().trim();
         String searchDept = btnSearchDept.getText().toString().trim();
 
-        checkValidateData(useDate, respDate, searchDept);
+//        checkValidateData(useDate, respDate, searchDept);
         if (isValid){
-            Intent intent = new Intent(this, DocumentReqActivity.class);
+            Intent intent = new Intent(this, ReqDocumentActivity.class);
 
-            requestModel.setIdEmployee(idEmp);
-            requestModel.setStringUseDate(PumDateFormat.dateFormatServer(useDate));
-            requestModel.setStringRespDate(PumDateFormat.dateFormatServer(respDate));
+            requestModel.setEmpId(idEmp);
+            requestModel.setUseDate(PumDateFormat.dateFormatServer(useDate));
+            requestModel.setUseDate(PumDateFormat.dateFormatServer(respDate));
 
-            intent.putExtra(DocumentReqActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
+            intent.putExtra(ReqDocumentActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
             startActivity(intent);
         }
     }

@@ -1,13 +1,14 @@
 package com.hudipo.pum_indomaret.model.docdetail;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
-public class DocDetailResponse implements Serializable {
+public class DocDetailResponse implements Parcelable {
 
 	@SerializedName("data")
-	private Data data;
+	private DocData docData;
 
 	@SerializedName("error")
 	private boolean error;
@@ -15,12 +16,42 @@ public class DocDetailResponse implements Serializable {
 	@SerializedName("message")
 	private String message;
 
-	public void setData(Data data){
-		this.data = data;
+	private DocDetailResponse(Parcel in) {
+		docData = in.readParcelable(DocData.class.getClassLoader());
+		error = in.readByte() != 0;
+		message = in.readString();
 	}
 
-	public Data getData(){
-		return data;
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeParcelable(docData, flags);
+		dest.writeByte((byte) (error ? 1 : 0));
+		dest.writeString(message);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	public static final Creator<DocDetailResponse> CREATOR = new Creator<DocDetailResponse>() {
+		@Override
+		public DocDetailResponse createFromParcel(Parcel in) {
+			return new DocDetailResponse(in);
+		}
+
+		@Override
+		public DocDetailResponse[] newArray(int size) {
+			return new DocDetailResponse[size];
+		}
+	};
+
+	public void setDocData(DocData docData){
+		this.docData = docData;
+	}
+
+	public DocData getDocData(){
+		return docData;
 	}
 
 	public void setError(boolean error){

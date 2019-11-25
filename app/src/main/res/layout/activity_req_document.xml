@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgBack"
+        android:id="@+id/btnBackDoc"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@android:color/transparent"
@@ -85,12 +85,12 @@
         android:hint="@string/doc_number"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"
+        app:layout_constraintEnd_toStartOf="@id/btnSearchDoc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spnDocType" />
 
     <ImageButton
-        android:id="@+id/imgSearcDoc"
+        android:id="@+id/btnSearchDoc"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"

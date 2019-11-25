@@ -37,7 +37,7 @@ public class PumDateFormat {
 
     public static String dateFormatServer(String raw){
         String results = null;
-        String OLD_FORMAT = "dd-MM-yyyy";
+        String OLD_FORMAT = "dd/MM/yyyy";
         String NEW_FORMAT = "yyyy-MM-dd";
 
         SimpleDateFormat formatInput = new SimpleDateFormat(OLD_FORMAT, Locale.getDefault());
@@ -66,7 +66,7 @@ public class PumDateFormat {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
 
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         result = dateFormat.format(calendar.getTime());
         return result;
     }

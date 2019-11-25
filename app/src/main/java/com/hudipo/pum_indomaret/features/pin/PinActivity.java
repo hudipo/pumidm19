@@ -188,26 +188,26 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
     private void createPumToServer(RequestModel requestModel, String pinString) {
         HashMap<String, RequestBody> params = new HashMap<>();
-        RequestBody empId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdEmployee()));
-        RequestBody empDept = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringEmployeeDepartment());
-        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringUseDate());
-        RequestBody respDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringRespDate());
-        RequestBody docNum = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDocNumber());
-        RequestBody trxType = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdTrxType()));
-        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
-        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
-        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
+//        RequestBody empId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdEmployee()));
+//        RequestBody empDept = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringEmployeeDepartment());
+//        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringUseDate());
+//        RequestBody respDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringRespDate());
+//        RequestBody docNum = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDocNumber());
+//        RequestBody trxType = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdTrxType()));
+//        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
+//        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
+//        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
         RequestBody pin = RequestBody.create(MediaType.parse("text/plain"), pinString);
 
-        params.put("emp_id", empId);
-        params.put("emp_dept", empDept);
-        params.put("use_date", useDate);
-        params.put("resp_date", respDate);
-        params.put("doc_num", docNum);
-        params.put("trx_type", trxType);
-        params.put("description", description);
-        params.put("amount", amount);
-        params.put("upload_file", uploadFile);
+//        params.put("emp_id", empId);
+//        params.put("emp_dept", empDept);
+//        params.put("use_date", useDate);
+//        params.put("resp_date", respDate);
+//        params.put("doc_num", docNum);
+//        params.put("trx_type", trxType);
+//        params.put("description", description);
+//        params.put("amount", amount);
+//        params.put("upload_file", uploadFile);
         params.put("pin", pin);
 
         composite.add(new ApiServices()

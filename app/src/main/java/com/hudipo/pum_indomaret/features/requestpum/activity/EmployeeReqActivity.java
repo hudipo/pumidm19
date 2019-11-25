@@ -115,10 +115,9 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
             String useDate = etUseDateEmp.getText().toString();
             String respDate = etRespDate.getText().toString();
 
-            requestModel.setIdEmployee(empId);
-            requestModel.setStringEmployeeName(employeeName);
-            requestModel.setStringUseDate(PumDateFormat.rawToDateFormat(useDate));
-            requestModel.setStringRespDate(PumDateFormat.rawToDateFormat(respDate));
+            requestModel.setEmpId(empId);
+            requestModel.setUseDate(PumDateFormat.rawToDateFormat(useDate));
+            requestModel.setRespDate(PumDateFormat.rawToDateFormat(respDate));
 
             intent.putExtra(DocumentReqActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
             startActivity(intent);
@@ -190,8 +189,6 @@ public class EmployeeReqActivity extends AppCompatActivity implements RequestCon
                     DepartmentItem departmentItem = (DepartmentItem) data.getSerializableExtra(SearchDeptActivity.DATA_SELECTED_VALUE);
                     if (departmentItem != null) {
                         btnSearchDept.setText(departmentItem.getDescription());
-                        requestModel.setStringEmployeeDepartment(departmentItem.getName());
-                        requestModel.setIdEmpDept(departmentItem.getDeptId());
                     }
                 }
             }

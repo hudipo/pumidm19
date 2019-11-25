@@ -49,9 +49,7 @@ public class CustomSpinnerFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context!=null){
-            spinnerListener = (SpinnerListener) context;
-        }
+        spinnerListener = (SpinnerListener) context;
     }
 
     @Override
