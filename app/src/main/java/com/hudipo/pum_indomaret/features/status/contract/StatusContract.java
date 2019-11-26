@@ -4,7 +4,10 @@ import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.RequestBody;
 
 public interface StatusContract {
 
@@ -83,6 +86,6 @@ public interface StatusContract {
 
         void getStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus);
 
-        void getFilteredStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus, String startDate, String untilDate, String status);
+        void getFilteredStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus, String status, String startDate, String endDate);
     }
 }

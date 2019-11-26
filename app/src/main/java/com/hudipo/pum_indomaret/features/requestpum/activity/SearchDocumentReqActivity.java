@@ -50,7 +50,6 @@ public class SearchDocumentReqActivity extends AppCompatActivity implements Requ
         }
     }
 
-
     @Override
     public void setDocumentList(DocDetailResponse docDetailResponse) {
         rcvSearchDoc.setHasFixedSize(true);

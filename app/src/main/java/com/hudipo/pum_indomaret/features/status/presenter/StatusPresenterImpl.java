@@ -5,7 +5,11 @@ import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 
+import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class StatusPresenterImpl implements StatusContract.StatusPresenter, StatusContract.StatusInteractor.OnFinishedListenerStatus {
 
@@ -48,16 +52,18 @@ public class StatusPresenterImpl implements StatusContract.StatusPresenter, Stat
         this.status = status;
         requestCode = StatusActivity.STATUS_FILTER_REQUEST_CODE;
         view.showLoading();
-        if (status.equals("New")){
-            status = "N";
-        }else if (status.equals("Processing")){
-            status = "APP1";
-        }else if (status.equals("Rejected")){
-            status = "R";
-        }else{
-            status = "I";
+        if (!status.equals("--")){
+            if (status.equals("New")){
+                status = "N";
+            }else if (status.equals("Process")){
+                status = "APP";
+            }else if (status.equals("Reject")){
+                status = "R";
+            }else{
+                status = "I";
+            }
         }
-        interactor.getFilteredStatusList(this,startDate,untilDate,status);
+        interactor.getFilteredStatusList(this,status,startDate,untilDate);
     }
 
     @Override

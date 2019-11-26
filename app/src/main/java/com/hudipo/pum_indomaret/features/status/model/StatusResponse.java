@@ -39,48 +39,51 @@ public class StatusResponse {
     }
 
     public class StatusModel implements Serializable {
-        private int pum_trx_id;
-        private String trx_num;
-        private String trx_date;
-        private String pum_status;
+        private int PUM_TRX_ID;
+        private String TRX_NUM;
+        private String TRX_DATE;
+        private String PUM_STATUS;
 
-        public StatusModel (int pum_trx_id, String trx_num, String trx_date, String pum_status){
-            this.pum_trx_id = pum_trx_id;
-            this.trx_num = trx_num;
-            this.trx_date = trx_date;
-            this.pum_status = pum_status;
+        public StatusModel() {
         }
 
-        public int getPum_trx_id() {
-            return pum_trx_id;
+        public StatusModel(int PUM_TRX_ID, String TRX_NUM, String TRX_DATE, String PUM_STATUS) {
+            this.PUM_TRX_ID = PUM_TRX_ID;
+            this.TRX_NUM = TRX_NUM;
+            this.TRX_DATE = TRX_DATE;
+            this.PUM_STATUS = PUM_STATUS;
         }
 
-        public void setPum_trx_id(int pum_trx_id) {
-            this.pum_trx_id = pum_trx_id;
+        public int getPUM_TRX_ID() {
+            return PUM_TRX_ID;
         }
 
-        public String getTrx_num() {
-            return trx_num;
+        public void setPUM_TRX_ID(int PUM_TRX_ID) {
+            this.PUM_TRX_ID = PUM_TRX_ID;
         }
 
-        public void setTrx_num(String trx_num) {
-            this.trx_num = trx_num;
+        public String getTRX_NUM() {
+            return TRX_NUM;
         }
 
-        public String getTrx_date() {
-            return trx_date;
+        public void setTRX_NUM(String TRX_NUM) {
+            this.TRX_NUM = TRX_NUM;
         }
 
-        public void setTrx_date(String trx_date) {
-            this.trx_date = trx_date;
+        public String getTRX_DATE() {
+            return TRX_DATE;
         }
 
-        public String getPum_status() {
-            return pum_status;
+        public void setTRX_DATE(String TRX_DATE) {
+            this.TRX_DATE = TRX_DATE;
         }
 
-        public void setPum_status(String pum_status) {
-            this.pum_status = pum_status;
+        public String getPUM_STATUS() {
+            return PUM_STATUS;
+        }
+
+        public void setPUM_STATUS(String PUM_STATUS) {
+            this.PUM_STATUS = PUM_STATUS;
         }
     }
 }

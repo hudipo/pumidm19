@@ -40,7 +40,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getTrx_num().toLowerCase().contains(charString.toLowerCase())) {
+                        if (row.getTRX_NUM().toLowerCase().contains(charString.toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
@@ -114,18 +114,30 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
             itemView.setOnClickListener(view -> {
                 itemClickListener.onItemClick(statusModel);
             });
-            tvPumNumber.setText(statusModel.getTrx_num());
-            if (statusModel.getPum_status().equals("N")){
+            tvPumNumber.setText(statusModel.getTRX_NUM());
+            if (statusModel.getPUM_STATUS().equals("N")){
                 tvStatus.setText("New");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_waiting));
-            }else if (statusModel.getPum_status().equals("R")){
-                tvStatus.setText("Rejected");
+            }else if (statusModel.getPUM_STATUS().equals("R")){
+                tvStatus.setText("Reject");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
-            }else if (statusModel.getPum_status().equals("A")||statusModel.getPum_status().equals("I")){
-                tvStatus.setText("Approved");
+            }else if (statusModel.getPUM_STATUS().equals("I")){
+                tvStatus.setText("Invoice");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
-            }else{
-                tvStatus.setText("Processing");
+            }else if (statusModel.getPUM_STATUS().equals("A")){
+                tvStatus.setText("Waiting Finance");
+                bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
+            }else if (statusModel.getPUM_STATUS().equals("App1")){
+                tvStatus.setText("Approval 1");
+                bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
+            }else if (statusModel.getPUM_STATUS().equals("App2")){
+                tvStatus.setText("Approval 2");
+                bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
+            }else if (statusModel.getPUM_STATUS().equals("App3")){
+                tvStatus.setText("Approval 3");
+                bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
+            }else if (statusModel.getPUM_STATUS().equals("App4")){
+                tvStatus.setText("Approval 4");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
             }
         }
