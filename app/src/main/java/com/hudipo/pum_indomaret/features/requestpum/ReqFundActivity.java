@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.activity;
+package com.hudipo.pum_indomaret.features.requestpum;
 
 import android.Manifest;
 import android.app.Activity;
@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.hudipo.pum_indomaret.model.trxtype.TrxItem;
 import com.hudipo.pum_indomaret.repository.Repository;
 import com.hudipo.pum_indomaret.utils.CheckPermission;
 import com.hudipo.pum_indomaret.utils.Global;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 import com.hudipo.pum_indomaret.utils.Key;
 import com.hudipo.pum_indomaret.utils.RequestCode;
 import com.hudipo.pum_indomaret.utils.Utils;
@@ -54,7 +56,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     private final int REQUEST_CODE_CAMERA = 101;
     private final int REQUEST_CODE_GALLERY = 102;
     private final int REQUEST_CODE_FILES = 103;
-    private Boolean isValid = false;
+    private boolean isValid = false;
     public static final String EXTRA_DOCUMENT_DETAIL = "extra_document_detail";
     private RequestModel requestModel;
 
@@ -188,6 +190,82 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         Global.openPicker(getSupportFragmentManager(), Repository.getDataChooseFile(), RequestCode.CODE_OPTION_UPLOAD_FILE, "Choose file from");
     }
 
+    @OnClick(R.id.btnNextFund)
+    void btnNextFund(){
+        String amount = etAmountFund.getText().toString().trim();
+        String desc = etDescFund.getText().toString().trim();
+        String trx = btnSearchTrx.getText().toString().trim();
+        String nameFile = tvSelectAFile.getText().toString().trim();
+
+        checkValid(amount, desc, trx, nameFile);
+        if (isValid){
+            if (checkAmount(amount)){
+                requestModel.setDescription(desc);
+                requestModel.setAmount(Double.valueOf(amount));
+                requestModel.setNameTrxType(trx);
+                requestModel.setNameFile(nameFile);
+
+                Intent intent = new Intent(this, ReqValidationActivity.class);
+                intent.putExtra(ReqValidationActivity.EXTRA_DATA_REQUEST, requestModel);
+                startActivity(intent);
+            }
+        }
+    }
+
+    private void checkValid(String amount, String desc, String trx, String nameFile) {
+        if (trx.isEmpty()){
+            Toast.makeText(this, "Trx is still empty", Toast.LENGTH_SHORT).show();
+            btnSearchTrx.setError("Trx is still empty");
+            isValid = false;
+        }else {
+            btnSearchTrx.setError(null);
+            isValid = true;
+        }
+
+        if (desc.isEmpty()){
+            Toast.makeText(this, "Description is still empty", Toast.LENGTH_SHORT).show();
+            etDescFund.setError("Description is still empty");
+            isValid = false;
+        }else {
+            etDescFund.setError(null);
+            isValid = true;
+        }
+
+        if (amount.isEmpty()){
+            Toast.makeText(this, "Amount is still empty", Toast.LENGTH_SHORT).show();
+            etAmountFund.setError("Amount is still empty");
+            isValid = false;
+        }else {
+            etAmountFund.setError(null);
+            isValid = true;
+        }
+
+        if (nameFile.isEmpty()){
+            Toast.makeText(this, "File is still empty", Toast.LENGTH_SHORT).show();
+            tvSelectAFile.setError("File is still empty");
+            isValid = false;
+        }else {
+            tvSelectAFile.setError(null);
+            isValid = true;
+        }
+    }
+
+    private Boolean checkAmount(String amount) {
+        boolean isValid;
+        HawkStorage hawkStorage = new HawkStorage(this);
+        Double totalAmount = Double.valueOf(amount);
+        if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
+            String textError = "Your max amount request is "+hawkStorage.getUserData().getMaxAmount();
+            tvErrorAmount.setText(textError);
+            tvErrorAmount.setVisibility(View.VISIBLE);
+            isValid = false;
+        }else {
+            isValid = true;
+            tvErrorAmount.setVisibility(View.INVISIBLE);
+        }
+        return isValid;
+    }
+
     @Override
     public void onOptionItemSelected(OptionItem optionItem, int requestCode) {
         if (requestCode == RequestCode.CODE_OPTION_UPLOAD_FILE){
@@ -213,7 +291,8 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                 "application/pdf"};
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/*");
+        intent.setType("application/pdf");
+        intent.setType("application/msword");
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
 
         startActivityForResult(intent, REQUEST_CODE_FILES);

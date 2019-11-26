@@ -17,9 +17,10 @@ public class RequestModel implements Parcelable {
     private int pin;
     private int orgId;
     private int userId;
-
-    public RequestModel() {
-    }
+    private String nameEmpDept;
+    private String nameDocType;
+    private String nameTrxType;
+    private String nameFile;
 
     private RequestModel(Parcel in) {
         empId = in.readInt();
@@ -38,32 +39,10 @@ public class RequestModel implements Parcelable {
         pin = in.readInt();
         orgId = in.readInt();
         userId = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(empId);
-        dest.writeInt(empDeptId);
-        dest.writeString(useDate);
-        dest.writeString(respDate);
-        dest.writeString(docNum);
-        dest.writeInt(trxTypeId);
-        dest.writeString(description);
-        if (amount == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(amount);
-        }
-        dest.writeString(fileDataUri);
-        dest.writeInt(pin);
-        dest.writeInt(orgId);
-        dest.writeInt(userId);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        nameEmpDept = in.readString();
+        nameDocType = in.readString();
+        nameTrxType = in.readString();
+        nameFile = in.readString();
     }
 
     public static final Creator<RequestModel> CREATOR = new Creator<RequestModel>() {
@@ -77,6 +56,41 @@ public class RequestModel implements Parcelable {
             return new RequestModel[size];
         }
     };
+
+    public String getNameEmpDept() {
+        return nameEmpDept;
+    }
+
+    public void setNameEmpDept(String nameEmpDept) {
+        this.nameEmpDept = nameEmpDept;
+    }
+
+    public String getNameDocType() {
+        return nameDocType;
+    }
+
+    public void setNameDocType(String nameDocType) {
+        this.nameDocType = nameDocType;
+    }
+
+    public String getNameTrxType() {
+        return nameTrxType;
+    }
+
+    public void setNameTrxType(String nameTrxType) {
+        this.nameTrxType = nameTrxType;
+    }
+
+    public String getNameFile() {
+        return nameFile;
+    }
+
+    public void setNameFile(String nameFile) {
+        this.nameFile = nameFile;
+    }
+
+    public RequestModel() {
+    }
 
     public int getEmpId() {
         return empId;
@@ -174,4 +188,33 @@ public class RequestModel implements Parcelable {
         this.userId = userId;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(empId);
+        dest.writeInt(empDeptId);
+        dest.writeString(useDate);
+        dest.writeString(respDate);
+        dest.writeString(docNum);
+        dest.writeInt(trxTypeId);
+        dest.writeString(description);
+        if (amount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(amount);
+        }
+        dest.writeString(fileDataUri);
+        dest.writeInt(pin);
+        dest.writeInt(orgId);
+        dest.writeInt(userId);
+        dest.writeString(nameEmpDept);
+        dest.writeString(nameDocType);
+        dest.writeString(nameTrxType);
+        dest.writeString(nameFile);
+    }
 }

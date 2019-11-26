@@ -4,24 +4,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.requestpum.model.DocumentDetailRequestModel;
 import com.hudipo.pum_indomaret.model.docdetail.DocDataItem;
 import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
-
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAdapter.ViewHolder> {
 
     private ItemClickListener itemClickListener;
-    private ArrayList<DocumentDetailRequestModel> documentDetailRequestModels;
     private DocDetailResponse docDetailResponse;
 
     public SearchDocumentAdapter(DocDetailResponse docDetailResponse, ItemClickListener itemClickListener) {
@@ -53,7 +46,7 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
     class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tvDocNum)
-        TextView tvDocNume;
+        TextView tvDocNum;
         @BindView(R.id.tvDocDate)
         TextView tvDocDate;
         @BindView(R.id.tvAmount)
@@ -65,7 +58,7 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
         }
 
         void bindItem(DocDataItem docDataItem, ItemClickListener itemClickListener) {
-            tvDocNume.setText(docDataItem.getDocNum());
+            tvDocNum.setText(docDataItem.getDocNum());
             tvDocDate.setText(docDataItem.getDocDate());
             String string = "Rp "+ docDataItem.getDocAmount();
             tvAmount.setText(string);

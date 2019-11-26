@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.activity.ValidationReqActivity">
+    tools:context=".features.requestpum.ReqValidationActivity">
 
     <View
         android:id="@+id/topView"
@@ -76,7 +76,7 @@
                     android:id="@+id/empLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Employee"
+                    android:text="@string/employee"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     android:textSize="22sp"
@@ -87,7 +87,7 @@
                     android:id="@+id/empDepLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Emp Dept"
+                    android:text="@string/emp_dept"
                     android:fontFamily="@font/mbold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/empLabel"
@@ -109,7 +109,7 @@
                     android:id="@+id/useDateLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Use Date"
+                    android:text="@string/use_date"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvEmpDept" />
@@ -129,7 +129,7 @@
                     android:id="@+id/respDateLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resp Date"
+                    android:text="@string/resp_date"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvUseDate" />
@@ -158,7 +158,7 @@
                     android:id="@+id/docLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Document"
+                    android:text="@string/document"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     android:textSize="22sp"
@@ -169,7 +169,7 @@
                     android:id="@+id/docTypeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Doc Type"
+                    android:text="@string/doc_type"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/docLabel"
@@ -191,7 +191,7 @@
                     android:id="@+id/docNumLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Document Number"
+                    android:text="@string/doc_number"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvDocType" />
@@ -221,7 +221,7 @@
                     android:id="@+id/fundLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fund"
+                    android:text="@string/fund"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     android:textSize="22sp"
@@ -232,7 +232,7 @@
                     android:id="@+id/trxTypeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Trx Type"
+                    android:text="@string/trx_type"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@id/fundLabel"
@@ -254,7 +254,7 @@
                     android:id="@+id/amountLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Amount"
+                    android:text="@string/amount"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvTrxType" />
@@ -274,7 +274,7 @@
                     android:id="@+id/fileLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="File Uploaded"
+                    android:text="@string/file_uploaded"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvAmount" />
@@ -293,7 +293,7 @@
                     android:id="@+id/descLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:fontFamily="@font/msemibold"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvFile" />

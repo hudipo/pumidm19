@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.activity;
+package com.hudipo.pum_indomaret.features.requestpum;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -79,17 +79,26 @@ public class ReqDocumentActivity extends AppCompatActivity {
         spnDocType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String docSelected = spnDocType.getSelectedItem().toString();
+                String docSelected = spnDocType.getSelectedItem().toString().trim();
                 if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))){
+                    requestModel.setNameDocType("-");
                     disableButtonSearch();
                 }else {
+                    requestModel.setNameDocType(docSelected);
                     enableButtonSearch();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                disableButtonSearch();
+                String docSelected = spnDocType.getSelectedItem().toString().trim();
+                if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))){
+                    requestModel.setNameDocType("-");
+                    disableButtonSearch();
+                }else {
+                    requestModel.setNameDocType(docSelected);
+                    enableButtonSearch();
+                }
             }
         });
     }

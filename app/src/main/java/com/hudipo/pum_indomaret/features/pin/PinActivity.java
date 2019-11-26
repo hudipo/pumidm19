@@ -11,9 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.requestpum.activity.SentReqActivity;
+import com.hudipo.pum_indomaret.features.requestpum.SentReqActivity;
 import com.hudipo.pum_indomaret.model.RequestModel;
-import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 
 import java.util.HashMap;
@@ -23,7 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;

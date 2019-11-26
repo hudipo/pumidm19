@@ -14,7 +14,7 @@ public class User{
 	private int maxCreatePum;
 
 	@SerializedName("MAX_AMOUNT")
-	private long maxAmount;
+	private Double maxAmount;
 
 	@SerializedName("EMP_NUM")
 	private String empNum;
@@ -78,11 +78,11 @@ public class User{
 		this.maxCreatePum = maxCreatePum;
 	}
 
-	public long getMaxAmount() {
+	public Double getMaxAmount() {
 		return maxAmount;
 	}
 
-	public void setMaxAmount(long maxAmount) {
+	public void setMaxAmount(Double maxAmount) {
 		this.maxAmount = maxAmount;
 	}
 

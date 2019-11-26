@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.activity.ReqFundActivity">
+    tools:context=".features.requestpum.ReqFundActivity">
 
     <View
         android:id="@+id/topView"
@@ -91,24 +91,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSearchTrx" />
 
-    <EditText
-        android:id="@+id/etAmountFund"
+    <LinearLayout
+        android:id="@+id/llAmountFund"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:orientation="horizontal"
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
-        android:hint="@string/amount"
-        android:inputType="number"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:background="@drawable/bg_rounded_border_black_solid_black"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvErrorAmount"/>
+        app:layout_constraintTop_toBottomOf="@id/tvErrorAmount">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rp"
+            android:textColor="@color/black"
+            android:textSize="24sp"/>
+
+        <EditText
+            android:id="@+id/etAmountFund"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:hint="@string/amount"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvErrorAmount"
@@ -124,7 +141,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etDescFund"
-        app:layout_constraintBottom_toTopOf="@id/etAmountFund"/>
+        app:layout_constraintBottom_toTopOf="@id/llAmountFund"/>
 
     <TextView
         android:id="@+id/tvSelectAFile"
@@ -145,7 +162,7 @@
         app:layout_constraintEnd_toStartOf="@id/btnUploadFile"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etAmountFund" />
+        app:layout_constraintTop_toBottomOf="@id/llAmountFund" />
 
     <ImageButton
         android:id="@+id/btnUploadFile"

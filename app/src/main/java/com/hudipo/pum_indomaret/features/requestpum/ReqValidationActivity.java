@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.activity;
+package com.hudipo.pum_indomaret.features.requestpum;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ValidationReqActivity extends AppCompatActivity {
+public class ReqValidationActivity extends AppCompatActivity {
 
     @BindView(R.id.tvEmpDept)
     TextView tvEmpDept;
@@ -45,13 +45,13 @@ public class ValidationReqActivity extends AppCompatActivity {
     @BindView(R.id.tvDesc)
     TextView tvDescription;
 
-    public static String KEY_DATA_REQUEST = "KEY_DATA_REQUEST";
+    public static String EXTRA_DATA_REQUEST = "extra_data_request";
     private RequestModel requestModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_validation);
+        setContentView(R.layout.activity_req_validation);
         ButterKnife.bind(this);
 
         getDataRequestModel();
@@ -59,7 +59,7 @@ public class ValidationReqActivity extends AppCompatActivity {
 
     private void getDataRequestModel() {
         if (getIntent() != null){
-            requestModel = (RequestModel) getIntent().getSerializableExtra(KEY_DATA_REQUEST);
+            requestModel = getIntent().getParcelableExtra(EXTRA_DATA_REQUEST);
             if (requestModel != null){
                 initView(requestModel);
             }
@@ -67,23 +67,23 @@ public class ValidationReqActivity extends AppCompatActivity {
     }
 
     private void initView(RequestModel requestModel) {
-//        tvEmpDept.setText(requestModel.getStringEmployeeDepartment());
-//
-//        tvUseDate.setText(requestModel.getStringUseDate());
-//
-//        tvRespDate.setText(requestModel.getStringRespDate());
-//
-//        tvDocType.setText(requestModel.getStringDocType());
-//
-//        tvDocNum.setText(requestModel.getStringDocNumber());
-//
-//        tvTrxType.setText(requestModel.getStringTrxType());
-//
-//        tvAmount.setText(String.valueOf(requestModel.getIntAmount()));
-//
-//        tvFile.setText(requestModel.getStringFileUri());
-//
-//        tvDescription.setText(requestModel.getStringDescription());
+        tvEmpDept.setText(requestModel.getNameEmpDept());
+
+        tvUseDate.setText(requestModel.getUseDate());
+
+        tvRespDate.setText(requestModel.getRespDate());
+
+        tvDocType.setText(requestModel.getNameDocType());
+
+        tvDocNum.setText(requestModel.getDocNum());
+
+        tvTrxType.setText(requestModel.getNameTrxType());
+
+        tvAmount.setText(String.valueOf(requestModel.getAmount()));
+
+        tvFile.setText(requestModel.getNameFile());
+
+        tvDescription.setText(requestModel.getDescription());
     }
 
     @OnClick(R.id.btnSubmitReq)
@@ -93,7 +93,7 @@ public class ValidationReqActivity extends AppCompatActivity {
                 .setMessage("Are you sure want to make this request?")
                 .setPositiveButton("Yes", (dialogInterface, i) -> {
                     if (requestModel != null){
-                        Intent intent = new Intent(ValidationReqActivity.this, PinActivity.class);
+                        Intent intent = new Intent(ReqValidationActivity.this, PinActivity.class);
                         intent.putExtra(PinActivity.KEY_REQUEST_DATA, requestModel);
                         intent.putExtra("requestCode", RequestCode.PIN_REQUESTPUM_CODE);
 
@@ -104,7 +104,6 @@ public class ValidationReqActivity extends AppCompatActivity {
                     //Log.d("MainActivity", "Aborting mission...");
                 })
                 .show();
-        //
     }
 
     @OnClick(R.id.imgBack)

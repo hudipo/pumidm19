@@ -156,4 +156,7 @@
     <string name="fund">Fund</string>
     <string name="select_a_file">Select a File</string>
     <string name="example_error_amount_request">Your max amount request is Rp 50.000.000</string>
+    <string name="rp">Rp</string>
+    <string name="emp_dept">Emp Dept</string>
+    <string name="trx_type">Trx Type</string>
 </resources>
