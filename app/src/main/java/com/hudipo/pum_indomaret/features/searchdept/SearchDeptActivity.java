@@ -3,6 +3,8 @@ package com.hudipo.pum_indomaret.features.searchdept;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SearchDeptActivity extends AppCompatActivity implements SearchDeptContract.SearchDeptView {
 
@@ -27,6 +30,8 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     @BindView(R.id.rvSearchDept)
     RecyclerView rvSearchDept;
+    @BindView(R.id.pbSearchDept)
+    ProgressBar pbSearchDept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,8 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     private void initRepository() {
         HawkStorage hawkStorage = new HawkStorage(this);
-        repository = new Repository(hawkStorage);
+        repository = new Repository();
+        repository.setHawkStorage(hawkStorage);
     }
 
     @Override
@@ -54,6 +60,11 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
         onDetachView();
     }
 
+    @OnClick(R.id.btnBack)
+    void btnBack(){
+        finish();
+    }
+
     private void initPresenter() {
        presenter = new SearchDeptPresenter(repository);
        presenter.onAttach(this);
@@ -62,12 +73,14 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     @Override
     public void showProgress() {
-
+        rvSearchDept.setVisibility(View.INVISIBLE);
+        pbSearchDept.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        rvSearchDept.setVisibility(View.VISIBLE);
+        pbSearchDept.setVisibility(View.GONE);
     }
 
     @Override
@@ -92,7 +105,7 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     @Override
     public void setDataEmpty() {
-        Toast.makeText(this, "Data kosong", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "DocData kosong", Toast.LENGTH_SHORT).show();
     }
 
     @Override

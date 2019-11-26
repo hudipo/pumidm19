@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.activity.DocumentReqActivity">
+    tools:context=".features.requestpum.ReqDocumentActivity">
 
     <View
         android:id="@+id/topView"
@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgBack"
+        android:id="@+id/btnBackDoc"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@android:color/transparent"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
-        android:text="Document"
+        android:text="@string/document"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/topView" />
@@ -82,15 +82,15 @@
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:hint="DOC Number"
+        android:hint="@string/doc_number"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgSearcDoc"
+        app:layout_constraintEnd_toStartOf="@id/btnSearchDoc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spnDocType" />
 
     <ImageButton
-        android:id="@+id/imgSearcDoc"
+        android:id="@+id/btnSearchDoc"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/main_margin"
         android:background="@drawable/bg_circle_color_accent"
-        android:text="Next"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24sp"

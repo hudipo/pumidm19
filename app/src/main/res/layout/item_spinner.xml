@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:layout_gravity="center"
-    android:layout_marginBottom="@dimen/main_margin">
+    android:layout_marginBottom="20dp">
 
     <ImageView
         android:id="@+id/ivIcon"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.activity.EmployeeReqActivity">
+    tools:context=".features.requestpum.ReqEmployeeActivity">
 
     <View
         android:id="@+id/topView"
@@ -13,8 +13,8 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgBack"
+    <ImageButton
+        android:id="@+id/btnBack"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@android:color/transparent"
@@ -43,23 +43,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
-        android:text="Employee"
+        android:text="@string/employee"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
     <TextView
-        android:id="@+id/tvEmployeeNameEmp"
+        android:id="@+id/tvEmployeeName"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
         android:gravity="center_vertical"
-        android:hint="Employee Name"
+        android:hint="@string/employee_name"
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:text="Employee Name"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +72,7 @@
         android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:text="@string/search_department"
+        android:hint="@string/search_department"
         android:textAlignment="textStart"
         android:drawableStart="@drawable/ic_search_black_24dp"
         android:drawablePadding="@dimen/dp6"
@@ -83,42 +82,11 @@
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEmployeeNameEmp" />
+        app:layout_constraintTop_toBottomOf="@id/tvEmployeeName" />
 
-    <Spinner
-        android:id="@+id/spnEmployeeDepartmentEmp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginTop="@dimen/main_margin"
-        android:layout_marginEnd="@dimen/main_margin"
-        android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingStart="12dp"
-        android:paddingEnd="42dp"
-        android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-        android:textStyle="normal"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEmployeeNameEmp" />
-
-
-    <ImageView
-        android:layout_marginEnd="@dimen/dp12"
-        app:layout_constraintBottom_toBottomOf="@id/spnEmployeeDepartmentEmp"
-        app:layout_constraintTop_toTopOf="@id/spnEmployeeDepartmentEmp"
-        app:layout_constraintEnd_toEndOf="@id/spnEmployeeDepartmentEmp"
-        android:src="@drawable/ic_arrow_drop_down_black_30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <EditText
+    <TextView
+        android:id="@+id/tvUseDate"
         android:enabled="false"
-        android:id="@+id/etUseDateEmp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -128,15 +96,15 @@
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:hint="Use Date"
+        android:hint="@string/use_date"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgUseDateEmp"
+        app:layout_constraintEnd_toStartOf="@id/btnUseDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSearchDepartment" />
 
     <ImageView
-        android:id="@+id/imgUseDateEmp"
+        android:id="@+id/btnUseDate"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -146,9 +114,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSearchDepartment" />
 
-    <EditText
+    <TextView
+        android:id="@+id/tvRespDate"
         android:enabled="false"
-        android:id="@+id/etRespDateEmp"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -158,15 +126,15 @@
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:hint="Resp Date"
+        android:hint="@string/resp_date"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgUseDateEmp"
+        app:layout_constraintEnd_toStartOf="@id/btnUseDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUseDateEmp" />
+        app:layout_constraintTop_toBottomOf="@id/tvUseDate" />
 
     <ImageView
-        android:id="@+id/imgRespDateEmp"
+        android:id="@+id/btnRespDate"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/main_margin"
@@ -174,15 +142,15 @@
         android:padding="6dp"
         android:src="@drawable/calendar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgUseDateEmp" />
+        app:layout_constraintTop_toBottomOf="@id/btnUseDate" />
 
     <Button
-        android:id="@+id/btnNextEmp"
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/main_margin"
         android:background="@drawable/bg_circle_color_accent"
-        android:text="Next"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24sp"

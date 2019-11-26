@@ -37,7 +37,7 @@ public interface PumApiServices {
 
     @FormUrlEncoded
     @POST("getdocdetail")
-    Observable<DocDetailResponse> getDocDetail(@Field("doc_type") String docType);
+    Observable<Response<DocDetailResponse>> getDocDetail(@Field("doc_type") String docType);
 
     @GET("gettrxtype")
     Observable<TrxTypeResponse> getTrxType();

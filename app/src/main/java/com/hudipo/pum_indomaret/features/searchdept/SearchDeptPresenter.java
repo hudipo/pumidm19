@@ -1,7 +1,5 @@
 package com.hudipo.pum_indomaret.features.searchdept;
 
-import android.util.Log;
-
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.repository.Repository;
 
@@ -12,7 +10,7 @@ public class SearchDeptPresenter implements SearchDeptContract.SearchDeptPresent
     private SearchDeptContract.SearchDeptView view;
     private Repository repository;
 
-    public SearchDeptPresenter(Repository repository) {
+    SearchDeptPresenter(Repository repository) {
         this.repository = repository;
     }
 

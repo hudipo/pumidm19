@@ -143,4 +143,20 @@
     <string name="warning_31days">* The selected transaction period is only 31 days.</string>
     <string name="search_department">Search Department</string>
     <string name="transaction">Transaction</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="next">Next</string>
+    <string name="employee">Employee</string>
+    <string name="please_input_date">Please input date</string>
+    <string name="please_input_dept">Please input department</string>
+    <string name="document">Document</string>
+    <string name="doc_number">DOC Number</string>
+    <string name="doc_type">Doc Type</string>
+    <string name="search_by_document">Search by Document</string>
+    <string name="search_trx">Search TRX</string>
+    <string name="fund">Fund</string>
+    <string name="select_a_file">Select a File</string>
+    <string name="example_error_amount_request">Your max amount request is Rp 50.000.000</string>
+    <string name="rp">Rp</string>
+    <string name="emp_dept">Emp Dept</string>
+    <string name="trx_type">Trx Type</string>
 </resources>
