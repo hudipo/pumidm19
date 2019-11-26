@@ -38,7 +38,6 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     private String TAG_USE_DATE = "tag_use_date";
     private int REQUEST_CODE_SEARCH_DEPT = 100;
-    private boolean isValid = false;
 
     /**
      * All function from
@@ -103,8 +102,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         String respDate = tvRespDate.getText().toString().trim();
         String nameSearchDept = btnSearchDept.getText().toString().trim();
 
-        checkValidateData(useDate, respDate, nameSearchDept);
-        if (isValid){
+        if (checkValidateData(useDate, respDate, nameSearchDept)){
             Intent intent = new Intent(this, ReqDocumentActivity.class);
 
             requestModel.setNameEmpDept(nameSearchDept);
@@ -138,14 +136,14 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
      *  @see ReqEmployeeActivity
      *  */
 
-    private void checkValidateData(String useDate, String respDate, String searchDept) {
+    private Boolean checkValidateData(String useDate, String respDate, String searchDept) {
+        boolean isValid = true;
         if (useDate.isEmpty()){
             tvUseDate.setError(getString(R.string.please_input_date));
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             isValid = false;
         }else {
             tvUseDate.setError(null);
-            isValid = true;
         }
 
         if (respDate.isEmpty()){
@@ -154,7 +152,6 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
             isValid = false;
         }else {
             tvRespDate.setError(null);
-            isValid = true;
         }
 
         if (searchDept.isEmpty()){
@@ -163,8 +160,8 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
             isValid = false;
         }else {
             btnSearchDept.setError(null);
-            isValid = true;
         }
+        return isValid;
     }
 
     private void initView() {

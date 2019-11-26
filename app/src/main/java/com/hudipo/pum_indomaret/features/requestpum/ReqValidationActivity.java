@@ -93,7 +93,7 @@ public class ReqValidationActivity extends AppCompatActivity {
                 .setMessage("Are you sure want to make this request?")
                 .setPositiveButton("Yes", (dialogInterface, i) -> {
                     if (requestModel != null){
-                        Intent intent = new Intent(ReqValidationActivity.this, PinActivity.class);
+                        Intent intent = new Intent(this, PinActivity.class);
                         intent.putExtra(PinActivity.KEY_REQUEST_DATA, requestModel);
                         intent.putExtra("requestCode", RequestCode.PIN_REQUESTPUM_CODE);
 

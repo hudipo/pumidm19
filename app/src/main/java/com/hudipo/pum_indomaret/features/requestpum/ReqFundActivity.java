@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -56,7 +57,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     private final int REQUEST_CODE_CAMERA = 101;
     private final int REQUEST_CODE_GALLERY = 102;
     private final int REQUEST_CODE_FILES = 103;
-    private boolean isValid = false;
     public static final String EXTRA_DOCUMENT_DETAIL = "extra_document_detail";
     private RequestModel requestModel;
 
@@ -197,8 +197,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         String trx = btnSearchTrx.getText().toString().trim();
         String nameFile = tvSelectAFile.getText().toString().trim();
 
-        checkValid(amount, desc, trx, nameFile);
-        if (isValid){
+        if (checkValid(amount, desc, trx, nameFile)){
             if (checkAmount(amount)){
                 requestModel.setDescription(desc);
                 requestModel.setAmount(Double.valueOf(amount));
@@ -212,11 +211,12 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         }
     }
 
-    private void checkValid(String amount, String desc, String trx, String nameFile) {
+
+    private Boolean checkValid(String amount, String desc, String trx, String nameFile) {
+        boolean isValid = false;
         if (trx.isEmpty()){
             Toast.makeText(this, "Trx is still empty", Toast.LENGTH_SHORT).show();
             btnSearchTrx.setError("Trx is still empty");
-            isValid = false;
         }else {
             btnSearchTrx.setError(null);
             isValid = true;
@@ -225,7 +225,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         if (desc.isEmpty()){
             Toast.makeText(this, "Description is still empty", Toast.LENGTH_SHORT).show();
             etDescFund.setError("Description is still empty");
-            isValid = false;
         }else {
             etDescFund.setError(null);
             isValid = true;
@@ -234,7 +233,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         if (amount.isEmpty()){
             Toast.makeText(this, "Amount is still empty", Toast.LENGTH_SHORT).show();
             etAmountFund.setError("Amount is still empty");
-            isValid = false;
         }else {
             etAmountFund.setError(null);
             isValid = true;
@@ -243,11 +241,12 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         if (nameFile.isEmpty()){
             Toast.makeText(this, "File is still empty", Toast.LENGTH_SHORT).show();
             tvSelectAFile.setError("File is still empty");
-            isValid = false;
         }else {
             tvSelectAFile.setError(null);
             isValid = true;
         }
+
+        return isValid;
     }
 
     private Boolean checkAmount(String amount) {
@@ -256,6 +255,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         Double totalAmount = Double.valueOf(amount);
         if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
             String textError = "Your max amount request is "+hawkStorage.getUserData().getMaxAmount();
+            showErrorAmountDialog();
             tvErrorAmount.setText(textError);
             tvErrorAmount.setVisibility(View.VISIBLE);
             isValid = false;
@@ -264,6 +264,14 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             tvErrorAmount.setVisibility(View.INVISIBLE);
         }
         return isValid;
+    }
+
+    private void showErrorAmountDialog() {
+        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
+                .setTitle("Sorry...")
+                .setMessage("Your amount is over the limit, Please contact Finance division")
+                .setCancelable(true)
+                .show();
     }
 
     @Override

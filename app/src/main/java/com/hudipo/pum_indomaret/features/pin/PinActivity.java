@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -148,7 +149,6 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
             isReset=false;
             hideTv();
         }
-
         if (view.getTag()!=null && view.getTag().equals("number_button") && pin.length()<6){
             pin = pin+((TextView)view).getText().toString();
             if (pin.length()==1){
@@ -195,7 +195,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 //        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
 //        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
 //        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
-        RequestBody pin = RequestBody.create(MediaType.parse("text/plain"), pinString);
+        RequestBody pin = RequestBody.create(pinString, MediaType.parse("text/plain"));
 
 //        params.put("emp_id", empId);
 //        params.put("emp_dept", empDept);
