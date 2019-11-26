@@ -1,127 +1,220 @@
 package com.hudipo.pum_indomaret.model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class RequestModel implements Serializable {
+public class RequestModel implements Parcelable {
 
-    private String stringEmployeeName;
-    private int idEmployee;
-    private int idEmpDept;
-    private String stringEmployeeDepartment;
-    private String stringUseDate;
-    private String stringRespDate;
-    private String stringDocType;
-    private String stringDocNumber;
-    private String stringTrxType;
-    private int idTrxType;
-    private int intAmount;
-    private String stringDescription;
-    private String stringFileUri;
+    private int empId;
+    private int empDeptId;
+    private String useDate;
+    private String respDate;
+    private String docNum;
+    private int trxTypeId;
+    private String description;
+    private Double amount;
+    private String fileDataUri;
+    private int pin;
+    private int orgId;
+    private int userId;
+    private String nameEmpDept;
+    private String nameDocType;
+    private String nameTrxType;
+    private String nameFile;
+
+    private RequestModel(Parcel in) {
+        empId = in.readInt();
+        empDeptId = in.readInt();
+        useDate = in.readString();
+        respDate = in.readString();
+        docNum = in.readString();
+        trxTypeId = in.readInt();
+        description = in.readString();
+        if (in.readByte() == 0) {
+            amount = null;
+        } else {
+            amount = in.readDouble();
+        }
+        fileDataUri = in.readString();
+        pin = in.readInt();
+        orgId = in.readInt();
+        userId = in.readInt();
+        nameEmpDept = in.readString();
+        nameDocType = in.readString();
+        nameTrxType = in.readString();
+        nameFile = in.readString();
+    }
+
+    public static final Creator<RequestModel> CREATOR = new Creator<RequestModel>() {
+        @Override
+        public RequestModel createFromParcel(Parcel in) {
+            return new RequestModel(in);
+        }
+
+        @Override
+        public RequestModel[] newArray(int size) {
+            return new RequestModel[size];
+        }
+    };
+
+    public String getNameEmpDept() {
+        return nameEmpDept;
+    }
+
+    public void setNameEmpDept(String nameEmpDept) {
+        this.nameEmpDept = nameEmpDept;
+    }
+
+    public String getNameDocType() {
+        return nameDocType;
+    }
+
+    public void setNameDocType(String nameDocType) {
+        this.nameDocType = nameDocType;
+    }
+
+    public String getNameTrxType() {
+        return nameTrxType;
+    }
+
+    public void setNameTrxType(String nameTrxType) {
+        this.nameTrxType = nameTrxType;
+    }
+
+    public String getNameFile() {
+        return nameFile;
+    }
+
+    public void setNameFile(String nameFile) {
+        this.nameFile = nameFile;
+    }
 
     public RequestModel() {
     }
 
-    public int getIdEmpDept() {
-        return idEmpDept;
+    public int getEmpId() {
+        return empId;
     }
 
-    public void setIdEmpDept(int idEmpDept) {
-        this.idEmpDept = idEmpDept;
+    public void setEmpId(int empId) {
+        this.empId = empId;
     }
 
-    public int getIdEmployee() {
-        return idEmployee;
+    public int getEmpDeptId() {
+        return empDeptId;
     }
 
-    public void setIdEmployee(int idEmployee) {
-        this.idEmployee = idEmployee;
+    public void setEmpDeptId(int empDeptId) {
+        this.empDeptId = empDeptId;
     }
 
-    public int getIdTrxType() {
-        return idTrxType;
+    public String getUseDate() {
+        return useDate;
     }
 
-    public void setIdTrxType(int idTrxType) {
-        this.idTrxType = idTrxType;
+    public void setUseDate(String useDate) {
+        this.useDate = useDate;
     }
 
-    public String getStringEmployeeName() {
-        return stringEmployeeName;
+    public String getRespDate() {
+        return respDate;
     }
 
-    public void setStringEmployeeName(String stringEmployeeName) {
-        this.stringEmployeeName = stringEmployeeName;
+    public void setRespDate(String respDate) {
+        this.respDate = respDate;
     }
 
-    public String getStringEmployeeDepartment() {
-        return stringEmployeeDepartment;
+    public String getDocNum() {
+        return docNum;
     }
 
-    public void setStringEmployeeDepartment(String stringEmployeeDepartment) {
-        this.stringEmployeeDepartment = stringEmployeeDepartment;
+    public void setDocNum(String docNum) {
+        this.docNum = docNum;
     }
 
-    public String getStringUseDate() {
-        return stringUseDate;
+    public int getTrxTypeId() {
+        return trxTypeId;
     }
 
-    public void setStringUseDate(String stringUseDate) {
-        this.stringUseDate = stringUseDate;
+    public void setTrxTypeId(int trxTypeId) {
+        this.trxTypeId = trxTypeId;
     }
 
-    public String getStringRespDate() {
-        return stringRespDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStringRespDate(String stringRespDate) {
-        this.stringRespDate = stringRespDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getStringDocType() {
-        return stringDocType;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setStringDocType(String stringDocType) {
-        this.stringDocType = stringDocType;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public String getStringDocNumber() {
-        return stringDocNumber;
+    public String getFileDataUri() {
+        return fileDataUri;
     }
 
-    public void setStringDocNumber(String stringDocNumber) {
-        this.stringDocNumber = stringDocNumber;
+    public void setFileDataUri(String fileDataUri) {
+        this.fileDataUri = fileDataUri;
     }
 
-    public String getStringTrxType() {
-        return stringTrxType;
+    public int getPin() {
+        return pin;
     }
 
-    public void setStringTrxType(String stringTrxType) {
-        this.stringTrxType = stringTrxType;
+    public void setPin(int pin) {
+        this.pin = pin;
     }
 
-    public int getIntAmount() {
-        return intAmount;
+    public int getOrgId() {
+        return orgId;
     }
 
-    public void setIntAmount(int intAmount) {
-        this.intAmount = intAmount;
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
     }
 
-    public String getStringDescription() {
-        return stringDescription;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setStringDescription(String stringDescription) {
-        this.stringDescription = stringDescription;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getStringFileUri() {
-        return stringFileUri;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setStringFileUri(String stringFileUri) {
-        this.stringFileUri = stringFileUri;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(empId);
+        dest.writeInt(empDeptId);
+        dest.writeString(useDate);
+        dest.writeString(respDate);
+        dest.writeString(docNum);
+        dest.writeInt(trxTypeId);
+        dest.writeString(description);
+        if (amount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(amount);
+        }
+        dest.writeString(fileDataUri);
+        dest.writeInt(pin);
+        dest.writeInt(orgId);
+        dest.writeInt(userId);
+        dest.writeString(nameEmpDept);
+        dest.writeString(nameDocType);
+        dest.writeString(nameTrxType);
+        dest.writeString(nameFile);
     }
 }

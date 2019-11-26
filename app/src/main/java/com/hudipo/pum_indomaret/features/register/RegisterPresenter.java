@@ -1,6 +1,5 @@
 package com.hudipo.pum_indomaret.features.register;
 
-import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.networking.RetrofitClient;
@@ -8,6 +7,7 @@ import com.hudipo.pum_indomaret.networking.RetrofitClient;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -35,9 +35,9 @@ public class RegisterPresenter implements RegisterContract.RegisterPresenterView
     @Override
     public void registerToServer(String empNum, String password, String pin) {
         HashMap<String, RequestBody> params = new HashMap<>();
-        RequestBody requestEmpNum = RequestBody.create(MediaType.parse("text/plain"), empNum);
-        RequestBody requestPass = RequestBody.create(MediaType.parse("text/plain"), password);
-        RequestBody requestPin = RequestBody.create(MediaType.parse("text/plain"), pin);
+        RequestBody requestEmpNum = RequestBody.create(empNum, MediaType.parse("text/plain"));
+        RequestBody requestPass = RequestBody.create(password, MediaType.parse("text/plain"));
+        RequestBody requestPin = RequestBody.create(pin, MediaType.parse("text/plain"));
         params.put("emp_num", requestEmpNum);
         params.put("password", requestPass);
         params.put("pin", requestPin);

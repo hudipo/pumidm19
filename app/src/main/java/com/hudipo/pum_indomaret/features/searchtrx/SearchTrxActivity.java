@@ -1,7 +1,11 @@
 package com.hudipo.pum_indomaret.features.searchtrx;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,9 +24,10 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
 
     @BindView(R.id.rvSearchTrx)
     RecyclerView rvSearchTrx;
+    @BindView(R.id.pbSearchTrx)
+    ProgressBar pbSearchTrx;
 
     private SearchTrxPresenter trxPresenter;
-    static public int RESULT_CODE_SELECTED = 101;
     static public String EXTRA_SELECTED = "extra_selected";
 
     @Override
@@ -35,6 +40,12 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        trxPresenter.clearComposite();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         onDetachView();
@@ -42,12 +53,14 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
 
     @Override
     public void showProgress() {
-
+        pbSearchTrx.setVisibility(View.VISIBLE);
+        rvSearchTrx.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        pbSearchTrx.setVisibility(View.INVISIBLE);
+        rvSearchTrx.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -61,7 +74,7 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
         SearchTrxAdapter searchTrxAdapter = new SearchTrxAdapter(trxItem -> {
             Intent intent = new Intent();
             intent.putExtra(EXTRA_SELECTED, trxItem);
-            setResult(RESULT_CODE_SELECTED, intent);
+            setResult(Activity.RESULT_OK, intent);
             finish();
         });
         searchTrxAdapter.setTrxTypeResponse(trxTypeResponse);
@@ -72,12 +85,12 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
 
     @Override
     public void setDataEmpty() {
-
+        Toast.makeText(this, "Data Kosong", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showFailed(String message) {
-
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override

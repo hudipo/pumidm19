@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.activity.ReqEmployeeActivity">
+    tools:context=".features.requestpum.ReqEmployeeActivity">
 
     <View
         android:id="@+id/topView"
@@ -72,7 +72,7 @@
         android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:text="@string/search_department"
+        android:hint="@string/search_department"
         android:textAlignment="textStart"
         android:drawableStart="@drawable/ic_search_black_24dp"
         android:drawablePadding="@dimen/dp6"
@@ -84,8 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEmployeeName" />
 
-    <EditText
-        android:id="@+id/etUseDate"
+    <TextView
+        android:id="@+id/tvUseDate"
         android:enabled="false"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -114,8 +114,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSearchDepartment" />
 
-    <EditText
-        android:id="@+id/etRespDate"
+    <TextView
+        android:id="@+id/tvRespDate"
         android:enabled="false"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -131,7 +131,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@id/btnUseDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUseDate" />
+        app:layout_constraintTop_toBottomOf="@id/tvUseDate" />
 
     <ImageView
         android:id="@+id/btnRespDate"

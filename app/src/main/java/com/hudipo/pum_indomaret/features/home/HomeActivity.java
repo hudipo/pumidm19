@@ -1,23 +1,21 @@
 package com.hudipo.pum_indomaret.features.home;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.HomeAdapter;
 import com.hudipo.pum_indomaret.data.Data;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
 import com.hudipo.pum_indomaret.features.report.view.ReportActivity;
-import com.hudipo.pum_indomaret.features.requestpum.activity.EmployeeReqActivity;
-import com.hudipo.pum_indomaret.features.requestpum.activity.ReqEmployeeActivity;
+import com.hudipo.pum_indomaret.features.requestpum.ReqEmployeeActivity;
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
 import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.requestpum.activity.FundReqActivity">
+    tools:context=".features.requestpum.ReqFundActivity">
 
     <View
         android:id="@+id/topView"
@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgBack"
+        android:id="@+id/btnBackFund"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@android:color/transparent"
@@ -45,7 +45,7 @@
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
-        android:text="Fund"
+        android:text="@string/fund"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -59,52 +59,21 @@
         android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:hint="Search TRX"
+        android:hint="@string/search_trx"
         android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textAlignment="textStart"
         android:paddingStart="@dimen/dp12"
+        android:paddingEnd="@dimen/dp12"
         android:drawablePadding="@dimen/dp12"
         android:drawableStart="@drawable/ic_search_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sectionTitle"/>
 
-    <Spinner
-        android:id="@+id/spnFundTrxType"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginTop="@dimen/main_margin"
-        android:layout_marginEnd="@dimen/main_margin"
-        android:background="@drawable/bg_rounded_border_black_solid_black"
-        android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-        android:text="Report Type"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@id/sectionTitle"
-        android:visibility="gone"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp12"
-        android:src="@drawable/ic_arrow_drop_down_black_30dp"
-        app:layout_constraintBottom_toBottomOf="@id/spnFundTrxType"
-        app:layout_constraintEnd_toEndOf="@id/spnFundTrxType"
-        app:layout_constraintTop_toTopOf="@id/spnFundTrxType"
-        android:visibility="gone"/>
-
     <EditText
-        android:id="@+id/edtFundDesc"
+        android:id="@+id/etDescFund"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="@dimen/main_margin"
@@ -112,7 +81,7 @@
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_black"
         android:gravity="center_vertical"
-        android:hint="Description"
+        android:hint="@string/description"
         android:maxLines="1"
         android:inputType="text"
         android:paddingStart="12dp"
@@ -123,50 +92,56 @@
         app:layout_constraintTop_toBottomOf="@id/btnSearchTrx" />
 
     <LinearLayout
-        android:id="@+id/contentWrapper"
+        android:id="@+id/llAmountFund"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginTop="@dimen/main_margin"
-        android:layout_marginEnd="@dimen/main_margin"
-        android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:layout_height="60dp"
         android:orientation="horizontal"
+        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginEnd="@dimen/main_margin"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtFundDesc">
+        app:layout_constraintTop_toBottomOf="@id/tvErrorAmount">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp "
+            android:text="@string/rp"
             android:textColor="@color/black"
             android:textSize="24sp"/>
 
         <EditText
-            android:id="@+id/edtFundAmount"
+            android:id="@+id/etAmountFund"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:gravity="center_vertical"
-            android:hint="1000000"
+            android:hint="@string/amount"
             android:inputType="number"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
 
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/tvErrorAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:textSize="12sp"
+        android:text="@string/example_error_amount_request"
+        android:textColor="@color/redError"
         android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
-        app:layout_constraintBottom_toBottomOf="@id/contentWrapper" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etDescFund"
+        app:layout_constraintBottom_toTopOf="@id/llAmountFund"/>
 
     <TextView
         android:id="@+id/tvSelectAFile"
@@ -182,25 +157,25 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:popupBackground="@color/bg_spinner"
-        android:hint="Select a File"
+        android:hint="@string/select_a_file"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@id/imgUploadFile"
+        app:layout_constraintEnd_toStartOf="@id/btnUploadFile"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvErrorAmount" />
+        app:layout_constraintTop_toBottomOf="@id/llAmountFund" />
 
-    <ImageView
-        android:id="@+id/imgUploadFile"
+    <ImageButton
+        android:id="@+id/btnUploadFile"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginTop="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@drawable/bg_rounded_border_black_solid_green"
         android:padding="6dp"
         android:src="@drawable/upload_folder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvErrorAmount" />
+        app:layout_constraintTop_toTopOf="@id/tvSelectAFile"
+        app:layout_constraintBottom_toBottomOf="@id/tvSelectAFile"/>
 
     <Button
         android:id="@+id/btnNextFund"
@@ -208,7 +183,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/main_margin"
         android:background="@drawable/bg_circle_color_accent"
-        android:text="Next"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -216,7 +191,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgSearcDoc"
         app:layout_constraintVertical_bias="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

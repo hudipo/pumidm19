@@ -1,9 +1,8 @@
-package com.hudipo.pum_indomaret.features.requestpum.activity;
+package com.hudipo.pum_indomaret.features.requestpum;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +23,10 @@ import butterknife.OnClick;
 
 public class ReqEmployeeActivity extends AppCompatActivity implements DatePickerFragment.DialogDataListener {
 
-    @BindView(R.id.etUseDate)
-    EditText etUseDate;
-    @BindView(R.id.etRespDate)
-    EditText etRespDate;
+    @BindView(R.id.tvUseDate)
+    TextView tvUseDate;
+    @BindView(R.id.tvRespDate)
+    TextView tvRespDate;
     @BindView(R.id.btnSearchDepartment)
     Button btnSearchDept;
     @BindView(R.id.tvEmployeeName)
@@ -39,7 +38,6 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     private String TAG_USE_DATE = "tag_use_date";
     private int REQUEST_CODE_SEARCH_DEPT = 100;
-    private Boolean isValid = false;
 
     /**
      * All function from
@@ -64,8 +62,8 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
                 if (data != null){
                     DepartmentItem departmentItem = (DepartmentItem) data.getSerializableExtra(SearchDeptActivity.DATA_SELECTED_VALUE);
                     if (departmentItem != null){
-                        btnSearchDept.setText(departmentItem.getName());
-                        requestModel.setIdEmpDept(departmentItem.getDeptId());
+                        btnSearchDept.setText(departmentItem.getDescription());
+                        requestModel.setEmpDeptId(departmentItem.getDeptId());
                     }
                 }
             }
@@ -100,19 +98,19 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     @OnClick(R.id.btnNext)
     void btnNext(){
         int idEmp = hawkStorage.getUserData().getEmpId();
-        String useDate = etUseDate.getText().toString().trim();
-        String respDate = etRespDate.getText().toString().trim();
-        String searchDept = btnSearchDept.getText().toString().trim();
+        String useDate = tvUseDate.getText().toString().trim();
+        String respDate = tvRespDate.getText().toString().trim();
+        String nameSearchDept = btnSearchDept.getText().toString().trim();
 
-        checkValidateData(useDate, respDate, searchDept);
-        if (isValid){
-            Intent intent = new Intent(this, DocumentReqActivity.class);
+        if (checkValidateData(useDate, respDate, nameSearchDept)){
+            Intent intent = new Intent(this, ReqDocumentActivity.class);
 
-            requestModel.setIdEmployee(idEmp);
-            requestModel.setStringUseDate(PumDateFormat.dateFormatServer(useDate));
-            requestModel.setStringRespDate(PumDateFormat.dateFormatServer(respDate));
+            requestModel.setNameEmpDept(nameSearchDept);
+            requestModel.setEmpId(idEmp);
+            requestModel.setUseDate(PumDateFormat.dateFormatServer(useDate));
+            requestModel.setRespDate(PumDateFormat.dateFormatServer(respDate));
 
-            intent.putExtra(DocumentReqActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
+            intent.putExtra(ReqDocumentActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
             startActivity(intent);
         }
     }
@@ -126,9 +124,9 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     public void onDialogSet(String tag, int year, int month, int dayOfMonth) {
         String time = PumDateFormat.dateFormatView(year, month, dayOfMonth);
         if (tag.equals(TAG_USE_DATE)){
-            etUseDate.setText(time);
+            tvUseDate.setText(time);
         }else {
-            etRespDate.setText(time);
+            tvRespDate.setText(time);
         }
     }
 
@@ -138,29 +136,32 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
      *  @see ReqEmployeeActivity
      *  */
 
-    private void checkValidateData(String useDate, String respDate, String searchDept) {
+    private Boolean checkValidateData(String useDate, String respDate, String searchDept) {
+        boolean isValid = true;
         if (useDate.isEmpty()){
-            etUseDate.setError(getString(R.string.please_input_date));
+            tvUseDate.setError(getString(R.string.please_input_date));
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             isValid = false;
         }else {
-            isValid = true;
+            tvUseDate.setError(null);
         }
 
         if (respDate.isEmpty()){
-            etRespDate.setError(getString(R.string.please_input_date));
+            tvRespDate.setError(getString(R.string.please_input_date));
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             isValid = false;
         }else {
-            isValid = true;
+            tvRespDate.setError(null);
         }
 
-        if (searchDept.equals(getString(R.string.search_department))){
+        if (searchDept.isEmpty()){
             Toast.makeText(this, getString(R.string.please_input_dept), Toast.LENGTH_SHORT).show();
+            btnSearchDept.setError(getString(R.string.please_input_dept));
             isValid = false;
         }else {
-            isValid = true;
+            btnSearchDept.setError(null);
         }
+        return isValid;
     }
 
     private void initView() {

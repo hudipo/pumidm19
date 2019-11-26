@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.requestpum.activity.SentReqActivity;
+import com.hudipo.pum_indomaret.features.requestpum.SentReqActivity;
 import com.hudipo.pum_indomaret.model.RequestModel;
-import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 
 import java.util.HashMap;
@@ -23,7 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -150,7 +149,6 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
             isReset=false;
             hideTv();
         }
-
         if (view.getTag()!=null && view.getTag().equals("number_button") && pin.length()<6){
             pin = pin+((TextView)view).getText().toString();
             if (pin.length()==1){
@@ -188,26 +186,26 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
     private void createPumToServer(RequestModel requestModel, String pinString) {
         HashMap<String, RequestBody> params = new HashMap<>();
-        RequestBody empId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdEmployee()));
-        RequestBody empDept = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringEmployeeDepartment());
-        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringUseDate());
-        RequestBody respDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringRespDate());
-        RequestBody docNum = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDocNumber());
-        RequestBody trxType = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdTrxType()));
-        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
-        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
-        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
-        RequestBody pin = RequestBody.create(MediaType.parse("text/plain"), pinString);
+//        RequestBody empId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdEmployee()));
+//        RequestBody empDept = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringEmployeeDepartment());
+//        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringUseDate());
+//        RequestBody respDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringRespDate());
+//        RequestBody docNum = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDocNumber());
+//        RequestBody trxType = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdTrxType()));
+//        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
+//        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
+//        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
+        RequestBody pin = RequestBody.create(pinString, MediaType.parse("text/plain"));
 
-        params.put("emp_id", empId);
-        params.put("emp_dept", empDept);
-        params.put("use_date", useDate);
-        params.put("resp_date", respDate);
-        params.put("doc_num", docNum);
-        params.put("trx_type", trxType);
-        params.put("description", description);
-        params.put("amount", amount);
-        params.put("upload_file", uploadFile);
+//        params.put("emp_id", empId);
+//        params.put("emp_dept", empDept);
+//        params.put("use_date", useDate);
+//        params.put("resp_date", respDate);
+//        params.put("doc_num", docNum);
+//        params.put("trx_type", trxType);
+//        params.put("description", description);
+//        params.put("amount", amount);
+//        params.put("upload_file", uploadFile);
         params.put("pin", pin);
 
         composite.add(new ApiServices()

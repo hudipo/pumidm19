@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum.activity;
+package com.hudipo.pum_indomaret.features.requestpum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
