@@ -1,41 +1,43 @@
 package com.hudipo.pum_indomaret.model.approval;
 
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ApprovalListResponse{
-
-	@SerializedName("data")
-	private List<DataItem> data;
-
 	@SerializedName("error")
-	private boolean error;
-
+	@Expose
+	private Boolean error;
 	@SerializedName("message")
+	@Expose
 	private String message;
+	@SerializedName("data")
+	@Expose
+	private List<ApprovalListModel> data = null;
 
-	public void setData(List<DataItem> data){
-		this.data = data;
-	}
-
-	public List<DataItem> getData(){
-		return data;
-	}
-
-	public void setError(boolean error){
-		this.error = error;
-	}
-
-	public boolean isError(){
+	public Boolean getError() {
 		return error;
 	}
 
-	public void setMessage(String message){
+	public void setError(Boolean error) {
+		this.error = error;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
 		this.message = message;
 	}
 
-	public String getMessage(){
-		return message;
+	public List<ApprovalListModel> getData() {
+		return data;
+	}
+
+	public void setData(List<ApprovalListModel> data) {
+		this.data = data;
 	}
 }

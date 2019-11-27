@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.networking;
 
+import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
@@ -57,4 +58,8 @@ public interface PumApiServices {
                                                                 @Field("finish_date") String finish_date,
                                                                 @Field("status") String status);
 
+    //APPROVAL
+    @FormUrlEncoded
+    @POST("listapproval")
+    Observable<ApprovalListResponse> getListApproval(@Field("emp_id") int emp_id);
 }

@@ -19,7 +19,7 @@ import com.hudipo.pum_indomaret.features.approval.activity.ApprovalFilterActivit
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalHistoryAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalHistoryPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalHistoryContract;
-import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.utils.RequestCode;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
@@ -38,8 +38,8 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
     private View view;
     private ApprovalHistoryAdapter approvalAdapter;
     private ApprovalHistoryPresenter presenter;
-    private List<ApprovalModel> approvalSelectedList = new ArrayList<>();
-    private List<ApprovalModel> approvalModelList = new ArrayList<>();
+    private List<ApprovalListModel> approvalSelectedList = new ArrayList<>();
+    private List<ApprovalListModel> approvalModelList = new ArrayList<>();
     private boolean isCheckedAll = false;
 
     @Nullable
@@ -59,7 +59,7 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
     }
 
     @Override
-    public void showData(List<ApprovalModel> approvalModels) {
+    public void showData(List<ApprovalListModel> approvalModels) {
         approvalModelList.clear();
         approvalModelList.addAll(approvalModels);
 

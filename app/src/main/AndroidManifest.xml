@@ -174,7 +174,8 @@
             android:name=".features.approval.activity.ApprovalActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".features.approval.activity.ApprovalDetailHistoryActivity"
             android:configChanges="orientation"

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalDetailHistoryActivity;
-import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_APPROVAL_HISTORY_TYPE;
 
 public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> {
 
-    private List<ApprovalModel> listApproval;
+    private List<ApprovalListModel> listApproval;
 
-    public ApprovalHistoryAdapter(List<ApprovalModel> listApproval) {
+    public ApprovalHistoryAdapter(List<ApprovalListModel> listApproval) {
         this.listApproval = listApproval;
     }
 
@@ -60,23 +60,23 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(ApprovalModel approvalModel){
-            tvPumNumber.setText(approvalModel.getPumNumber());
-            tvPumRequester.setText(approvalModel.getPumRequester());
-            tvAmount.setText(String.valueOf(approvalModel.getAmount()));
-
-            itemView.setOnClickListener(view -> {
-                Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
-                intent.putExtra(EXTRA_APPROVAL_HISTORY_TYPE, approvalModel.getType());
-                itemView.getContext().startActivity(intent);
-            });
-
-            if(approvalModel.getType()==1)//1 for approve 2 for rejected sementara
-            {
-                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
-            }else {
-                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
-            }
+        void bind(ApprovalListModel approvalModel){
+//            tvPumNumber.setText(approvalModel.getPumNumber());
+//            tvPumRequester.setText(approvalModel.getPumRequester());
+//            tvAmount.setText(String.valueOf(approvalModel.getAmount()));
+//
+//            itemView.setOnClickListener(view -> {
+//                Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
+//                intent.putExtra(EXTRA_APPROVAL_HISTORY_TYPE, approvalModel.getType());
+//                itemView.getContext().startActivity(intent);
+//            });
+//
+//            if(approvalModel.getType()==1)//1 for approve 2 for rejected sementara
+//            {
+//                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
+//            }else {
+//                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
+//            }
         }
     }
 }

@@ -1,10 +1,7 @@
 package com.hudipo.pum_indomaret.features.approval.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +12,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,12 +22,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
-import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
+import com.hudipo.pum_indomaret.utils.Global;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +48,16 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     ImageView cbApproval;
     @BindView(R.id.llAction)
     LinearLayout llAction;
+    @BindView(R.id.swipeRefreshApproval)
+    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.tvError)
+    TextView tvError;
 
     private View view;
     private ApprovalAdapter approvalAdapter;
     private ApprovalPresenter presenter;
-    private List<ApprovalModel> approvalSelectedList = new ArrayList<>();
-    private List<ApprovalModel> approvalModelList = new ArrayList<>();
+    private List<ApprovalListModel> approvalSelectedList = new ArrayList<>();
+    private List<ApprovalListModel> approvalModelList = new ArrayList<>();
     private boolean isCheckedAll = false;
 
     @Nullable
@@ -58,16 +65,13 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_approval, container, false);
         ButterKnife.bind(this, view);
+        presenter = new ApprovalPresenter(getActivity());
 
         setView();
 
-        return view;
-    }
+        onAttachView();
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        presenter.getData();
+        return view;
     }
 
     private void setView() {
@@ -84,6 +88,19 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             approvalAdapter.setAllChecked(isCheckedAll);
             initAction();
         });
+        swipeRefreshLayout.setOnRefreshListener(() ->
+            presenter.getData()
+        );
+
+        approvalAdapter = new ApprovalAdapter(new ArrayList<>(), (approvalModel, checked) -> {
+            if(checked){
+                approvalSelectedList.add(approvalModel);
+            }else {
+                approvalSelectedList.remove(approvalModel);
+            }
+            initAction();
+        });
+        rvApproval.setAdapter(approvalAdapter);
     }
 
     @OnClick(R.id.btnApprove)
@@ -137,19 +154,10 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     }
 
     @Override
-    public void showData(List<ApprovalModel> approvalModels) {
+    public void showData(List<ApprovalListModel> approvalModels) {
         approvalModelList.clear();
         approvalModelList.addAll(approvalModels);
-
-        approvalAdapter = new ApprovalAdapter(approvalModels, (approvalModel, checked) -> {
-            if(checked){
-                approvalSelectedList.add(approvalModel);
-            }else {
-                approvalSelectedList.remove(approvalModel);
-            }
-            initAction();
-        });
-        rvApproval.setAdapter(approvalAdapter);
+        approvalAdapter.updateListApproval(approvalModelList);
     }
 
     @Override
@@ -159,22 +167,25 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     @Override
     public void error(String message) {
-
+        if(isAdded()) Global.toast(getContext(), message);
+        tvError.setText(message);
+        tvError.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showLoading() {
-
+        swipeRefreshLayout.setRefreshing(true);
+        tvError.setVisibility(View.GONE);
     }
 
     @Override
     public void dismissLoading() {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void success(String message) {
-
+        Global.toast(getContext(), message);
     }
 
     @Override
@@ -198,19 +209,12 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     @Override
     public void onAttachView() {
         presenter.onAttach(this);
+        presenter.getData();
     }
 
     @Override
     public void onDetachView() {
         presenter.onDetach();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        presenter = new ApprovalPresenter(getActivity());
-        onAttachView();
     }
 
     private void initAction(){
