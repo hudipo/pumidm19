@@ -69,6 +69,7 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     @OnClick(R.id.btnReset) void resetView(){
         tvTrxStartDate.setText("--");
         tvTrxUntilDate.setText("--");
+        spnTrxStatus.setSelection(0);
     }
 
     @Override

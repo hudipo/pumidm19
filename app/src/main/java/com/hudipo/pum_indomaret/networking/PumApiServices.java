@@ -46,15 +46,8 @@ public interface PumApiServices {
     @POST("createpum")
     Observable<CreatePumResponse> createPum(@PartMap HashMap<String, RequestBody> params);
 
-    @FormUrlEncoded
+    @Multipart
     @POST("historycreatepum")
-    Observable<StatusResponse> getStatusListFromNetwork(@Field("emp_id") int emp_id);
-
-    @FormUrlEncoded
-    @POST("filterhistorycreatepum")
-    Observable<StatusResponse> getFilteredStatusListFromNetwork(@Field("emp_id") int emp_id,
-                                                                @Field("start_date") String start_date,
-                                                                @Field("finish_date") String finish_date,
-                                                                @Field("status") String status);
+    Observable<StatusResponse> getStatusListFromNetwork(@PartMap HashMap<String, RequestBody> params);
 
 }

@@ -87,9 +87,6 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
         if (requestCode == STATUS_FILTER_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 assert data != null;
-//                Toast.makeText(this,data.getStringExtra("startDate"),Toast.LENGTH_SHORT).show();
-//                Toast.makeText(this,data.getStringExtra("untilDate"),Toast.LENGTH_SHORT).show();
-//                Toast.makeText(this,data.getStringExtra("status"),Toast.LENGTH_SHORT).show();
 
                 String startDate = data.getStringExtra("startDate");
                 String untilDate = data.getStringExtra("untilDate");
