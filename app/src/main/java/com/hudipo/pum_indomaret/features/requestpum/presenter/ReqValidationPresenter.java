@@ -80,10 +80,19 @@ public class ReqValidationPresenter implements ReqValidationContract.ReqValidati
             params.put("user_id", requestUserId);
 
             //Configuration for file
-            String realPath = Utils.getRealPathImageFromURI(context, requestModel.getFileDataUri());
+            String realPath;
+            if (requestModel.isImage()){
+                realPath = Utils.getRealPathImageFromURI(context, requestModel.getFileDataUri());
+            }else {
+                realPath = Utils.getRealPathDocumentFromUri(context, requestModel.getFileDataUri());
+            }
             File file = new File(realPath);
 
-            RequestBody requestFile = RequestBody.create(file, MediaType.parse(Objects.requireNonNull(context.getContentResolver().getType(requestModel.getFileDataUri()))));
+            String typeFile = context.getContentResolver().getType(requestModel.getFileDataUri());
+            Log.d("coba", "realpath: "+realPath);
+            Log.d("coba", "type: "+typeFile);
+            Log.d("coba", "uri: "+requestModel.getFileDataUri());
+            RequestBody requestFile = RequestBody.create(file, MediaType.parse(Objects.requireNonNull(typeFile)));
             MultipartBody.Part bodyFile = MultipartBody.Part.createFormData("file_data", file.getName(), requestFile);
 
             composite.add(new ApiServices().getApiPumServices()
@@ -92,11 +101,6 @@ public class ReqValidationPresenter implements ReqValidationContract.ReqValidati
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
                         mView.hideProgress();
-                        Log.d("coba", "response code : "+response.code());
-                        Log.d("coba", "response raw : "+response.raw());
-                        Log.d("coba", "response message : "+response.message());
-                        Log.d("coba", "response header : "+response.headers());
-                        Log.d("coba", "response error body : "+response.errorBody());
                         if (response.isSuccessful()){
                             CreatePumResponse createPumResponse = response.body();
                             if (createPumResponse != null && !createPumResponse.isError()) {

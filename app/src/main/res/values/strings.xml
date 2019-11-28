@@ -82,7 +82,6 @@
     <string name="example_store_code">IDM123</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
-    <string name="back_to_home">Back to Home</string>
     <string name="create_another_response">Create another response</string>
     <string name="partial_response_sent">Partial Response Sent !</string>
     <string name="you_have_successfully_sent_npartial_responsibility">You have successfully sent \n Partial Responsibility</string>
@@ -160,4 +159,8 @@
     <string name="emp_dept">Emp Dept</string>
     <string name="trx_type">Trx Type</string>
     <string name="oops_your_pin_in_incorrect">Oops... Your pin in incorrect</string>
+    <string name="you_have_successfully_created_pum_request">You have successfully created PUM Request</string>
+    <string name="view_request">View Request</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="request_sent">Request Sent!</string>
 </resources>

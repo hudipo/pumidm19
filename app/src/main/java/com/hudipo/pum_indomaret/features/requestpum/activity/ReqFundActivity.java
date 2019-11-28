@@ -82,6 +82,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                             Uri tempUri = Utils.getImageUri(this, bitmap);
                             String realPath = Utils.getRealPathImageFromURI(this, tempUri);
                             requestModel.setFileDataUri(tempUri);
+                            requestModel.setImage(true);
 
                             File file = new  File(realPath);
                             tvSelectAFile.setText(file.getName());
@@ -108,6 +109,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                     if (uriSelectedImage != null){
                         String realPath = Utils.getRealPathImageFromURI(this, uriSelectedImage);
                         requestModel.setFileDataUri(uriSelectedImage);
+                        requestModel.setImage(true);
 
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
@@ -119,9 +121,12 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             case REQUEST_CODE_FILES:
                 if (data != null){
                     Uri selectedFile = data.getData();
+
                     if (selectedFile != null){
                         String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
                         requestModel.setFileDataUri(selectedFile);
+                        requestModel.setImage(false);
+
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
                     }else {
