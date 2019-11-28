@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/tvPin1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="*"
                 android:textAlignment="center"
@@ -126,13 +126,27 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvErrorPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/oops_your_pin_in_incorrect"
+            android:textSize="20sp"
+            android:textColor="@color/redError"
+            android:textAlignment="center"
+            android:layout_marginTop="4dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPassword"/>
+
         <TableLayout
             android:id="@+id/keyboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="36sp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvPassword">
+            app:layout_constraintTop_toBottomOf="@id/tvErrorPassword">
 
             <TableRow style="@style/keyboard_row">
 
@@ -223,4 +237,15 @@
             </TableRow>
         </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/pbPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

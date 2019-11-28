@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -161,6 +161,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         }else {
             btnSearchDept.setError(null);
         }
+        isValid = true;
         return isValid;
     }
 

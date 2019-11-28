@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_request_sent"
-    tools:context=".features.requestpum.SentReqActivity">
+    tools:context=".features.requestpum.activity.SentReqActivity">
 
     <LinearLayout
         android:padding="@dimen/dp12"

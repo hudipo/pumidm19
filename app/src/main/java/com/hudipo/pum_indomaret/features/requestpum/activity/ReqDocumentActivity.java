@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -82,6 +82,7 @@ public class ReqDocumentActivity extends AppCompatActivity {
                 String docSelected = spnDocType.getSelectedItem().toString().trim();
                 if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))){
                     requestModel.setNameDocType("-");
+                    requestModel.setDocNum("-");
                     disableButtonSearch();
                 }else {
                     requestModel.setNameDocType(docSelected);
