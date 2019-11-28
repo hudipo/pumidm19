@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity
-            android:name=".features.requestpum.ReqFundActivity"
+            android:name=".features.requestpum.activity.ReqFundActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
@@ -30,12 +30,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.requestpum.ReqDocumentActivity"
+            android:name=".features.requestpum.activity.ReqDocumentActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.requestpum.ReqEmployeeActivity"
+            android:name=".features.requestpum.activity.ReqEmployeeActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -63,9 +63,9 @@
             android:name=".features.pin.PinActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".features.requestpum.SentReqActivity"
+            android:name=".features.requestpum.activity.SentReqActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -145,7 +145,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.requestpum.ReqValidationActivity"
+            android:name=".features.requestpum.activity.ReqValidationActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

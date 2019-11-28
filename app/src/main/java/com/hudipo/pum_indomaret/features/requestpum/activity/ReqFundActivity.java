@@ -1,4 +1,4 @@
-package com.hudipo.pum_indomaret.features.requestpum;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -81,7 +81,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         if (bitmap != null){
                             Uri tempUri = Utils.getImageUri(this, bitmap);
                             String realPath = Utils.getRealPathImageFromURI(this, tempUri);
-                            requestModel.setFileDataUri(Utils.getRealPathImageFromURI(getApplicationContext(), tempUri));
+                            requestModel.setFileDataUri(tempUri);
 
                             File file = new  File(realPath);
                             tvSelectAFile.setText(file.getName());
@@ -107,7 +107,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                     Uri uriSelectedImage = data.getData();
                     if (uriSelectedImage != null){
                         String realPath = Utils.getRealPathImageFromURI(this, uriSelectedImage);
-                        requestModel.setFileDataUri(realPath);
+                        requestModel.setFileDataUri(uriSelectedImage);
 
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
@@ -121,7 +121,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                     Uri selectedFile = data.getData();
                     if (selectedFile != null){
                         String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
-                        requestModel.setFileDataUri(realPath);
+                        requestModel.setFileDataUri(selectedFile);
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
                     }else {

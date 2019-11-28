@@ -159,4 +159,5 @@
     <string name="rp">Rp</string>
     <string name="emp_dept">Emp Dept</string>
     <string name="trx_type">Trx Type</string>
+    <string name="oops_your_pin_in_incorrect">Oops... Your pin in incorrect</string>
 </resources>

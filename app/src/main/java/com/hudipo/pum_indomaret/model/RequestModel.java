@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.model;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,8 +14,8 @@ public class RequestModel implements Parcelable {
     private int trxTypeId;
     private String description;
     private Double amount;
-    private String fileDataUri;
-    private int pin;
+    private Uri fileDataUri;
+    private String pin;
     private int orgId;
     private int userId;
     private String nameEmpDept;
@@ -35,8 +36,8 @@ public class RequestModel implements Parcelable {
         } else {
             amount = in.readDouble();
         }
-        fileDataUri = in.readString();
-        pin = in.readInt();
+        fileDataUri = in.readParcelable(Uri.class.getClassLoader());
+        pin = in.readString();
         orgId = in.readInt();
         userId = in.readInt();
         nameEmpDept = in.readString();
@@ -156,19 +157,19 @@ public class RequestModel implements Parcelable {
         this.amount = amount;
     }
 
-    public String getFileDataUri() {
+    public Uri getFileDataUri() {
         return fileDataUri;
     }
 
-    public void setFileDataUri(String fileDataUri) {
+    public void setFileDataUri(Uri fileDataUri) {
         this.fileDataUri = fileDataUri;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
 
@@ -208,8 +209,8 @@ public class RequestModel implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeDouble(amount);
         }
-        dest.writeString(fileDataUri);
-        dest.writeInt(pin);
+        dest.writeParcelable(fileDataUri, flags);
+        dest.writeString(pin);
         dest.writeInt(orgId);
         dest.writeInt(userId);
         dest.writeString(nameEmpDept);
