@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.approval.activity.ApprovalDetailActivity;
+import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 
 import java.util.List;
@@ -19,13 +19,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
+
 public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.ApprovalViewHolder> {
     public interface OnItemClickCallback {
         void onItemChecked(ApprovalListModel approvalModel, boolean checked);
     }
 
     private List<ApprovalListModel> listApproval;
-    private boolean isAllChecked = false;
+    private int isAllChecked = 0; //0 default; 1 semua uncheck; 2 semua cheked
     private OnItemClickCallback onItemClickCallback;
 
     public ApprovalAdapter(List<ApprovalListModel> listApproval, OnItemClickCallback onItemClickCallback) {
@@ -42,7 +44,7 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.Approv
 
     @Override
     public void onBindViewHolder(@NonNull ApprovalViewHolder holder, int position) {
-        holder.bind(listApproval.get(position));
+        holder.bind(listApproval.get(position), position);
     }
 
     @Override
@@ -65,23 +67,41 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.Approv
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(ApprovalListModel approvalModel){
+        void bind(ApprovalListModel approvalModel, int position){
             tvPumNumber.setText(approvalModel.getTRXNUM());
             tvPumRequester.setText(approvalModel.getNAME());
             tvAmount.setText(String.valueOf(approvalModel.getAMOUNT()));
-            cbApproval.setChecked(isAllChecked);
+
+            if(isAllChecked==2){
+                cbApproval.setChecked(true);
+            }else if(isAllChecked==1){
+                cbApproval.setChecked(false);
+            }else {
+                cbApproval.setChecked(approvalModel.isChecked());
+            }
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(itemView.getContext(), ApprovalDetailActivity.class);
+                intent.putExtra(EXTRA_PUM_TRX_ID, approvalModel.getPUMTRXID());
                 itemView.getContext().startActivity(intent);
             });
 
-            cbApproval.setOnClickListener(view -> onItemClickCallback.onItemChecked(approvalModel, cbApproval.isChecked()));
+            cbApproval.setOnClickListener(
+                    view -> {
+                        onItemClickCallback.onItemChecked(approvalModel, cbApproval.isChecked());
+                        listApproval.get(position).setChecked(cbApproval.isChecked());
+                        isAllChecked = 0;
+                    }
+            );
         }
     }
 
     public void setAllChecked(boolean allChecked) {
-        isAllChecked = allChecked;
+        if(allChecked) isAllChecked = 2;
+        else isAllChecked = 1;
+        for(int i=0;i<listApproval.size();i++){
+            listApproval.get(i).setChecked(allChecked);
+        }
         notifyDataSetChanged();
     }
 

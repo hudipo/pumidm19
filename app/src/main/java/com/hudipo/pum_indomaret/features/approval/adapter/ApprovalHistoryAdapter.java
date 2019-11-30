@@ -10,21 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.approval.activity.ApprovalDetailHistoryActivity;
-import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
+import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailHistoryActivity;
+import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_APPROVAL_HISTORY_TYPE;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_STATUS;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
 
 public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> {
 
-    private List<ApprovalListModel> listApproval;
+    private List<ApprovalHistoryListModel> listApproval;
 
-    public ApprovalHistoryAdapter(List<ApprovalListModel> listApproval) {
+    public ApprovalHistoryAdapter(List<ApprovalHistoryListModel> listApproval) {
         this.listApproval = listApproval;
     }
 
@@ -60,23 +61,30 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(ApprovalListModel approvalModel){
-//            tvPumNumber.setText(approvalModel.getPumNumber());
-//            tvPumRequester.setText(approvalModel.getPumRequester());
-//            tvAmount.setText(String.valueOf(approvalModel.getAmount()));
-//
-//            itemView.setOnClickListener(view -> {
-//                Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
-//                intent.putExtra(EXTRA_APPROVAL_HISTORY_TYPE, approvalModel.getType());
-//                itemView.getContext().startActivity(intent);
-//            });
-//
-//            if(approvalModel.getType()==1)//1 for approve 2 for rejected sementara
-//            {
-//                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
-//            }else {
-//                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
-//            }
+        void bind(ApprovalHistoryListModel approvalModel){
+            tvPumNumber.setText(approvalModel.getTrxNum());
+            tvPumRequester.setText(approvalModel.getUsername());
+            tvAmount.setText("");
+
+            itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
+                intent.putExtra(EXTRA_PUM_TRX_ID, approvalModel.getPumTrxId());
+                intent.putExtra(EXTRA_PUM_STATUS, approvalModel.getStatus());
+                itemView.getContext().startActivity(intent);
+            });
+
+            if(approvalModel.getStatus().equals("APP"))
+            {
+                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
+            }else {
+                rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
+            }
         }
+    }
+
+    public void updateListApproval(List<ApprovalHistoryListModel> listApprovalUpdate) {
+        listApproval.clear();
+        listApproval.addAll(listApprovalUpdate);
+        notifyDataSetChanged();
     }
 }

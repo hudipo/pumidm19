@@ -1,10 +1,12 @@
-package com.hudipo.pum_indomaret.features.approval.presenter;
+package com.hudipo.pum_indomaret.features.approval.detail.presenter;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailContract;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
@@ -14,18 +16,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView<ApprovalContract.ApprovalView> {
+public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalDetailPresenterView<ApprovalDetailContract.ApprovalDetailView> {
     private Context context;
-    private ApprovalContract.ApprovalView mView;
+    private ApprovalDetailContract.ApprovalDetailView mView;
     private CompositeDisposable composite = new CompositeDisposable();
     private HawkStorage hawkStorage;
 
-    public ApprovalPresenter(Context context) {
+    public ApprovalDetailPresenter(Context context) {
         this.context = context;
     }
 
     @Override
-    public void onAttach(ApprovalContract.ApprovalView view) {
+    public void onAttach(ApprovalDetailContract.ApprovalDetailView view) {
         mView = view;
         hawkStorage = new HawkStorage(context);
     }
@@ -37,9 +39,9 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
     }
 
     @Override
-    public void getData() {
+    public void getData(Integer pumTrxId) {
         mView.showLoading();
-        composite.add(new ApiServices().getApiPumServices().getListApproval(hawkStorage.getUserData().getEmpId())
+        composite.add(new ApiServices().getApiPumServices().getDetailApproval(pumTrxId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(response -> {
@@ -55,7 +57,6 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                 }
 
             }, throwable -> {
-                Log.d("fakhri", "getData: "+throwable.getMessage());
                 mView.dismissLoading();
                 mView.error(context.getString(R.string.err_server));
             })
@@ -63,17 +64,12 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
     }
 
     @Override
-    public void searchData(String query) {
+    public void approve(ApprovalListModel approvalModels) {
 
     }
 
     @Override
-    public void reject(List list) {
-
-    }
-
-    @Override
-    public void approve(List list) {
+    public void reject(ApprovalListModel approvalModels) {
 
     }
 }

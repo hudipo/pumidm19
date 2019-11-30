@@ -87,6 +87,14 @@ public class Repository {
         return documentTypeList;
     }
 
+    static public ArrayList<String> getDataStatusApproval(Context context){
+        ArrayList<String> documentTypeList = new ArrayList<>();
+        documentTypeList.add("---");
+        documentTypeList.add("Approved");
+        documentTypeList.add("Rejected");
+        return documentTypeList;
+    }
+
     public void getDataDocDetail(CompositeDisposable composite, String docType, RepositoryCallback.LoadDataDocDetail callback){
         composite.add(new ApiServices().getApiPumServices()
             .getDocDetail(docType)

@@ -20,6 +20,8 @@ public class ApprovalListModel {
 	@Expose
 	private Integer aMOUNT;
 
+	private boolean isChecked;
+
 	public Integer getPUMTRXID() {
 		return pUMTRXID;
 	}
@@ -60,4 +62,11 @@ public class ApprovalListModel {
 		this.aMOUNT = aMOUNT;
 	}
 
+	public boolean isChecked() {
+		return isChecked;
+	}
+
+	public void setChecked(boolean checked) {
+		isChecked = checked;
+	}
 }

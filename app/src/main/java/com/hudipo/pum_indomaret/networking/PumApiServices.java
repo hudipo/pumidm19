@@ -1,6 +1,8 @@
 package com.hudipo.pum_indomaret.networking;
 
 import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
+import com.hudipo.pum_indomaret.model.approval.detail.ApprovalDetailResponse;
+import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListResponse;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
@@ -62,4 +64,12 @@ public interface PumApiServices {
     @FormUrlEncoded
     @POST("listapproval")
     Observable<ApprovalListResponse> getListApproval(@Field("emp_id") int emp_id);
+
+    @Multipart
+    @POST("historyapprovepum")
+    Observable<ApprovalHistoryListResponse> getListHistoryApproval(@PartMap HashMap<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST("detailpum")
+    Observable<ApprovalDetailResponse> getDetailApproval(@Field("pum_trx_id") int pumTrxId);
 }

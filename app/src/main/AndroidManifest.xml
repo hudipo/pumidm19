@@ -177,12 +177,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".features.approval.activity.ApprovalDetailHistoryActivity"
+            android:name=".features.approval.detail.ApprovalDetailHistoryActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.approval.activity.ApprovalDetailActivity"
+            android:name=".features.approval.detail.ApprovalDetailActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
