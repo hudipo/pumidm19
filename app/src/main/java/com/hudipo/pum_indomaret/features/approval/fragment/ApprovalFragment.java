@@ -1,6 +1,8 @@
 package com.hudipo.pum_indomaret.features.approval.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
+import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.utils.Global;
 
@@ -59,6 +62,8 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     private List<ApprovalListModel> approvalSelectedList = new ArrayList<>();
     private List<ApprovalListModel> approvalModelList = new ArrayList<>();
     private boolean isCheckedAll = false;
+    private final int REQUEST_CODE_PIN = 100;
+    private int requestCode = -1; //0 reject; 1 aprove
 
     @Nullable
     @Override
@@ -105,34 +110,53 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     @OnClick(R.id.btnApprove)
     void approve(){
-        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle(getString(R.string.approve));
-        alert.setMessage(getString(R.string.message_dialog_approve));
-        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-            // TODO: 15/09/19 to pin activity
-            Toast.makeText(getActivity(), "To PIN Activity", Toast.LENGTH_LONG).show();
-        }));
-        alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
-        alert.show();
+        if(approvalSelectedList.size()>0){
+            final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle(getString(R.string.approve));
+            if(approvalSelectedList.size()==1){
+                alert.setMessage(getString(R.string.message_dialog_approve_single));
+            }else {
+                alert.setMessage(getString(R.string.message_dialog_approve));
+            }
+            alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+                Intent intent = new Intent(getActivity(), PinActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_PIN);
+                requestCode = 1;
+            }));
+            alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
+            alert.show();
+        }else {
+            errorNotSelected("Not Selected");
+        }
     }
 
 
     @OnClick(R.id.btnReject)
     void reject(){
-        FrameLayout container = new FrameLayout(Objects.requireNonNull(getActivity()));
+        if(approvalSelectedList.size()>0){
+            FrameLayout container = new FrameLayout(Objects.requireNonNull(getActivity()));
 
-        container.addView(generateEditText());
+            container.addView(generateEditText());
 
-        final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-        alert.setTitle(getString(R.string.reject));
-        alert.setMessage(getString(R.string.message_dialog_reject));
-        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-            // TODO: 15/09/19 to pin activity
-            Toast.makeText(getActivity(), "To PIN Activity", Toast.LENGTH_LONG).show();
-        }));
-        alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
-        alert.setView(container);
-        alert.show();
+            final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+            alert.setTitle(getString(R.string.reject));
+            if(approvalSelectedList.size()==1){
+                alert.setMessage(getString(R.string.message_dialog_reject_single));
+            }else {
+                alert.setMessage(getString(R.string.message_dialog_reject));
+            }
+            alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+                Intent intent = new Intent(getActivity(), PinActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_PIN);
+                requestCode = 0;
+            }));
+            alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
+            alert.setView(container);
+            alert.show();
+
+        }else {
+            errorNotSelected("Not Selected");
+        }
     }
 
     private EditText generateEditText()
@@ -154,6 +178,19 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PIN){
+            if (resultCode == Activity.RESULT_OK){
+                if (data != null) {
+                    String pin = data.getStringExtra(PinActivity.EXTRA_PIN);
+                    // TODO: 30/11/2019 do request
+                }
+            }
+        }
+    }
+
+    @Override
     public void showData(List<ApprovalListModel> approvalModels) {
         approvalModelList.clear();
         approvalModelList.addAll(approvalModels);
@@ -162,7 +199,13 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     @Override
     public void errorNotSelected(String message) {
-
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Attention!");
+        alert.setMessage(message);
+        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        }));
+        alert.show();
     }
 
     @Override

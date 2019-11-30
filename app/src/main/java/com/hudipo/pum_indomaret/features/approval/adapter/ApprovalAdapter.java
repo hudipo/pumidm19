@@ -14,6 +14,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
