@@ -1,33 +1,22 @@
 package com.hudipo.pum_indomaret.features.pin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.requestpum.SentReqActivity;
-import com.hudipo.pum_indomaret.model.RequestModel;
-import com.hudipo.pum_indomaret.networking.ApiServices;
-
-import java.util.HashMap;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
+import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
-public class PinActivity extends AppCompatActivity implements View.OnClickListener {
+public class PinActivity extends AppCompatActivity implements View.OnClickListener, PinContract.PinView {
 
     @BindView(R.id.key_0)
     TextView key0;
@@ -65,31 +54,25 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
     TextView tvPin5;
     @BindView(R.id.tvPin6)
     TextView tvPin6;
+    @BindView(R.id.tvErrorPassword)
+    TextView tvErrorPassword;
+    @BindView(R.id.pbPin)
+    ProgressBar pbPin;
 
     private String pin="";
     private boolean isReset = false;
-    private int requestCode;
-
-    public static final String KEY_REQUEST_DATA = "KEY_REQUEST_DATA";
-    private RequestModel requestModel;
-    private CompositeDisposable composite;
+    private PinPresenter pinPresenter;
+    public static final String EXTRA_PIN = "extra_pin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
-
         ButterKnife.bind(this);
-
-        initComposite();
+        onAttachView();
 
         if (savedInstanceState!=null){
             restoreView(Objects.requireNonNull(savedInstanceState.getString("PIN")).length());
-        }
-
-        if (getIntent()!=null){
-            requestCode = getIntent().getIntExtra("requestCode",0);
-            requestModel = (RequestModel) getIntent().getSerializableExtra(KEY_REQUEST_DATA);
         }
 
         key0.setOnClickListener(this);
@@ -107,8 +90,16 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    private void initComposite() {
-        composite = new CompositeDisposable();
+    @Override
+    protected void onStop() {
+        super.onStop();
+        pinPresenter.clearComposite();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        onDetachView();
     }
 
     private void restoreView(int pinLength) {
@@ -149,6 +140,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
             isReset=false;
             hideTv();
         }
+
         if (view.getTag()!=null && view.getTag().equals("number_button") && pin.length()<6){
             pin = pin+((TextView)view).getText().toString();
             if (pin.length()==1){
@@ -178,53 +170,11 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         }
 
         if (pin.length()==6){
-            if (requestModel != null){
-                createPumToServer(requestModel, pin);
-            }
+            HawkStorage hawkStorage = new HawkStorage(this);
+            pinPresenter.checkPinToServer(hawkStorage.getUserData().getEmpId(), pin);
         }
     }
 
-    private void createPumToServer(RequestModel requestModel, String pinString) {
-        HashMap<String, RequestBody> params = new HashMap<>();
-//        RequestBody empId = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdEmployee()));
-//        RequestBody empDept = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringEmployeeDepartment());
-//        RequestBody useDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringUseDate());
-//        RequestBody respDate = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringRespDate());
-//        RequestBody docNum = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDocNumber());
-//        RequestBody trxType = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIdTrxType()));
-//        RequestBody description = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringDescription());
-//        RequestBody amount = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(requestModel.getIntAmount()));
-//        RequestBody uploadFile = RequestBody.create(MediaType.parse("text/plain"), requestModel.getStringFileUri());
-        RequestBody pin = RequestBody.create(pinString, MediaType.parse("text/plain"));
-
-//        params.put("emp_id", empId);
-//        params.put("emp_dept", empDept);
-//        params.put("use_date", useDate);
-//        params.put("resp_date", respDate);
-//        params.put("doc_num", docNum);
-//        params.put("trx_type", trxType);
-//        params.put("description", description);
-//        params.put("amount", amount);
-//        params.put("upload_file", uploadFile);
-        params.put("pin", pin);
-
-        composite.add(new ApiServices()
-                .getApiPumServices()
-                .createPum(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(createPumResponse -> {
-                    if (createPumResponse.isError()){
-                        failedCreatePum();
-                        Toast.makeText(this, "message: "+createPumResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    }else {
-                        successCreatePum();
-                    }
-                }, throwable -> {
-                    failedCreatePum();
-                    Toast.makeText(this, "message: "+throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                }));
-    }
 
     private void deletePin() {
         if (pin.length()==1){
@@ -255,26 +205,54 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         tvPin6.setTextColor(Color.BLACK);
     }
 
-    private void successCreatePum(){
-        startActivity(new Intent(PinActivity.this, SentReqActivity.class));
-        isReset=true;
+    @Override
+    protected void onSaveInstanceState(@NotNull Bundle outState) {
+        if (pin.length()!=0){
+            outState.putString("PIN",pin);
+        }
+        super.onSaveInstanceState(outState);
     }
 
-    private void failedCreatePum(){
+    @Override
+    public void showProgress() {
+        pbPin.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        pbPin.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showFailed() {
         tvPin1.setTextColor(getResources().getColor(R.color.redError));
         tvPin2.setTextColor(getResources().getColor(R.color.redError));
         tvPin3.setTextColor(getResources().getColor(R.color.redError));
         tvPin4.setTextColor(getResources().getColor(R.color.redError));
         tvPin5.setTextColor(getResources().getColor(R.color.redError));
         tvPin6.setTextColor(getResources().getColor(R.color.redError));
+        tvErrorPassword.setVisibility(View.VISIBLE);
         isReset=true;
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (pin.length()!=0){
-            outState.putString("PIN",pin);
-        }
-        super.onSaveInstanceState(outState);
+    public void showSuccess(String pin) {
+        tvErrorPassword.setVisibility(View.INVISIBLE);
+        isReset=true;
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_PIN, pin);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+    }
+
+    @Override
+    public void onAttachView() {
+        pinPresenter = new PinPresenter();
+        pinPresenter.onAttach(this);
+    }
+
+    @Override
+    public void onDetachView() {
+        pinPresenter.onDetach();
     }
 }

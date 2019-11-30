@@ -18,7 +18,7 @@ public class StatusFilterPresenterImpl implements StatusContract.StatusFilterPre
     private StatusContract.StatusFilterView view;
     private StatusContract.StatusFilterInteractor interactor;
     private int requestCode = 0;
-    private StatusFilterRequestBody statusFilterRequestBody;
+    //private StatusFilterRequestBody statusFilterRequestBody;
 
     public StatusFilterPresenterImpl(StatusContract.StatusFilterView view, StatusContract.StatusFilterInteractor interactor){
         this.view = view;

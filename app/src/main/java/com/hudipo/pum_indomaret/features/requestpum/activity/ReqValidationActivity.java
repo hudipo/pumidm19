@@ -1,22 +1,26 @@
-package com.hudipo.pum_indomaret.features.requestpum;
+package com.hudipo.pum_indomaret.features.requestpum.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
+import com.hudipo.pum_indomaret.features.requestpum.contract.ReqValidationContract;
+import com.hudipo.pum_indomaret.features.requestpum.presenter.ReqValidationPresenter;
 import com.hudipo.pum_indomaret.model.RequestModel;
-import com.hudipo.pum_indomaret.utils.RequestCode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReqValidationActivity extends AppCompatActivity {
+public class ReqValidationActivity extends AppCompatActivity implements ReqValidationContract.ReqValidationView {
 
     @BindView(R.id.tvEmpDept)
     TextView tvEmpDept;
@@ -46,7 +50,9 @@ public class ReqValidationActivity extends AppCompatActivity {
     TextView tvDescription;
 
     public static String EXTRA_DATA_REQUEST = "extra_data_request";
+    private final int REQUEST_CODE_PIN = 100;
     private RequestModel requestModel;
+    private ReqValidationPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,33 @@ public class ReqValidationActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         getDataRequestModel();
+        onAttachView();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.clearComposite();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        onDetachView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PIN){
+            if (resultCode == Activity.RESULT_OK){
+                if (data != null) {
+                    String pin = data.getStringExtra(PinActivity.EXTRA_PIN);
+                    requestModel.setPin(pin);
+                    presenter.createPumToServer(requestModel);
+                }
+            }
+        }
     }
 
     private void getDataRequestModel() {
@@ -94,10 +127,7 @@ public class ReqValidationActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", (dialogInterface, i) -> {
                     if (requestModel != null){
                         Intent intent = new Intent(this, PinActivity.class);
-                        intent.putExtra(PinActivity.KEY_REQUEST_DATA, requestModel);
-                        intent.putExtra("requestCode", RequestCode.PIN_REQUESTPUM_CODE);
-
-                        startActivity(intent);
+                        startActivityForResult(intent, REQUEST_CODE_PIN);
                     }
                 })
                 .setNegativeButton("No", (dialog, which) -> {
@@ -109,5 +139,36 @@ public class ReqValidationActivity extends AppCompatActivity {
     @OnClick(R.id.imgBack)
     void onBackClicked(){
         super.onBackPressed();
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void failedCreatePum(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void successCreatePum() {
+        Toast.makeText(this, "Success Create pum", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAttachView() {
+        presenter = new ReqValidationPresenter(this);
+        presenter.onAttach(this);
+    }
+
+    @Override
+    public void onDetachView() {
+        presenter.onDetach();
     }
 }

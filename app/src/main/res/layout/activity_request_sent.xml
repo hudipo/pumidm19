@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_request_sent"
-    tools:context=".features.requestpum.SentReqActivity">
+    tools:context=".features.requestpum.activity.SentReqActivity">
 
     <LinearLayout
         android:padding="@dimen/dp12"
@@ -28,19 +28,19 @@
             android:textSize="40sp"
             android:textColor="@color/white"
             android:layout_margin="@dimen/dp12"
-            android:text="Request Sent!"
+            android:text="@string/request_sent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp6"
             android:layout_marginEnd="@dimen/dp6"
+            android:text="@string/you_have_successfully_created_pum_request"
             android:textAlignment="center"
-            android:textSize="24sp"
             android:textColor="@color/white"
-            android:text="You have successfully created PUM Request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnViewRequestSent"
@@ -48,7 +48,7 @@
             android:textSize="24sp"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:text="View Request"
+            android:text="@string/view_request"
             android:layout_width="300dp"
             android:layout_marginTop="36dp"
             android:layout_height="50dp"/>
@@ -59,7 +59,7 @@
             android:textSize="24sp"
             android:textAllCaps="false"
             android:textColor="@color/btn_home_text"
-            android:text="Back to Home"
+            android:text="@string/back_to_home"
             android:layout_width="300dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="@dimen/dp12"
