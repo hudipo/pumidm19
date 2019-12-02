@@ -63,7 +63,8 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     private List<ApprovalListModel> approvalModelList = new ArrayList<>();
     private boolean isCheckedAll = false;
     private final int REQUEST_CODE_PIN = 100;
-    private int requestCode = -1; //0 reject; 1 aprove
+    private int requestType = -1; //0 reject; 1 aprove
+    private String reasonValidation = "";
 
     @Nullable
     @Override
@@ -121,7 +122,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
                 Intent intent = new Intent(getActivity(), PinActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_PIN);
-                requestCode = 1;
+                requestType = 1;
             }));
             alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
             alert.show();
@@ -136,7 +137,8 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         if(approvalSelectedList.size()>0){
             FrameLayout container = new FrameLayout(Objects.requireNonNull(getActivity()));
 
-            container.addView(generateEditText());
+            EditText editText = generateEditText();
+            container.addView(editText);
 
             final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
             alert.setTitle(getString(R.string.reject));
@@ -146,9 +148,15 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
                 alert.setMessage(getString(R.string.message_dialog_reject));
             }
             alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-                Intent intent = new Intent(getActivity(), PinActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_PIN);
-                requestCode = 0;
+                reasonValidation = editText.getText().toString();
+                if(reasonValidation.isEmpty()){
+                    Toast.makeText(getActivity(),"Reason validation can't empty", Toast.LENGTH_SHORT).show();
+                    reject();
+                }else {
+                    Intent intent = new Intent(getActivity(), PinActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_PIN);
+                    requestType = 0;
+                }
             }));
             alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
             alert.setView(container);
@@ -184,7 +192,11 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             if (resultCode == Activity.RESULT_OK){
                 if (data != null) {
                     String pin = data.getStringExtra(PinActivity.EXTRA_PIN);
-                    // TODO: 30/11/2019 do request
+                    if(requestType==0){ //reject
+                        presenter.reject(approvalSelectedList, pin, reasonValidation);
+                    }else {
+                        presenter.approve(approvalSelectedList, pin);
+                    }
                 }
             }
         }
@@ -227,8 +239,8 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     }
 
     @Override
-    public void success(String message) {
-        Global.toast(getContext(), message);
+    public void success(int requestType) {
+        //todo ke halaman suskses
     }
 
     @Override

@@ -12,8 +12,8 @@ public class ApprovalContract {
         void onDetach();
         void getData();
         void searchData(String query);
-        void approve(List<ApprovalListModel> approvalModels);
-        void reject(List<ApprovalListModel> approvalModels);
+        void approve(List<ApprovalListModel> approvalModels, String pin);
+        void reject(List<ApprovalListModel> approvalModels, String pin, String reasonValidation);
     }
 
     public interface ApprovalView extends MainView{
@@ -22,7 +22,7 @@ public class ApprovalContract {
         void error(String message);
         void showLoading();
         void dismissLoading();
-        void success(String message);
+        void success(int requestType);
         void showAction();
         void closeAction();
     }

@@ -1,6 +1,7 @@
 package com.hudipo.pum_indomaret.networking;
 
 import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
+import com.hudipo.pum_indomaret.model.approval.ApproveResponse;
 import com.hudipo.pum_indomaret.model.approval.detail.ApprovalDetailResponse;
 import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListResponse;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
@@ -12,13 +13,17 @@ import com.hudipo.pum_indomaret.model.pin.PinResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Response;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 
@@ -80,4 +85,9 @@ public interface PumApiServices {
     @FormUrlEncoded
     @POST("detailpum")
     Observable<ApprovalDetailResponse> getDetailApproval(@Field("pum_trx_id") int pumTrxId);
+
+    @FormUrlEncoded
+    @POST("approvepum")
+    Observable<ApproveResponse> approve(@Field("pum_trx_id[]") List<Integer> pumTrxIds,
+                                        @FieldMap Map<String, String> params);
 }
