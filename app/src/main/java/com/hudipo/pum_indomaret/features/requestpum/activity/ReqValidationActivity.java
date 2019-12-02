@@ -158,7 +158,9 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
 
     @Override
     public void successCreatePum() {
-        Toast.makeText(this, "Success Create pum", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, SentReqActivity.class);
+        startActivity(intent);
+        finishAffinity();
     }
 
     @Override

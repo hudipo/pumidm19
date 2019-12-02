@@ -22,6 +22,7 @@ public class RequestModel implements Parcelable {
     private String nameDocType;
     private String nameTrxType;
     private String nameFile;
+    private String pathDocument;
     private boolean isImage;
 
 
@@ -47,6 +48,7 @@ public class RequestModel implements Parcelable {
         nameTrxType = in.readString();
         nameFile = in.readString();
         isImage = in.readByte() != 0;
+        pathDocument = in.readString();
     }
 
     public static final Creator<RequestModel> CREATOR = new Creator<RequestModel>() {
@@ -60,6 +62,14 @@ public class RequestModel implements Parcelable {
             return new RequestModel[size];
         }
     };
+
+    public String getPathDocument() {
+        return pathDocument;
+    }
+
+    public void setPathDocument(String pathDocument) {
+        this.pathDocument = pathDocument;
+    }
 
     public boolean isImage() {
         return isImage;
@@ -229,5 +239,6 @@ public class RequestModel implements Parcelable {
         dest.writeString(nameTrxType);
         dest.writeString(nameFile);
         dest.writeByte((byte) (isImage ? 1 : 0));
+        dest.writeString(pathDocument);
     }
 }

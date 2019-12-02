@@ -84,7 +84,7 @@ public class ReqValidationPresenter implements ReqValidationContract.ReqValidati
             if (requestModel.isImage()){
                 realPath = Utils.getRealPathImageFromURI(context, requestModel.getFileDataUri());
             }else {
-                realPath = Utils.getRealPathDocumentFromUri(context, requestModel.getFileDataUri());
+                realPath = requestModel.getPathDocument();
             }
             File file = new File(realPath);
 
