@@ -1,5 +1,7 @@
 package com.hudipo.pum_indomaret.features.approval.detail;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -10,17 +12,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.activity.ApprovalSuccessActivity;
 import com.hudipo.pum_indomaret.features.approval.activity.FileViewerActivity;
 import com.hudipo.pum_indomaret.features.approval.detail.presenter.ApprovalDetailPresenter;
 import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailContract;
-import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalHistoryPresenter;
+import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.model.approval.detail.DataApproval;
+import com.hudipo.pum_indomaret.utils.Extra;
 import com.hudipo.pum_indomaret.utils.StartActivity;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +61,9 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
 
     private ApprovalDetailPresenter presenter;
     private Integer pumTrxId;
+    private int requestType=-1;
+    private final int REQUEST_CODE_PIN = 100;
+    private String reasonValidation="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +99,9 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
         alert.setTitle(getString(R.string.approve));
         alert.setMessage(getString(R.string.message_dialog_approve_single));
         alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-            // TODO: 15/09/19 to pin activity
-            Toast.makeText(this, "To PIN Activity", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, PinActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_PIN);
+            requestType = 1;
         }));
         alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
         alert.show();
@@ -99,20 +110,28 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
 
     @OnClick(R.id.btnReject)
     void reject(){
-        FrameLayout container = new FrameLayout(this);
+            FrameLayout container = new FrameLayout(Objects.requireNonNull(this));
 
-        container.addView(generateEditText());
+            EditText editText = generateEditText();
+            container.addView(editText);
 
-        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(getString(R.string.reject));
-        alert.setMessage(getString(R.string.message_dialog_reject_single));
-        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-            // TODO: 15/09/19 to pin activity
-            Toast.makeText(ApprovalDetailActivity.this, "To PIN Activity", Toast.LENGTH_LONG).show();
-        }));
-        alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
-        alert.setView(container);
-        alert.show();
+            final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(this));
+            alert.setTitle(getString(R.string.reject));
+            alert.setMessage(getString(R.string.message_dialog_reject_single));
+            alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+                reasonValidation = editText.getText().toString();
+                if(reasonValidation.isEmpty()){
+                    Toast.makeText(this,"Reason validation can't empty", Toast.LENGTH_SHORT).show();
+                    reject();
+                }else {
+                    Intent intent = new Intent(this, PinActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_PIN);
+                    requestType = 0;
+                }
+            }));
+            alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
+            alert.setView(container);
+            alert.show();
     }
 
     private EditText generateEditText()
@@ -131,6 +150,23 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
         input.setGravity(Gravity.TOP);
         input.setPadding(padding, padding, padding, padding);
         return input;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PIN){
+            if (resultCode == Activity.RESULT_OK){
+                if (data != null) {
+                    String pin = data.getStringExtra(PinActivity.EXTRA_PIN);
+                    if(requestType==0){ //reject
+                        presenter.reject(pumTrxId, pin, reasonValidation);
+                    }else {
+                        presenter.approve(pumTrxId, pin);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -164,8 +200,11 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
     }
 
     @Override
-    public void success(String message) {
-
+    public void success(int requestType) {
+        Intent intent = new Intent(this, ApprovalSuccessActivity.class);
+        intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE,requestType);
+        startActivity(intent);
+        finish();
     }
 
     @Override

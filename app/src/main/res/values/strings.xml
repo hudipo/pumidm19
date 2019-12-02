@@ -165,4 +165,8 @@
     <string name="view_request">View Request</string>
     <string name="back_to_home">Back to Home</string>
     <string name="request_sent">Request Sent!</string>
+    <string name="request_approved">Request Approved !</string>
+    <string name="request_rejected">Request Rejected !</string>
+    <string name="request_rejected_desc">You have successfully reject PUM Request</string>
+    <string name="request_approved_note">You have successfully approve PUM Request</string>
 </resources>

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.presenter.ApprovalDetailPresenter;
@@ -20,7 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_APPROVAL_HISTORY_TYPE;
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_STATUS;
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
 
@@ -103,7 +101,7 @@ public class ApprovalDetailHistoryActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void success(String message) {
+    public void success(int message) {
 
     }
 

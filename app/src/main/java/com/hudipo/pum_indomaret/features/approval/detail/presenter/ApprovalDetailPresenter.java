@@ -10,7 +10,10 @@ import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -64,12 +67,74 @@ public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalD
     }
 
     @Override
-    public void approve(ApprovalListModel approvalModels) {
+    public void approve(Integer pumTrxId, String pin) {
+        mView.showLoading();
+        //dapatkan pum trx id
+        List<Integer> pumTrxIds = new ArrayList<>();
+        pumTrxIds.add(pumTrxId);
 
+        Map<String, String> params = new HashMap<>();
+        params.put("kode","1");
+        params.put("emp_id", String.valueOf(hawkStorage.getUserData().getEmpId()));
+        params.put("pin",pin);
+        composite.add(new ApiServices().getApiPumServices().approve(pumTrxIds, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    mView.dismissLoading();
+                    if (response != null){
+                        if (!response.isError()){
+                            mView.success(1);
+                        }else {
+                            mView.error(response.getMessage());
+                        }
+                    }else {
+                        mView.error(context.getString(R.string.err_server));
+                    }
+
+                }, throwable -> {
+                    Log.d("fakhri", "getData: "+throwable.getMessage());
+                    mView.dismissLoading();
+                    mView.error(context.getString(R.string.err_server));
+                })
+        );
     }
 
     @Override
-    public void reject(ApprovalListModel approvalModels) {
+    public void reject(Integer pumTrxId, String pin, String reasonValidation) {
 
+        mView.showLoading();
+        //dapatkan pum trx id
+        List<Integer> pumTrxIds = new ArrayList<>();
+        pumTrxIds.add(pumTrxId);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("kode","0");
+        params.put("emp_id", String.valueOf(hawkStorage.getUserData().getEmpId()));
+        params.put("pin",pin);
+        if(!reasonValidation.isEmpty()){
+            params.put("reason_validate", reasonValidation);
+        }
+        composite.add(new ApiServices().getApiPumServices().approve(pumTrxIds, params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    mView.dismissLoading();
+                    if (response != null){
+                        if (!response.isError()){
+                            mView.success(0);
+                        }else {
+                            mView.error(response.getMessage());
+                        }
+                    }else {
+                        mView.error(context.getString(R.string.err_server));
+                    }
+
+                }, throwable -> {
+                    Log.d("fakhri", "getData: "+throwable.getMessage());
+                    mView.dismissLoading();
+                    mView.error(context.getString(R.string.err_server));
+                })
+        );
     }
 }

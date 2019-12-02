@@ -27,11 +27,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.activity.ApprovalSuccessActivity;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
+import com.hudipo.pum_indomaret.utils.Extra;
 import com.hudipo.pum_indomaret.utils.Global;
 
 import org.w3c.dom.Text;
@@ -240,7 +242,9 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     @Override
     public void success(int requestType) {
-        //todo ke halaman suskses
+        Intent intent = new Intent(getActivity(), ApprovalSuccessActivity.class);
+        intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE,requestType);
+        startActivity(intent);
     }
 
     @Override
