@@ -25,6 +25,7 @@ import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailCont
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.model.approval.detail.DataApproval;
 import com.hudipo.pum_indomaret.utils.Extra;
+import com.hudipo.pum_indomaret.utils.Global;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import java.util.Objects;
@@ -90,6 +91,7 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
 
     @OnClick(R.id.btnDetail)
     void showImageFile(){
+        // TODO: 02/12/2019 check dulu kalo image show ke image kalau bukan gimana
         StartActivity.goTo(this, FileViewerActivity.class);
     }
 
@@ -178,7 +180,7 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
         tvUseDate.setText(dataApproval.getUseDate());
         tvTransactionType.setText(dataApproval.getPumTrxTypeId());
         tvDescription.setText(dataApproval.getDescription());
-        tvAmount.setText(String.valueOf(dataApproval.getAmount()));
+        tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormater(String.valueOf(dataApproval.getAmount()))));
         tvFileUploaded.setText(dataApproval.getUploadData());
         scrollView.setVisibility(View.VISIBLE);
     }

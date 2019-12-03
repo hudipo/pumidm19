@@ -14,6 +14,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.presenter.ApprovalDetailPresenter;
 import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailContract;
 import com.hudipo.pum_indomaret.model.approval.detail.DataApproval;
+import com.hudipo.pum_indomaret.utils.Global;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +78,7 @@ public class ApprovalDetailHistoryActivity extends AppCompatActivity implements 
         tvUseDate.setText(dataApproval.getUseDate());
         tvTransactionType.setText(dataApproval.getPumTrxTypeId());
         tvDescription.setText(dataApproval.getDescription());
-        tvAmount.setText(String.valueOf(dataApproval.getAmount()));
+        tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormater(String.valueOf(dataApproval.getAmount()))));
         scrollView.setVisibility(View.VISIBLE);
         if(status.equalsIgnoreCase("R")){
             ivType.setImageResource(R.drawable.txt_rejected);
