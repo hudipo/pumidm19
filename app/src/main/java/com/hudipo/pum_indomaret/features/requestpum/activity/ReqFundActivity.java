@@ -67,7 +67,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         setContentView(R.layout.activity_req_fund);
         ButterKnife.bind(this);
 
-//        getDataIntent();
+        getDataIntent();
     }
 
     @Override
@@ -109,10 +109,8 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                     Uri uriSelectedImage = data.getData();
                     if (uriSelectedImage != null){
                         String realPath = Utils.getRealPathImageFromURI(this, uriSelectedImage);
-//                        requestModel.setFileDataUri(uriSelectedImage);
-////                        requestModel.setImage(true);
-                        Log.d("coba", "real path : "+realPath);
-                        Log.d("coba", "uri : "+uriSelectedImage);
+                        requestModel.setFileDataUri(uriSelectedImage);
+                        requestModel.setImage(true);
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
                     }else {
@@ -126,8 +124,8 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
                     if (selectedFile != null){
                         String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
-//                        requestModel.setFileDataUri(selectedFile);
-//                        requestModel.setImage(false);
+                        requestModel.setFileDataUri(selectedFile);
+                        requestModel.setImage(false);
 
                         String path = selectedFile.getPath();
 //                        requestModel.setPathDocument(path);
@@ -135,9 +133,9 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         Log.d("coba", "real path : "+realPath);
                         Log.d("coba", "uri : "+selectedFile);
 
-//                        File file = new  File(realPath);
-//                        tvSelectAFile.setText(file.getName());
-//                        tvSelectAFile.setText(file.getAbsolutePath());
+                        File file = new  File(realPath);
+                        tvSelectAFile.setText(file.getName());
+                        tvSelectAFile.setText(file.getAbsolutePath());
                     }else {
                         Toast.makeText(this, "Failed to get files", Toast.LENGTH_SHORT).show();
                     }

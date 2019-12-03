@@ -118,9 +118,6 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
     }
 
     private void setAdapter(DepartmentResponse departmentResponse) {
-        ArrayList<DepartmentItem> listDepartment = new ArrayList<>();
-        listDepartment.clear();
-        listDepartment.addAll(departmentResponse.getDepartment());
         adapter = new SearchDeptAdapter(departmentItem -> {
             Intent resultIntent = new Intent();
             resultIntent.putExtra(DATA_SELECTED_VALUE, departmentItem);

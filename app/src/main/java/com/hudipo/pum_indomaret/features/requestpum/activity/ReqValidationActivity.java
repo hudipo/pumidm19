@@ -3,6 +3,9 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,30 +27,24 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
 
     @BindView(R.id.tvEmpDept)
     TextView tvEmpDept;
-
     @BindView(R.id.tvUseDate)
     TextView tvUseDate;
-
     @BindView(R.id.tvRespDate)
     TextView tvRespDate;
-
     @BindView(R.id.tvDocType)
     TextView tvDocType;
-
     @BindView(R.id.tvDocNum)
     TextView tvDocNum;
-
     @BindView(R.id.tvTrxType)
     TextView tvTrxType;
-
     @BindView(R.id.tvFile)
     TextView tvFile;
-
     @BindView(R.id.tvAmount)
     TextView tvAmount;
-
     @BindView(R.id.tvDesc)
     TextView tvDescription;
+    @BindView(R.id.pbReqValidation)
+    ProgressBar pbReqValidation;
 
     public static String EXTRA_DATA_REQUEST = "extra_data_request";
     private final int REQUEST_CODE_PIN = 100;
@@ -131,7 +128,7 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
                     }
                 })
                 .setNegativeButton("No", (dialog, which) -> {
-                    //Log.d("MainActivity", "Aborting mission...");
+                    Log.d("MainActivity", "Aborting mission...");
                 })
                 .show();
     }
@@ -143,12 +140,12 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
 
     @Override
     public void showProgress() {
-
+        pbReqValidation.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        pbReqValidation.setVisibility(View.INVISIBLE);
     }
 
     @Override

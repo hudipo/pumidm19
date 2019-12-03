@@ -20,8 +20,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class SearchDeptAdapter extends RecyclerView.Adapter<SearchDeptAdapter.ViewHolder> implements Filterable {
 
     private List<DepartmentItem> listDepartment;
@@ -73,17 +71,15 @@ public class SearchDeptAdapter extends RecyclerView.Adapter<SearchDeptAdapter.Vi
                     List<DepartmentItem> filteredList = new ArrayList<>();
                     if (listDepartment != null){
                         for (DepartmentItem row : listDepartment){
-                            if(row.getDescription()!=null){
+                            if(row.getDescription() != null){
                                 if (row.getDescription().toLowerCase().contains(charSearch)){
                                     filteredList.add(row);
                                 }
                             }
                         }
                         filterDepartment = filteredList;
-                        Log.d("coba", "size filter: "+filteredList.size());
                     }
                 }
-                Log.d("coba", "size: "+filterDepartment.size());
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = filterDepartment;
                 return filterResults;

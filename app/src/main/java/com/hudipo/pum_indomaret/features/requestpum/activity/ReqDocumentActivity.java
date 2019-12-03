@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -123,6 +124,7 @@ public class ReqDocumentActivity extends AppCompatActivity {
         startActivityForResult(intent, REQ_CODE_DOC_DETAIL);
     }
 
+
     @OnClick(R.id.btnBackDoc)
     void btnBackDoc(){
         finish();
@@ -130,8 +132,22 @@ public class ReqDocumentActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnNextDoc)
     void btnNextDoc(){
-        Intent intent = new Intent(this, ReqFundActivity.class);
-        intent.putExtra(ReqFundActivity.EXTRA_DOCUMENT_DETAIL, requestModel);
-        startActivity(intent);
+        String docNum = tvDocNum.getText().toString();
+        if (checkValid(docNum)){
+            Intent intent = new Intent(this, ReqFundActivity.class);
+            intent.putExtra(ReqFundActivity.EXTRA_DOCUMENT_DETAIL, requestModel);
+            startActivity(intent);
+        }
+    }
+
+    private boolean checkValid(String docNum) {
+        if (docNum.isEmpty()){
+            tvDocNum.setError("Your document is empty");
+            Toast.makeText(this, "Your document is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            tvDocNum.setError(null);
+        }
+        return true;
     }
 }

@@ -3,7 +3,10 @@ package com.hudipo.pum_indomaret.features.searchtrx;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -26,8 +29,11 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
     RecyclerView rvSearchTrx;
     @BindView(R.id.pbSearchTrx)
     ProgressBar pbSearchTrx;
+    @BindView(R.id.etSearchTransaction)
+    EditText etSearchTransaction;
 
     private SearchTrxPresenter trxPresenter;
+    private SearchTrxAdapter searchTrxAdapter;
     static public String EXTRA_SELECTED = "extra_selected";
 
     @Override
@@ -71,7 +77,7 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
     }
 
     private void setAdapter(TrxTypeResponse trxTypeResponse) {
-        SearchTrxAdapter searchTrxAdapter = new SearchTrxAdapter(trxItem -> {
+        searchTrxAdapter = new SearchTrxAdapter(trxItem -> {
             Intent intent = new Intent();
             intent.putExtra(EXTRA_SELECTED, trxItem);
             setResult(Activity.RESULT_OK, intent);
@@ -81,6 +87,27 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
 
         rvSearchTrx.setLayoutManager(new LinearLayoutManager(this));
         rvSearchTrx.setAdapter(searchTrxAdapter);
+
+        searchTrx();
+    }
+
+    private void searchTrx() {
+        etSearchTransaction.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchTrxAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchTrxAdapter.getFilter().filter(s.toString());
+            }
+        });
     }
 
     @Override
