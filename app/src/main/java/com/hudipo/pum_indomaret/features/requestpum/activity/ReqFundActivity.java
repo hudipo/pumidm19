@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -110,7 +111,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         String realPath = Utils.getRealPathImageFromURI(this, uriSelectedImage);
                         requestModel.setFileDataUri(uriSelectedImage);
                         requestModel.setImage(true);
-
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
                     }else {
@@ -127,8 +127,15 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         requestModel.setFileDataUri(selectedFile);
                         requestModel.setImage(false);
 
+                        String path = selectedFile.getPath();
+//                        requestModel.setPathDocument(path);
+                        Log.d("coba", "path : "+path);
+                        Log.d("coba", "real path : "+realPath);
+                        Log.d("coba", "uri : "+selectedFile);
+
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
+                        tvSelectAFile.setText(file.getAbsolutePath());
                     }else {
                         Toast.makeText(this, "Failed to get files", Toast.LENGTH_SHORT).show();
                     }
@@ -302,10 +309,11 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         String[] mimeTypes = {"application/msword",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/pdf"};
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/pdf");
         intent.setType("application/msword");
+        intent.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.documen");
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
 
         startActivityForResult(intent, REQUEST_CODE_FILES);

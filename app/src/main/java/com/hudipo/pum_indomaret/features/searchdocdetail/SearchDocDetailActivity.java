@@ -3,6 +3,8 @@ package com.hudipo.pum_indomaret.features.searchdocdetail;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -35,6 +37,7 @@ public class SearchDocDetailActivity extends AppCompatActivity implements Search
     ConstraintLayout constraintSearchDoc;
 
     private SearchDocDetailPresenter presenter;
+    private SearchDocumentAdapter adapter;
 
     public static final String KEY_DATA_DOC_TYPE = "key_data_doc_type";
     public static final String EXTRA_SELECTED_DOC = "extra_selected_doc";
@@ -98,13 +101,35 @@ public class SearchDocDetailActivity extends AppCompatActivity implements Search
 
     @Override
     public void setDataDocDetail(DocDetailResponse docDetailResponse) {
-        rvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
-        rvSearchDoc.setAdapter(new SearchDocumentAdapter(docDetailResponse, dataItem -> {
+        adapter = new SearchDocumentAdapter(docDetailResponse, dataItem -> {
             Intent returnIntent = new Intent();
             returnIntent.putExtra(EXTRA_SELECTED_DOC, dataItem);
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
-        }));
+        });
+        rvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
+        rvSearchDoc.setAdapter(adapter);
+
+        searchDocDetail();
+    }
+
+    private void searchDocDetail() {
+        etSearchDoc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                adapter.getFilter().filter(s.toString());
+            }
+        });
     }
 
     @Override

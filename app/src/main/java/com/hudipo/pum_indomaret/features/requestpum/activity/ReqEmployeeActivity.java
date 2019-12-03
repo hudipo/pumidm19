@@ -98,6 +98,8 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     @OnClick(R.id.btnNext)
     void btnNext(){
         int idEmp = hawkStorage.getUserData().getEmpId();
+        int orgId = hawkStorage.getUserData().getOrgId();
+        int userId = hawkStorage.getUserData().getUserId();
         String useDate = tvUseDate.getText().toString().trim();
         String respDate = tvRespDate.getText().toString().trim();
         String nameSearchDept = btnSearchDept.getText().toString().trim();
@@ -107,6 +109,8 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
             requestModel.setNameEmpDept(nameSearchDept);
             requestModel.setEmpId(idEmp);
+            requestModel.setOrgId(orgId);
+            requestModel.setUserId(userId);
             requestModel.setUseDate(PumDateFormat.dateFormatServer(useDate));
             requestModel.setRespDate(PumDateFormat.dateFormatServer(respDate));
 
@@ -161,7 +165,6 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         }else {
             btnSearchDept.setError(null);
         }
-        isValid = true;
         return isValid;
     }
 

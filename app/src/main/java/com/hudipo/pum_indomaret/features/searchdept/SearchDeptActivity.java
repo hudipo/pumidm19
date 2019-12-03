@@ -2,8 +2,11 @@ package com.hudipo.pum_indomaret.features.searchdept;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -13,9 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.SearchDeptAdapter;
+import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.repository.Repository;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +29,7 @@ import butterknife.OnClick;
 
 public class SearchDeptActivity extends AppCompatActivity implements SearchDeptContract.SearchDeptView {
 
+    private SearchDeptAdapter adapter;
     private SearchDeptPresenter presenter;
     private Repository repository;
     static public int RESULT_CODE = 110;
@@ -32,6 +39,8 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
     RecyclerView rvSearchDept;
     @BindView(R.id.pbSearchDept)
     ProgressBar pbSearchDept;
+    @BindView(R.id.etSearchDepart)
+    EditText etSearchDept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,24 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
         ButterKnife.bind(this);
 
         onAttachView();
+    }
+
+    private void searchingDept() {
+        etSearchDept.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     private void initRepository() {
@@ -91,16 +118,19 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
     }
 
     private void setAdapter(DepartmentResponse departmentResponse) {
-        SearchDeptAdapter adapter = new SearchDeptAdapter(departmentItem -> {
+        adapter = new SearchDeptAdapter(departmentItem -> {
             Intent resultIntent = new Intent();
             resultIntent.putExtra(DATA_SELECTED_VALUE, departmentItem);
             setResult(RESULT_CODE, resultIntent);
             finish();
         });
-        adapter.setDepartmentResponse(departmentResponse);
+        adapter.setListDepartment(departmentResponse.getDepartment());
 
         rvSearchDept.setLayoutManager(new LinearLayoutManager(SearchDeptActivity.this));
+        rvSearchDept.setHasFixedSize(true);
         rvSearchDept.setAdapter(adapter);
+
+        searchingDept();
     }
 
     @Override
