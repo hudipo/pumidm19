@@ -216,9 +216,11 @@
 
             <TableRow style="@style/keyboard_row">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/key_fingerprint"
                     style="@style/keyboard_button2"
+                    android:clickable="false"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_fingerprint_white_24dp"
                     tools:ignore="ContentDescription" />
 
