@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailHistoryActivity;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -21,12 +26,14 @@ import butterknife.ButterKnife;
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_STATUS;
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
 
-public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> {
+public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> implements Filterable {
 
     private List<ApprovalHistoryListModel> listApproval;
+    private List<ApprovalHistoryListModel> listApprovalFiltered;
 
     public ApprovalHistoryAdapter(List<ApprovalHistoryListModel> listApproval) {
         this.listApproval = listApproval;
+        this.listApprovalFiltered = listApproval;
     }
 
     @NonNull
@@ -38,12 +45,12 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
 
     @Override
     public void onBindViewHolder(@NonNull ApprovalViewHolder holder, int position) {
-        holder.bind(listApproval.get(position));
+        holder.bind(listApprovalFiltered.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listApproval.size();
+        return listApprovalFiltered.size();
     }
 
     class ApprovalViewHolder extends RecyclerView.ViewHolder {
@@ -86,5 +93,47 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
         listApproval.clear();
         listApproval.addAll(listApprovalUpdate);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    listApprovalFiltered = listApproval;
+                } else {
+                    List<ApprovalHistoryListModel> filteredList = new ArrayList<>();
+                    for (ApprovalHistoryListModel row : listApproval) {
+                        boolean isMatched = false;
+
+                        if(row.getTrxNum()!=null){
+                            if(row.getTrxNum().toLowerCase().contains(charString.toLowerCase())){
+                                isMatched=true;
+                            }
+                        }
+                        if(row.getUsername()!=null){
+                            if(row.getUsername().toLowerCase().contains(charString.toLowerCase())){
+                                isMatched=true;
+                            }
+                        }
+                        if(isMatched) filteredList.add(row);
+                    }
+
+                    listApprovalFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listApprovalFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listApprovalFiltered = (ArrayList<ApprovalHistoryListModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

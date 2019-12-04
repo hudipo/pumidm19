@@ -1,36 +1,35 @@
 package com.hudipo.pum_indomaret.features.approval.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.repository.Repository;
 import com.hudipo.pum_indomaret.utils.DatePickerFragment;
 import com.hudipo.pum_indomaret.utils.PumDateFormat;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_START_DATE;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_STATUS;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_UNTIL_DATE;
 
 public class ApprovalFilterActivity extends AppCompatActivity implements DatePickerFragment.DialogDataListener  {
     @BindView(R.id.ivTrxStartDate)
@@ -87,11 +86,16 @@ public class ApprovalFilterActivity extends AppCompatActivity implements DatePic
     void submit(){
         if(validate()){
             Intent returnIntent = new Intent();
-            returnIntent.putExtra("startDate",startDate);
-            returnIntent.putExtra("untilDate",untilDate);
+            returnIntent.putExtra(EXTRA_START_DATE,startDate);
+            returnIntent.putExtra(EXTRA_UNTIL_DATE,untilDate);
             status=spTrxStatus.getSelectedItem().toString();
-            if(!status.equalsIgnoreCase("---"))
-                returnIntent.putExtra("status",status);
+            if(!status.equalsIgnoreCase("---")){
+                String temp = "APP";
+                if(status.equalsIgnoreCase("Rejected")){
+                    temp = "R";
+                }
+                returnIntent.putExtra(EXTRA_STATUS,temp);
+            }
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }

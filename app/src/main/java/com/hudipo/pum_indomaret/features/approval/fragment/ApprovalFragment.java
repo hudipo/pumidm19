@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +60,8 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.tvError)
     TextView tvError;
+    @BindView(R.id.search)
+    SearchView searchView;
 
     private View view;
     private ApprovalAdapter approvalAdapter;
@@ -109,6 +114,23 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             initAction();
         });
         rvApproval.setAdapter(approvalAdapter);
+
+        setSearch();
+    }
+
+    private void setSearch() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                approvalAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     @OnClick(R.id.btnApprove)
@@ -280,5 +302,10 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         if(approvalSelectedList.size()>0){
             showAction();
         }else closeAction();
+    }
+
+    @OnClick(R.id.ivBack)
+    void back(){
+        Objects.requireNonNull(getActivity()).onBackPressed();
     }
 }

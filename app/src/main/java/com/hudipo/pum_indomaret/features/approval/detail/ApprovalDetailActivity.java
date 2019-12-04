@@ -28,6 +28,7 @@ import com.hudipo.pum_indomaret.utils.Extra;
 import com.hudipo.pum_indomaret.utils.Global;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -35,6 +36,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_STATUS;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_URL;
 
 public class ApprovalDetailActivity extends AppCompatActivity implements ApprovalDetailContract.ApprovalDetailView {
     @BindView(R.id.tvPumNumber)
@@ -65,6 +68,7 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
     private int requestType=-1;
     private final int REQUEST_CODE_PIN = 100;
     private String reasonValidation="";
+    private DataApproval dataApproval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +95,11 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
 
     @OnClick(R.id.btnDetail)
     void showImageFile(){
-        // TODO: 02/12/2019 check dulu kalo image show ke image kalau bukan gimana
-        StartActivity.goTo(this, FileViewerActivity.class);
+        //check extensi file
+        Intent intent = new Intent(this, FileViewerActivity.class);
+        intent.putExtra(EXTRA_URL, dataApproval.getFileData());
+        intent.putExtra(EXTRA_PUM_TRX_ID, dataApproval.getPumTrxId());
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnApprove)
@@ -173,6 +180,7 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
 
     @Override
     public void showData(DataApproval dataApproval) {
+        this.dataApproval = dataApproval;
         tvPumNumber.setText(dataApproval.getTrxNum());
         tvPumRequester.setText(dataApproval.getName());
         tvDepartment.setText(dataApproval.getDepartment());

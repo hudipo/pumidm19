@@ -169,4 +169,7 @@
     <string name="request_rejected">Request Rejected !</string>
     <string name="request_rejected_desc">You have successfully reject PUM Request</string>
     <string name="request_approved_note">You have successfully approve PUM Request</string>
+    <string name="download_failed">Download Failed</string>
+    <string name="download_success">Download Success</string>
+    <string name="notification_error_ssl_cert_invalid">Not Secure Connection</string>
 </resources>

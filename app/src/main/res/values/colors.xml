@@ -22,6 +22,7 @@
     
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="black_transparent">#6B000000</color>
     <color name="yellow">#FFE200</color>
     <color name="yellow_process">#F4EB03</color>
     <color name="black_jet">#343434</color>

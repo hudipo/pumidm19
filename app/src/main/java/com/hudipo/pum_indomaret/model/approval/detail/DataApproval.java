@@ -35,7 +35,7 @@ public class DataApproval {
 	private int empId;
 
 	@SerializedName("FILE_DATA")
-	private String fileDate;
+	private String fileData;
 
 	@SerializedName("TRX_DATE")
 	private String trxDate;
@@ -89,8 +89,8 @@ public class DataApproval {
 		return empId;
 	}
 
-	public String getFileDate() {
-		return fileDate;
+	public String getFileData() {
+		return fileData;
 	}
 
 	public String getTrxDate() {

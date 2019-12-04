@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,17 +25,19 @@ import butterknife.ButterKnife;
 
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
 
-public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.ApprovalViewHolder> {
+public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.ApprovalViewHolder> implements Filterable {
     public interface OnItemClickCallback {
         void onItemChecked(ApprovalListModel approvalModel, boolean checked);
     }
 
     private List<ApprovalListModel> listApproval;
+    private List<ApprovalListModel> listApprovalFiltered;
     private int isAllChecked = 0; //0 default; 1 semua uncheck; 2 semua cheked
     private OnItemClickCallback onItemClickCallback;
 
     public ApprovalAdapter(List<ApprovalListModel> listApproval, OnItemClickCallback onItemClickCallback) {
         this.listApproval = listApproval;
+        this.listApprovalFiltered = listApproval;
         this.onItemClickCallback = onItemClickCallback;
     }
 
@@ -46,12 +50,12 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.Approv
 
     @Override
     public void onBindViewHolder(@NonNull ApprovalViewHolder holder, int position) {
-        holder.bind(listApproval.get(position), position);
+        holder.bind(listApprovalFiltered.get(position), position);
     }
 
     @Override
     public int getItemCount() {
-        return listApproval.size();
+        return listApprovalFiltered.size();
     }
 
     class ApprovalViewHolder extends RecyclerView.ViewHolder {
@@ -113,5 +117,47 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.Approv
         listApproval.clear();
         listApproval.addAll(listApprovalUpdate);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    listApprovalFiltered = listApproval;
+                } else {
+                    List<ApprovalListModel> filteredList = new ArrayList<>();
+                    for (ApprovalListModel row : listApproval) {
+                        boolean isMatched = false;
+
+                        if(row.getTRXNUM()!=null){
+                            if(row.getTRXNUM().toLowerCase().contains(charString.toLowerCase())){
+                                isMatched=true;
+                            }
+                        }
+                        if(row.getNAME()!=null){
+                            if(row.getNAME().toLowerCase().contains(charString.toLowerCase())){
+                                isMatched=true;
+                            }
+                        }
+                        if(isMatched) filteredList.add(row);
+                    }
+
+                    listApprovalFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listApprovalFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listApprovalFiltered = (ArrayList<ApprovalListModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

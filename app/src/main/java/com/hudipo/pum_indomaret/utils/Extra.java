@@ -5,4 +5,8 @@ public class Extra {
     static public String EXTRA_PIN = "EXTRA_PIN";
     static public String EXTRA_PUM_TRX_ID = "EXTRA_PUM_TRX_ID";
     static public String EXTRA_PUM_STATUS = "EXTRA_PUM_STATUS";
+    static public String EXTRA_START_DATE = "EXTRA_START_DATE";
+    static public String EXTRA_UNTIL_DATE = "EXTRA_UNTIL_DATE";
+    static public String EXTRA_STATUS = "EXTRA_STATUS";
+    static public String EXTRA_URL = "EXTRA_URL";
 }

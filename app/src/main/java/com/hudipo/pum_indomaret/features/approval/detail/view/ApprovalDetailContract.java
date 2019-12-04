@@ -1,6 +1,5 @@
 package com.hudipo.pum_indomaret.features.approval.detail.view;
 
-import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.model.approval.detail.DataApproval;
 import com.hudipo.pum_indomaret.view.MainView;
 
