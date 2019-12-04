@@ -1,9 +1,10 @@
-package com.hudipo.pum_indomaret.features.approval.presenter;
+package com.hudipo.pum_indomaret.features.approval.detail.presenter;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailContract;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.networking.ApiServices;
@@ -18,18 +19,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView<ApprovalContract.ApprovalView> {
+public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalDetailPresenterView<ApprovalDetailContract.ApprovalDetailView> {
     private Context context;
-    private ApprovalContract.ApprovalView mView;
+    private ApprovalDetailContract.ApprovalDetailView mView;
     private CompositeDisposable composite = new CompositeDisposable();
     private HawkStorage hawkStorage;
 
-    public ApprovalPresenter(Context context) {
+    public ApprovalDetailPresenter(Context context) {
         this.context = context;
     }
 
     @Override
-    public void onAttach(ApprovalContract.ApprovalView view) {
+    public void onAttach(ApprovalDetailContract.ApprovalDetailView view) {
         mView = view;
         hawkStorage = new HawkStorage(context);
     }
@@ -41,9 +42,9 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
     }
 
     @Override
-    public void getData() {
+    public void getData(Integer pumTrxId) {
         mView.showLoading();
-        composite.add(new ApiServices().getApiPumServices().getListApproval(hawkStorage.getUserData().getEmpId())
+        composite.add(new ApiServices().getApiPumServices().getDetailApproval(pumTrxId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(response -> {
@@ -59,7 +60,6 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                 }
 
             }, throwable -> {
-                Log.d("fakhri", "getData: "+throwable.getMessage());
                 mView.dismissLoading();
                 mView.error(context.getString(R.string.err_server));
             })
@@ -67,25 +67,16 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
     }
 
     @Override
-    public void searchData(String query) {
-
-    }
-
-    @Override
-    public void reject(List<ApprovalListModel> list, String pin, String reasonValidation) {
+    public void approve(Integer pumTrxId, String pin) {
         mView.showLoading();
         //dapatkan pum trx id
         List<Integer> pumTrxIds = new ArrayList<>();
-        for(ApprovalListModel a : list){
-            pumTrxIds.add(a.getPUMTRXID());
-        }
+        pumTrxIds.add(pumTrxId);
+
         Map<String, String> params = new HashMap<>();
-        params.put("kode","0");
+        params.put("kode","1");
         params.put("emp_id", String.valueOf(hawkStorage.getUserData().getEmpId()));
         params.put("pin",pin);
-        if(!reasonValidation.isEmpty()){
-            params.put("reason_validate", reasonValidation);
-        }
         composite.add(new ApiServices().getApiPumServices().approve(pumTrxIds, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -93,9 +84,7 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                     mView.dismissLoading();
                     if (response != null){
                         if (!response.isError()){
-                            mView.success(0);
-                            mView.closeAction();
-                            getData();
+                            mView.success(1);
                         }else {
                             mView.error(response.getMessage());
                         }
@@ -112,17 +101,20 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
     }
 
     @Override
-    public void approve(List<ApprovalListModel> list, String pin) {
+    public void reject(Integer pumTrxId, String pin, String reasonValidation) {
+
         mView.showLoading();
         //dapatkan pum trx id
         List<Integer> pumTrxIds = new ArrayList<>();
-        for(ApprovalListModel a : list){
-            pumTrxIds.add(a.getPUMTRXID());
-        }
+        pumTrxIds.add(pumTrxId);
+
         Map<String, String> params = new HashMap<>();
-        params.put("kode","1");
+        params.put("kode","0");
         params.put("emp_id", String.valueOf(hawkStorage.getUserData().getEmpId()));
         params.put("pin",pin);
+        if(!reasonValidation.isEmpty()){
+            params.put("reason_validate", reasonValidation);
+        }
         composite.add(new ApiServices().getApiPumServices().approve(pumTrxIds, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -130,9 +122,7 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                     mView.dismissLoading();
                     if (response != null){
                         if (!response.isError()){
-                            mView.success(1);
-                            mView.closeAction();
-                            getData();
+                            mView.success(0);
                         }else {
                             mView.error(response.getMessage());
                         }

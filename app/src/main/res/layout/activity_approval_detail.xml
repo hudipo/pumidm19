@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.approval.activity.ApprovalDetailActivity">
+    tools:context=".features.approval.detail.ApprovalDetailActivity">
     <RelativeLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
@@ -70,7 +70,9 @@
                 android:layout_height="match_parent">
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/scrollView">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -111,7 +113,7 @@
                             android:fontFamily="@font/montserrat_bold"
                             android:textSize="@dimen/font_title_item_approval" />
                         <TextView
-                            android:id="@+id/tvDepartement"
+                            android:id="@+id/tvDepartment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
@@ -132,7 +134,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/trx_date"
                                     android:fontFamily="@font/montserrat_bold"
-                                    android:textSize="@dimen/font_title_item_approval" />
+                                    android:textSize="@dimen/font_title_item_approval"/>
                                 <TextView
                                     android:id="@+id/tvTrxDate"
                                     android:layout_width="wrap_content"
@@ -269,6 +271,12 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/loading"
+                    android:visibility="gone"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

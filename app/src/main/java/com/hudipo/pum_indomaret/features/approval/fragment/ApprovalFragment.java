@@ -1,10 +1,11 @@
 package com.hudipo.pum_indomaret.features.approval.fragment;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +16,30 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.approval.activity.ApprovalSuccessActivity;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
-import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
+import com.hudipo.pum_indomaret.features.pin.PinActivity;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
+import com.hudipo.pum_indomaret.utils.Extra;
+import com.hudipo.pum_indomaret.utils.Global;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,29 +56,35 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     ImageView cbApproval;
     @BindView(R.id.llAction)
     LinearLayout llAction;
+    @BindView(R.id.swipeRefreshApproval)
+    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.tvError)
+    TextView tvError;
+    @BindView(R.id.search)
+    SearchView searchView;
 
     private View view;
     private ApprovalAdapter approvalAdapter;
     private ApprovalPresenter presenter;
-    private List<ApprovalModel> approvalSelectedList = new ArrayList<>();
-    private List<ApprovalModel> approvalModelList = new ArrayList<>();
+    private List<ApprovalListModel> approvalSelectedList = new ArrayList<>();
+    private List<ApprovalListModel> approvalModelList = new ArrayList<>();
     private boolean isCheckedAll = false;
+    private final int REQUEST_CODE_PIN = 100;
+    private int requestType = -1; //0 reject; 1 aprove
+    private String reasonValidation = "";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_approval, container, false);
         ButterKnife.bind(this, view);
+        presenter = new ApprovalPresenter(getActivity());
 
         setView();
 
-        return view;
-    }
+        onAttachView();
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        presenter.getData();
+        return view;
     }
 
     private void setView() {
@@ -84,38 +101,94 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             approvalAdapter.setAllChecked(isCheckedAll);
             initAction();
         });
+        swipeRefreshLayout.setOnRefreshListener(() ->
+            presenter.getData()
+        );
+
+        approvalAdapter = new ApprovalAdapter(new ArrayList<>(), (approvalModel, checked) -> {
+            if(checked){
+                approvalSelectedList.add(approvalModel);
+            }else {
+                approvalSelectedList.remove(approvalModel);
+            }
+            initAction();
+        });
+        rvApproval.setAdapter(approvalAdapter);
+
+        setSearch();
+    }
+
+    private void setSearch() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                approvalAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     @OnClick(R.id.btnApprove)
     void approve(){
-        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle(getString(R.string.approve));
-        alert.setMessage(getString(R.string.message_dialog_approve));
-        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-            // TODO: 15/09/19 to pin activity
-            Toast.makeText(getActivity(), "To PIN Activity", Toast.LENGTH_LONG).show();
-        }));
-        alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
-        alert.show();
+        if(approvalSelectedList.size()>0){
+            final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle(getString(R.string.approve));
+            if(approvalSelectedList.size()==1){
+                alert.setMessage(getString(R.string.message_dialog_approve_single));
+            }else {
+                alert.setMessage(getString(R.string.message_dialog_approve));
+            }
+            alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+                Intent intent = new Intent(getActivity(), PinActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_PIN);
+                requestType = 1;
+            }));
+            alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
+            alert.show();
+        }else {
+            errorNotSelected("Not Selected");
+        }
     }
 
 
     @OnClick(R.id.btnReject)
     void reject(){
-        FrameLayout container = new FrameLayout(Objects.requireNonNull(getActivity()));
+        if(approvalSelectedList.size()>0){
+            FrameLayout container = new FrameLayout(Objects.requireNonNull(getActivity()));
 
-        container.addView(generateEditText());
+            EditText editText = generateEditText();
+            container.addView(editText);
 
-        final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-        alert.setTitle(getString(R.string.reject));
-        alert.setMessage(getString(R.string.message_dialog_reject));
-        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
-            // TODO: 15/09/19 to pin activity
-            Toast.makeText(getActivity(), "To PIN Activity", Toast.LENGTH_LONG).show();
-        }));
-        alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
-        alert.setView(container);
-        alert.show();
+            final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+            alert.setTitle(getString(R.string.reject));
+            if(approvalSelectedList.size()==1){
+                alert.setMessage(getString(R.string.message_dialog_reject_single));
+            }else {
+                alert.setMessage(getString(R.string.message_dialog_reject));
+            }
+            alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+                reasonValidation = editText.getText().toString();
+                if(reasonValidation.isEmpty()){
+                    Toast.makeText(getActivity(),"Reason validation can't empty", Toast.LENGTH_SHORT).show();
+                    reject();
+                }else {
+                    Intent intent = new Intent(getActivity(), PinActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_PIN);
+                    requestType = 0;
+                }
+            }));
+            alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
+            alert.setView(container);
+            alert.show();
+
+        }else {
+            errorNotSelected("Not Selected");
+        }
     }
 
     private EditText generateEditText()
@@ -137,44 +210,63 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     }
 
     @Override
-    public void showData(List<ApprovalModel> approvalModels) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PIN){
+            if (resultCode == Activity.RESULT_OK){
+                if (data != null) {
+                    String pin = data.getStringExtra(PinActivity.EXTRA_PIN);
+                    if(requestType==0){ //reject
+                        presenter.reject(approvalSelectedList, pin, reasonValidation);
+                    }else {
+                        presenter.approve(approvalSelectedList, pin);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void showData(List<ApprovalListModel> approvalModels) {
         approvalModelList.clear();
         approvalModelList.addAll(approvalModels);
-
-        approvalAdapter = new ApprovalAdapter(approvalModels, (approvalModel, checked) -> {
-            if(checked){
-                approvalSelectedList.add(approvalModel);
-            }else {
-                approvalSelectedList.remove(approvalModel);
-            }
-            initAction();
-        });
-        rvApproval.setAdapter(approvalAdapter);
+        approvalAdapter.updateListApproval(approvalModelList);
     }
 
     @Override
     public void errorNotSelected(String message) {
-
+        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Attention!");
+        alert.setMessage(message);
+        alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        }));
+        alert.show();
     }
 
     @Override
     public void error(String message) {
-
+        if(isAdded()) Global.toast(getContext(), message);
+        tvError.setText(message);
+        tvError.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showLoading() {
-
+        swipeRefreshLayout.setRefreshing(true);
+        tvError.setVisibility(View.GONE);
     }
 
     @Override
     public void dismissLoading() {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
-    public void success(String message) {
-
+    public void success(int requestType) {
+        Intent intent = new Intent(getActivity(), ApprovalSuccessActivity.class);
+        intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE,requestType);
+        startActivity(intent);
     }
 
     @Override
@@ -198,6 +290,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     @Override
     public void onAttachView() {
         presenter.onAttach(this);
+        presenter.getData();
     }
 
     @Override
@@ -205,17 +298,14 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         presenter.onDetach();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        presenter = new ApprovalPresenter(getActivity());
-        onAttachView();
-    }
-
     private void initAction(){
         if(approvalSelectedList.size()>0){
             showAction();
         }else closeAction();
+    }
+
+    @OnClick(R.id.ivBack)
+    void back(){
+        Objects.requireNonNull(getActivity()).onBackPressed();
     }
 }

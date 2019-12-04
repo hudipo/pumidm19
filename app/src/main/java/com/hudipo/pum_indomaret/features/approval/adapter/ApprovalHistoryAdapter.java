@@ -4,28 +4,36 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hudipo.pum_indomaret.R;
-import com.hudipo.pum_indomaret.features.approval.activity.ApprovalDetailHistoryActivity;
-import com.hudipo.pum_indomaret.model.approval.ApprovalModel;
+import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailHistoryActivity;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
+import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_APPROVAL_HISTORY_TYPE;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_STATUS;
+import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PUM_TRX_ID;
 
-public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> {
+public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistoryAdapter.ApprovalViewHolder> implements Filterable {
 
-    private List<ApprovalModel> listApproval;
+    private List<ApprovalHistoryListModel> listApproval;
+    private List<ApprovalHistoryListModel> listApprovalFiltered;
 
-    public ApprovalHistoryAdapter(List<ApprovalModel> listApproval) {
+    public ApprovalHistoryAdapter(List<ApprovalHistoryListModel> listApproval) {
         this.listApproval = listApproval;
+        this.listApprovalFiltered = listApproval;
     }
 
     @NonNull
@@ -37,12 +45,12 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
 
     @Override
     public void onBindViewHolder(@NonNull ApprovalViewHolder holder, int position) {
-        holder.bind(listApproval.get(position));
+        holder.bind(listApprovalFiltered.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listApproval.size();
+        return listApprovalFiltered.size();
     }
 
     class ApprovalViewHolder extends RecyclerView.ViewHolder {
@@ -60,23 +68,72 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(ApprovalModel approvalModel){
-            tvPumNumber.setText(approvalModel.getPumNumber());
-            tvPumRequester.setText(approvalModel.getPumRequester());
-            tvAmount.setText(String.valueOf(approvalModel.getAmount()));
+        void bind(ApprovalHistoryListModel approvalModel){
+            tvPumNumber.setText(approvalModel.getTrxNum());
+            tvPumRequester.setText(approvalModel.getUsername());
+            tvAmount.setText("");
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);
-                intent.putExtra(EXTRA_APPROVAL_HISTORY_TYPE, approvalModel.getType());
+                intent.putExtra(EXTRA_PUM_TRX_ID, approvalModel.getPumTrxId());
+                intent.putExtra(EXTRA_PUM_STATUS, approvalModel.getStatus());
                 itemView.getContext().startActivity(intent);
             });
 
-            if(approvalModel.getType()==1)//1 for approve 2 for rejected sementara
+            if(approvalModel.getStatus().equals("APP"))
             {
                 rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_approve));
             }else {
                 rightView.setBackground(itemView.getContext().getDrawable(R.drawable.gradient_approval_right_reject));
             }
         }
+    }
+
+    public void updateListApproval(List<ApprovalHistoryListModel> listApprovalUpdate) {
+        listApproval.clear();
+        listApproval.addAll(listApprovalUpdate);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    listApprovalFiltered = listApproval;
+                } else {
+                    List<ApprovalHistoryListModel> filteredList = new ArrayList<>();
+                    for (ApprovalHistoryListModel row : listApproval) {
+                        boolean isMatched = false;
+
+                        if(row.getTrxNum()!=null){
+                            if(row.getTrxNum().toLowerCase().contains(charString.toLowerCase())){
+                                isMatched=true;
+                            }
+                        }
+                        if(row.getUsername()!=null){
+                            if(row.getUsername().toLowerCase().contains(charString.toLowerCase())){
+                                isMatched=true;
+                            }
+                        }
+                        if(isMatched) filteredList.add(row);
+                    }
+
+                    listApprovalFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = listApprovalFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                listApprovalFiltered = (ArrayList<ApprovalHistoryListModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

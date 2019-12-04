@@ -112,7 +112,7 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
 
     @Override
     public void setDataEmpty() {
-        Toast.makeText(this, "Data Kosong", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "DataApproval Kosong", Toast.LENGTH_LONG).show();
     }
 
     @Override

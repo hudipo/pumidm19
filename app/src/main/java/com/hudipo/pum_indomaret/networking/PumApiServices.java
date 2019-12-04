@@ -1,5 +1,9 @@
 package com.hudipo.pum_indomaret.networking;
 
+import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
+import com.hudipo.pum_indomaret.model.approval.ApproveResponse;
+import com.hudipo.pum_indomaret.model.approval.detail.ApprovalDetailResponse;
+import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListResponse;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
@@ -9,13 +13,19 @@ import com.hudipo.pum_indomaret.model.pin.PinResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 
@@ -24,6 +34,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Url;
 
 public interface PumApiServices {
 
@@ -59,4 +70,31 @@ public interface PumApiServices {
     @FormUrlEncoded
     @POST("testpin")
     Observable<Response<PinResponse>> checkPin(@Field("emp_id") int empId, @Field("pin") String pin);
+
+    @POST("filterhistorycreatepum")
+    Observable<StatusResponse> getFilteredStatusListFromNetwork(@Field("emp_id") int emp_id,
+                                                                @Field("start_date") String start_date,
+                                                                @Field("finish_date") String finish_date,
+                                                                @Field("status") String status);
+    //APPROVAL
+    @FormUrlEncoded
+    @POST("listapproval")
+    Observable<ApprovalListResponse> getListApproval(@Field("emp_id") int emp_id);
+
+    @Multipart
+    @POST("historyapprovepum")
+    Observable<ApprovalHistoryListResponse> getListHistoryApproval(@PartMap HashMap<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST("detailpum")
+    Observable<ApprovalDetailResponse> getDetailApproval(@Field("pum_trx_id") int pumTrxId);
+
+    @FormUrlEncoded
+    @POST("approvepum")
+    Observable<ApproveResponse> approve(@Field("pum_trx_id[]") List<Integer> pumTrxIds,
+                                        @FieldMap Map<String, String> params);
+
+    //download file
+    @GET
+    Observable<Response<ResponseBody>> downloadFile(@Url String fileUrl);
 }

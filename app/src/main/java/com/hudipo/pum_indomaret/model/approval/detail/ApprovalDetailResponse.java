@@ -1,12 +1,10 @@
-package com.hudipo.pum_indomaret.model.approval;
-
+package com.hudipo.pum_indomaret.model.approval.detail;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class ApprovalDetailResponse{
 
-public class ApprovalListResponse{
 	@SerializedName("error")
 	@Expose
 	private Boolean error;
@@ -15,7 +13,7 @@ public class ApprovalListResponse{
 	private String message;
 	@SerializedName("data")
 	@Expose
-	private List<ApprovalListModel> data = null;
+	private DataApproval data;
 
 	public Boolean getError() {
 		return error;
@@ -33,11 +31,11 @@ public class ApprovalListResponse{
 		this.message = message;
 	}
 
-	public List<ApprovalListModel> getData() {
+	public DataApproval getData() {
 		return data;
 	}
 
-	public void setData(List<ApprovalListModel> data) {
-		this.data = data;
+	public void setData(DataApproval dataApproval) {
+		this.data = dataApproval;
 	}
 }
