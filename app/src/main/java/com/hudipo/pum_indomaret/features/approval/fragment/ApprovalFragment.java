@@ -267,6 +267,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         Intent intent = new Intent(getActivity(), ApprovalSuccessActivity.class);
         intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE,requestType);
         startActivity(intent);
+        Objects.requireNonNull(getActivity()).finish();
     }
 
     @Override

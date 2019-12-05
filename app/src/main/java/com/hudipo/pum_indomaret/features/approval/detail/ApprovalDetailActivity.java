@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalSuccessActivity;
@@ -214,6 +215,10 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
         Intent intent = new Intent(this, ApprovalSuccessActivity.class);
         intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE,requestType);
         startActivity(intent);
+
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        Intent intentBroadcast = new Intent("FINISH_ACTIVITY");
+        localBroadcastManager.sendBroadcast(intentBroadcast);
         finish();
     }
 

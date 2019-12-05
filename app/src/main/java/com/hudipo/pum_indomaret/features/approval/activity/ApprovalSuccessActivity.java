@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.features.approval.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,6 +47,9 @@ public class ApprovalSuccessActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnViewHistory)
     public void btnViewHistory(){
+        Intent intent = new Intent(this, ApprovalActivity.class);
+        intent.putExtra("isLoadHistory", true);
+        startActivity(intent);
 //        StartActivity.goTo(this, StatusActivity.class);
         finish();
     }

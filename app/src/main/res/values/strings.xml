@@ -172,4 +172,6 @@
     <string name="download_failed">Download Failed</string>
     <string name="download_success">Download Success</string>
     <string name="notification_error_ssl_cert_invalid">Not Secure Connection</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="change_pin_success">Pin Successfully Changed</string>
 </resources>

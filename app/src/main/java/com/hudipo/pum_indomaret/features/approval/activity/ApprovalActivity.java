@@ -1,9 +1,14 @@
 package com.hudipo.pum_indomaret.features.approval.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hudipo.pum_indomaret.R;
@@ -16,13 +21,25 @@ import butterknife.ButterKnife;
 public class ApprovalActivity extends AppCompatActivity {
     @BindView(R.id.bottom_menu_approval)
     BottomNavigationView bottomNavigationView;
+
+    private LocalBroadcastManager localBroadcastManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approval);
         ButterKnife.bind(this);
 
-        loadFragment(new ApprovalFragment());
+        boolean isLoadHistory = getIntent().getBooleanExtra("isLoadHistory",false);
+        if(isLoadHistory){
+            loadFragment(new ApprovalHistoryFragment());
+            bottomNavigationView.setSelectedItemId(R.id.menu_history);
+        }else {
+            loadFragment(new ApprovalFragment());
+        }
+
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.registerReceiver(listener, new IntentFilter("FINISH_ACTIVITY"));
 
         setClick();
     }
@@ -47,4 +64,12 @@ public class ApprovalActivity extends AppCompatActivity {
                 .replace(R.id.container_approval, fragment)
                 .commit();
     }
+
+    //terima brodcast
+    private BroadcastReceiver listener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent ) {
+            finish();
+        }
+    };
 }
