@@ -66,7 +66,7 @@ public class CurrentPinFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if(editable.toString().length()==6){
-                    mCallback.nextFragment(CURRENT);
+                    mCallback.nextFragment(CURRENT, editable.toString());
                 }
             }
         });

@@ -7,9 +7,15 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailContract;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
+import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
+import com.hudipo.pum_indomaret.model.approval.ApproveResponse;
+import com.hudipo.pum_indomaret.model.approval.detail.ApprovalDetailResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
+import com.hudipo.pum_indomaret.networking.RetrofitClient;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +24,8 @@ import java.util.Map;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
 
 public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalDetailPresenterView<ApprovalDetailContract.ApprovalDetailView> {
     private Context context;
@@ -49,14 +57,31 @@ public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalD
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(response -> {
                 mView.dismissLoading();
-                if (response != null){
-                    if (!response.getError() && response.getData()!=null){
-                        mView.showData(response.getData());
+                if(response.isSuccessful()){
+                    ApprovalDetailResponse approvalDetailResponse = response.body();
+                    if (approvalDetailResponse != null){
+                        if (!approvalDetailResponse.getError() && approvalDetailResponse.getData()!=null){
+                            mView.showData(approvalDetailResponse.getData());
+                        }else {
+                            mView.error(approvalDetailResponse.getMessage());
+                        }
                     }else {
-                        mView.error(response.getMessage());
+                        mView.error(context.getString(R.string.err_server));
                     }
                 }else {
-                    mView.error(context.getString(R.string.err_server));
+                    Converter<ResponseBody, ApprovalDetailResponse> errorConverter =
+                            RetrofitClient.client().responseBodyConverter(ApprovalDetailResponse.class, new Annotation[0]);
+                    ApprovalDetailResponse errorResponse;
+                    try {
+                        if (response.errorBody() != null){
+                            errorResponse = errorConverter.convert(response.errorBody());
+                            if (errorResponse != null){
+                                mView.error(errorResponse.getMessage());
+                            }
+                        }
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
                 }
 
             }, throwable -> {
@@ -82,14 +107,32 @@ public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalD
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     mView.dismissLoading();
-                    if (response != null){
-                        if (!response.isError()){
-                            mView.success(1);
+                    if(response.isSuccessful()){
+                        ApproveResponse approveResponse = response.body();
+                        if (approveResponse != null){
+                            if (!approveResponse.isError()){
+                                mView.success(1);
+                            }else {
+                                mView.error(approveResponse.getMessage());
+                            }
                         }else {
-                            mView.error(response.getMessage());
+                            mView.error(context.getString(R.string.err_server));
                         }
                     }else {
-                        mView.error(context.getString(R.string.err_server));
+                        Converter<ResponseBody, ApproveResponse> errorConverter =
+                                RetrofitClient.client().responseBodyConverter(ApproveResponse.class, new Annotation[0]);
+                        ApproveResponse errorResponse;
+                        try {
+                            if (response.errorBody() != null){
+                                errorResponse = errorConverter.convert(response.errorBody());
+
+                                if (errorResponse != null){
+                                    mView.error(errorResponse.getMessage());
+                                }
+                            }
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
                     }
 
                 }, throwable -> {
@@ -120,14 +163,33 @@ public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalD
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     mView.dismissLoading();
-                    if (response != null){
-                        if (!response.isError()){
-                            mView.success(0);
+                    mView.dismissLoading();
+                    if(response.isSuccessful()){
+                        ApproveResponse approveResponse = response.body();
+                        if (approveResponse != null){
+                            if (!approveResponse.isError()){
+                                mView.success(0);
+                            }else {
+                                mView.error(approveResponse.getMessage());
+                            }
                         }else {
-                            mView.error(response.getMessage());
+                            mView.error(context.getString(R.string.err_server));
                         }
                     }else {
-                        mView.error(context.getString(R.string.err_server));
+                        Converter<ResponseBody, ApproveResponse> errorConverter =
+                                RetrofitClient.client().responseBodyConverter(ApproveResponse.class, new Annotation[0]);
+                        ApproveResponse errorResponse;
+                        try {
+                            if (response.errorBody() != null){
+                                errorResponse = errorConverter.convert(response.errorBody());
+
+                                if (errorResponse != null){
+                                    mView.error(errorResponse.getMessage());
+                                }
+                            }
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
                     }
 
                 }, throwable -> {

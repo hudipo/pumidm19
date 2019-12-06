@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="@string/example_nip"
         android:textColor="@color/grey"
-        android:id="@+id/tvNip"/>
+        android:id="@+id/tvEmpNum"/>
 
     <TextView
         style="@style/TextAppearance.Headline6.Light"
@@ -73,7 +73,7 @@
         android:text="@string/example_position"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNip"
+        app:layout_constraintTop_toBottomOf="@id/tvEmpNum"
         android:textColor="@color/grey"
         android:id="@+id/tvPosition"/>
 
@@ -122,4 +122,13 @@
         style="@style/TextAppearance.Body1"
         android:id="@+id/btnLogout"/>
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/ciPhotoProfile"
+        app:layout_constraintEnd_toEndOf="@+id/ciPhotoProfile"
+        app:layout_constraintStart_toStartOf="@+id/ciPhotoProfile"
+        app:layout_constraintTop_toTopOf="@+id/ciPhotoProfile" />
 </androidx.constraintlayout.widget.ConstraintLayout>

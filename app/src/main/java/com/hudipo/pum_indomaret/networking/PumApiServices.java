@@ -11,6 +11,8 @@ import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.model.pin.PinResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
+import com.hudipo.pum_indomaret.model.setting.ChangePinResponse;
+import com.hudipo.pum_indomaret.model.setting.UploadProfilePicResponse;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 
 import java.util.ArrayList;
@@ -79,22 +81,33 @@ public interface PumApiServices {
     //APPROVAL
     @FormUrlEncoded
     @POST("listapproval")
-    Observable<ApprovalListResponse> getListApproval(@Field("emp_id") int emp_id);
+    Observable<Response<ApprovalListResponse>> getListApproval(@Field("emp_id") int emp_id);
 
     @Multipart
     @POST("historyapprovepum")
-    Observable<ApprovalHistoryListResponse> getListHistoryApproval(@PartMap HashMap<String, RequestBody> params);
+    Observable<Response<ApprovalHistoryListResponse>> getListHistoryApproval(@PartMap HashMap<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST("detailpum")
-    Observable<ApprovalDetailResponse> getDetailApproval(@Field("pum_trx_id") int pumTrxId);
+    Observable<Response<ApprovalDetailResponse>> getDetailApproval(@Field("pum_trx_id") int pumTrxId);
 
     @FormUrlEncoded
     @POST("approvepum")
-    Observable<ApproveResponse> approve(@Field("pum_trx_id[]") List<Integer> pumTrxIds,
+    Observable<Response<ApproveResponse>> approve(@Field("pum_trx_id[]") List<Integer> pumTrxIds,
                                         @FieldMap Map<String, String> params);
 
     //download file
     @GET
     Observable<Response<ResponseBody>> downloadFile(@Url String fileUrl);
+
+    //setting
+    @Multipart
+    @POST("profilepicture")
+    Observable<Response<UploadProfilePicResponse>> uploadProfilePic(@PartMap HashMap<String, RequestBody> params,
+                                                                    @Part MultipartBody.Part file);
+    @FormUrlEncoded
+    @POST("changepin")
+    Observable<Response<ChangePinResponse>> changePin(@Field("emp_id") int empId,
+                                                      @Field("old_pin") String oldPin,
+                                                      @Field("new_pin") String newPin);
 }

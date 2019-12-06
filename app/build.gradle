@@ -69,4 +69,10 @@ dependencies {
 
     //photo view
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    //image picker
+    implementation 'com.github.esafirm.android-image-picker:imagepicker:2.2.0'
+
+    //uCrop
+    implementation 'com.github.yalantis:ucrop:2.2.4'
 }
