@@ -23,6 +23,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.searchtrx.SearchTrxActivity;
 import com.hudipo.pum_indomaret.model.OptionItem;
@@ -218,9 +219,17 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.btnBackFund)
     void btnBackFund(){
-        finish();
+       onBackPressed();
     }
 
     @OnClick(R.id.btnSearchTrx)
