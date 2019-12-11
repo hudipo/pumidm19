@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.features.requestpum.contract.ReqValidationContract;
@@ -136,9 +137,16 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
                 .show();
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+
+    }
+
     @OnClick(R.id.imgBack)
     void onBackClicked(){
-        super.onBackPressed();
+       onBackPressed();
     }
 
     @Override
@@ -161,6 +169,7 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
         Intent intent = new Intent(this, SentReqActivity.class);
         startActivity(intent);
         finishAffinity();
+        Animatoo.animateSlideUp(this);
     }
 
     @Override

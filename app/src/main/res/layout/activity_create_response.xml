@@ -192,37 +192,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewAmountRemaining" />
 
-            <Button
-                android:id="@+id/btnFull"
-                android:layout_width="@dimen/buttonWidth"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp12"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/bg_rounded_green_30dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/full"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textAppearanceSubtitle1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnPartial"
-                app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/btnPartial"
-                android:layout_width="@dimen/buttonWidth"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp12"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/bg_rounded_yellow"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/partial"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textAppearanceSubtitle1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnFull" />
+                <Button
+                    android:id="@+id/btnFull"
+                    android:layout_width="@dimen/buttonWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
+                    android:layout_marginEnd="@dimen/dp12"
+                    android:layout_marginBottom="@dimen/dp6"
+                    android:background="@drawable/bg_rounded_green_30dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/full"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textAppearanceSubtitle1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnPartial"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/btnPartial"
+                    android:layout_width="@dimen/buttonWidth"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp12"
+                    android:layout_marginEnd="@dimen/dp6"
+                    android:layout_marginBottom="@dimen/dp6"
+                    android:background="@drawable/bg_rounded_yellow"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/partial"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textAppearanceSubtitle1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnFull" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

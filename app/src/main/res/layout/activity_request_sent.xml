@@ -7,49 +7,68 @@
     android:background="@drawable/bg_request_sent"
     tools:context=".features.requestpum.activity.SentReqActivity">
 
-    <LinearLayout
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="420dp"
+        android:layout_height="350dp"
+
+        android:layout_marginTop="@dimen/dp6"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="sent.json"
+        app:lottie_loop="true" />
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp12"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/request_sent"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textAppearanceH4"
+        app:layout_constraintBottom_toTopOf="@id/tvDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animation"  />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        style="@style/TextAppearance.Body1.Light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp12"
+        android:layout_marginHorizontal="@dimen/dp6"
+        android:fontFamily="@font/mregular"
+        android:text="@string/you_have_successfully_created_pum_request"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/containerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="@dimen/dp12"
+        android:layout_marginTop="@dimen/dp6"
+        android:layout_marginBottom="@dimen/dp6"
+        android:layout_marginHorizontal="@dimen/dp12"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animation"
-            android:layout_width="402dp"
-            android:layout_height="380dp"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="sent.json"
-            app:lottie_loop="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp12"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="@string/request_sent"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceH4" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp6"
-            android:layout_marginEnd="@dimen/dp6"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/you_have_successfully_created_pum_request"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle1" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription">
 
         <Button
             android:id="@+id/btnViewRequestSent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp6"
-            android:layout_marginTop="@dimen/dp62"
             android:layout_marginEnd="@dimen/dp6"
             android:background="@drawable/bg_rounded_green_8dp"
             android:padding="@dimen/dp6"
@@ -57,7 +76,10 @@
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/textAppearanceSubtitle1"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnBackHomeRequestSent"
@@ -66,14 +88,22 @@
             android:layout_marginStart="@dimen/dp6"
             android:layout_marginTop="@dimen/dp16"
             android:layout_marginEnd="@dimen/dp6"
-            android:layout_marginBottom="@dimen/dp12"
+            android:layout_marginBottom="@dimen/dp6"
             android:background="@drawable/bg_rounded_white_8dp"
             android:text="@string/back_to_home"
             android:textAllCaps="true"
-            android:textColor="@color/btn_home_text"
+            android:textColor="@color/grey"
             android:textSize="@dimen/textAppearanceSubtitle1"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnViewRequestSent"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

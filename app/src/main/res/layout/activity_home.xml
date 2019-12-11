@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBase"
+    app:layout_constraintTop_toTopOf="parent"
     tools:context=".features.home.HomeActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -93,7 +94,7 @@
                 android:id="@+id/rvHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp62"
+                android:layout_marginTop="@dimen/dp42"
                 android:layout_marginBottom="@dimen/dp16"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="6"

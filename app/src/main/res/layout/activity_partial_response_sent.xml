@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,9 +12,12 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginBottom="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginStart="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp6"
+        android:layout_marginEnd="@dimen/dp16"
+        app:layout_constraintBottom_toTopOf="@id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,50 +30,79 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp12"
+        android:layout_marginTop="@dimen/dp12"
         android:fontFamily="@font/montserrat_semibold"
         android:text="@string/partial_response_sent"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="@dimen/textAppearanceH5" />
+        android:textSize="@dimen/textAppearanceH5"
+        app:layout_constraintBottom_toTopOf="@id/tvDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animation" />
 
     <TextView
         android:id="@+id/tvDescription"
         style="@style/TextAppearance.Body1.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="@dimen/dp12"
         android:fontFamily="@font/mregular"
         android:text="@string/you_have_successfully_sent_partial_responsibility"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/containerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <Button
-        android:id="@+id/btnCreateAnotherResponse"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp6"
-        android:layout_marginTop="@dimen/dp62"
-        android:layout_marginEnd="@dimen/dp6"
-        android:background="@drawable/bg_rounded_blue"
-        android:padding="@dimen/dp6"
-        android:text="@string/create_another_response"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textAppearanceSubtitle1"
-        android:textStyle="bold" />
+        android:layout_marginTop="@dimen/dp6"
+        android:layout_marginBottom="@dimen/dp6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription">
 
-    <Button
-        android:id="@+id/btnBackHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp6"
-        android:layout_marginTop="@dimen/dp16"
-        android:layout_marginEnd="@dimen/dp6"
-        android:layout_marginBottom="@dimen/dp12"
-        android:background="@drawable/bg_rounded_white_8dp"
-        android:text="@string/back_to_home"
-        android:textAllCaps="true"
-        android:textColor="@color/btn_home_text"
-        android:textSize="@dimen/textAppearanceSubtitle1"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btnCreateAnotherResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp6"
+            android:layout_marginEnd="@dimen/dp6"
+            android:background="@drawable/bg_rounded_blue"
+            android:padding="@dimen/dp6"
+            android:text="@string/create_another_response"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnBackHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp6"
+            android:layout_marginTop="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp6"
+            android:layout_marginBottom="@dimen/dp6"
+            android:background="@drawable/bg_rounded_white_8dp"
+            android:text="@string/back_to_home"
+            android:textAllCaps="true"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/textAppearanceSubtitle1"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateAnotherResponse" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

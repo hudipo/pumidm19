@@ -260,6 +260,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                 Intent intent = new Intent(this, ReqValidationActivity.class);
                 intent.putExtra(ReqValidationActivity.EXTRA_DATA_REQUEST, requestModel);
                 startActivity(intent);
+                Animatoo.animateSlideLeft(this);
             }
         }
     }
