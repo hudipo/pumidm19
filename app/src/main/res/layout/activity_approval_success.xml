@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,31 +8,34 @@
     tools:context=".features.requestpum.activity.SentReqActivity">
 
     <LinearLayout
-        android:padding="@dimen/dp12"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:padding="@dimen/dp12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_marginTop="@dimen/dp12"
-            android:layout_marginBottom="24dp"
-            android:src="@drawable/paper_plane"
-            android:layout_width="200dp"
-            android:layout_height="200dp"/>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation"
+            android:layout_width="392dp"
+            android:layout_height="380dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="sent.json"
+            app:lottie_loop="true" />
+
 
         <TextView
-            android:textSize="40sp"
-            android:textColor="@color/white"
-            android:layout_margin="@dimen/dp12"
-            android:text="@string/request_sent"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTitle"
-            android:textAlignment="center"/>
+            android:layout_margin="@dimen/dp12"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/request_sent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceH4" />
 
         <TextView
             android:id="@+id/tvDescription"
@@ -41,33 +43,41 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp6"
             android:layout_marginEnd="@dimen/dp6"
+            android:fontFamily="@font/montserrat_regular"
             android:text="@string/you_have_successfully_created_pum_request"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/textAppearanceSubtitle1" />
 
         <Button
             android:id="@+id/btnViewHistory"
-            android:background="@drawable/bg_rounded_green_12dp"
-            android:textSize="24sp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:text="@string/view_approval_history"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp6"
             android:layout_marginTop="36dp"
-            android:layout_height="50dp"/>
+            android:layout_marginEnd="@dimen/dp6"
+            android:background="@drawable/bg_rounded_green_8dp"
+            android:padding="@dimen/dp6"
+            android:text="@string/view_request"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceSubtitle1"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnBackHomeRequestSent"
-            android:background="@drawable/bg_rounded_white_12dp"
-            android:textSize="24sp"
-            android:textAllCaps="false"
-            android:textColor="@color/btn_home_text"
-            android:text="@string/back_to_home"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp6"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/dp6"
             android:layout_marginBottom="@dimen/dp12"
-            android:layout_height="50dp"/>
+            android:background="@drawable/bg_rounded_white_8dp"
+            android:text="@string/back_to_home"
+            android:textAllCaps="true"
+            android:textColor="@color/btn_home_text"
+            android:textSize="@dimen/textAppearanceSubtitle1"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

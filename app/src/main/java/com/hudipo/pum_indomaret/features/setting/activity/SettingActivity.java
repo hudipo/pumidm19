@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
@@ -55,7 +57,7 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     @BindView(R.id.tvPosition)
     TextView tvPosition;
     @BindView(R.id.loading)
-    ProgressBar loading;
+    LottieAnimationView loading;
 
     private static final String TAG = "SettingActivity";
     private ArrayList<OptionItem> optionUploadImages = new ArrayList<>();
@@ -96,6 +98,7 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     @OnClick(R.id.btnChangePin)
     void changePin(){
         StartActivity.goTo(this, ChangePinActivity.class);
+        Animatoo.animateSlideLeft(this);
     }
     
     @OnClick(R.id.btnLogout)
@@ -192,9 +195,17 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.ivBack)
     void back(){
-        finish();
+       onBackPressed();
     }
 
     @Override

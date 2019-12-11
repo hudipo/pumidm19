@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.repository.Repository;
 import com.hudipo.pum_indomaret.utils.DatePickerFragment;
@@ -77,9 +78,16 @@ public class ApprovalFilterActivity extends AppCompatActivity implements DatePic
         spTrxStatus.setAdapter(dataAdapter);
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
+        finish();
+    }
+
     @OnClick(R.id.ivBack)
     void back(){
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnSubmit)
@@ -97,7 +105,9 @@ public class ApprovalFilterActivity extends AppCompatActivity implements DatePic
                 returnIntent.putExtra(EXTRA_STATUS,temp);
             }
             setResult(Activity.RESULT_OK,returnIntent);
+
             finish();
+            Animatoo.animateSlideUp(this);
         }
     }
 

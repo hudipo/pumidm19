@@ -24,7 +24,7 @@ public class Global {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
-    static public String priceFormater(String price){
+    static public String priceFormatter(String price){
         return String.format(Locale.US, "%,d", Integer.parseInt(price)).replace(',', '.');
     }
 }

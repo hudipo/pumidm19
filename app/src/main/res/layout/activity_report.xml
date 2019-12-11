@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorBase"
     tools:context=".features.report.view.ReportActivity">
 
     <View
@@ -16,8 +16,10 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginEnd="@dimen/dp62"
+        android:layout_marginBottom="@dimen/dp42"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
@@ -30,344 +32,356 @@
         style="@style/TextAppearance.Headline4.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
         android:gravity="center"
-        android:text="Report"
-        android:textAllCaps="true"
-        android:textStyle="bold"
+        android:text="@string/report"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
         app:layout_constraintTop_toTopOf="@id/topView" />
 
     <ScrollView
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topView">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp16"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_container"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dp12"
+            android:paddingTop="@dimen/dp6"
+            android:paddingEnd="@dimen/dp12"
+            android:paddingBottom="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/tvReportTypeLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_margin"
-                android:text="Report Type"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Spinner
-                android:id="@+id/spnReportTypeRep"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="42dp"
-                android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-                android:text="Report Type"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@id/tvReportTypeLabel" />
-
-            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp12"
-                android:src="@drawable/ic_arrow_drop_down_black_30dp"
-                app:layout_constraintBottom_toBottomOf="@id/spnReportTypeRep"
-                app:layout_constraintEnd_toEndOf="@id/spnReportTypeRep"
-                app:layout_constraintTop_toTopOf="@id/spnReportTypeRep" />
-
-            <TextView
-                android:id="@+id/tvEmpNameLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_margin"
-                android:text="Employee Name"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/report_type"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/spnReportTypeRep" />
-
-            <Spinner
-                android:id="@+id/spnEmployeeNameRep"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="42dp"
-                android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-                android:text="Report Type"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@id/tvEmpNameLabel" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp12"
-                android:src="@drawable/ic_arrow_drop_down_black_30dp"
-                app:layout_constraintBottom_toBottomOf="@id/spnEmployeeNameRep"
-                app:layout_constraintEnd_toEndOf="@id/spnEmployeeNameRep"
-                app:layout_constraintTop_toTopOf="@id/spnEmployeeNameRep" />
-
-
-            <TextView
-                android:id="@+id/tvEmpDepartmentLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_margin"
-                android:text="Employee Department"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/spnEmployeeNameRep" />
-
-            <Spinner
-                android:id="@+id/spnEmployeeDepartmentRep"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="42dp"
-                android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-                android:text="Report Type"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@id/tvEmpDepartmentLabel" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp12"
-                android:src="@drawable/ic_arrow_drop_down_black_30dp"
-                app:layout_constraintBottom_toBottomOf="@id/spnEmployeeDepartmentRep"
-                app:layout_constraintEnd_toEndOf="@id/spnEmployeeDepartmentRep"
-                app:layout_constraintTop_toTopOf="@id/spnEmployeeDepartmentRep" />
-
-            <TextView
-                android:id="@+id/tvStartDateLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_margin"
-                android:text="Pum Creation Start Date"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/spnEmployeeDepartmentRep" />
-
-            <TextView
-                android:id="@+id/tvStartDate"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:text="Start Date"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@id/imgStartDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvStartDateLabel"
-                app:layout_goneMarginEnd="@dimen/main_margin" />
-
-            <ImageView
-                android:id="@+id/imgStartDate"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_green"
-                android:padding="6dp"
-                android:src="@drawable/calendar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvStartDateLabel" />
-
-            <TextView
-                android:id="@+id/tvEndDateLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_margin"
-                android:text="Pum Creation End Date"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tvStartDate" />
-
-            <TextView
-                android:id="@+id/tvEndDate"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:text="End Date"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@id/imgEndDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEndDateLabel" />
-
-            <ImageView
-                android:id="@+id/imgEndDate"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_red"
-                android:padding="6dp"
-                android:src="@drawable/calendar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEndDateLabel" />
-
-            <TextView
-                android:id="@+id/tvGroupByLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/main_margin"
-                android:text="Group by"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tvEndDate" />
-
-            <Spinner
-                android:id="@+id/spnGroupBy"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingStart="12dp"
-                android:paddingEnd="42dp"
-                android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-                android:text="Report Type"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@id/tvGroupByLabel" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp12"
-                android:src="@drawable/ic_arrow_drop_down_black_30dp"
-                app:layout_constraintBottom_toBottomOf="@id/spnGroupBy"
-                app:layout_constraintEnd_toEndOf="@id/spnGroupBy"
-                app:layout_constraintTop_toTopOf="@id/spnGroupBy" />
-
-            <TextView
-                android:id="@+id/tvNoteLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/main_margin"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:text="Note :"
-                android:textColor="@color/redError"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/spnGroupBy" />
-
-            <TextView
-                android:id="@+id/tvNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/dp6"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:text="* The selected transaction period is only 31 days."
-                android:textColor="@color/redError"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/tvNoteLabel" />
-
+                android:textSize="@dimen/textAppearanceSubtitle" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/tvNote">
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btnViewRep"
-                    android:layout_width="120dp"
+                <Spinner
+                    android:id="@+id/spnReportTypeRep"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_circle_color_accent"
-                    android:text="View"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/main_margin"
-                    android:layout_marginTop="@dimen/main_margin"/>
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
 
-                <Button
-                    android:layout_marginBottom="@dimen/main_margin"
-                    android:layout_marginTop="@dimen/main_margin"
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="@dimen/main_margin"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_rounded_red_30dp"
-                    android:text="Reset"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/pum_creation_start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
+                <ImageView
+                    android:id="@+id/imgStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_rounded_border_black_solid_green"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="@dimen/dp8"
+                    android:src="@drawable/calendar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/pum_creation_end"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
+                <ImageView
+                    android:id="@+id/imgEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_rounded_red"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="@dimen/dp8"
+                    android:src="@drawable/calendar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/pum_creation_start"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_rounded_border_black_solid_green"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="@dimen/dp8"
+                    android:src="@drawable/calendar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/pum_creation_end"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/bg_rounded_red"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="@dimen/dp8"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="@dimen/dp8"
+                    android:src="@drawable/calendar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/group_by"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spnGroupBy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
 
             </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="@dimen/main_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/main_margin"
+                    android:text="@string/note"
+                    android:textColor="@color/redError" />
+
+                <TextView
+                    android:id="@+id/tvNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/main_margin"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/note_approval_filter"
+                    android:textColor="@color/redError"
+                    android:textSize="@dimen/textAppearanceSubtitle2" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnViewRep"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_circle_color_accent"
+            android:text="@string/view"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnResetRep"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_red_30dp"
+            android:text="@string/reset"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

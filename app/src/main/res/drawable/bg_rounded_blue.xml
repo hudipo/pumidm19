@@ -4,6 +4,6 @@
 
     <solid android:color="@color/colorButtonMenuChoice"/>
 
-    <corners android:radius="12dp"/>
+    <corners android:radius="@dimen/dp8"/>
 
 </shape>

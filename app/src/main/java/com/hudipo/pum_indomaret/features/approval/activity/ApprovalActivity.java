@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.fragment.ApprovalFragment;
@@ -30,11 +31,11 @@ public class ApprovalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_approval);
         ButterKnife.bind(this);
 
-        boolean isLoadHistory = getIntent().getBooleanExtra("isLoadHistory",false);
-        if(isLoadHistory){
+        boolean isLoadHistory = getIntent().getBooleanExtra("isLoadHistory", false);
+        if (isLoadHistory) {
             loadFragment(new ApprovalHistoryFragment());
             bottomNavigationView.setSelectedItemId(R.id.menu_history);
-        }else {
+        } else {
             loadFragment(new ApprovalFragment());
         }
 
@@ -46,7 +47,7 @@ public class ApprovalActivity extends AppCompatActivity {
 
     private void setClick() {
         bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
-            switch(menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.menu_approval:
                     loadFragment(new ApprovalFragment());
                     break;
@@ -68,8 +69,18 @@ public class ApprovalActivity extends AppCompatActivity {
     //terima brodcast
     private BroadcastReceiver listener = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent ) {
+        public void onReceive(Context context, Intent intent) {
             finish();
         }
     };
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
+
 }

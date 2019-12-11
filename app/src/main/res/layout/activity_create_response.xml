@@ -13,28 +13,27 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginStart="@dimen/main_margin"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
-        android:layout_marginStart="@dimen/main_margin"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView"
-        app:layout_constraintHorizontal_bias="0.0"/>
+        app:layout_constraintTop_toTopOf="@id/topView" />
 
     <TextView
         android:id="@+id/tvTitle"
+        style="@style/TextAppearance.Headline4.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/msemibold"
         android:text="@string/response"
-        android:fontFamily="@font/mbold"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        style="@style/TextAppearance.Headline4.Light"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
@@ -43,183 +42,187 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/gradient_response"
         android:layout_margin="@dimen/main_margin"
+        android:background="@drawable/gradient_response"
         android:padding="@dimen/main_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/topView">
 
         <TextView
             android:id="@+id/textViewCreateResponsibility"
+            style="@style/TextAppearance.Headline5.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_responsibility"
             android:fontFamily="@font/msemibold"
-            style="@style/TextAppearance.Headline5.Light"
+            android:text="@string/create_responsibility"
             android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/bg_rounded_white"
             android:layout_marginTop="@dimen/dp6"
+            android:background="@drawable/bg_rounded_white"
             android:padding="@dimen/main_padding"
-            app:layout_constraintTop_toBottomOf="@id/textViewCreateResponsibility"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/textViewCreateResponsibility">
 
             <TextView
                 android:id="@+id/textViewPumNumber"
+                style="@style/TextAppearance.caption.Dark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.caption.Dark"
-                android:text="@string/pum_number"
                 android:fontFamily="@font/mbold"
-                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/pum_number"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvPumNumber"
+                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/example_trx_number"
-                android:fontFamily="@font/mregular"
-                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_marginStart="@dimen/dp6"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/mregular"
+                android:text="@string/example_trx_number"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewPumNumber"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewPumNumber" />
 
             <TextView
                 android:id="@+id/textViewTransactionType"
+                style="@style/TextAppearance.caption.Dark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.caption.Dark"
-                android:text="@string/transaction_type"
-                android:fontFamily="@font/mbold"
                 android:layout_marginTop="@dimen/dp6"
-                app:layout_constraintTop_toBottomOf="@+id/tvPumNumber"
+                android:fontFamily="@font/mbold"
+                android:text="@string/transaction_type"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvPumNumber" />
 
             <TextView
                 android:id="@+id/tvTransactionType"
+                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/example_transaction_type"
-                android:fontFamily="@font/mregular"
                 android:layout_marginStart="@dimen/dp6"
-                style="@style/TextAppearance.Headline6.Dark"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/mregular"
+                android:text="@string/example_transaction_type"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewTransactionType"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewTransactionType" />
 
             <TextView
                 android:id="@+id/textViewDescription"
+                style="@style/TextAppearance.caption.Dark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.caption.Dark"
-                android:text="@string/description"
-                android:fontFamily="@font/mbold"
-                android:textStyle="bold"
                 android:layout_marginTop="@dimen/dp6"
-                app:layout_constraintTop_toBottomOf="@+id/tvTransactionType"
+                android:fontFamily="@font/mbold"
+                android:text="@string/description"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvTransactionType" />
 
             <TextView
                 android:id="@+id/tvDescription"
+                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/example_description"
-                android:fontFamily="@font/mregular"
                 android:layout_marginStart="@dimen/dp6"
-                style="@style/TextAppearance.Headline6.Dark"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/mregular"
+                android:text="@string/example_description"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewDescription"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDescription" />
 
             <TextView
                 android:id="@+id/textViewAmount"
+                style="@style/TextAppearance.caption.Dark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.caption.Dark"
-                android:text="@string/amount"
-                android:fontFamily="@font/mbold"
                 android:layout_marginTop="@dimen/dp6"
-                app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                android:fontFamily="@font/mbold"
+                android:text="@string/amount"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
             <TextView
                 android:id="@+id/tvAmount"
+                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/example_amount"
-                android:fontFamily="@font/mregular"
                 android:layout_marginStart="@dimen/dp6"
-                style="@style/TextAppearance.Headline6.Dark"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/mregular"
+                android:text="@string/example_amount"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewAmount"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewAmount" />
 
             <TextView
                 android:id="@+id/textViewAmountRemaining"
+                style="@style/TextAppearance.caption.Dark"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.caption.Dark"
-                android:text="@string/amount_remaining"
-                android:fontFamily="@font/mbold"
                 android:layout_marginTop="@dimen/dp6"
-                app:layout_constraintTop_toBottomOf="@+id/tvAmount"
+                android:fontFamily="@font/mbold"
+                android:text="@string/amount_remaining"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
 
             <TextView
                 android:id="@+id/tvAmountRemaining"
+                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/example_amount"
                 android:fontFamily="@font/mregular"
-                style="@style/TextAppearance.Headline6.Dark"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/example_amount"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewAmountRemaining"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewAmountRemaining" />
 
             <Button
                 android:id="@+id/btnFull"
                 android:layout_width="@dimen/buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/full"
-                android:fontFamily="@font/mbold"
-                android:textAllCaps="false"
-                style="@style/TextAppearance.Headline6.Light"
-                android:background="@drawable/bg_rounded_green_30dp"
+                android:layout_marginEnd="@dimen/dp12"
                 android:layout_marginBottom="4dp"
+                android:background="@drawable/bg_rounded_green_30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/full"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textAppearanceSubtitle1"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnPartial"/>
+                app:layout_constraintEnd_toStartOf="@id/btnPartial"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/btnPartial"
                 android:layout_width="@dimen/buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/partial"
-                android:fontFamily="@font/mbold"
-                android:textAllCaps="false"
-                style="@style/TextAppearance.Headline6.Light"
-                android:background="@drawable/bg_rounded_yellow"
+                android:layout_marginStart="@dimen/dp12"
                 android:layout_marginBottom="4dp"
+                android:background="@drawable/bg_rounded_yellow"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/partial"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textAppearanceSubtitle1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnFull"/>
+                app:layout_constraintStart_toEndOf="@id/btnFull" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

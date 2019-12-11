@@ -17,28 +17,29 @@
             android:background="@drawable/gradient_top_blue"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp32"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/dp32"
             android:background="@android:color/transparent"
             android:src="@drawable/left_arrow"
-            android:layout_marginStart="@dimen/main_margin"
             app:layout_constraintBottom_toBottomOf="@+id/topView"
             app:layout_constraintEnd_toStartOf="@id/tvTitle"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/topView"
-            app:layout_constraintTop_toTopOf="@id/topView"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintTop_toTopOf="@id/topView" />
 
         <TextView
             android:id="@+id/tvTitle"
+            style="@style/TextAppearance.Headline4.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/response"
+            android:layout_marginBottom="@dimen/dp14"
             android:fontFamily="@font/msemibold"
-            android:textSize="32sp"
+            android:text="@string/response"
             android:textStyle="bold"
-            style="@style/TextAppearance.Headline4.Light"
             app:layout_constraintBottom_toBottomOf="@id/topView"
             app:layout_constraintEnd_toEndOf="@id/topView"
             app:layout_constraintStart_toStartOf="@id/topView"
@@ -49,24 +50,24 @@
             style="@style/TextAppearance.Headline6.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/history"
+            android:layout_marginBottom="@dimen/dp32"
             android:fontFamily="@font/msemibold"
+            android:text="@string/history"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/main_margin"
             app:layout_constraintBottom_toBottomOf="@id/topView"
             app:layout_constraintEnd_toEndOf="@id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvResponseHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/main_padding"
-            tools:listitem="@layout/item_response_history"
-            app:layout_constraintTop_toBottomOf="@id/topView"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/topView"
+            tools:listitem="@layout/item_response_history" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

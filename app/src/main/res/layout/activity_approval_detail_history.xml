@@ -107,6 +107,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/pum_requester"
                             android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_title_item_approval"/>
                         <TextView
                             android:id="@+id/tvPumNumber"
@@ -114,12 +115,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             tools:text="2000102102012012012"
+                            android:textColor="@color/black"
                             android:fontFamily="@font/montserrat_regular"
                             android:textSize="@dimen/font_body_item_approval"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/pum_number"
+                            android:textColor="@color/black"
                             android:fontFamily="@font/montserrat_bold"
                             android:textSize="@dimen/font_title_item_approval"/>
                         <TextView
@@ -129,12 +132,14 @@
                             android:layout_marginStart="6dp"
                             tools:text="Emp Name"
                             android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/department"
                             android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_title_item_approval" />
                         <TextView
                             android:id="@+id/tvDepartment"
@@ -143,6 +148,7 @@
                             android:layout_marginStart="6dp"
                             tools:text="Rp 200.000"
                             android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval"/>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -158,6 +164,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/trx_date"
                                     android:fontFamily="@font/montserrat_bold"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/font_title_item_approval" />
                                 <TextView
                                     android:id="@+id/tvTrxDate"
@@ -166,6 +173,7 @@
                                     android:layout_marginStart="6dp"
                                     tools:text="Rp 200.000"
                                     android:fontFamily="@font/montserrat_regular"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/font_body_item_approval"/>
                             </LinearLayout>
                             <LinearLayout
@@ -178,6 +186,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/use_date"
                                     android:fontFamily="@font/montserrat_bold"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/font_title_item_approval" />
                                 <TextView
                                     android:id="@+id/tvUseDate"
@@ -186,6 +195,7 @@
                                     android:layout_marginStart="6dp"
                                     tools:text="Rp 200.000"
                                     android:fontFamily="@font/montserrat_regular"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/font_body_item_approval"/>
                             </LinearLayout>
                         </LinearLayout>
@@ -194,6 +204,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/transaction_type"
                             android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_title_item_approval" />
                         <TextView
                             android:id="@+id/tvTransactionType"
@@ -202,12 +213,14 @@
                             android:layout_marginStart="6dp"
                             tools:text="Store Needs 1"
                             android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/description"
                             android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_title_item_approval" />
                         <TextView
                             android:id="@+id/tvDescription"
@@ -216,12 +229,14 @@
                             android:layout_marginStart="6dp"
                             tools:text="This is Description text"
                             android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/amount"
                             android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_title_item_approval" />
                         <TextView
                             android:id="@+id/tvAmount"
@@ -230,14 +245,21 @@
                             android:layout_marginStart="6dp"
                             tools:text="Rp 200.000"
                             android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval"/>
                     </LinearLayout>
                 </ScrollView>
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:id="@+id/loading"/>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    app:lottie_loop="true"
+                    android:visibility="gone"
+                    app:lottie_fileName="loading.json"
+                    app:lottie_autoPlay="true"
+                    android:layout_marginTop="62dp"
+                    android:layout_centerInParent="true"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

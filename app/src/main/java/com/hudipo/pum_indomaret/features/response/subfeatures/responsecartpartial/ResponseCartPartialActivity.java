@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.partialresponsesent.PartialResponseSentActivity;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsecartpartial.adapter.ResponseCartPartialAdapter;
@@ -43,17 +44,25 @@ public class ResponseCartPartialActivity extends AppCompatActivity {
     @OnClick(R.id.btnAddResponse)
     void btnAddResponse(){
         finish();
+        Animatoo.animateZoom(this);
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
     }
 
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnSubmit)
     void btnSubmit(){
         startActivity(new Intent(this, PartialResponseSentActivity.class));
         finish();
+        Animatoo.animateSlideLeft(this);
     }
 
     @OnClick(R.id.btnCancel)

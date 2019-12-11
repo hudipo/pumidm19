@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.searchdocdetail.SearchDocDetailActivity;
 import com.hudipo.pum_indomaret.model.RequestModel;
@@ -53,8 +54,8 @@ public class ReqDocumentActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQ_CODE_DOC_DETAIL){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == REQ_CODE_DOC_DETAIL) {
+            if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     DocDataItem docDataItem = data.getParcelableExtra(SearchDocDetailActivity.EXTRA_SELECTED_DOC);
                     if (docDataItem != null) {
@@ -66,12 +67,12 @@ public class ReqDocumentActivity extends AppCompatActivity {
         }
     }
 
-    private void disableButtonSearch(){
+    private void disableButtonSearch() {
         btnSearchDoc.setBackground(ContextCompat.getDrawable(this, R.drawable.bg_rounded_red));
         btnSearchDoc.setEnabled(false);
     }
 
-    private void enableButtonSearch(){
+    private void enableButtonSearch() {
         btnSearchDoc.setBackground(ContextCompat.getDrawable(this, R.drawable.bg_rounded_green));
         btnSearchDoc.setEnabled(true);
     }
@@ -81,11 +82,11 @@ public class ReqDocumentActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String docSelected = spnDocType.getSelectedItem().toString().trim();
-                if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))){
+                if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))) {
                     requestModel.setNameDocType("-");
                     requestModel.setDocNum("-");
                     disableButtonSearch();
-                }else {
+                } else {
                     requestModel.setNameDocType(docSelected);
                     enableButtonSearch();
                 }
@@ -94,10 +95,10 @@ public class ReqDocumentActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 String docSelected = spnDocType.getSelectedItem().toString().trim();
-                if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))){
+                if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))) {
                     requestModel.setNameDocType("-");
                     disableButtonSearch();
-                }else {
+                } else {
                     requestModel.setNameDocType(docSelected);
                     enableButtonSearch();
                 }
@@ -112,40 +113,49 @@ public class ReqDocumentActivity extends AppCompatActivity {
     }
 
     private void getDataIntent() {
-        if (getIntent() != null){
+        if (getIntent() != null) {
             requestModel = getIntent().getParcelableExtra(KEY_DATA_REQUEST_EMPLOYEE);
         }
     }
 
     @OnClick(R.id.btnSearchDoc)
-    void setBtnSearchDoc(){
+    void setBtnSearchDoc() {
         Intent intent = new Intent(this, SearchDocDetailActivity.class);
         intent.putExtra(SearchDocDetailActivity.KEY_DATA_DOC_TYPE, spnDocType.getSelectedItem().toString());
         startActivityForResult(intent, REQ_CODE_DOC_DETAIL);
     }
 
 
-    @OnClick(R.id.btnBackDoc)
-    void btnBackDoc(){
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
         finish();
     }
 
+
+    @OnClick(R.id.btnBackDoc)
+    void btnBackDoc() {
+       onBackPressed();
+    }
+
     @OnClick(R.id.btnNextDoc)
-    void btnNextDoc(){
+    void btnNextDoc() {
         String docNum = tvDocNum.getText().toString();
-        if (checkValid(docNum)){
-            Intent intent = new Intent(this, ReqFundActivity.class);
-            intent.putExtra(ReqFundActivity.EXTRA_DOCUMENT_DETAIL, requestModel);
-            startActivity(intent);
-        }
+//        if (checkValid(docNum)){
+        Intent intent = new Intent(this, ReqFundActivity.class);
+        intent.putExtra(ReqFundActivity.EXTRA_DOCUMENT_DETAIL, requestModel);
+        startActivity(intent);
+        Animatoo.animateSlideLeft(this);
+//        }
     }
 
     private boolean checkValid(String docNum) {
-        if (docNum.isEmpty()){
+        if (docNum.isEmpty()) {
             tvDocNum.setError("Your document is empty");
             Toast.makeText(this, "Your document is empty", Toast.LENGTH_SHORT).show();
             return false;
-        }else {
+        } else {
             tvDocNum.setError(null);
         }
         return true;

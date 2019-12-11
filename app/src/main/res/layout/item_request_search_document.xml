@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tvDocNum"
-        android:textSize="24sp"
+        android:textSize="@dimen/textAppearanceSubtitle"
         android:text="200100300/100/2019"
         android:fontFamily="@font/mregular"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:text="Doc Date"
+        android:text="@string/doc_date"
         android:fontFamily="@font/mbold"
         android:textColor="@color/black"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/tvDocDate"
-        android:textSize="24sp"
+        android:textSize="@dimen/textAppearanceSubtitle"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/black"
         android:text="19/08/2019"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:text="Amaount"
+        android:text="@string/amount"
         android:fontFamily="@font/mbold"
         android:textColor="@color/black"
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
 
     <TextView
         android:id="@+id/tvAmount"
-        android:textSize="24sp"
+        android:textSize="@dimen/textAppearanceSubtitle"
         android:text="Rp 40.000.000"
         android:fontFamily="@font/mregular"
         app:layout_constraintTop_toTopOf="parent"

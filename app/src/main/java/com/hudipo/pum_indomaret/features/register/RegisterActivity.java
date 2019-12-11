@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.login.LoginActivity;
@@ -87,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @OnClick(R.id.tvLogin)
     void login(){
         startActivity(new Intent(this, LoginActivity.class));
+        Animatoo.animateSlideLeft(this);
     }
 
     @SuppressLint("InflateParams")
@@ -155,6 +157,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     public void registerSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         StartActivity.goTo(this, LoginActivity.class);
+        Animatoo.animateSlideLeft(this);
         finish();
     }
 

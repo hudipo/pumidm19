@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsehistory.adapter.ResponseHistoryAdapter;
 
@@ -35,8 +36,14 @@ public class ResponseHistoryActivity extends AppCompatActivity {
         rvResponseHistory.setAdapter(responseHistoryAdapter);
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+       onBackPressed();
     }
 }

@@ -24,7 +24,7 @@
         android:text="@string/example_trx_number"
         android:fontFamily="@font/mregular"
         android:layout_marginStart="@dimen/dp6"
-        style="@style/TextAppearance.Headline5.Dark"/>
+        style="@style/TextAppearance.Headline6.Dark"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         android:text="@string/example_date"
         android:fontFamily="@font/mregular"
         android:layout_marginStart="@dimen/dp6"
-        style="@style/TextAppearance.Headline5.Dark"/>
+        style="@style/TextAppearance.Headline6.Dark"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,6 +58,6 @@
         android:text="@string/example_amount"
         android:fontFamily="@font/mregular"
         android:layout_marginStart="@dimen/dp6"
-        style="@style/TextAppearance.Headline5.Dark"/>
+        style="@style/TextAppearance.Headline6.Dark"/>
 
 </LinearLayout>

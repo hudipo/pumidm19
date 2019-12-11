@@ -5,6 +5,7 @@
     android:id="@+id/swipeRefreshHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBase"
     tools:context=".features.home.HomeActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -53,6 +54,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/msemibold"
+                        android:maxLength="11"
+                        android:maxLines="1"
                         android:text="@string/example_name" />
 
                     <TextView
@@ -61,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/example_nip"
-                        android:maxLines="2"
+                        android:maxLines="1"
                         android:ellipsize="end"
                         android:fontFamily="@font/mregular"/>
 
@@ -90,8 +93,8 @@
                 android:id="@+id/rvHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="42dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="@dimen/dp62"
+                android:layout_marginBottom="@dimen/dp16"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="6"
                 app:spanCount="2"

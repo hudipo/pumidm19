@@ -4,241 +4,272 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".features.report.view.ReportActivity">
+    android:background="@color/colorBase"
+    tools:context=".features.status.StatusFilterActivity">
 
-    <View
-        android:id="@+id/topView"
+    <RelativeLayout
+        android:id="@+id/layout_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightAppBar"
         android:background="@drawable/gradient_top_blue"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/left_arrow"
-        app:layout_constraintBottom_toBottomOf="@+id/topView"
-        app:layout_constraintEnd_toStartOf="@id/activityTitle"
-        app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
-
-    <TextView
-        android:id="@+id/activityTitle"
-        style="@style/TextAppearance.Headline4.Light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Report"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/topView"
-        app:layout_constraintEnd_toEndOf="@id/topView"
-        app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView">
-
-        <TextView
-            android:id="@+id/tvTrxStartDateLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/main_margin"
-            android:text="Trx Start Date"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTrxStartDate"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/dp6"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:text="Start Date"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/imgStartDate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxStartDateLabel"
-            app:layout_goneMarginEnd="@dimen/main_margin" />
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgStartDate"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="@dimen/dp6"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:background="@drawable/bg_rounded_border_black_solid_green"
-            android:padding="6dp"
-            android:src="@drawable/calendar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxStartDateLabel" />
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp32"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="52dp"
+            android:layout_marginBottom="@dimen/dp42"
+            android:src="@drawable/left_arrow" />
 
-        <TextView
-            android:id="@+id/tvTrxUntilDateLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/main_margin"
-            android:text="Trx Until Date"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxStartDate" />
-
-        <TextView
-            android:id="@+id/tvTrxUntilDate"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/dp6"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:text="Until Date"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/imgUntilDate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxUntilDateLabel" />
-
-        <ImageView
-            android:id="@+id/imgUntilDate"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="@dimen/dp6"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:background="@drawable/bg_rounded_red"
-            android:padding="6dp"
-            android:src="@drawable/calendar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxUntilDateLabel" />
-
-        <TextView
-            android:id="@+id/tvTrxStatusLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/main_margin"
-            android:text="Trx Status"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxUntilDate" />
-
-        <Spinner
-            android:id="@+id/spnTrxStatus"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/dp6"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:paddingStart="12dp"
-            android:paddingEnd="42dp"
-            android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
-            android:text="Report Type"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="normal"
-            app:layout_constraintTop_toBottomOf="@id/tvTrxStatusLabel" />
-
-        <ImageView
+        <LinearLayout
+            android:id="@+id/layout_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp12"
-            android:src="@drawable/ic_arrow_drop_down_black_30dp"
-            app:layout_constraintBottom_toBottomOf="@id/spnTrxStatus"
-            app:layout_constraintEnd_toEndOf="@id/spnTrxStatus"
-            app:layout_constraintTop_toTopOf="@id/spnTrxStatus" />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/main_margin"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:paddingBottom="0dp"
+                android:text="@string/status"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/filter"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@drawable/bg_container"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingTop="@dimen/dp6"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_header">
 
         <TextView
-            android:id="@+id/tvNoteLabel"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/main_margin"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:text="Note :"
-            android:textColor="@color/redError"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/spnTrxStatus" />
-
-        <TextView
-            android:id="@+id/tvNote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/main_margin"
-            android:layout_marginTop="@dimen/dp6"
-            android:layout_marginEnd="@dimen/main_margin"
-            android:text="@string/warning_31days"
-            android:textColor="@color/redError"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/tvNoteLabel" />
+            android:layout_marginTop="@dimen/dp14"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/trx_start_date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textAppearanceSubtitle" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintVertical_bias="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNote">
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnView"
-                android:layout_width="120dp"
+            <TextView
+                android:id="@+id/tvTrxStartDate"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"
-                android:layout_marginTop="@dimen/main_margin"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="@dimen/main_margin"
-                android:layout_weight="1"
-                android:background="@drawable/bg_circle_color_accent"
-                android:text="View"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_marginEnd="22dp"
+                android:layout_weight="4"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp12"
+                android:paddingEnd="@dimen/dp12"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
 
-            <Button
-                android:id="@+id/btnReset"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="@dimen/main_margin"
-                android:layout_marginEnd="@dimen/main_margin"
-                android:layout_marginBottom="@dimen/main_margin"
-                android:layout_weight="1"
-                android:background="@drawable/bg_rounded_red_30dp"
-                android:text="Reset"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/imgStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="0"
+                android:background="@drawable/bg_rounded_border_black_solid_green"
+                android:paddingLeft="2dp"
+                android:paddingTop="@dimen/dp8"
+                android:paddingRight="2dp"
+                android:paddingBottom="@dimen/dp8"
+                android:src="@drawable/calendar" />
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp14"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/trx_until_date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTrxUntilDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_weight="4"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp12"
+                android:paddingEnd="@dimen/dp12"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+
+            <ImageView
+                android:id="@+id/imgUntilDate"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="0"
+                android:background="@drawable/bg_rounded_red"
+                android:paddingLeft="2dp"
+                android:paddingTop="@dimen/dp8"
+                android:paddingRight="2dp"
+                android:paddingBottom="@dimen/dp8"
+                android:src="@drawable/calendar" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp14"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/trx_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spnTrxStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_rounded_border_black_solid_black"
+            android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="42dp"
+            android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
+            android:textSize="@dimen/textAppearanceSubtitle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/main_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/main_margin"
+                android:text="@string/note"
+                android:textColor="@color/redError" />
+
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/main_margin"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/note_approval_filter"
+                android:textColor="@color/redError"
+                android:textSize="@dimen/textAppearanceSubtitle2" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container">
+
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_circle_color_accent"
+            android:text="@string/view"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_red_30dp"
+            android:text="@string/reset"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

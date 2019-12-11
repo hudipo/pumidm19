@@ -13,7 +13,7 @@ public class RequestModel implements Parcelable {
     private String docNum;
     private int trxTypeId;
     private String description;
-    private Double amount;
+    private String amount;
     private Uri fileDataUri;
     private String pin;
     private int orgId;
@@ -34,11 +34,7 @@ public class RequestModel implements Parcelable {
         docNum = in.readString();
         trxTypeId = in.readInt();
         description = in.readString();
-        if (in.readByte() == 0) {
-            amount = null;
-        } else {
-            amount = in.readDouble();
-        }
+        amount = in.readString();
         fileDataUri = in.readParcelable(Uri.class.getClassLoader());
         pin = in.readString();
         orgId = in.readInt();
@@ -170,11 +166,11 @@ public class RequestModel implements Parcelable {
         this.description = description;
     }
 
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -224,12 +220,7 @@ public class RequestModel implements Parcelable {
         dest.writeString(docNum);
         dest.writeInt(trxTypeId);
         dest.writeString(description);
-        if (amount == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(amount);
-        }
+        dest.writeString(amount);
         dest.writeParcelable(fileDataUri, flags);
         dest.writeString(pin);
         dest.writeInt(orgId);

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/department"
         android:layout_weight="1"
-        android:textSize="24sp"
+        android:textSize="@dimen/textAppearanceSubtitle"
         android:textColor="@color/black"/>
 
 </LinearLayout>

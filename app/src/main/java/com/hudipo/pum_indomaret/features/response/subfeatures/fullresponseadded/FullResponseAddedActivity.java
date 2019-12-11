@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsecartfull.ResponseCartFullActivity;
 
@@ -24,10 +25,18 @@ public class FullResponseAddedActivity extends AppCompatActivity {
     void btnViewResponseCart(){
         startActivity(new Intent(this, ResponseCartFullActivity.class));
         finish();
+        Animatoo.animateSlideLeft(this);
     }
 
     @OnClick(R.id.btnAddAnotherResponse)
     void btnAddAnotherResponse(){
         finish();
+        Animatoo.animateSlideRight(this);
+    }
+
+    @Override
+    public void onBackPressed(){
+       // super.onBackPressed();
+
     }
 }

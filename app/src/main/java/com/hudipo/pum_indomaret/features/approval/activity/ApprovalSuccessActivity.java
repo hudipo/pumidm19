@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.utils.Extra;
@@ -17,8 +18,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ApprovalSuccessActivity extends AppCompatActivity {
-    @BindView(R.id.imageView)
-    ImageView imageView;
+    @BindView(R.id.animation)
+    LottieAnimationView animation;
+
     @BindView(R.id.tvTitle)
     TextView tvTitle;
     @BindView(R.id.tvDescription)
@@ -35,11 +37,11 @@ public class ApprovalSuccessActivity extends AppCompatActivity {
     private void setView() {
         int type = getIntent().getIntExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE, -1);
         if(type==0){ //rejected
-            imageView.setImageDrawable(getDrawable(R.drawable.rejected));
+            animation.setAnimation("rejected.json");
             tvTitle.setText(getString(R.string.request_rejected));
             tvDescription.setText(getString(R.string.request_rejected_desc));
         }else {
-            imageView.setImageDrawable(getDrawable(R.drawable.approved));
+            animation.setAnimation("approved.json");
             tvTitle.setText(getString(R.string.request_approved));
             tvDescription.setText(getString(R.string.request_approved_note));
         }

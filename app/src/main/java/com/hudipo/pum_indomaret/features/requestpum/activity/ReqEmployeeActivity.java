@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.searchdept.SearchDeptActivity;
 import com.hudipo.pum_indomaret.model.RequestModel;
@@ -74,9 +75,17 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
      * OnClick Listener
      * */
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnRespDate)
@@ -93,6 +102,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     @OnClick(R.id.btnSearchDepartment)
     void setBtnSearchDept(){
         startActivityForResult(new Intent(this, SearchDeptActivity.class), REQUEST_CODE_SEARCH_DEPT);
+        Animatoo.animateSlideUp(this);
     }
 
     @OnClick(R.id.btnNext)
@@ -116,6 +126,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
             intent.putExtra(ReqDocumentActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
             startActivity(intent);
+            Animatoo.animateSlideLeft(this);
         }
     }
 

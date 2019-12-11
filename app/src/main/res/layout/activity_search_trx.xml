@@ -13,16 +13,18 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@id/activityTitle"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"/>
 
     <TextView
         android:id="@+id/activityTitle"
@@ -31,12 +33,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/request"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintVertical_bias="0.238"  />
 
     <TextView
         android:id="@+id/textViewDepartment"
@@ -44,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
         android:text="@string/transaction"
+        android:fontFamily="@font/msemibold"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/topView" />
@@ -51,7 +55,7 @@
     <EditText
         android:id="@+id/etSearchTransaction"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="48dp"
         android:layout_margin="@dimen/main_margin"
         android:layout_marginEnd="0dp"
         android:background="@drawable/bg_rounded_border_black_solid_black"
@@ -61,7 +65,7 @@
         android:paddingEnd="12dp"
         android:hint="@string/search"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="@dimen/textAppearanceSubtitle"
         android:inputType="text"
         android:imeOptions="actionSearch"
         android:drawableEnd="@drawable/ic_search_black_24dp"
@@ -89,11 +93,14 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <ProgressBar
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/pbSearchTrx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        app:lottie_loop="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_autoPlay="true"
+        android:layout_marginTop="62dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

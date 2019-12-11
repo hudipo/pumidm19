@@ -12,6 +12,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.model.docdetail.DocData;
 import com.hudipo.pum_indomaret.model.docdetail.DocDataItem;
 import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
+import com.hudipo.pum_indomaret.utils.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +111,7 @@ public class SearchDocumentAdapter extends RecyclerView.Adapter<SearchDocumentAd
         void bindItem(DocDataItem docDataItem, ItemClickListener itemClickListener) {
             tvDocNum.setText(docDataItem.getDocNum());
             tvDocDate.setText(docDataItem.getDocDate());
-            String string = "Rp "+ docDataItem.getDocAmount();
+            String string = "Rp "+ Global.priceFormatter(docDataItem.getDocAmount());
             tvAmount.setText(string);
 
             itemView.setOnClickListener(view -> itemClickListener.onItemClick(docDataItem));

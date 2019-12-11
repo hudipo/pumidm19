@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
@@ -77,7 +78,7 @@ public class ApprovalAdapter extends RecyclerView.Adapter<ApprovalAdapter.Approv
             tvPumNumber.setText(approvalModel.getTRXNUM());
             tvPumRequester.setText(approvalModel.getNAME());
             String amount = String.format("%s %s", itemView.getContext().getString(R.string.rp),
-                    Global.priceFormater(String.valueOf(approvalModel.getAMOUNT())));
+                    Global.priceFormatter(String.valueOf(approvalModel.getAMOUNT())));
             tvAmount.setText(amount);
 
             if(isAllChecked==2){

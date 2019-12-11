@@ -10,6 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 import org.jetbrains.annotations.NotNull;
@@ -57,7 +60,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
     @BindView(R.id.tvErrorPassword)
     TextView tvErrorPassword;
     @BindView(R.id.pbPin)
-    ProgressBar pbPin;
+    LottieAnimationView pbPin;
 
     private String pin="";
     private boolean isReset = false;
@@ -242,6 +245,7 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
         Intent intent = new Intent();
         intent.putExtra(EXTRA_PIN, pin);
         setResult(Activity.RESULT_OK, intent);
+        Animatoo.animateSlideUp(this);
         finish();
     }
 
@@ -254,5 +258,11 @@ public class PinActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onDetachView() {
         pinPresenter.onDetach();
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
     }
 }

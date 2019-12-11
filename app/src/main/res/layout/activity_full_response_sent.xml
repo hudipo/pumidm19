@@ -4,62 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_dialog_blue"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="@dimen/main_padding"
     tools:context=".features.response.subfeatures.fullresponsesent.FullResponseSentActivity">
 
-    <ImageView
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:src="@drawable/rocket_green"
-        android:scaleType="centerCrop"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
         android:layout_marginBottom="80dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="full_resp_sent.json"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/partial_response_sent"
-        android:fontFamily="@font/msemibold"
-        style="@style/TextAppearance.Headline5.Light"
-        android:textStyle="bold"
-        android:layout_marginBottom="14dp"/>
+        android:layout_margin="@dimen/dp12"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/full_response_sent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textAppearanceH5" />
 
     <TextView
         android:id="@+id/tvDescription"
+        style="@style/TextAppearance.Body1.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/you_have_successfully_sent_npartial_responsibility"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/mregular"
-        style="@style/TextAppearance.Body1.Light"
-        android:textAlignment="center"
-        android:layout_marginBottom="32dp"/>
+        android:text="@string/you_have_successfully_sent_full_responsibility"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btnCreateAnotherResponse"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_another_response"
-        android:fontFamily="@font/msemibold"
+        android:layout_marginStart="@dimen/dp6"
+        android:layout_marginTop="@dimen/dp62"
+        android:layout_marginEnd="@dimen/dp6"
         android:background="@drawable/bg_rounded_blue"
-        android:textAllCaps="false"
-        style="@style/TextAppearance.Headline6.Light"
-        android:layout_marginBottom="@dimen/main_margin"/>
+        android:padding="@dimen/dp6"
+        android:text="@string/create_another_response"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textAppearanceSubtitle1"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnBackHome"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp6"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_marginEnd="@dimen/dp6"
+        android:layout_marginBottom="@dimen/dp12"
+        android:background="@drawable/bg_rounded_white_8dp"
         android:text="@string/back_to_home"
-        android:fontFamily="@font/msemibold"
-        android:background="@drawable/bg_rounded_black_jet"
-        android:textAllCaps="false"
-        style="@style/TextAppearance.Headline6.Light"
-        android:layout_marginBottom="62dp"/>
+        android:textAllCaps="true"
+        android:textColor="@color/btn_home_text"
+        android:textSize="@dimen/textAppearanceSubtitle1"
+        android:textStyle="bold" />
 
 </LinearLayout>

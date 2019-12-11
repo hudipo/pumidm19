@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.utils.StartActivity;
@@ -21,9 +22,16 @@ public class ChangePinSuccessActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btnBackHome)
-    void backHome(){
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
         StartActivity.goTo(this, HomeActivity.class);
         finishAffinity();
+        Animatoo.animateSlideUp(this);
+    }
+
+    @OnClick(R.id.btnBackHome)
+    void backHome(){
+       onBackPressed();
     }
 }

@@ -15,6 +15,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.snackbar.Snackbar;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.SearchDocumentAdapter;
@@ -32,7 +34,7 @@ public class SearchDocDetailActivity extends AppCompatActivity implements Search
     @BindView(R.id.etSearchDoc)
     EditText etSearchDoc;
     @BindView(R.id.pbSearchDocDetail)
-    ProgressBar pbSearchDocDetail;
+    LottieAnimationView pbSearchDocDetail;
     @BindView(R.id.constraintSearchDoc)
     ConstraintLayout constraintSearchDoc;
 
@@ -77,15 +79,19 @@ public class SearchDocDetailActivity extends AppCompatActivity implements Search
         Snackbar.make(constraintSearchDoc, message, Snackbar.LENGTH_LONG).show();
     }
 
-    @OnClick(R.id.btnBack)
-    void btnBack(){
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
         finish();
     }
 
-    @OnClick(R.id.btnSearchDoc)
-    void btnSearchDoc(){
-        Toast.makeText(this, "Search Doc", Toast.LENGTH_SHORT).show();
+    @OnClick(R.id.btnBack)
+    void btnBack(){
+        onBackPressed();
     }
+
+
 
     @Override
     public void showProgress() {
@@ -106,6 +112,7 @@ public class SearchDocDetailActivity extends AppCompatActivity implements Search
             returnIntent.putExtra(EXTRA_SELECTED_DOC, dataItem);
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
+            Animatoo.animateSlideDown(this);
         });
         rvSearchDoc.setLayoutManager(new LinearLayoutManager(this));
         rvSearchDoc.setAdapter(adapter);

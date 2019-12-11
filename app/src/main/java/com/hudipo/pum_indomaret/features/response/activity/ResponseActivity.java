@@ -8,7 +8,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.adapter.ResponseAdapter;
 
@@ -20,7 +22,7 @@ public class ResponseActivity extends AppCompatActivity {
     @BindView(R.id.rvResponse)
     RecyclerView rvResponse;
     @BindView(R.id.btnBack)
-    ImageButton btnBack;
+    ImageView btnBack;
     @BindView(R.id.swipeRefreshResponse)
     SwipeRefreshLayout swipeRefreshResponse;
 
@@ -39,6 +41,13 @@ public class ResponseActivity extends AppCompatActivity {
         swipeRefreshResponse.setOnRefreshListener(() -> {
             swipeRefreshResponse.setRefreshing(false);
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
     }
 
     private void onClick() {

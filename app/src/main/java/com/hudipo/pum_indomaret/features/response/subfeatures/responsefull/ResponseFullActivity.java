@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.fullresponseadded.FullResponseAddedActivity;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsecartfull.ResponseCartFullActivity;
@@ -60,6 +61,7 @@ public class ResponseFullActivity extends AppCompatActivity implements CustomSpi
     @OnClick(R.id.btnFolder)
     void btnFolder(){
         startActivity(new Intent(this, ResponseCartFullActivity.class));
+        Animatoo.animateZoom(this);
     }
 
     @OnClick(R.id.btnTransactionType)
@@ -72,9 +74,15 @@ public class ResponseFullActivity extends AppCompatActivity implements CustomSpi
         Global.openPicker(getSupportFragmentManager(), optionUploadFiles, RequestCode.CODE_OPTION_UPLOAD_FILE, "Choose file from");
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
+        finish();
+    }
+
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+       onBackPressed();
     }
 
     @Override

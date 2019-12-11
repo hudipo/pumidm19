@@ -4,40 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.approval.detail.ApprovalDetailActivity">
+    android:background="@color/colorBase"
+    tools:context=".features.approval.activity.ApprovalFilterActivity">
+
     <RelativeLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightAppBar"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
         android:background="@drawable/gradient_top_blue"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/left_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp32"
             android:layout_marginStart="16dp"
-            android:layout_centerVertical="true"/>
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="52dp"
+            android:layout_marginBottom="42dp"
+            android:src="@drawable/left_arrow" />
+
         <LinearLayout
             android:id="@+id/layout_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/main_margin"
             android:gravity="end"
-            android:layout_centerVertical="true">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/title_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="0dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
+                android:paddingBottom="0dp"
                 android:text="@string/approval"
-                android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/white"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -46,153 +54,196 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
-                android:text="@string/filter"
                 android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/filter"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/dp16"
+        android:background="@drawable/bg_container"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/main_margin"
+        android:paddingTop="@dimen/dp6"
+        android:paddingEnd="@dimen/main_margin"
+        android:paddingBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_header"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp14"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/trx_start_date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textAppearanceSubtitle" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/main_padding">
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
             <TextView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/trx_start_date"
-                style="@style/TextAppearance.AppCompat.Title"/>
-            <TextView
-                app:layout_constraintTop_toBottomOf="@id/textView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/ivTrxStartDate"
-                style="@style/TextAppearance.Body1.Dark"
                 android:id="@+id/tvTrxStartDate"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/editTextHeight"
-                android:paddingStart="@dimen/main_padding"
-                android:paddingEnd="@dimen/main_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_weight="4"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:enabled="false"
                 android:gravity="center_vertical"
-                android:layout_marginEnd="@dimen/main_margin"/>
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp12"
+                android:paddingEnd="@dimen/dp12"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+
             <ImageView
                 android:id="@+id/ivTrxStartDate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvTrxStartDate"
-                app:layout_constraintBottom_toBottomOf="@id/tvTrxStartDate"
-                android:layout_width="@dimen/editTextHeight"
-                android:layout_height="@dimen/editTextHeight"
-                android:src="@drawable/calendar"
-                android:padding="@dimen/min_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_green"/>
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="0"
+                android:background="@drawable/bg_rounded_border_black_solid_green"
+                android:paddingLeft="2dp"
+                android:paddingTop="@dimen/dp8"
+                android:paddingRight="2dp"
+                android:paddingBottom="@dimen/dp8"
+                android:src="@drawable/calendar" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp14"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/trx_until_date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
 
             <TextView
-                app:layout_constraintTop_toBottomOf="@id/tvTrxStartDate"
-                app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/min_margin"
-                android:text="@string/trx_until_date"
-                style="@style/TextAppearance.AppCompat.Title"/>
-            <TextView
-                app:layout_constraintTop_toBottomOf="@id/textView2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/ivTrxUntilDate"
-                style="@style/TextAppearance.Body1.Dark"
                 android:id="@+id/tvTrxUntilDate"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/editTextHeight"
-                android:paddingStart="@dimen/main_padding"
-                android:paddingEnd="@dimen/main_padding"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="22dp"
+                android:layout_weight="4"
+                android:background="@drawable/bg_rounded_border_black_solid_black"
+                android:enabled="false"
                 android:gravity="center_vertical"
-                android:layout_marginEnd="@dimen/main_margin"/>
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp12"
+                android:paddingEnd="@dimen/dp12"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+
             <ImageView
                 android:id="@+id/ivTrxUntilDate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvTrxUntilDate"
-                app:layout_constraintBottom_toBottomOf="@id/tvTrxUntilDate"
-                android:layout_width="@dimen/editTextHeight"
-                android:layout_height="@dimen/editTextHeight"
-                android:src="@drawable/calendar"
-                android:padding="@dimen/min_margin"
-                android:background="@drawable/bg_rounded_border_black_solid_red"/>
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="0"
+                android:background="@drawable/bg_rounded_red"
+                android:paddingLeft="2dp"
+                android:paddingTop="@dimen/dp8"
+                android:paddingRight="2dp"
+                android:paddingBottom="@dimen/dp8"
+                android:src="@drawable/calendar" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp14"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/trx_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textAppearanceSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spTrxStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_rounded_border_black_solid_black"
+            android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="42dp"
+            android:popupBackground="@drawable/bg_rounded_border_black_solid_black"
+            android:textSize="@dimen/textAppearanceSubtitle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/main_margin"
+            android:orientation="vertical">
 
             <TextView
-                app:layout_constraintTop_toBottomOf="@id/tvTrxUntilDate"
-                app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/min_margin"
-                android:text="@string/trx_status"
-                style="@style/TextAppearance.AppCompat.Title"/>
-            <Spinner
-                app:layout_constraintTop_toBottomOf="@id/textView3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                style="@style/TextAppearance.Body1.Dark"
-                android:id="@+id/spTrxStatus"
-                android:background="@drawable/bg_rounded_border_black_solid_black"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/editTextHeight"
-                android:paddingStart="@dimen/main_padding"
-                android:paddingEnd="@dimen/main_padding"
-                android:gravity="center_vertical"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp18"
-                android:src="@drawable/ic_arrow_drop_down_black_30dp"
-                app:layout_constraintBottom_toBottomOf="@id/spTrxStatus"
-                app:layout_constraintEnd_toEndOf="@id/spTrxStatus"
-                app:layout_constraintTop_toTopOf="@id/spTrxStatus" />
-            <TextView
-                app:layout_constraintTop_toBottomOf="@id/spTrxStatus"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="@dimen/main_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/textView4"
                 style="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/redError"
-                android:text="@string/note"/>
-            <TextView
-                app:layout_constraintTop_toBottomOf="@id/textView4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvNote"
-                style="@style/TextAppearance.Body1"
-                android:textColor="@color/redError"
-                android:text="@string/note_approval_filter"/>
+                android:layout_marginTop="@dimen/main_margin"
+                android:text="@string/note"
+                android:textColor="@color/redError" />
 
-            <Button
-                android:id="@+id/btnSubmit"
-                android:layout_width="@dimen/buttonWidth"
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/submit"
-                android:background="@drawable/bg_rounded_blue_30dp"
-                style="@style/TextAppearance.Headline6.Light"
-                android:textAllCaps="false"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvNote"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                android:layout_marginTop="@dimen/main_margin"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/note_approval_filter"
+                android:textColor="@color/redError"
+                android:textSize="@dimen/textAppearanceSubtitle2" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp14"
+        android:layout_marginTop="168dp"
+        android:layout_marginRight="@dimen/dp14"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:background="@drawable/bg_circle_color_accent"
+        android:fontFamily="@font/montserrat_semibold"
+        android:gravity="center"
+        android:text="@string/submit"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textAppearanceSubtitle1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

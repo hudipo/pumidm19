@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.HomeAdapter;
 import com.hudipo.pum_indomaret.data.Data;
@@ -104,21 +105,27 @@ public class HomeActivity extends AppCompatActivity {
             switch (homeItem.getId()){
                 case 0 :
                     startActivity(new Intent(this, ReqEmployeeActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
                 case 1 :
                     startActivity(new Intent(this, ApprovalActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
                 case 2 :
                     startActivity(new Intent(this, StatusActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
                 case 3 :
                     startActivity(new Intent(this, ResponseActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
                 case 4 :
                     startActivity(new Intent(this, SettingActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
                 case 5 :
                     startActivity(new Intent(this, ReportActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
             }
         });

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsefull.ResponseFullActivity;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsepartial.ResponsePartialActivity;
@@ -25,18 +26,28 @@ public class CreateResponseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.btnBack)
     void back(){
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnFull)
     void btnFull(){
         startActivity(new Intent(this, ResponseFullActivity.class));
+        Animatoo.animateSlideUp(this);
     }
 
     @OnClick(R.id.btnPartial)
     void btnPartial(){
         startActivity(new Intent(this, ResponsePartialActivity.class));
+        Animatoo.animateSlideUp(this);
+
     }
 }

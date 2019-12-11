@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.partialresponseadded.PartialResponseAddedActivity;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsecartpartial.ResponseCartPartialActivity;
@@ -51,9 +52,16 @@ public class ResponsePartialActivity extends AppCompatActivity implements Custom
         optionTransactionType.add(new OptionItem(1, null, "Transaction Type 5", "Transaction Type 5"));
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnTransactionType)
@@ -74,6 +82,7 @@ public class ResponsePartialActivity extends AppCompatActivity implements Custom
     @OnClick(R.id.btnFolder)
     void btnFolder(){
         startActivity(new Intent(this, ResponseCartPartialActivity.class));
+        Animatoo.animateZoom(this);
     }
 
 

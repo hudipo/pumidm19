@@ -13,10 +13,12 @@
         android:background="@drawable/gradient_top_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
@@ -31,69 +33,80 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/request"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintVertical_bias="0.238" />
 
     <TextView
         android:id="@+id/textViewDepartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/main_margin"
+        android:fontFamily="@font/msemibold"
         android:text="@string/department"
         android:textColor="@android:color/black"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/topView" />
 
     <EditText
         android:id="@+id/etSearchDepart"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="48dp"
         android:layout_margin="@dimen/main_margin"
         android:layout_marginEnd="0dp"
         android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:drawableEnd="@drawable/ic_search_black_24dp"
         android:gravity="center_vertical"
+        android:hint="@string/search"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:hint="@string/search"
         android:textColor="@color/black"
-        android:textSize="24sp"
-        android:inputType="text"
-        android:imeOptions="actionSearch"
-        android:drawableEnd="@drawable/ic_search_black_24dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/textAppearanceSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewDepartment"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewDepartment">
 
-    <ProgressBar
+        <requestFocus />
+    </EditText>
+
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/pbSearchDept"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="62dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="@dimen/main_margin"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etSearchDepart"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearchDepart">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchDept"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded_border_black_solid_black"
             android:padding="8dp"
-            tools:listitem="@layout/item_search_dept"
-            android:background="@drawable/bg_rounded_border_black_solid_black" />
+            tools:listitem="@layout/item_search_dept" />
 
     </androidx.core.widget.NestedScrollView>
 

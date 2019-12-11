@@ -5,8 +5,7 @@
     android:id="@+id/constraintSearchDoc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
+
     tools:context=".features.searchdocdetail.SearchDocDetailActivity">
 
     <View
@@ -18,81 +17,92 @@
 
     <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
-        app:layout_constraintBottom_toTopOf="@+id/etSearchDoc"
-        app:layout_constraintEnd_toStartOf="@+id/textViewRequest"
-        app:layout_constraintStart_toStartOf="@+id/topView"
-        app:layout_constraintTop_toTopOf="@+id/topView" />
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toStartOf="@id/activityTitle"
+        app:layout_constraintStart_toStartOf="@id/topView"
+        app:layout_constraintTop_toTopOf="@id/topView" />
 
     <TextView
-        android:id="@+id/textViewRequest"
+        android:id="@+id/activityTitle"
+        style="@style/TextAppearance.Headline4.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/msemibold"
         android:gravity="center"
         android:text="@string/request"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="28sp"
+        android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/etSearchDoc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/topView"
+        app:layout_constraintEnd_toEndOf="@id/topView"
+        app:layout_constraintStart_toStartOf="@id/topView"
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintVertical_bias="0.238" />
 
+    <TextView
+        android:id="@+id/sectionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/main_margin"
+        android:fontFamily="@font/msemibold"
+        android:text="@string/document"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/topView" />
 
     <EditText
         android:id="@+id/etSearchDoc"
         android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="@dimen/main_margin"
-        android:layout_marginEnd="@dimen/main_margin"
-        android:background="@drawable/bg_circle_white"
-        android:hint="@string/search_by_document"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/main_margin"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
+        android:drawableEnd="@drawable/ic_search_black_24dp"
+        android:gravity="center_vertical"
+        android:hint="@string/search"
+        android:imeOptions="actionSearch"
+        android:inputType="number"
+        android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="@id/topView"
-        app:layout_constraintEnd_toStartOf="@id/btnSearchDoc"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewRequest" />
-
-    <ImageView
-        android:id="@+id/btnSearchDoc"
-        android:layout_width="60dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="@dimen/main_margin"
-        android:background="@drawable/bg_circle_white"
-        android:padding="6dp"
-        android:src="@drawable/ic_search_blue_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/textViewRequest"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textAppearanceSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sectionTitle">
+        <requestFocus/>
+    </EditText>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearchDoc"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingStart="@dimen/main_margin"
-        android:paddingEnd="@dimen/main_margin"
-        android:paddingBottom="@dimen/main_margin"
         android:clipToPadding="false"
+        android:padding="2dp"
+       android:layout_margin="@dimen/main_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView"
+        app:layout_constraintTop_toBottomOf="@id/etSearchDoc"
         tools:listitem="@layout/item_request_search_document" />
 
-    <ProgressBar
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/pbSearchDocDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="62dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

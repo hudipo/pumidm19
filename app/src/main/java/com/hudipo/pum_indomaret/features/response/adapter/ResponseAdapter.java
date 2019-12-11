@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.createresponse.CreateResponseActivity;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsehistory.ResponseHistoryActivity;
@@ -66,11 +68,15 @@ public class ResponseAdapter extends RecyclerView.Adapter<ResponseAdapter.ViewHo
         @OnClick(R.id.btnFlag)
         void btnFlag(){
             context.startActivity(new Intent(context, CreateResponseActivity.class));
+            Animatoo.animateSlideLeft(context);
         }
+
+
 
         @OnClick(R.id.btnEye)
         void btnEye(){
             context.startActivity(new Intent(context, ResponseHistoryActivity.class));
+            Animatoo.animateSlideLeft(context);
         }
     }
 }

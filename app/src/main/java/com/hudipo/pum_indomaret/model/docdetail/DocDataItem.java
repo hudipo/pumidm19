@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class DocDataItem implements Parcelable {
 
 	@SerializedName("doc_amount")
-	private int docAmount;
+	private String docAmount;
 
 	@SerializedName("doc_num")
 	private String docNum;
@@ -17,7 +17,7 @@ public class DocDataItem implements Parcelable {
 	private String docDate;
 
 	private DocDataItem(Parcel in) {
-		docAmount = in.readInt();
+		docAmount = in.readString();
 		docNum = in.readString();
 		docDate = in.readString();
 	}
@@ -34,11 +34,11 @@ public class DocDataItem implements Parcelable {
 		}
 	};
 
-	public void setDocAmount(int docAmount){
+	public void setDocAmount(String docAmount){
 		this.docAmount = docAmount;
 	}
 
-	public int getDocAmount(){
+	public String getDocAmount(){
 		return docAmount;
 	}
 
@@ -65,7 +65,7 @@ public class DocDataItem implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeInt(docAmount);
+		dest.writeString(docAmount);
 		dest.writeString(docNum);
 		dest.writeString(docDate);
 	}

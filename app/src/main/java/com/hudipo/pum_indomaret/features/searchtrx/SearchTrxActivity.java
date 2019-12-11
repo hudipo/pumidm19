@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.SearchTrxAdapter;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
@@ -28,7 +30,7 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
     @BindView(R.id.rvSearchTrx)
     RecyclerView rvSearchTrx;
     @BindView(R.id.pbSearchTrx)
-    ProgressBar pbSearchTrx;
+    LottieAnimationView pbSearchTrx;
     @BindView(R.id.etSearchTransaction)
     EditText etSearchTransaction;
 
@@ -82,6 +84,7 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
             intent.putExtra(EXTRA_SELECTED, trxItem);
             setResult(Activity.RESULT_OK, intent);
             finish();
+            Animatoo.animateSlideDown(this);
         });
         searchTrxAdapter.setTrxTypeResponse(trxTypeResponse);
 
@@ -132,8 +135,16 @@ public class SearchTrxActivity extends AppCompatActivity implements SearchTrxCon
         trxPresenter.onDetach();
     }
 
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
+        finish();
+
+    }
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+       onBackPressed();
     }
 }

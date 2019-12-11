@@ -13,11 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.features.requestpum.contract.ReqValidationContract;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.ReqValidationPresenter;
 import com.hudipo.pum_indomaret.model.RequestModel;
+import com.hudipo.pum_indomaret.utils.Global;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +46,7 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
     @BindView(R.id.tvDesc)
     TextView tvDescription;
     @BindView(R.id.pbReqValidation)
-    ProgressBar pbReqValidation;
+    LottieAnimationView pbReqValidation;
 
     public static String EXTRA_DATA_REQUEST = "extra_data_request";
     private final int REQUEST_CODE_PIN = 100;
@@ -109,7 +111,8 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
 
         tvTrxType.setText(requestModel.getNameTrxType());
 
-        tvAmount.setText(String.valueOf(requestModel.getAmount()));
+        String textAmount = "Rp. "+Global.priceFormatter(requestModel.getAmount());
+        tvAmount.setText(textAmount);
 
         tvFile.setText(requestModel.getNameFile());
 

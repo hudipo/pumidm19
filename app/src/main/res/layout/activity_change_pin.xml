@@ -5,33 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.approval.detail.ApprovalDetailActivity">
+
     <RelativeLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/heightAppBar"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
         android:background="@drawable/gradient_top_blue"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/title_page"
+            style="@style/TextAppearance.Headline5.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/montserrat_semibold"
             android:gravity="center"
-            android:text="@string/change_pin"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"/>
+            android:text="@string/change_pin" />
+
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp32"
+            android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:src="@drawable/left_arrow"
-            android:layout_centerVertical="true"/>
+            android:src="@drawable/left_arrow" />
     </RelativeLayout>
 
     <FrameLayout
@@ -43,13 +45,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_header" />
 
-    <ProgressBar
-        android:visibility="gone"
+
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="62dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_header" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_header"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @OnClick(R.id.tvSignUp)
     void signUp(){
         StartActivity.goTo(this, RegisterActivity.class);
+        Animatoo.animateSlideRight(this);
     }
 
     @Override
@@ -77,6 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void loginSuccess() {
         StartActivity.goTo(this, HomeActivity.class);
+        Animatoo.animateSlideLeft(this);
         finishAffinity();
     }
 

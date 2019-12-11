@@ -31,7 +31,7 @@
             android:text="@string/example_trx_number"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
-            style="@style/TextAppearance.Headline5.Dark"
+            style="@style/TextAppearance.Headline6.Dark"
             app:layout_constraintTop_toBottomOf="@id/textViewTrxNumber"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -55,7 +55,7 @@
             android:text="@string/New"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
-            style="@style/TextAppearance.Headline5.Dark"
+            style="@style/TextAppearance.Headline6.Dark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewStatus"/>
 

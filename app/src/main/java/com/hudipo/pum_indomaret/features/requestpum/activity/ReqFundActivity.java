@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +38,8 @@ import com.hudipo.pum_indomaret.utils.Utils;
 import com.hudipo.pum_indomaret.utils.spinner.CustomSpinnerFragment;
 
 import java.io.File;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,7 +71,38 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         setContentView(R.layout.activity_req_fund);
         ButterKnife.bind(this);
 
+        setCurrencyEtAmountFund();
         getDataIntent();
+    }
+
+    private void setCurrencyEtAmountFund() {
+        etAmountFund.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String cleanString = s.toString().replaceAll("[$,.]", "");
+
+                if (!cleanString.isEmpty()){
+                    etAmountFund.removeTextChangedListener(this);
+
+                    double parsed = Double.parseDouble(cleanString);
+                    String formatted = NumberFormat.getInstance(new Locale("id")).format(parsed);
+
+                    etAmountFund.setText(formatted);
+                    etAmountFund.setSelection(formatted.length());
+
+                    etAmountFund.addTextChangedListener(this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     @Override
@@ -129,9 +164,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
                         String path = selectedFile.getPath();
 //                        requestModel.setPathDocument(path);
-                        Log.d("coba", "path : "+path);
-                        Log.d("coba", "real path : "+realPath);
-                        Log.d("coba", "uri : "+selectedFile);
 
                         File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
@@ -160,7 +192,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             case REQUEST_CODE_GALLERY:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                         showGallery();
                     }else {
                         Toast.makeText(this, "Access gallery is denied", Toast.LENGTH_SHORT).show();
@@ -204,15 +236,15 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
     @OnClick(R.id.btnNextFund)
     void btnNextFund(){
-        String amount = etAmountFund.getText().toString().trim();
+        String amount = etAmountFund.getText().toString().trim().replace(".", "");
         String desc = etDescFund.getText().toString().trim();
         String trx = btnSearchTrx.getText().toString().trim();
         String nameFile = tvSelectAFile.getText().toString().trim();
 
-        if (checkValid(amount, desc, trx, nameFile)){
+        if (checkValid(amount, desc, trx)){
             if (checkAmount(amount)){
                 requestModel.setDescription(desc);
-                requestModel.setAmount(Double.valueOf(amount));
+                requestModel.setAmount(amount);
                 requestModel.setNameTrxType(trx);
                 requestModel.setNameFile(nameFile);
 
@@ -224,7 +256,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     }
 
 
-    private Boolean checkValid(String amount, String desc, String trx, String nameFile) {
+    private Boolean checkValid(String amount, String desc, String trx) {
         boolean isValid = false;
         if (trx.isEmpty()){
             Toast.makeText(this, "Trx is still empty", Toast.LENGTH_SHORT).show();
@@ -250,30 +282,24 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             isValid = true;
         }
 
-        if (nameFile.isEmpty()){
-            Toast.makeText(this, "File is still empty", Toast.LENGTH_SHORT).show();
-            tvSelectAFile.setError("File is still empty");
-        }else {
-            tvSelectAFile.setError(null);
-            isValid = true;
-        }
-
         return isValid;
     }
 
     private Boolean checkAmount(String amount) {
-        boolean isValid;
+        boolean isValid = false;
         HawkStorage hawkStorage = new HawkStorage(this);
-        Double totalAmount = Double.valueOf(amount);
-        if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
-            String textError = "Your max amount request is "+hawkStorage.getUserData().getMaxAmount();
-            showErrorAmountDialog();
-            tvErrorAmount.setText(textError);
-            tvErrorAmount.setVisibility(View.VISIBLE);
-            isValid = false;
-        }else {
-            isValid = true;
-            tvErrorAmount.setVisibility(View.INVISIBLE);
+        if (!amount.isEmpty()){
+            Double totalAmount = Double.valueOf(amount);
+            if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
+                String textError = "Your max amount request is "+hawkStorage.getUserData().getMaxAmount();
+                showErrorAmountDialog();
+                tvErrorAmount.setText(textError);
+                tvErrorAmount.setVisibility(View.VISIBLE);
+                isValid = false;
+            }else {
+                isValid = true;
+                tvErrorAmount.setVisibility(View.INVISIBLE);
+            }
         }
         return isValid;
     }

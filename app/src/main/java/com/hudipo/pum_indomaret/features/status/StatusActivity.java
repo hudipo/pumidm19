@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
@@ -45,6 +46,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     void goToStatusFilterAct(){
         Intent intent = new Intent(StatusActivity.this, StatusFilterActivity.class);
         startActivityForResult(intent,STATUS_FILTER_REQUEST_CODE);
+        Animatoo.animateSlideLeft(this);
     }
 
     private StatusAdapter adapterStatus;
@@ -104,6 +106,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
             Intent intent = new Intent(StatusActivity.this, StatusDetailActivity.class);
             intent.putExtra("CURRENT_STATUS", currentStatus);
             startActivity(intent);
+            Animatoo.animateSlideLeft(this);
         });
         rvStatus.setAdapter(adapterStatus);
         presenter.getStatusList();
@@ -140,16 +143,17 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     }
 
 
+
     @OnClick(R.id.btnBack)
     void btnBack(){
-        startActivity(new Intent(this, HomeActivity.class));
-        finish();
+       onBackPressed();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class));
+        Animatoo.animateSlideRight(this); //fire the slide left animation
         finish();
     }
 }

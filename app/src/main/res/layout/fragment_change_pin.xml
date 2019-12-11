@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat.Title"
+        android:fontFamily="@font/montserrat_semibold"
         tools:text="Masukan pin saat ini"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/large_margin"
@@ -25,9 +26,9 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:textAlignment="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:padding="@dimen/main_padding"
+            android:padding="@dimen/ef_padding_small"
             android:inputType="numberPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

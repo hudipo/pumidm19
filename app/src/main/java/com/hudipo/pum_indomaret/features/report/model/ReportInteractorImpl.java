@@ -12,7 +12,7 @@ public class ReportInteractorImpl implements ReportContract.ReportInteractor {
         for (int i=0;i<10;i++){
             reportTypeList.add("Report Type "+i);
         }
-        reportTypeList.add("uhsabfalsbasibfasufyhs");
+        reportTypeList.add("test test test");
 
         ArrayList<String>employeeNameList = new ArrayList<>();
         for (int i=0;i<10;i++){

@@ -15,28 +15,33 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@id/activityTitle"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintVertical_bias="0.60" />
 
     <TextView
         android:id="@+id/activityTitle"
         style="@style/TextAppearance.Headline4.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
         android:gravity="center"
         android:text="@string/request"
-        android:textAllCaps="true"
-        android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@id/topView"
         app:layout_constraintEnd_toEndOf="@id/topView"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintVertical_bias="0.238" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -45,9 +50,9 @@
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginEnd="@dimen/main_margin"
         android:scrollbars="none"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topView">
 
         <LinearLayout
@@ -62,10 +67,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/main_margin"
-                android:text="@string/fund"
+                android:text="@string/Validation"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -78,8 +83,8 @@
                     android:id="@+id/empLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/employee"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/employee"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -89,30 +94,32 @@
                     android:id="@+id/empDepLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/emp_dept"
+                    android:layout_marginTop="@dimen/dp38"
                     android:fontFamily="@font/mbold"
+                    android:text="@string/emp_dept"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@id/empLabel"
                     app:layout_constraintEnd_toStartOf="@id/empLabel"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvEmpDept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:layout_marginBottom="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/empDepLabel" />
 
                 <TextView
                     android:id="@+id/useDateLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/use_date"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/use_date"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvEmpDept" />
 
@@ -120,19 +127,19 @@
                     android:id="@+id/tvUseDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:layout_marginBottom="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/useDateLabel" />
 
                 <TextView
                     android:id="@+id/respDateLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/resp_date"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/resp_date"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvUseDate" />
 
@@ -140,10 +147,10 @@
                     android:id="@+id/tvRespDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/respDateLabel" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,8 +167,8 @@
                     android:id="@+id/docLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/document"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/document"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -171,30 +178,32 @@
                     android:id="@+id/docTypeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/doc_type"
+                    android:layout_marginTop="@dimen/dp38"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/doc_type"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@id/docLabel"
                     app:layout_constraintEnd_toStartOf="@id/docLabel"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvDocType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:layout_marginBottom="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/docTypeLabel" />
 
                 <TextView
                     android:id="@+id/docNumLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/doc_number"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/doc_number"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvDocType" />
 
@@ -202,11 +211,11 @@
                     android:id="@+id/tvDocNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:layout_marginBottom="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/docNumLabel" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -223,8 +232,8 @@
                     android:id="@+id/fundLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fund"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/fund"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -234,50 +243,63 @@
                     android:id="@+id/trxTypeLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/trx_type"
+                    android:layout_marginTop="@dimen/dp38"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/trx_type"
                     android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@id/fundLabel"
                     app:layout_constraintEnd_toStartOf="@id/fundLabel"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/tvTrxType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:layout_marginBottom="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/trxTypeLabel" />
 
                 <TextView
                     android:id="@+id/amountLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/amount"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/amount"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvTrxType" />
+
+
+                <!--                <org.fabiomsr.moneytextview.MoneyTextView-->
+                <!--                    android:id="@+id/tvAmount"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/dp6"-->
+                <!--                    android:layout_marginBottom="@dimen/dp6"-->
+                <!--                    app:symbol="Rp"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/amountLabel"-->
+                <!--                    />-->
 
                 <TextView
                     android:id="@+id/tvAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:layout_marginBottom="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/amountLabel" />
 
                 <TextView
                     android:id="@+id/fileLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/file_uploaded"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/file_uploaded"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvAmount" />
 
@@ -285,18 +307,18 @@
                     android:id="@+id/tvFile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp6"
                     android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:layout_marginStart="@dimen/dp6"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/fileLabel" />
 
                 <TextView
                     android:id="@+id/descLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/description"
                     android:fontFamily="@font/msemibold"
+                    android:text="@string/description"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toBottomOf="@id/tvFile" />
 
@@ -304,10 +326,10 @@
                     android:id="@+id/tvDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
                     android:layout_marginStart="@dimen/dp6"
+                    android:fontFamily="@font/mregular"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/textAppearanceSubtitle"
                     app:layout_constraintTop_toBottomOf="@id/descLabel" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -322,21 +344,26 @@
         android:layout_height="60dp"
         android:background="@drawable/bg_rounded_top_submit"
         android:text="@string/submit"
-        android:textSize="24sp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
-    <ProgressBar
-        android:id="@+id/pbReqValidation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/textAppearanceSubtitle"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/pbReqValidation"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="62dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

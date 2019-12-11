@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.setting.fragment.CurrentPinFragment;
 import com.hudipo.pum_indomaret.features.setting.fragment.FragmentCallback;
@@ -29,7 +31,7 @@ import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PIN;
 
 public class ChangePinActivity extends AppCompatActivity implements FragmentCallback, ChangePinContract.ChangePinView {
     @BindView(R.id.loading)
-    ProgressBar loading;
+    LottieAnimationView loading;
 
     public static final int CURRENT = 0;
     public static final int NEW = 1;
@@ -86,9 +88,17 @@ public class ChangePinActivity extends AppCompatActivity implements FragmentCall
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.ivBack)
     void back(){
-        finish();
+        onBackPressed();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.features.approval.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalFilterActivity;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalHistoryAdapter;
@@ -107,9 +109,10 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
     }
 
     @OnClick(R.id.btnFilter)
-    void filter(){
+    void filter() {
         Intent intent = new Intent(getActivity(), ApprovalFilterActivity.class);
         startActivityForResult(intent, CODE_FILTER);
+        Animatoo.animateSlideUp(getContext());
     }
 
     @Override
@@ -144,9 +147,9 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CODE_FILTER){
-            if(resultCode == RESULT_OK){
-                if(data!=null){
+        if (requestCode == CODE_FILTER) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
                     String startDate = data.getStringExtra(EXTRA_START_DATE);
                     String untilDate = data.getStringExtra(EXTRA_UNTIL_DATE);
                     String status = data.getStringExtra(EXTRA_STATUS);
@@ -158,7 +161,7 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
 
                     params.put("start_date", reqStart);
                     params.put("end_date", reqUntil);
-                    if(status!=null){
+                    if (status != null) {
                         RequestBody reqStatus = RequestBody.create(status, MediaType.parse("text/plain"));
                         params.put("status", reqStatus);
                     }
@@ -169,8 +172,14 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
         }
     }
 
+
+
+
     @OnClick(R.id.ivBack)
-    void back(){
+    void back() {
         Objects.requireNonNull(getActivity()).onBackPressed();
+        Animatoo.animateSlideRight(getContext());
     }
+
+
 }

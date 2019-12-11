@@ -3,6 +3,7 @@
     <!--corner-->
     <dimen name="main_corner">8dp</dimen>
     <dimen name="home_corner">18dp</dimen>
+    <dimen name="field_radius">8dp</dimen>
 
     <!--padding-->
     <dimen name="main_padding">16dp</dimen>
@@ -23,15 +24,21 @@
     <dimen name="dialog_elevation">24dp</dimen>
     <dimen name="nav_drawer_elevation">16dp</dimen>
 
+    <!--    stroke-->
+    <dimen name="dp05">0.5dp</dimen>
+
+
     <!--login-->
     <dimen name="font_login">16sp</dimen>
     <dimen name="width_logo">250dp</dimen>
 
 
     <!--font-->
-    <dimen name="textAppearanceH4">34sp</dimen>
+    <dimen name="textAppearanceH3">38sp</dimen>
+    <dimen name="textAppearanceH4">30sp</dimen>
     <dimen name="textAppearanceH5">24sp</dimen>
     <dimen name="textAppearanceH6">20sp</dimen>
+    <dimen name="textAppearanceSubtitle">18sp</dimen>
     <dimen name="textAppearanceSubtitle1">16sp</dimen>
     <dimen name="textAppearanceSubtitle2">14sp</dimen>
     <dimen name="textAppearanceBody1">16sp</dimen>
@@ -48,8 +55,15 @@
     <dimen name="dialogWidth">240dp</dimen>
 
     <!--size-->
+    <dimen name="dp62">62dp</dimen>
+    <dimen name="dp52">52dp</dimen>
+    <dimen name="dp38">38dp</dimen>
+    <dimen name="dp42">42dp</dimen>
     <dimen name="dp32">32dp</dimen>
     <dimen name="dp12">12dp</dimen>
+    <dimen name="dp14">14dp</dimen>
+    <dimen name="dp16">16dp</dimen>
+    <dimen name="dp8">8dp</dimen>
     <dimen name="dp6">6dp</dimen>
 
     <!--apprval-->

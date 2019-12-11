@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.SearchDeptAdapter;
 import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
@@ -38,7 +40,7 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
     @BindView(R.id.rvSearchDept)
     RecyclerView rvSearchDept;
     @BindView(R.id.pbSearchDept)
-    ProgressBar pbSearchDept;
+    LottieAnimationView pbSearchDept;
     @BindView(R.id.etSearchDepart)
     EditText etSearchDept;
 
@@ -87,9 +89,17 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
         onDetachView();
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideDown(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+        onBackPressed();
     }
 
     private void initPresenter() {
@@ -123,6 +133,7 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
             resultIntent.putExtra(DATA_SELECTED_VALUE, departmentItem);
             setResult(RESULT_CODE, resultIntent);
             finish();
+            Animatoo.animateSlideDown(this);
         });
         adapter.setListDepartment(departmentResponse.getDepartment());
 

@@ -29,11 +29,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalSuccessActivity;
 import com.hudipo.pum_indomaret.features.approval.adapter.ApprovalAdapter;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.ApprovalContract;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.utils.Extra;
@@ -81,7 +83,6 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         presenter = new ApprovalPresenter(getActivity());
 
         setView();
-
         onAttachView();
 
         return view;
@@ -308,5 +309,8 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     @OnClick(R.id.ivBack)
     void back(){
         Objects.requireNonNull(getActivity()).onBackPressed();
+
     }
+
+
 }

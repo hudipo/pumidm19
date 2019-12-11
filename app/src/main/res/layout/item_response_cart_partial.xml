@@ -30,7 +30,7 @@
             android:text="@string/transaction_type"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
-            style="@style/TextAppearance.Headline5.Dark"/>
+            style="@style/TextAppearance.Headline6.Dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:text="@string/description"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
-            style="@style/TextAppearance.Headline5.Dark"/>
+            style="@style/TextAppearance.Headline6.Dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
             android:text="@string/example_amount"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
-            style="@style/TextAppearance.Headline5.Dark"/>
+            style="@style/TextAppearance.Headline6.Dark"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
             android:text="@string/example_store_code"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
-            style="@style/TextAppearance.Headline5.Dark"/>
+            style="@style/TextAppearance.Headline6.Dark"/>
 
     </LinearLayout>
 

@@ -19,12 +19,12 @@
     </string-array>
 
     <array name="data_image">
-        <item>@drawable/ic_request</item>
-        <item>@drawable/ic_approval</item>
-        <item>@drawable/ic_status</item>
-        <item>@drawable/ic_response</item>
-        <item>@drawable/ic_settings</item>
-        <item>@drawable/ic_report</item>
+        <item>@drawable/ic_request2</item>
+        <item>@drawable/ic_approval2</item>
+        <item>@drawable/ic_status2</item>
+        <item>@drawable/ic_response2</item>
+        <item>@drawable/ic_setting2</item>
+        <item>@drawable/ic_report2</item>
     </array>
 
     <!--VALIDATION LOGIN-->
@@ -43,6 +43,14 @@
 
     <string name="err_null_pin">PIN can\'t be empty</string>
     <string name="err_pin">PIN must be 6 digits number</string>
+
+    <!--    report-->
+    <string name="report_type">Report type</string>
+    <string name="pum_creation_start">Pum creation start date</string>
+    <string name="pum_creation_end">Pum creation end date</string>
+    <string name="group_by">Group by</string>
+
+
 
     <!-- CUSTOM KEYBOARD -->
     <string name="number_zero">0</string>
@@ -84,13 +92,16 @@
     <string name="submit">Submit</string>
     <string name="create_another_response">Create another response</string>
     <string name="partial_response_sent">Partial Response Sent !</string>
-    <string name="you_have_successfully_sent_npartial_responsibility">You have successfully sent \n Partial Responsibility</string>
+    <string name="full_response_sent">Full Response Sent !</string>
+    <string name="you_have_successfully_sent_partial_responsibility">You have successfully sent \n Partial Responsibility</string>
+    <string name="you_have_successfully_sent_full_responsibility">You have successfully sent \n Full Responsibility</string>
     <string name="partial_response_added">Partial Response Added !</string>
-    <string name="you_have_successfully_added_npartial_responsibility">You have successfully added  \nPartial Responsibility</string>
+    <string name="you_have_successfully_added_partial_responsibility">You have successfully added  \nPartial Responsibility</string>
+    <string name="you_have_successfully_added_full_responsibility">You have successfully added \nFull Responsibility</string>
     <string name="view_response_cart">View Response Cart</string>
     <string name="add_another_response">Add another Response</string>
     <string name="full_response_added">Full Response Added !</string>
-    <string name="you_have_successfully_added_full_responsibility">You have successfully added \nFull Responsibility</string>
+
     <string name="history">History</string>
     <string name="responsibility_number">Responsibility Number</string>
     <string name="responsibility_date">Responsibility Date</string>
@@ -101,7 +112,7 @@
     <string name="choose_file_from">Choose file from</string>
     <string name="waiting">Waiting</string>
     <string name="search_by_pum_number">Search by Pum Number</string>
-    <string name="detail">detail</string>
+    <string name="detail">Detail</string>
     <string name="example_pum_number">200100300</string>
     <string name="trx_date">Trx Date</string>
     <string name="department">Department</string>
@@ -150,9 +161,11 @@
     <string name="please_input_date">Please input date</string>
     <string name="please_input_dept">Please input department</string>
     <string name="document">Document</string>
-    <string name="doc_number">DOC Number</string>
+    <string name="doc_number">Doc Number</string>
+    <string name="doc_date">Doc Date</string>
     <string name="doc_type">Doc Type</string>
     <string name="search_by_document">Search by Document</string>
+    <string name="searchbydocnum">Search by Doc num</string>
     <string name="search_trx">Search TRX</string>
     <string name="fund">Fund</string>
     <string name="select_a_file">Select a File</string>
@@ -160,11 +173,11 @@
     <string name="rp">Rp</string>
     <string name="emp_dept">Emp Dept</string>
     <string name="trx_type">Trx Type</string>
-    <string name="oops_your_pin_in_incorrect">Oops... Your pin in incorrect</string>
+    <string name="oops_your_pin_in_incorrect">Your Pin is Incorrect</string>
     <string name="you_have_successfully_created_pum_request">You have successfully created PUM Request</string>
     <string name="view_request">View Request</string>
     <string name="back_to_home">Back to Home</string>
-    <string name="request_sent">Request Sent!</string>
+    <string name="request_sent">Request Sent !</string>
     <string name="request_approved">Request Approved !</string>
     <string name="request_rejected">Request Rejected !</string>
     <string name="request_rejected_desc">You have successfully reject PUM Request</string>
@@ -173,5 +186,22 @@
     <string name="download_success">Download Success</string>
     <string name="notification_error_ssl_cert_invalid">Not Secure Connection</string>
     <string name="something_wrong">Something Wrong</string>
-    <string name="change_pin_success">Pin Successfully Changed</string>
+    <string name="change_pin_success">Pin Successfully Changed !</string>
+    <string name="change_pin_success_text">Please Remember and keep your Pin Secrecy</string>
+
+
+    <!--    Request-->
+    <string name="step1">Step 1 of 3</string>
+    <string name="step2">Step 2 of 3</string>
+    <string name="step3">Step 3 of 3</string>
+    <string name="Document">Document</string>
+    <string name="DocNum">Doc Number</string>
+    <string name="Fund">Fund</string>
+    <string name="Validation">Validation</string>
+    <string name="pin_really">to make sure that\'s really you</string>
+    <string name="enter_your_pin">Enter Your PIN</string>
+    <string name="view">view</string>
+    <string name="reset">reset</string>
+
+
 </resources>

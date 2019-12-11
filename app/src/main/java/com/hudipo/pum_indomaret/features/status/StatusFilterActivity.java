@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterInteractorImpl;
@@ -58,10 +59,18 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     void untilDateClicked(){
         presenter.onUntilDateClicked();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+    }
     @OnClick(R.id.imgBack)
     void btnBack(){
-        super.onBackPressed();
+      onBackPressed();
     }
+
     @OnClick(R.id.btnView)
     void validate(){
         presenter.validateDate(tvTrxStartDate.getText().toString(),tvTrxUntilDate.getText().toString(),spnTrxStatus.getSelectedItem().toString());

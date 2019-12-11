@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.presenter.ApprovalDetailPresenter;
 import com.hudipo.pum_indomaret.features.approval.detail.view.ApprovalDetailContract;
@@ -43,7 +44,7 @@ public class ApprovalDetailHistoryActivity extends AppCompatActivity implements 
     @BindView(R.id.tvAmount)
     TextView tvAmount;
     @BindView(R.id.loading)
-    ProgressBar loading;
+    LottieAnimationView loading;
     @BindView(R.id.scrollView)
     ScrollView scrollView;
 
@@ -78,7 +79,7 @@ public class ApprovalDetailHistoryActivity extends AppCompatActivity implements 
         tvUseDate.setText(dataApproval.getUseDate());
         tvTransactionType.setText(dataApproval.getPumTrxTypeId());
         tvDescription.setText(dataApproval.getDescription());
-        tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormater(String.valueOf(dataApproval.getAmount()))));
+        tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormatter(String.valueOf(dataApproval.getAmount()))));
         scrollView.setVisibility(View.VISIBLE);
         if(status.equalsIgnoreCase("R")){
             ivType.setImageResource(R.drawable.txt_rejected);

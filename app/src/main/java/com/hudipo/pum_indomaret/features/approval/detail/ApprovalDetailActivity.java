@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalSuccessActivity;
 import com.hudipo.pum_indomaret.features.approval.activity.FileViewerActivity;
@@ -60,7 +61,7 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
     @BindView(R.id.tvFileUploaded)
     TextView tvFileUploaded;
     @BindView(R.id.loading)
-    ProgressBar loading;
+    LottieAnimationView loading;
     @BindView(R.id.scrollView)
     NestedScrollView scrollView;
 
@@ -189,7 +190,7 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
         tvUseDate.setText(dataApproval.getUseDate());
         tvTransactionType.setText(dataApproval.getPumTrxTypeId());
         tvDescription.setText(dataApproval.getDescription());
-        tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormater(String.valueOf(dataApproval.getAmount()))));
+        tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormatter(String.valueOf(dataApproval.getAmount()))));
         tvFileUploaded.setText(dataApproval.getUploadData());
         scrollView.setVisibility(View.VISIBLE);
     }

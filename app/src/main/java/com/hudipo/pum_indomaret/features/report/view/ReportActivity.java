@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.report.contract.ReportContract;
 import com.hudipo.pum_indomaret.features.report.model.ReportInteractorImpl;
@@ -30,10 +31,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
     @BindView(R.id.spnReportTypeRep)
     Spinner spnReportType;
-    @BindView(R.id.spnEmployeeNameRep)
-    Spinner spnEmployeeName;
-    @BindView(R.id.spnEmployeeDepartmentRep)
-    Spinner spnDepartment;
+
     @BindView(R.id.spnGroupBy)
     Spinner spnGroupBy;
     @BindView(R.id.tvStartDate)
@@ -41,9 +39,17 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     @BindView(R.id.tvEndDate)
     TextView tvEndDate;
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+
+    }
+
     @OnClick(R.id.imgBack)
     void onBackClick(){
-        super.onBackPressed();
+        onBackPressed();
     }
 
     @OnClick(R.id.imgStartDate)
@@ -89,12 +95,12 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         ArrayAdapter<String> spnEmployeeNameAdapter = new ArrayAdapter<>(this,
                 R.layout.spinner_item_layout, employeeNameList);
         spnEmployeeNameAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-        spnEmployeeName.setAdapter(spnEmployeeNameAdapter);
+
 
         ArrayAdapter<String> spnDepartmenAdapter = new ArrayAdapter<>(this,
                 R.layout.spinner_item_layout, departmentList);
         spnDepartmenAdapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-        spnDepartment.setAdapter(spnDepartmenAdapter);
+
 
         ArrayAdapter<String> spnGroupByAdapter = new ArrayAdapter<>(this,
                 R.layout.spinner_item_layout, groupByList);

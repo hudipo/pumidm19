@@ -6,6 +6,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.response.subfeatures.fullresponsesent.FullResponseSentActivity;
 import com.hudipo.pum_indomaret.features.response.subfeatures.responsecartfull.adapter.ResponseCartFullAdapter;
@@ -35,20 +37,28 @@ public class ResponseCartFullActivity extends AppCompatActivity {
         rvResponseCart.setAdapter(responseCartFullAdapter);
     }
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        Animatoo.animateSlideRight(this); //fire the slide left animation
+        finish();
+    }
+
     @OnClick(R.id.btnBack)
     void btnBack(){
-        finish();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnAddResponse)
     void btnAddResponse(){
         finish();
+        Animatoo.animateZoom(this);
     }
 
     @OnClick(R.id.btnSubmit)
     void btnSubmit(){
         startActivity(new Intent(this, FullResponseSentActivity.class));
         finish();
+        Animatoo.animateSlideLeft(this);
     }
 
     @OnClick(R.id.btnCancel)

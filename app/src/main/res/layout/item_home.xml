@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    android:layout_width="135dp"
-    android:layout_height="135dp"
+    android:layout_width="148dp"
+    android:layout_height="148dp"
     android:layout_margin="8dp"
     app:cardElevation="@dimen/card_elevation"
     app:cardCornerRadius="@dimen/home_corner"
@@ -12,21 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_margin="4dp"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/ivHome"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_request"/>
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_request2"/>
 
         <TextView
             android:id="@+id/tvTitleHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/request"
-            android:fontFamily="@font/mregular"
+            android:fontFamily="@font/montserrat_regular"
             style="@style/TextAppearance.Headline6.Dark"/>
 
     </LinearLayout>
