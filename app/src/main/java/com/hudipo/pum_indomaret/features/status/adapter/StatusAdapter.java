@@ -127,16 +127,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
             }else if (statusModel.getPUM_STATUS().equals("A")){
                 tvStatus.setText("Waiting Finance");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
-            }else if (statusModel.getPUM_STATUS().equals("App1")){
+            }else if (statusModel.getPUM_STATUS().equals("APP1")){
                 tvStatus.setText("Approval 1");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
-            }else if (statusModel.getPUM_STATUS().equals("App2")){
+            }else if (statusModel.getPUM_STATUS().equals("APP2")){
                 tvStatus.setText("Approval 2");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
-            }else if (statusModel.getPUM_STATUS().equals("App3")){
+            }else if (statusModel.getPUM_STATUS().equals("APP3")){
                 tvStatus.setText("Approval 3");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
-            }else if (statusModel.getPUM_STATUS().equals("App4")){
+            }else if (statusModel.getPUM_STATUS().equals("APP4")){
                 tvStatus.setText("Approval 4");
                 bgStatus.setBackground(itemView.getContext().getDrawable(R.drawable.bg_status_process));
             }

@@ -18,7 +18,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.adapter.StatusAdapter;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
-import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
+import com.hudipo.pum_indomaret.features.status.model.StatusDetailResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusInteractorImpl;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.features.status.presenter.StatusPresenterImpl;
@@ -34,7 +34,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
 
     public static final int STATUS_REQUEST_CODE = 0;
     public static final int STATUS_FILTER_REQUEST_CODE = 1;
-    private StatusFilterRequestBody statusFilterRequestBody;
+    public static final String STATUS_DETAIL = "detail";
 
     @BindView(R.id.rvStatus)
     RecyclerView rvStatus;
@@ -42,11 +42,12 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     SwipeRefreshLayout swipeRefreshStatus;
     @BindView(R.id.etSearchByPumNumber)
     EditText etSearch;
+
     @OnClick(R.id.btnFilterStatus)
     void goToStatusFilterAct(){
         Intent intent = new Intent(StatusActivity.this, StatusFilterActivity.class);
         startActivityForResult(intent,STATUS_FILTER_REQUEST_CODE);
-        Animatoo.animateSlideLeft(this);
+        Animatoo.animateSlideUp(this);
     }
 
     private StatusAdapter adapterStatus;
@@ -102,12 +103,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     private void initRecyclerView() {
         rvStatus.setHasFixedSize(true);
         rvStatus.setLayoutManager(new LinearLayoutManager(this));
-        adapterStatus = new StatusAdapter(currentStatus -> {
-            Intent intent = new Intent(StatusActivity.this, StatusDetailActivity.class);
-            intent.putExtra("CURRENT_STATUS", currentStatus);
-            startActivity(intent);
-            Animatoo.animateSlideLeft(this);
-        });
+        adapterStatus = new StatusAdapter(currentStatus -> presenter.getDetailPum(currentStatus.getPUM_TRX_ID()));
         rvStatus.setAdapter(adapterStatus);
         presenter.getStatusList();
     }
@@ -129,6 +125,16 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     }
 
     @Override
+    public void goToDetailActivity(StatusDetailResponse.StatusDetailModel statusDetailModel) {
+        Intent intent = new Intent(StatusActivity.this, StatusDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(STATUS_DETAIL, statusDetailModel);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        Animatoo.animateSlideLeft(this);
+    }
+
+    @Override
     public void toast(String stringMessage) {
         new AlertDialog.Builder(this,R.style.CustomDialogTheme)
                 .setTitle("Attention!")
@@ -142,18 +148,18 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
         );
     }
 
-
-
     @OnClick(R.id.btnBack)
     void btnBack(){
-       onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
+        Animatoo.animateSlideRight(this);
+        finish();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class));
-        Animatoo.animateSlideRight(this); //fire the slide left animation
+        Animatoo.animateSlideRight(this);
         finish();
     }
 }

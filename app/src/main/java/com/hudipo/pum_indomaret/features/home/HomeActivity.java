@@ -1,16 +1,28 @@
 package com.hudipo.pum_indomaret.features.home;
 
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.adapter.HomeAdapter;
 import com.hudipo.pum_indomaret.data.Data;
@@ -20,14 +32,26 @@ import com.hudipo.pum_indomaret.features.requestpum.activity.ReqEmployeeActivity
 import com.hudipo.pum_indomaret.features.response.activity.ResponseActivity;
 import com.hudipo.pum_indomaret.features.setting.activity.SettingActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
+import com.hudipo.pum_indomaret.model.firebase.UploadTokenResponse;
+import com.hudipo.pum_indomaret.model.login.User;
+import com.hudipo.pum_indomaret.model.setting.UploadProfilePicResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
+import com.hudipo.pum_indomaret.networking.RetrofitClient;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
+
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
+
+import static com.yalantis.ucrop.UCropFragment.TAG;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -47,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
     private CompositeDisposable composite = new CompositeDisposable();
     private HawkStorage hawkStorage;
     private HomeAdapter adapter;
+    private LocalBroadcastManager localBroadcastManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +84,10 @@ public class HomeActivity extends AppCompatActivity {
         initSwipeRefresh();
         getDeptAndSaveToHawkStorage();
         getTrxTypeAndSaveToHawkStorage();
+
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+
+        initFirebase();
     }
 
     private void initSwipeRefresh() {
@@ -157,14 +186,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private void getDeptAndSaveToHawkStorage() {
         composite.add(new ApiServices().getApiPumServices()
-            .getDepartment(hawkStorage.getUserData().getOrgId())
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(departmentResponse -> {
-                if (departmentResponse != null){
-                    hawkStorage.setDepartmentData(departmentResponse);
-                }
-            }, throwable -> Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show()));
+                .getDepartment(hawkStorage.getUserData().getOrgId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(departmentResponse -> {
+                    if (departmentResponse != null){
+                        hawkStorage.setDepartmentData(departmentResponse);
+                    }
+                }, throwable -> Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show()));
     }
 
     private void setView() {
@@ -174,5 +203,53 @@ public class HomeActivity extends AppCompatActivity {
             tvPositionHome.setText(hawkStorage.getUserData().getPosition());
             tvEmpNumHome.setText(hawkStorage.getUserData().getEmpNum());
         }
+    }
+
+    private void initFirebase() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w("firebase", "getInstanceId failed", task.getException());
+                        return;
+                    }
+
+                    // Get new Instance ID token
+                    String token = Objects.requireNonNull(task.getResult()).getToken();
+                    Log.d("firebase", "onComplete: "+token);
+                    uploadToken(token);
+                });
+    }
+
+    private void uploadToken(String token) {
+        composite.add(new ApiServices().getApiPumServices()
+                .uploadTokenFirebase(hawkStorage.getUserData().getEmpId(), token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    Log.d(TAG, "uploadToken: "+response);
+                }, throwable -> {
+                    Log.d(TAG, "uploadToken: "+throwable.getMessage());
+                }));
+    }
+
+    //terima brodcast
+    private BroadcastReceiver listener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent ) {
+            String token = intent.getStringExtra("token");
+            uploadToken(token);
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        localBroadcastManager.registerReceiver(listener, new IntentFilter("FIREBASE_TOKEN"));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        localBroadcastManager.unregisterReceiver(listener);
     }
 }

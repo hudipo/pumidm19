@@ -142,21 +142,26 @@ public class ReqDocumentActivity extends AppCompatActivity {
     @OnClick(R.id.btnNextDoc)
     void btnNextDoc() {
         String docNum = tvDocNum.getText().toString();
-//        if (checkValid(docNum)){
-        Intent intent = new Intent(this, ReqFundActivity.class);
-        intent.putExtra(ReqFundActivity.EXTRA_DOCUMENT_DETAIL, requestModel);
-        startActivity(intent);
-        Animatoo.animateSlideLeft(this);
-//        }
+        String docSelected = spnDocType.getSelectedItem().toString().trim();
+        if (checkValid(docNum, docSelected)){
+            Intent intent = new Intent(this, ReqFundActivity.class);
+            intent.putExtra(ReqFundActivity.EXTRA_DOCUMENT_DETAIL, requestModel);
+            startActivity(intent);
+            Animatoo.animateSlideLeft(this);
+        }
     }
 
-    private boolean checkValid(String docNum) {
-        if (docNum.isEmpty()) {
-            tvDocNum.setError("Your document is empty");
-            Toast.makeText(this, "Your document is empty", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            tvDocNum.setError(null);
+    private boolean checkValid(String docNum,String docSelected) {
+        if (docSelected.equals("-") || docSelected.equals(getString(R.string.doc_type))){
+            return true;
+        }else {
+            if (docNum.isEmpty()){
+                tvDocNum.setError("Your document is empty");
+                Toast.makeText(this, "Your document is empty", Toast.LENGTH_SHORT).show();
+                return false;
+            }else {
+                tvDocNum.setError(null);
+            }
         }
         return true;
     }

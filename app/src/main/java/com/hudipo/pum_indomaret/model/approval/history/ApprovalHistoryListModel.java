@@ -33,6 +33,10 @@ public class ApprovalHistoryListModel {
 	@Expose
 	private Integer pumTrxId;
 
+	@SerializedName("AMOUNT")
+	@Expose
+	private Integer amount;
+
 	public String getStatus() {
 		return status;
 	}
@@ -59,5 +63,9 @@ public class ApprovalHistoryListModel {
 
 	public Integer getPumTrxId() {
 		return pumTrxId;
+	}
+
+	public Integer getAmount() {
+		return amount;
 	}
 }

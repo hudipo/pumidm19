@@ -70,4 +70,16 @@ public class PumDateFormat {
         result = dateFormat.format(calendar.getTime());
         return result;
     }
+
+    public static boolean comparisionDateBefore(String useDate, String respDate) throws ParseException {
+        String DATE_FORMAT = "dd/MM/yyyy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+        Date dateUse = dateFormat.parse(useDate);
+        Date dateResp = dateFormat.parse(respDate);
+
+        if (dateUse != null){
+            return dateUse.before(dateResp) || dateUse.equals(dateResp);
+        }
+        return false;
+    }
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBase"
+    android:id="@+id/parentView"
     tools:context=".features.report.view.ReportActivity">
 
     <View
@@ -45,7 +46,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/containerBtn"
         app:layout_constraintTop_toBottomOf="@id/topView">
 
         <LinearLayout
@@ -73,6 +74,7 @@
                 android:text="@string/report_type"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textAppearanceSubtitle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,6 +105,7 @@
                 android:text="@string/pum_creation_start"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textAppearanceSubtitle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,6 +150,7 @@
                 android:text="@string/pum_creation_end"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textAppearanceSubtitle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -188,9 +192,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp14"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="@string/pum_creation_start"
+                android:text="@string/validation_start_date"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textAppearanceSubtitle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -199,6 +204,7 @@
 
                 <TextView
 
+                    android:id="@+id/tvValidStartDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="22dp"
@@ -214,6 +220,7 @@
 
                 <ImageView
 
+                    android:id="@+id/imgValidStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="0dp"
@@ -232,9 +239,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp14"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="@string/pum_creation_end"
+                android:text="@string/validation_end_date"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textAppearanceSubtitle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -242,7 +250,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-
+                    android:id="@+id/tvValidEndDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="22dp"
@@ -257,7 +265,7 @@
                     android:textSize="@dimen/textAppearanceSubtitle" />
 
                 <ImageView
-
+                    android:id="@+id/imgValidEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="0dp"
@@ -271,7 +279,73 @@
 
             </LinearLayout>
 
+
             <TextView
+                android:id="@+id/tvPumStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/pum_status"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spnPumStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRespStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp14"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/responsibility_status"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textAppearanceSubtitle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spnRespStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:background="@drawable/bg_rounded_border_black_solid_black"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dp12"
+                    android:paddingEnd="@dimen/dp12"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textAppearanceSubtitle" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvGroupByLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp14"
@@ -279,6 +353,7 @@
                 android:text="@string/group_by"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textAppearanceSubtitle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -334,17 +409,17 @@
         </LinearLayout>
 
 
-
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/containerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btnViewRep"
@@ -363,7 +438,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnResetRep"
+            android:id="@+id/btnResetReport"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -381,7 +456,19 @@
     </LinearLayout>
 
 
-
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/pbReport"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="62dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

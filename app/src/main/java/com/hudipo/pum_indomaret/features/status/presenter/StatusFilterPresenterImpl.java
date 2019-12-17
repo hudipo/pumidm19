@@ -3,7 +3,6 @@ package com.hudipo.pum_indomaret.features.status.presenter;
 
 import com.hudipo.pum_indomaret.features.status.StatusFilterActivity;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
-import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +17,6 @@ public class StatusFilterPresenterImpl implements StatusContract.StatusFilterPre
     private StatusContract.StatusFilterView view;
     private StatusContract.StatusFilterInteractor interactor;
     private int requestCode = 0;
-    //private StatusFilterRequestBody statusFilterRequestBody;
 
     public StatusFilterPresenterImpl(StatusContract.StatusFilterView view, StatusContract.StatusFilterInteractor interactor){
         this.view = view;
@@ -37,7 +35,9 @@ public class StatusFilterPresenterImpl implements StatusContract.StatusFilterPre
                 Date startDateFormat = sdf.parse(startDate);
                 Date untilDateFormat = sdf.parse(untilDate);
                 long todayInMilis = Calendar.getInstance().getTimeInMillis();
+                assert startDateFormat != null;
                 long startDateDiffMil = todayInMilis - startDateFormat.getTime();
+                assert untilDateFormat != null;
                 long untilDateDiffMil = todayInMilis - untilDateFormat.getTime();
                 long startDateDiffDay = TimeUnit.MILLISECONDS.toDays(startDateDiffMil);
                 long untilDateDiffDay = TimeUnit.MILLISECONDS.toDays(untilDateDiffMil);

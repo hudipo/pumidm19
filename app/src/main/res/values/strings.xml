@@ -48,6 +48,10 @@
     <string name="report_type">Report type</string>
     <string name="pum_creation_start">Pum creation start date</string>
     <string name="pum_creation_end">Pum creation end date</string>
+    <string name="validation_start_date">Validation Start Date</string>
+    <string name="validation_end_date">Validation End Date</string>
+    <string name="pum_status">Pum Status</string>
+    <string name="responsibility_status">Responsibility Status</string>
     <string name="group_by">Group by</string>
 
 
@@ -122,6 +126,7 @@
     <string name="approval_2">Approval 2:</string>
     <string name="approval_3">Approval 3:</string>
     <string name="approval_4">Approval 4:</string>
+    <string name="approval_5">Approval 5:</string>
     <string name="err_server">Server Busy</string>
     <string name="reject">Reject</string>
     <string name="approve">Approve</string>
@@ -130,6 +135,7 @@
     <string name="delete">Delete</string>
     <string name="filter">Filter</string>
     <string name="note">Note :</string>
+    <string name="a">-</string>
     <string name="note_approval_filter">* The selected transaction period only 31 days.</string>
     <string name="trx_start_date">Trx Start Date</string>
     <string name="trx_until_date">Trx Until Date</string>
@@ -202,6 +208,7 @@
     <string name="enter_your_pin">Enter Your PIN</string>
     <string name="view">view</string>
     <string name="reset">reset</string>
+    <string name="use_date_greater_than_resp_date">Use date cannot be greater than resp date</string>
 
 
 </resources>

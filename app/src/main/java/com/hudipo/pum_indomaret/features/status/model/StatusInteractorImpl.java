@@ -10,6 +10,7 @@ import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import java.util.HashMap;
 
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -72,6 +73,22 @@ public class StatusInteractorImpl implements StatusContract.StatusInteractor {
                         onFinishedListenerStatus.onFailure("Please check your internet connection!");
                     }
                 },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage()))
+        );
+    }
+
+    @Override
+    public void getStatusDetail(OnFinishedListenerStatus onFinishedListenerStatus, int trxId) {
+        composite.add(new ApiServices().getApiPumServices().getDetailStatus(trxId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(statusDetailResponse -> {
+                        if (statusDetailResponse.error){
+                            onFinishedListenerStatus.onFailure(statusDetailResponse.message);
+                        }else {
+                            onFinishedListenerStatus.onDetailStatusFetched(statusDetailResponse.data);
+                        }
+                    },throwable -> onFinishedListenerStatus.onFailure(throwable.getMessage())
+                )
         );
     }
 

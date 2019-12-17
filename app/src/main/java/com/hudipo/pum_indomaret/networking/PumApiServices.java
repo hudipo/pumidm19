@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.networking;
 
+import com.hudipo.pum_indomaret.features.status.model.StatusDetailResponse;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
 import com.hudipo.pum_indomaret.model.approval.ApproveResponse;
 import com.hudipo.pum_indomaret.model.approval.detail.ApprovalDetailResponse;
@@ -8,6 +9,7 @@ import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
+import com.hudipo.pum_indomaret.model.firebase.UploadTokenResponse;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.model.pin.PinResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
@@ -70,6 +72,14 @@ public interface PumApiServices {
     Observable<StatusResponse> getStatusListFromNetwork(@PartMap HashMap<String, RequestBody> params);
 
     @FormUrlEncoded
+    @POST("detailpum")
+    Observable<StatusDetailResponse> getDetailStatus(@Field("pum_trx_id") int trxId);
+
+    @Multipart
+    @POST("prosesreport")
+    Call<ResponseBody> getReportFile(@PartMap HashMap<String,RequestBody> params);
+
+    @FormUrlEncoded
     @POST("testpin")
     Observable<Response<PinResponse>> checkPin(@Field("emp_id") int empId, @Field("pin") String pin);
 
@@ -110,4 +120,10 @@ public interface PumApiServices {
     Observable<Response<ChangePinResponse>> changePin(@Field("emp_id") int empId,
                                                       @Field("old_pin") String oldPin,
                                                       @Field("new_pin") String newPin);
+
+    //token firebase
+    @FormUrlEncoded
+    @POST("tokenfcm")
+    Observable<Response<UploadTokenResponse>> uploadTokenFirebase(@Field("emp_id") int empId,
+                                                                  @Field("token") String token);
 }

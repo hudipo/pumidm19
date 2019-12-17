@@ -8,6 +8,8 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 
 import java.io.ByteArrayOutputStream;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Utils {
     static public String getRealPathImageFromURI(Context context, Uri uri) {
@@ -42,5 +44,11 @@ public class Utils {
             }
         }
         return path;
+    }
+
+    static public String convertLongToCurrency(long amount){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        return formatRupiah.format(amount);
     }
 }

@@ -1,28 +1,25 @@
 package com.hudipo.pum_indomaret.features.report.contract;
 
-import java.util.ArrayList;
+
+import android.net.Uri;
 
 public interface ReportContract {
     interface ReportView{
         void setDate(String date);
-        void setViewData(ArrayList<String>reportTypeList,ArrayList<String> employeeNameList,ArrayList<String> departmentList, ArrayList<String> groupByList);
         void showDatePicker(int day, int month, int year);
+        void toast(String message);
+        void showLoading();
+        void hideLoading();
+        void showPdf(Uri uri);
+        void askToDownload();
     }
 
     interface ReportPresenter{
         void onDetach();
-        void getViewData();
         void initDatePicker();
         void onDateSet(int day, int month, int year);
-    }
-
-    interface ReportInteractor{
-        interface OnFinishedListener{
-            void onDataFetched(ArrayList<String>reportTypeList,ArrayList<String> employeeNameList,ArrayList<String> departmentList, ArrayList<String> groupByList);
-            void onFailure(Throwable throwable);
-        }
-
-        void getViewData(OnFinishedListener onFinishedListener);
+        void checkData(int reportType,String startDate, String endDate, String validStartDate, String validEndDate, String pumStatus, String respStatus, String groupBy);
+        void downloadData();
     }
 
 }

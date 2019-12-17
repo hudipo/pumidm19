@@ -1,13 +1,10 @@
 package com.hudipo.pum_indomaret.features.status.contract;
 
-import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
+import com.hudipo.pum_indomaret.features.status.model.StatusDetailResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import okhttp3.RequestBody;
 
 public interface StatusContract {
 
@@ -63,6 +60,8 @@ public interface StatusContract {
 
         void hideLoading();
 
+        void goToDetailActivity(StatusDetailResponse.StatusDetailModel statusDetailModel);
+
         void toast(String stringMessage);
     }
 
@@ -74,6 +73,8 @@ public interface StatusContract {
         void onRefresh();
 
         void getFilteredStatusList(String startDate, String untilDate, String status);
+
+        void getDetailPum(int pumTrxId);
     }
 
     interface StatusInteractor {
@@ -81,11 +82,15 @@ public interface StatusContract {
         interface OnFinishedListenerStatus {
             void onStatusListFetched(List<StatusResponse.StatusModel> statusList);
 
+            void onDetailStatusFetched(StatusDetailResponse.StatusDetailModel statusDetailModel);
+
             void onFailure(String errorMessage);
         }
 
         void getStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus);
 
         void getFilteredStatusList(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus, String status, String startDate, String endDate);
+
+        void getStatusDetail(StatusInteractor.OnFinishedListenerStatus onFinishedListenerStatus, int trxId);
     }
 }

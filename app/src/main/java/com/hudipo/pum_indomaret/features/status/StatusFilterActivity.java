@@ -8,25 +8,16 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
 import com.hudipo.pum_indomaret.features.status.model.StatusFilterInteractorImpl;
-import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
 import com.hudipo.pum_indomaret.features.status.presenter.StatusFilterPresenterImpl;
-import com.orhanobut.hawk.Hawk;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -34,7 +25,6 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Optional;
 
 public class StatusFilterActivity extends AppCompatActivity implements StatusContract.StatusFilterView {
 
@@ -42,7 +32,6 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     public static final int UNTIL_DATE_CODE = 1;
     private StatusContract.StatusFilterPresenter presenter;
     private DatePickerDialog.OnDateSetListener datePickerListener;
-    private StatusFilterRequestBody data = new StatusFilterRequestBody();
     ArrayAdapter<String> dataAdapter;
 
     @BindView(R.id.spnTrxStatus)
@@ -59,18 +48,10 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
     void untilDateClicked(){
         presenter.onUntilDateClicked();
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-        finish();
-    }
     @OnClick(R.id.imgBack)
     void btnBack(){
-      onBackPressed();
+        super.onBackPressed();
     }
-
     @OnClick(R.id.btnView)
     void validate(){
         presenter.validateDate(tvTrxStartDate.getText().toString(),tvTrxUntilDate.getText().toString(),spnTrxStatus.getSelectedItem().toString());
@@ -129,6 +110,7 @@ public class StatusFilterActivity extends AppCompatActivity implements StatusCon
         returnIntent.putExtra("untilDate",untilDate);
         returnIntent.putExtra("status",status);
         setResult(Activity.RESULT_OK,returnIntent);
+        Animatoo.animateSlideDown(this);
         finish();
 
     }

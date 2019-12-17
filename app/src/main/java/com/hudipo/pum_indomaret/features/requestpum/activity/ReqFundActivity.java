@@ -65,6 +65,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     private final int REQUEST_CODE_FILES = 103;
     public static final String EXTRA_DOCUMENT_DETAIL = "extra_document_detail";
     private RequestModel requestModel;
+    HawkStorage hawkStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         setContentView(R.layout.activity_req_fund);
         ButterKnife.bind(this);
 
+        hawkStorage = new HawkStorage(this);
         setCurrencyEtAmountFund();
         getDataIntent();
     }
@@ -250,7 +252,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         String trx = btnSearchTrx.getText().toString().trim();
         String nameFile = tvSelectAFile.getText().toString().trim();
 
-        if (checkValid(amount, desc, trx)){
+        if (checkValid(amount, desc, trx, nameFile)){
             if (checkAmount(amount)){
                 requestModel.setDescription(desc);
                 requestModel.setAmount(amount);
@@ -266,45 +268,57 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     }
 
 
-    private Boolean checkValid(String amount, String desc, String trx) {
-        boolean isValid = false;
+    private Boolean checkValid(String amount, String desc, String trx, String nameFile) {
         if (trx.isEmpty()){
             Toast.makeText(this, "Trx is still empty", Toast.LENGTH_SHORT).show();
             btnSearchTrx.setError("Trx is still empty");
+            return false;
         }else {
             btnSearchTrx.setError(null);
-            isValid = true;
         }
 
         if (desc.isEmpty()){
             Toast.makeText(this, "Description is still empty", Toast.LENGTH_SHORT).show();
             etDescFund.setError("Description is still empty");
+            return false;
         }else {
             etDescFund.setError(null);
-            isValid = true;
         }
 
         if (amount.isEmpty()){
             Toast.makeText(this, "Amount is still empty", Toast.LENGTH_SHORT).show();
             etAmountFund.setError("Amount is still empty");
+            return false;
         }else {
             etAmountFund.setError(null);
-            isValid = true;
-        }
-
-        return isValid;
-    }
-
-    private Boolean checkAmount(String amount) {
-        boolean isValid = false;
-        HawkStorage hawkStorage = new HawkStorage(this);
-        if (!amount.isEmpty()){
-            Double totalAmount = Double.valueOf(amount);
-            if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
+            if (!checkAmount(amount)){
                 String textError = "Your max amount request is "+hawkStorage.getUserData().getMaxAmount();
                 showErrorAmountDialog();
                 tvErrorAmount.setText(textError);
                 tvErrorAmount.setVisibility(View.VISIBLE);
+                return false;
+            }else {
+                tvErrorAmount.setError(null);
+            }
+        }
+
+        if (nameFile.isEmpty()){
+            Toast.makeText(this, "File is still empty", Toast.LENGTH_SHORT).show();
+            tvSelectAFile.setError("File is still empty");
+            return false;
+        }else {
+            tvSelectAFile.setError(null);
+        }
+
+        return true;
+    }
+
+    private Boolean checkAmount(String amount) {
+        boolean isValid = false;
+        if (!amount.isEmpty()){
+            Double totalAmount = Double.valueOf(amount);
+            if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
+
                 isValid = false;
             }else {
                 isValid = true;

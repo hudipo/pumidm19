@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginEnd="@dimen/dp6"
+    android:layout_marginStart="@dimen/dp6">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Body2.Dark"
+        android:text="@string/a"/>
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/TextAppearance.Body2.Dark"
+        android:layout_marginStart="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nama orang"/>
+
+</LinearLayout>

@@ -32,4 +32,6 @@
     <color name="grey">#48595D</color>
     <color name="lightGrey">#B9BCBE</color>
 
+    <color name="btnDownload">#00F19E</color>
+
 </resources>

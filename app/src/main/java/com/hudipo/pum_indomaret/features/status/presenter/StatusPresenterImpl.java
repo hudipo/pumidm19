@@ -2,14 +2,10 @@ package com.hudipo.pum_indomaret.features.status.presenter;
 
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
 import com.hudipo.pum_indomaret.features.status.contract.StatusContract;
-import com.hudipo.pum_indomaret.features.status.model.StatusFilterRequestBody;
+import com.hudipo.pum_indomaret.features.status.model.StatusDetailResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 
-import java.util.HashMap;
 import java.util.List;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 public class StatusPresenterImpl implements StatusContract.StatusPresenter, StatusContract.StatusInteractor.OnFinishedListenerStatus {
 
@@ -67,9 +63,21 @@ public class StatusPresenterImpl implements StatusContract.StatusPresenter, Stat
     }
 
     @Override
+    public void getDetailPum(int pumTrxId) {
+        view.showLoading();
+        interactor.getStatusDetail(this,pumTrxId);
+    }
+
+    @Override
     public void onStatusListFetched(List<StatusResponse.StatusModel> statusList) {
         view.hideLoading();
         view.setStatusList(statusList);
+    }
+
+    @Override
+    public void onDetailStatusFetched(StatusDetailResponse.StatusDetailModel statusDetailModel) {
+        view.hideLoading();
+        view.goToDetailActivity(statusDetailModel);
     }
 
     @Override

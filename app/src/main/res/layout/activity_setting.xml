@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_margin"
         android:text="@string/example_name"
+        android:fontFamily="@font/montserrat_semibold"
         android:textColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +118,6 @@
             android:background="@drawable/bg_rounded_blue"
             android:fontFamily="@font/montserrat_semibold"
             android:text="@string/change_pin"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnChangePhoto" />
@@ -130,10 +130,9 @@
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="@dimen/large_margin"
-            android:background="@drawable/bg_rounded_red"
+            android:background="@drawable/bg_rounded_red_30dp"
             android:fontFamily="@font/montserrat_semibold"
             android:text="@string/logout"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnChangePin" />

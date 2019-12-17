@@ -16,6 +16,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.detail.ApprovalDetailHistoryActivity;
 import com.hudipo.pum_indomaret.model.approval.ApprovalListModel;
 import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListModel;
+import com.hudipo.pum_indomaret.utils.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,9 @@ public class ApprovalHistoryAdapter extends RecyclerView.Adapter<ApprovalHistory
         void bind(ApprovalHistoryListModel approvalModel){
             tvPumNumber.setText(approvalModel.getTrxNum());
             tvPumRequester.setText(approvalModel.getUsername());
-            tvAmount.setText("");
+            String amount = String.format("%s %s", itemView.getContext().getString(R.string.rp),
+                    Global.priceFormatter(String.valueOf(approvalModel.getAmount())));
+            tvAmount.setText(amount);
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(itemView.getContext(), ApprovalDetailHistoryActivity.class);

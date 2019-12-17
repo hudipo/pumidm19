@@ -18,6 +18,8 @@ import com.hudipo.pum_indomaret.utils.DatePickerFragment;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 import com.hudipo.pum_indomaret.utils.PumDateFormat;
 
+import java.text.ParseException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -175,6 +177,21 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
             isValid = false;
         }else {
             btnSearchDept.setError(null);
+        }
+
+        try {
+            if (PumDateFormat.comparisionDateBefore(useDate, respDate)){
+                isValid  = true;
+                tvRespDate.setError(null);
+                tvUseDate.setError(null);
+            }else {
+                Toast.makeText(this, R.string.use_date_greater_than_resp_date, Toast.LENGTH_SHORT).show();
+                isValid = false;
+                tvRespDate.setError(getString(R.string.use_date_greater_than_resp_date));
+                tvUseDate.setError(getString(R.string.use_date_greater_than_resp_date));
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         return isValid;
     }

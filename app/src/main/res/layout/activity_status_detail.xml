@@ -141,7 +141,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tvPumNumber" />
 
                     <TextView
-                        android:id="@+id/tvDepartment"
+                        android:id="@+id/tvDepartmentStatus"
                         style="@style/TextAppearance.Body1.Dark"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/textViewRespDate"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvDepartment" />
+                        app:layout_constraintTop_toBottomOf="@id/tvDepartmentStatus" />
 
                     <TextView
                         android:id="@+id/tvUseDate"
@@ -284,112 +284,78 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/textViewApproval">
 
                         <TextView
-                            style="@style/TextAppearance.caption.Dark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/approval_1"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            style="@style/TextAppearance.caption.Dark" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvApprover1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/item_approver"/>
 
                         <TextView
-                            android:id="@+id/tvNameApproval1First"
-                            style="@style/TextAppearance.Body2.Dark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
-
-                        <TextView
-                            android:id="@+id/tvNameApproval1second"
-                            style="@style/TextAppearance.Body2.Dark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
-
-                        <TextView
-                            style="@style/TextAppearance.caption.Dark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:text="@string/approval_2"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvNameApproval2First"
-                            style="@style/TextAppearance.Body2.Dark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
-
-                        <TextView
-                            android:id="@+id/tvNameApproval2second"
-                            style="@style/TextAppearance.Body2.Dark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
-
-                        <TextView
+                            android:textStyle="bold"
                             style="@style/TextAppearance.caption.Dark"
+                            android:layout_marginTop="4dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvApprover2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/item_approver"/>
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:text="@string/approval_3"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvNameApproval3First"
-                            style="@style/TextAppearance.Body2.Dark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
-
-                        <TextView
-                            android:id="@+id/tvNameApproval3second"
-                            style="@style/TextAppearance.Body2.Dark"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
-
-                        <TextView
+                            android:textStyle="bold"
                             style="@style/TextAppearance.caption.Dark"
+                            android:layout_marginTop="4dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvApprover3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/item_approver"/>
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:text="@string/approval_4"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            style="@style/TextAppearance.caption.Dark"
+                            android:layout_marginTop="4dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvApprover4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/item_approver"/>
 
                         <TextView
-                            android:id="@+id/tvNameApproval4First"
-                            style="@style/TextAppearance.Body2.Dark"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
+                            android:text="@string/approval_5"
+                            android:textStyle="bold"
+                            style="@style/TextAppearance.caption.Dark"
+                            android:layout_marginTop="4dp"/>
 
-                        <TextView
-                            android:id="@+id/tvNameApproval4second"
-                            style="@style/TextAppearance.Body2.Dark"
-                            android:layout_width="wrap_content"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvApprover5"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
-                            android:text="-" />
+                            tools:listitem="@layout/item_approver"/>
 
                     </LinearLayout>
 

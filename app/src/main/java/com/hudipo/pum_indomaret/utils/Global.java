@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import com.hudipo.pum_indomaret.model.OptionItem;
 import com.hudipo.pum_indomaret.utils.spinner.CustomSpinnerFragment;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -25,6 +26,6 @@ public class Global {
     }
 
     static public String priceFormatter(String price){
-        return String.format(Locale.US, "%,d", Integer.parseInt(price)).replace(',', '.');
+        return NumberFormat.getInstance(new Locale(("id"))).format(Double.parseDouble(price));
     }
 }
