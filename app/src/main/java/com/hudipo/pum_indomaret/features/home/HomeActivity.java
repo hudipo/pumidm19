@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -45,6 +49,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -61,17 +66,23 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.tvPositionHome)
     TextView tvPositionHome;
 
+    @BindView(R.id.tvRespName)
+    TextView tvRespName;
+
     @BindView(R.id.tvEmpNumHome)
     TextView tvEmpNumHome;
     @BindView(R.id.rvHome)
     RecyclerView rvHome;
     @BindView(R.id.swipeRefreshHome)
     SwipeRefreshLayout swipeRefreshHome;
+    @BindView(R.id.ciPhotoProfile)
+    CircleImageView ciPhotoProfile;
 
     private CompositeDisposable composite = new CompositeDisposable();
     private HawkStorage hawkStorage;
     private HomeAdapter adapter;
     private LocalBroadcastManager localBroadcastManager;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +97,9 @@ public class HomeActivity extends AppCompatActivity {
         getTrxTypeAndSaveToHawkStorage();
 
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        ciPhotoProfile.setOnClickListener(view ->
+                startActivity(new Intent(this, SettingActivity.class))
+        );
 
         initFirebase();
     }
@@ -201,9 +215,18 @@ public class HomeActivity extends AppCompatActivity {
         if (hawkStorage.getUserData() != null){
             tvNameHome.setText(hawkStorage.getUserData().getName());
             tvPositionHome.setText(hawkStorage.getUserData().getPosition());
+            tvRespName.setText(hawkStorage.getUserData().getRespName());
             tvEmpNumHome.setText(hawkStorage.getUserData().getEmpNum());
+            if (tvRespName.getText().toString().matches("SUPERUSER_MENU")){
+                tvRespName.setText("USER");
+            }else if(tvRespName.getText().toString().matches("APPROVAL_MENU")){
+                tvRespName.setText("APPROVAL");
+            }
+
         }
     }
+
+
 
     private void initFirebase() {
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -245,11 +268,38 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         localBroadcastManager.registerReceiver(listener, new IntentFilter("FIREBASE_TOKEN"));
+
+        Glide.with(this)
+                .load(hawkStorage.getUserData().getPhotoProfile())
+                .apply(RequestOptions.skipMemoryCacheOf(true))
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(ciPhotoProfile);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         localBroadcastManager.unregisterReceiver(listener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

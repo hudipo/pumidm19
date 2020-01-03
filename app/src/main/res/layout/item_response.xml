@@ -52,7 +52,7 @@
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/New"
+            android:text="@string/new_text"
             android:fontFamily="@font/mregular"
             android:layout_marginStart="@dimen/dp6"
             style="@style/TextAppearance.Headline6.Dark"

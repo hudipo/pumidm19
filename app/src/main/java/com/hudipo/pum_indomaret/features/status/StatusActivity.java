@@ -150,16 +150,13 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
 
     @OnClick(R.id.btnBack)
     void btnBack(){
-        startActivity(new Intent(this, HomeActivity.class));
-        Animatoo.animateSlideRight(this);
-        finish();
+        onBackPressed();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class));
-        Animatoo.animateSlideRight(this);
         finish();
     }
 }

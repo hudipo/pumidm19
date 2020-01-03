@@ -21,7 +21,8 @@
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="wrap_content"
-        android:layout_height="34dp"
+        android:layout_height="28dp"
+        tools:ignore="ContentDescription"
         android:layout_marginStart="@dimen/dp16"
         android:layout_marginBottom="26dp"
         android:background="@android:color/transparent"
@@ -78,6 +79,7 @@
         android:id="@+id/cbApproval"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
+        tools:ignore="ContentDescription"
         android:padding="6dp"
         android:src="@drawable/ic_checkbox"
         app:layout_constraintBottom_toBottomOf="@id/view2"
@@ -110,6 +112,7 @@
         android:id="@+id/llAction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:visibility="gone"
@@ -138,6 +141,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:ignore="ContentDescription"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_approve" />
 
@@ -147,9 +151,9 @@
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/approve"
                     android:textAlignment="center"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/textAppearanceCaption" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -174,6 +178,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:ignore="ContentDescription"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_reject" />
 
@@ -183,9 +188,9 @@
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/reject"
                     android:textAlignment="center"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/textAppearanceCaption" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
@@ -199,9 +204,9 @@
         android:gravity="center"
         android:textColor="@color/redError"
         android:visibility="gone"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_header"
-        tools:text="halo" />
+        app:layout_constraintTop_toBottomOf="@id/layout_header" />
 </androidx.constraintlayout.widget.ConstraintLayout>

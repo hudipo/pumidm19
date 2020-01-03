@@ -61,6 +61,32 @@ public class PumDateFormat {
         return results;
     }
 
+    public static String rawDateFormatView(String raw){
+        String results = null;
+        String OLD_FORMAT = "yyyy-MM-dd";
+        String NEW_FORMAT = "dd/MM/yyyy";
+
+        SimpleDateFormat formatInput = new SimpleDateFormat(OLD_FORMAT, Locale.getDefault());
+        SimpleDateFormat formatOutput = new SimpleDateFormat(NEW_FORMAT, Locale.getDefault());
+
+        Date dateInput = null;
+
+        try {
+            dateInput = formatInput.parse(raw);
+        }catch (Exception ignored){
+
+        }
+        if (dateInput != null){
+            try {
+                results = formatOutput.format(dateInput);
+            }catch (Exception ignored){
+
+            }
+        }
+
+        return results;
+    }
+
     public static String dateFormatView(int year, int month, int dayOfMonth){
         String result;
         Calendar calendar = Calendar.getInstance();

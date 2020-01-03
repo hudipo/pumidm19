@@ -39,8 +39,8 @@ public class SentReqActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-        finishAffinity();
+//        super.onBackPressed();
+//        Animatoo.animateSlideRight(this); //fire the slide left animation
+//        finishAffinity();
     }
 }

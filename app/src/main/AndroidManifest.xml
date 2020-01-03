@@ -22,6 +22,32 @@
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true"
         tools:targetApi="n">
+        <activity
+            android:name=".features.report.view.ReportPDFActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.searchstorecode.SearchStoreCodeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".features.searchtrxtyperesponse.SearchTrxTypeResponseActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name=".propider.GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity android:name=".features.setting.activity.ChangePinSuccessActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
@@ -88,52 +114,52 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".features.inbox.InboxActivity" />
         <activity
-            android:name=".features.response.subfeatures.responsehistory.ResponseHistoryActivity"
+            android:name=".features.response.activity.ResponseHistoryActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.fullresponsesent.FullResponseSentActivity"
+            android:name=".features.response.activity.FullResponseSentActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.responsecartfull.ResponseCartFullActivity"
+            android:name=".features.response.activity.ResponseCartFullActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.fullresponseadded.FullResponseAddedActivity"
+            android:name=".features.response.activity.FullResponseAddedActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.responsefull.ResponseFullActivity"
+            android:name=".features.response.activity.ResponseFullActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.partialresponseadded.PartialResponseAddedActivity"
+            android:name=".features.response.activity.PartialResponseAddedActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.partialresponsesent.PartialResponseSentActivity"
+            android:name=".features.response.activity.PartialResponseSentActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.responsecartpartial.ResponseCartPartialActivity"
+            android:name=".features.response.activity.ResponseCartPartialActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.responsepartial.ResponsePartialActivity"
+            android:name=".features.response.activity.ResponsePartialActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".features.response.subfeatures.createresponse.CreateResponseActivity"
+            android:name=".features.response.activity.CreateResponseActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -163,7 +189,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

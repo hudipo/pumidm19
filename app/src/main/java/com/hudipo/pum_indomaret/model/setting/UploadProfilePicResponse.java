@@ -10,11 +10,18 @@ public class UploadProfilePicResponse{
 	@SerializedName("message")
 	private String message;
 
+	@SerializedName("data")
+	private String data;
+
 	public boolean isError(){
 		return error;
 	}
 
 	public String getMessage(){
 		return message;
+	}
+
+	public String getData() {
+		return data;
 	}
 }

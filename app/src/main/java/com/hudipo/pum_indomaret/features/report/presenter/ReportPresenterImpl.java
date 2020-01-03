@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
+import androidx.core.content.FileProvider;
+
 import com.hudipo.pum_indomaret.features.report.contract.ReportContract;
 import com.hudipo.pum_indomaret.model.login.User;
 import com.hudipo.pum_indomaret.networking.ApiServices;
@@ -35,11 +37,13 @@ public class ReportPresenterImpl implements ReportContract.ReportPresenter {
     private Uri fileUri;
     private HashMap<String, RequestBody> params = new HashMap<>();
     private ApiServices services;
+    private Context context;
 
     public ReportPresenterImpl(Context context, ReportContract.ReportView reportView) {
         this.reportView = reportView;
         this.hawkStorage = new HawkStorage(context);
         this.services = new ApiServices();
+        this.context = context;
     }
 
     @Override
@@ -191,7 +195,8 @@ public class ReportPresenterImpl implements ReportContract.ReportPresenter {
                 }
 
                 outputStream.flush();
-                fileUri = Uri.fromFile(file);
+                fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
+                //fileUri = Uri.fromFile(file);
                 return true;
             } catch (IOException e) {
                 return false;

@@ -7,7 +7,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:background="@color/colorBase"
-    tools:context=".features.response.subfeatures.responsefull.ResponseFullActivity">
+    tools:context=".features.response.activity.ResponseFullActivity">
 
 
     <View
@@ -22,6 +22,7 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp32"
+        tools:ignore="ContentDescription"
         android:layout_marginStart="@dimen/main_margin"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="42dp"
@@ -60,9 +61,10 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <ImageButton
-        android:id="@+id/btnFolder"
+        android:id="@+id/btnCartResponseFull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        tools:ignore="ContentDescription"
         android:layout_marginTop="@dimen/dp18"
         android:layout_marginEnd="@dimen/main_margin"
         android:background="@android:color/transparent"
@@ -96,12 +98,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/main_margin"
             android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:drawableEnd="@drawable/ic_arrow_drop_down_black_30dp"
+            android:textAlignment="textStart"
+            android:drawableStart="@drawable/ic_search_black_24dp"
+            android:drawablePadding="@dimen/dp6"
             android:fontFamily="@font/mlight"
             android:paddingStart="@dimen/main_padding"
             android:paddingEnd="@dimen/main_padding"
             android:text="@string/transaction_type"
-            android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.Body1.Dark"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,38 +129,74 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnTransactionType" />
 
+    <LinearLayout
+        android:id="@+id/llAmountFund"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/main_margin"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/bg_rounded_border_black_solid_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvErrorAmount">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rp"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.Body1.Dark"/>
+
         <EditText
             android:id="@+id/etAmount"
             style="@style/TextAppearance.Body1.Dark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/main_margin"
-            android:background="@drawable/bg_rounded_border_black_solid_black"
-            android:fontFamily="@font/mlight"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:hint="@string/amount"
             android:inputType="numberDecimal"
-            android:paddingStart="@dimen/main_padding"
-            android:paddingEnd="@dimen/main_padding"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etDescription" />
+            android:fontFamily="@font/montserrat_light"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
 
-        <EditText
-            android:id="@+id/etStoreCode"
+    </LinearLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/etAmount"-->
+<!--            style="@style/TextAppearance.Body1.Dark"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/main_margin"-->
+<!--            android:background="@drawable/bg_rounded_border_black_solid_black"-->
+<!--            android:fontFamily="@font/mlight"-->
+<!--            android:hint="@string/amount"-->
+<!--            android:inputType="numberDecimal"-->
+<!--            android:paddingStart="@dimen/main_padding"-->
+<!--            android:paddingEnd="@dimen/main_padding"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textAllCaps="false"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/etDescription" />-->
+
+        <Button
+            android:id="@+id/btnStoreCode"
             style="@style/TextAppearance.Body1.Dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/main_margin"
-
+            android:textAlignment="textStart"
+            android:drawableStart="@drawable/ic_search_black_24dp"
+            android:drawablePadding="@dimen/dp6"
             android:background="@drawable/bg_rounded_border_black_solid_black"
             android:fontFamily="@font/mlight"
             android:hint="@string/store_code"
-            android:inputType="text"
             android:paddingStart="@dimen/main_padding"
             android:paddingEnd="@dimen/main_padding"
-            android:textAlignment="textStart"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -174,7 +213,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etStoreCode" />
+            app:layout_constraintTop_toBottomOf="@id/btnStoreCode" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -203,6 +242,7 @@
                 android:id="@+id/btnUploadFile"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                tools:ignore="ContentDescription"
                 android:layout_marginStart="0dp"
                 android:layout_weight="0"
                 android:background="@drawable/bg_rounded_border_black_solid_green"

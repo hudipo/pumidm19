@@ -8,6 +8,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.setting.view.SettingContract;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
 import com.hudipo.pum_indomaret.model.login.User;
+import com.hudipo.pum_indomaret.model.logout.LogoutResponse;
 import com.hudipo.pum_indomaret.model.setting.UploadProfilePicResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.networking.RetrofitClient;
@@ -78,8 +79,8 @@ public class SettingPresenter implements SettingContract.SettingPresenterView<Se
                         if (uploadProfilePicResponse != null) {
                             mView.toast(uploadProfilePicResponse.getMessage());
                             User user = hawkStorage.getUserData();
-                            //todo minta responsenya ditambah
-//                            user.setPhotoProfile();
+                            user.setPhotoProfile(uploadProfilePicResponse.getData());
+                            hawkStorage.setUserData(user);
                             mView.showData(user);
                         }else {
                             mView.toast(context.getString(R.string.something_wrong));
@@ -103,6 +104,47 @@ public class SettingPresenter implements SettingContract.SettingPresenterView<Se
                     }
                 }, throwable -> {
                     Log.d(TAG, "uploadImage: "+throwable.getMessage());
+                    mView.dismissLoading();
+                    mView.toast(context.getString(R.string.err_server));
+                }));
+    }
+
+    @Override
+    public void logout() {
+        mView.showLoading();
+        composite.add(new ApiServices().getApiPumServices()
+                .logout(hawkStorage.getUserData().getEmpId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    mView.dismissLoading();
+                    if (response.isSuccessful()){
+                        LogoutResponse logoutResponse = response.body();
+                        if (logoutResponse != null) {
+                            mView.toast(logoutResponse.getMessage());
+                            mView.finishActivity();
+                        }else {
+                            mView.toast(context.getString(R.string.something_wrong));
+                        }
+                    }else {
+                        Converter<ResponseBody, UploadProfilePicResponse> errorConverter =
+                                RetrofitClient.client().responseBodyConverter(UploadProfilePicResponse.class, new Annotation[0]);
+                        UploadProfilePicResponse errorResponse;
+                        try {
+                            if (response.errorBody() != null){
+                                errorResponse = errorConverter.convert(response.errorBody());
+
+                                if (errorResponse != null){
+                                    mView.toast(errorResponse.getMessage());
+                                }
+                            }
+                        }catch (IOException e){
+                            e.printStackTrace();
+                            mView.toast(context.getString(R.string.err_server));
+                        }
+                    }
+                }, throwable -> {
+                    Log.d(TAG, "logout: "+throwable.getMessage());
                     mView.dismissLoading();
                     mView.toast(context.getString(R.string.err_server));
                 }));

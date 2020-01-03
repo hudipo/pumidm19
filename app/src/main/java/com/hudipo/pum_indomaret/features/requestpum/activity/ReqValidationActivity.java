@@ -19,8 +19,10 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.pin.PinActivity;
 import com.hudipo.pum_indomaret.features.requestpum.contract.ReqValidationContract;
 import com.hudipo.pum_indomaret.features.requestpum.presenter.ReqValidationPresenter;
+import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.model.RequestModel;
 import com.hudipo.pum_indomaret.utils.Global;
+import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,13 +48,13 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
     TextView tvAmount;
     @BindView(R.id.tvDesc)
     TextView tvDescription;
-    @BindView(R.id.pbReqValidation)
-    LottieAnimationView pbReqValidation;
 
-    public static String EXTRA_DATA_REQUEST = "extra_data_request";
+
     private final int REQUEST_CODE_PIN = 100;
     private RequestModel requestModel;
+    private HawkStorage hawkStorage;
     private ReqValidationPresenter presenter;
+    private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,13 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
         setContentView(R.layout.activity_req_validation);
         ButterKnife.bind(this);
 
+        initHawkStorage();
         getDataRequestModel();
         onAttachView();
+    }
+
+    private void initHawkStorage() {
+        hawkStorage = new HawkStorage(this);
     }
 
     @Override
@@ -91,8 +98,8 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
     }
 
     private void getDataRequestModel() {
-        if (getIntent() != null){
-            requestModel = getIntent().getParcelableExtra(EXTRA_DATA_REQUEST);
+        if (hawkStorage.getRequestModel() != null){
+            requestModel = hawkStorage.getRequestModel();
             if (requestModel != null){
                 initView(requestModel);
             }
@@ -115,7 +122,11 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
         String textAmount = "Rp. "+Global.priceFormatter(requestModel.getAmount());
         tvAmount.setText(textAmount);
 
-        tvFile.setText(requestModel.getNameFile());
+        if (requestModel.getNameFile().isEmpty()){
+            tvFile.setText("-");
+        }else {
+            tvFile.setText(requestModel.getNameFile());
+        }
 
         tvDescription.setText(requestModel.getDescription());
     }
@@ -137,27 +148,21 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
                 .show();
     }
 
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-
-    }
-
     @OnClick(R.id.imgBack)
     void onBackClicked(){
-       onBackPressed();
+        super.onBackPressed();
     }
 
     @Override
     public void showProgress() {
-        pbReqValidation.setVisibility(View.VISIBLE);
+        loadingProgress.showCustomDialog(this);
     }
 
     @Override
     public void hideProgress() {
-        pbReqValidation.setVisibility(View.INVISIBLE);
+        loadingProgress.closeCustomDialog();
     }
+
 
     @Override
     public void failedCreatePum(String message) {
@@ -167,9 +172,9 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
     @Override
     public void successCreatePum() {
         Intent intent = new Intent(this, SentReqActivity.class);
+        hawkStorage.deleteRequestModel();
         startActivity(intent);
         finishAffinity();
-        Animatoo.animateSlideUp(this);
     }
 
     @Override

@@ -25,6 +25,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.report.contract.ReportContract;
 import com.hudipo.pum_indomaret.features.report.presenter.ReportPresenterImpl;
+import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.PumDateFormat;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     private static final int VALID_START_DATE_CODE = 2;
     private static final int VALID_END_DATE_CODE = 3;
     private static int dateCode;
+    private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
     Map<String,Integer> reportTypeMap = new HashMap<>();
     Map<String,String> pumStatusMap = new HashMap<>();
     Map<String,String> respStatusMap = new HashMap<>();
@@ -76,7 +78,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     TextView tvRespStatusLabel;
     @BindView(R.id.tvGroupByLabel)
     TextView tvGroupByLabel;
-    ImageView pumStatusArrow;
+
     @OnClick(R.id.btnViewRep)
     void viewRep(){
         if (progressBar.getVisibility()==View.GONE){
@@ -152,6 +154,8 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         mDateSetListener = (view, year, month, dayOfMonth) -> presenter.onDateSet(year, month, dayOfMonth);
         setViewData();
     }
+
+
 
     @Override
     public void setDate(String date) {
@@ -275,7 +279,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
     @Override
     public void toast(String message) {
-        progressBar.setVisibility(View.GONE);
+        loadingProgress.closeCustomDialog();
         new AlertDialog.Builder(this,R.style.CustomDialogTheme)
                 .setTitle("Attention!")
                 .setMessage(message)
@@ -286,25 +290,29 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     @Override
     public void showLoading() {
         parentView.setClickable(false);
-        progressBar.setVisibility(View.VISIBLE);
+        loadingProgress.showCustomDialog(this);
     }
 
     @Override
     public void hideLoading() {
         parentView.setClickable(true);
-        progressBar.setVisibility(View.GONE);
+        loadingProgress.closeCustomDialog();
     }
 
     @Override
     public void showPdf(Uri fileUri) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(fileUri,"application/pdf");
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        if (intent.resolveActivity(getPackageManager())!=null){
-            startActivity(intent);
-        }else {
-            toast("You don't have pdf viewer!");
-        }
+        Intent intent = new Intent(ReportActivity.this,ReportPDFActivity.class);
+        intent.putExtra("PDF_URI",fileUri.toString());
+        startActivity(intent);
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.setDataAndType(fileUri,"application/pdf");
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        if (intent.resolveActivity(getPackageManager())!=null){
+//            startActivity(intent);
+//        }else {
+//            toast("You don't have pdf viewer!");
+//        }
     }
 
     @Override
@@ -316,7 +324,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
                     dialogInterface.dismiss();
                     presenter.downloadData();
                 })
-                .setPositiveButton("Later", (dialogInterface, i) -> dialogInterface.dismiss());
+                .setPositiveButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

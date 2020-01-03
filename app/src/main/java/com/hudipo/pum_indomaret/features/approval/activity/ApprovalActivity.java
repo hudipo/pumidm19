@@ -77,7 +77,7 @@ public class ApprovalActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
+//        Animatoo.animateSlideRight(this); //fire the slide left animation
         finish();
 
     }

@@ -91,10 +91,10 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     private void setView() {
         rvApproval.setLayoutManager(new LinearLayoutManager(getActivity()));
         cbApproval.setOnClickListener(view1 -> {
-            if(isCheckedAll){
+            if (isCheckedAll) {
                 approvalSelectedList.clear();
                 isCheckedAll = false;
-            }else {
+            } else {
                 approvalSelectedList.clear();
                 approvalSelectedList.addAll(approvalModelList);
                 isCheckedAll = true;
@@ -103,13 +103,13 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             initAction();
         });
         swipeRefreshLayout.setOnRefreshListener(() ->
-            presenter.getData()
+                presenter.getData()
         );
 
         approvalAdapter = new ApprovalAdapter(new ArrayList<>(), (approvalModel, checked) -> {
-            if(checked){
+            if (checked) {
                 approvalSelectedList.add(approvalModel);
-            }else {
+            } else {
                 approvalSelectedList.remove(approvalModel);
             }
             initAction();
@@ -135,13 +135,13 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     }
 
     @OnClick(R.id.btnApprove)
-    void approve(){
-        if(approvalSelectedList.size()>0){
+    void approve() {
+        if (approvalSelectedList.size() > 0) {
             final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
             alert.setTitle(getString(R.string.approve));
-            if(approvalSelectedList.size()==1){
+            if (approvalSelectedList.size() == 1) {
                 alert.setMessage(getString(R.string.message_dialog_approve_single));
-            }else {
+            } else {
                 alert.setMessage(getString(R.string.message_dialog_approve));
             }
             alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
@@ -151,15 +151,15 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             }));
             alert.setNegativeButton(getString(R.string.no), (dialogInterface, i) -> dialogInterface.dismiss());
             alert.show();
-        }else {
+        } else {
             errorNotSelected("Not Selected");
         }
     }
 
 
     @OnClick(R.id.btnReject)
-    void reject(){
-        if(approvalSelectedList.size()>0){
+    void reject() {
+        if (approvalSelectedList.size() > 0) {
             FrameLayout container = new FrameLayout(Objects.requireNonNull(getActivity()));
 
             EditText editText = generateEditText();
@@ -167,17 +167,17 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
             final AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
             alert.setTitle(getString(R.string.reject));
-            if(approvalSelectedList.size()==1){
+            if (approvalSelectedList.size() == 1) {
                 alert.setMessage(getString(R.string.message_dialog_reject_single));
-            }else {
+            } else {
                 alert.setMessage(getString(R.string.message_dialog_reject));
             }
             alert.setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
                 reasonValidation = editText.getText().toString();
-                if(reasonValidation.isEmpty()){
-                    Toast.makeText(getActivity(),"Reason validation can't empty", Toast.LENGTH_SHORT).show();
+                if (reasonValidation.isEmpty()) {
+                    Toast.makeText(getActivity(), "Reason validation can't empty", Toast.LENGTH_SHORT).show();
                     reject();
-                }else {
+                } else {
                     Intent intent = new Intent(getActivity(), PinActivity.class);
                     startActivityForResult(intent, REQUEST_CODE_PIN);
                     requestType = 0;
@@ -187,16 +187,15 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
             alert.setView(container);
             alert.show();
 
-        }else {
+        } else {
             errorNotSelected("Not Selected");
         }
     }
 
-    private EditText generateEditText()
-    {
+    private EditText generateEditText() {
         int padding = getResources().getDimensionPixelSize(R.dimen.min_margin);
         int margin = getResources().getDimensionPixelSize(R.dimen.main_margin);
-        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.leftMargin = margin;
         params.rightMargin = margin;
 
@@ -213,13 +212,13 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_PIN){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == REQUEST_CODE_PIN) {
+            if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     String pin = data.getStringExtra(PinActivity.EXTRA_PIN);
-                    if(requestType==0){ //reject
+                    if (requestType == 0) { //reject
                         presenter.reject(approvalSelectedList, pin, reasonValidation);
-                    }else {
+                    } else {
                         presenter.approve(approvalSelectedList, pin);
                     }
                 }
@@ -247,8 +246,9 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     @Override
     public void error(String message) {
-        if(isAdded()) Global.toast(getContext(), message);
-        tvError.setText(message);
+        if (isAdded())
+//            Global.toast(getContext(), message);
+        tvError.setText(R.string.data_is_empty);
         tvError.setVisibility(View.VISIBLE);
     }
 
@@ -266,14 +266,14 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     @Override
     public void success(int requestType) {
         Intent intent = new Intent(getActivity(), ApprovalSuccessActivity.class);
-        intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE,requestType);
+        intent.putExtra(Extra.EXTRA_APPROVAL_HISTORY_TYPE, requestType);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).finish();
     }
 
     @Override
     public void showAction() {
-        if(llAction.getVisibility() == View.GONE){
+        if (llAction.getVisibility() == View.GONE) {
             Animation slideUp = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_up);
             llAction.setVisibility(View.VISIBLE);
             llAction.startAnimation(slideUp);
@@ -282,7 +282,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
 
     @Override
     public void closeAction() {
-        if(llAction.getVisibility() == View.VISIBLE){
+        if (llAction.getVisibility() == View.VISIBLE) {
             Animation slideDown = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_down_out);
             llAction.setVisibility(View.GONE);
             llAction.startAnimation(slideDown);
@@ -300,14 +300,14 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
         presenter.onDetach();
     }
 
-    private void initAction(){
-        if(approvalSelectedList.size()>0){
+    private void initAction() {
+        if (approvalSelectedList.size() > 0) {
             showAction();
-        }else closeAction();
+        } else closeAction();
     }
 
     @OnClick(R.id.ivBack)
-    void back(){
+    void back() {
         Objects.requireNonNull(getActivity()).onBackPressed();
 
     }

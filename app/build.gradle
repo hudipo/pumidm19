@@ -85,4 +85,12 @@ dependencies {
     //firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     implementation 'com.google.firebase:firebase-messaging:20.0.1'
+
+
+    //glassfish
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+
+    //pdf viewer
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
 }

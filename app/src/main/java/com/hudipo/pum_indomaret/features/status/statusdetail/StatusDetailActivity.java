@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -49,6 +50,12 @@ public class StatusDetailActivity extends AppCompatActivity {
     @BindView(R.id.tvDescription)
     public TextView tvDesc;
 
+    @BindView(R.id.tvReason)
+    public TextView tvReason;
+
+    @BindView(R.id.textViewReason)
+    public TextView textViewReason;
+
     @BindView(R.id.rvApprover1)
     public RecyclerView rvApprover1;
 
@@ -89,6 +96,12 @@ public class StatusDetailActivity extends AppCompatActivity {
             tvTrxType.setText(statusDetailModel.pumTrxTypeId);
             tvAmount.setText(Utils.convertLongToCurrency(statusDetailModel.amount));
             tvDesc.setText(statusDetailModel.description);
+            tvReason.setText(statusDetailModel.reason);
+            if (!tvReason.getText().toString().matches("")){
+                tvReason.setVisibility(View.VISIBLE);
+                textViewReason.setVisibility(View.VISIBLE);
+
+            }
             initRv();
         }
     }

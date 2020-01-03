@@ -11,6 +11,7 @@ public class SettingContract {
         void onAttach(T view);
         void onDetach();
         void uploadImage(Uri uri);
+        void logout();
     }
 
     public interface SettingView extends MainView{
@@ -18,5 +19,6 @@ public class SettingContract {
         void showLoading();
         void dismissLoading();
         void toast(String message);
+        void finishActivity();
     }
 }

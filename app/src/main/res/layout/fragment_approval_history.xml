@@ -1,108 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <View
         android:id="@+id/layout_header"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="@dimen/heightAppBar"
         android:background="@drawable/gradient_top_blue"
         android:focusable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:layout_marginStart="@dimen/dp16"
-            android:layout_marginBottom="34dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/left_arrow"
-            app:layout_constraintBottom_toTopOf="@id/search"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        tools:ignore="ContentDescription"
+        android:layout_marginStart="@dimen/dp16"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintVertical_bias="0.6"
+        android:background="@android:color/transparent"
+        android:src="@drawable/left_arrow"
+        app:layout_constraintBottom_toTopOf="@id/search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/layout_title"
+    <LinearLayout
+        android:id="@+id/layout_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp18"
+        android:gravity="end"
+        android:orientation="vertical"
+       android:layout_marginTop="@dimen/dp8"
+        app:layout_constraintBottom_toTopOf="@+id/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title_page"
+            style="@style/TextAppearance.Headline4.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="end"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/dp18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/search"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center"
+            android:paddingBottom="0dp"
+            android:text="@string/approval" />
 
-            <TextView
-                android:id="@+id/title_page"
-                style="@style/TextAppearance.Headline4.Light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_semibold"
-                android:gravity="center"
-                android:paddingBottom="0dp"
-                android:text="@string/approval" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-10dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="@string/history"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="@dimen/dp8"
-            android:background="@drawable/bg_search_view"
-            android:theme="@style/AppSearchView"
-            app:defaultQueryHint="@string/search"
-            app:iconifiedByDefault="false"
-            app:layout_constraintBottom_toBottomOf="@id/layout_header"
-            app:layout_constraintEnd_toStartOf="@+id/view2"
-            app:layout_constraintStart_toStartOf="@id/layout_header"
-            app:queryBackground="@android:color/transparent"
-            app:searchIcon="@null" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/bg_search_view"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@id/layout_header"
-            app:layout_constraintEnd_toEndOf="@id/layout_header"/>
-
-        <ImageView
-            android:id="@+id/btnFilter"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:padding="9dp"
-            android:src="@drawable/ic_filter"
-            app:layout_constraintBottom_toBottomOf="@id/view2"
-            app:layout_constraintEnd_toEndOf="@id/view2"
-            app:layout_constraintStart_toStartOf="@id/view2"
-            app:layout_constraintTop_toTopOf="@id/view2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/history"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="@dimen/dp8"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_search_view"
+        android:theme="@style/AppSearchView"
+        app:defaultQueryHint="@string/search"
+        app:iconifiedByDefault="false"
+        app:layout_constraintBottom_toBottomOf="@id/layout_header"
+        app:layout_constraintEnd_toStartOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@id/layout_header"
+        app:queryBackground="@android:color/transparent"
+        app:searchIcon="@null" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_search_view"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/layout_header"
+        app:layout_constraintEnd_toEndOf="@id/layout_header" />
+
+    <ImageView
+        android:id="@+id/btnFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        tools:ignore="ContentDescription"
+        android:padding="9dp"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintBottom_toBottomOf="@id/view2"
+        app:layout_constraintEnd_toEndOf="@id/view2"
+        app:layout_constraintStart_toStartOf="@id/view2"
+        app:layout_constraintTop_toTopOf="@id/view2" />
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshApproval"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layout_header">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_header">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistory"
@@ -125,5 +139,11 @@
         android:gravity="center"
         android:textColor="@color/redError"
         android:visibility="gone"
-        tools:text="halo" />
-</RelativeLayout>
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_header" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

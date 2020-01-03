@@ -10,11 +10,15 @@ import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
 import com.hudipo.pum_indomaret.model.docdetail.DocDetailResponse;
 import com.hudipo.pum_indomaret.model.firebase.UploadTokenResponse;
+import com.hudipo.pum_indomaret.model.historyresponse.HistoryResponse;
 import com.hudipo.pum_indomaret.model.login.LoginResponse;
+import com.hudipo.pum_indomaret.model.logout.LogoutResponse;
 import com.hudipo.pum_indomaret.model.pin.PinResponse;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
+import com.hudipo.pum_indomaret.model.response.DataResponse;
 import com.hudipo.pum_indomaret.model.setting.ChangePinResponse;
 import com.hudipo.pum_indomaret.model.setting.UploadProfilePicResponse;
+import com.hudipo.pum_indomaret.model.storecode.StoreCodeResponse;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
 
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface PumApiServices {
@@ -126,4 +131,31 @@ public interface PumApiServices {
     @POST("tokenfcm")
     Observable<Response<UploadTokenResponse>> uploadTokenFirebase(@Field("emp_id") int empId,
                                                                   @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("logout")
+    Observable<Response<LogoutResponse>> logout(@Field("emp_id") int empId);
+
+
+    @POST("getdataresponse")
+    Observable<Response<DataResponse>> getDataResponse(@Query("emp_id") int empId);
+
+    @POST("historyresponse")
+    Observable<Response<HistoryResponse>> getDataHistoryResponse(@Query("pum_trx_id") int pumTrxId);
+
+    @POST("getstorecode")
+    Observable<Response<StoreCodeResponse>> getDataStoreCode(@Query("org_id") int orgId);
+
+    @Multipart
+    @POST("submitresponse")
+    Observable<Response<CreatePumResponse>> submitResponse(
+            @Part("emp_id") RequestBody empId,
+            @Part("pum_trx_id") RequestBody pumTrxId,
+            @Part("kode") RequestBody kode,
+            @Part("org_id") RequestBody orgId,
+            @Part("trx_type[]") ArrayList<RequestBody> trxTypeId,
+            @Part("description[]") ArrayList<RequestBody> desc,
+            @Part("store_code[]") ArrayList<RequestBody> storeCode,
+            @Part("amount[]") ArrayList<RequestBody> amount,
+            @Part ArrayList<MultipartBody.Part> files);
 }

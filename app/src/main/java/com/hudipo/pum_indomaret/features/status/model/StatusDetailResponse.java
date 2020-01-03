@@ -41,6 +41,9 @@ public class StatusDetailResponse implements Serializable {
         @SerializedName("DESCRIPTION")
         public String description;
 
+        @SerializedName("REASON_APPROVE")
+        public String reason;
+
         @SerializedName("AMOUNT")
         public long amount;
 

@@ -19,6 +19,7 @@
         android:id="@+id/imgBack"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp32"
+        tools:ignore="ContentDescription"
         android:layout_marginEnd="@dimen/dp62"
         android:layout_marginBottom="@dimen/dp42"
         android:background="@android:color/transparent"
@@ -54,7 +55,8 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp16"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp16"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_container"
             android:orientation="vertical"
@@ -131,6 +133,7 @@
                     android:id="@+id/imgStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_border_black_solid_green"
@@ -176,6 +179,7 @@
                     android:id="@+id/imgEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_red"
@@ -219,10 +223,10 @@
                     android:textSize="@dimen/textAppearanceSubtitle" />
 
                 <ImageView
-
                     android:id="@+id/imgValidStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_border_black_solid_green"
@@ -268,6 +272,7 @@
                     android:id="@+id/imgValidEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_red"
@@ -421,8 +426,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+
+
         <Button
-            android:id="@+id/btnViewRep"
+            android:id="@+id/btnResetReport"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin"
@@ -430,15 +437,15 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="@dimen/main_margin"
             android:layout_weight="1"
-            android:background="@drawable/bg_circle_color_accent"
-            android:text="@string/view"
+            android:background="@drawable/bg_rounded_red_30dp"
+            android:text="@string/reset"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle"
-            android:textStyle="bold" />
+            android:textSize="@dimen/textAppearanceSubtitle1"
+            android:fontFamily="@font/montserrat_semibold" />
 
         <Button
-            android:id="@+id/btnResetReport"
+            android:id="@+id/btnViewRep"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -446,12 +453,12 @@
             android:layout_marginEnd="@dimen/main_margin"
             android:layout_marginBottom="@dimen/main_margin"
             android:layout_weight="1"
-            android:background="@drawable/bg_rounded_red_30dp"
-            android:text="@string/reset"
+            android:background="@drawable/bg_circle_color_accent"
+            android:text="@string/view"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle"
-            android:textStyle="bold" />
+            android:textSize="@dimen/textAppearanceSubtitle1"
+            android:fontFamily="@font/montserrat_semibold" />
 
     </LinearLayout>
 

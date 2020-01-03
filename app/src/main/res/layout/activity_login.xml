@@ -11,6 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="@dimen/width_logo"
         android:layout_height="@dimen/width_logo"
+        tools:ignore="ContentDescription"
         android:src="@drawable/logo_pum_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,8 @@
             android:background="@drawable/bg_input_login"
             android:textColor="@color/white"
             android:hint="@string/nik"
-            android:text="2004002419"
+            android:text="@string/nik_demo"
+            android:maxLength="10"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="numberSigned"
             android:drawablePadding="8dp"
@@ -70,7 +72,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat_regular"
             android:hint="@string/password"
-            android:text="123456"
+            android:text="@string/pass_demo"
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/ic_password"/>
     </com.google.android.material.textfield.TextInputLayout>

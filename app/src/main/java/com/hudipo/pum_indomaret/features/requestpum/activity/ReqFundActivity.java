@@ -63,7 +63,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     private final int REQUEST_CODE_CAMERA = 101;
     private final int REQUEST_CODE_GALLERY = 102;
     private final int REQUEST_CODE_FILES = 103;
-    public static final String EXTRA_DOCUMENT_DETAIL = "extra_document_detail";
     private RequestModel requestModel;
     HawkStorage hawkStorage;
 
@@ -73,16 +72,71 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         setContentView(R.layout.activity_req_fund);
         ButterKnife.bind(this);
 
-        hawkStorage = new HawkStorage(this);
         setCurrencyEtAmountFund();
-        getDataIntent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        setRequestModel();
+        setDataView();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        String amount = etAmountFund.getText().toString().trim().replace(".", "");
+        String desc = etDescFund.getText().toString().trim();
+        String trx = btnSearchTrx.getText().toString().trim();
+        String nameFile = tvSelectAFile.getText().toString().trim();
+
+        if (checkDataNotNull(amount, desc, trx, nameFile)){
+            requestModel.setDescription(desc);
+            requestModel.setAmount(amount);
+            requestModel.setNameTrxType(trx);
+            requestModel.setNameFile(nameFile);
+
+            hawkStorage.setRequestModel(requestModel);
+        }
+        Animatoo.animateSlideRight(this);
+    }
+
+    private boolean checkDataNotNull(String amount, String desc, String trx, String nameFile) {
+        return !amount.isEmpty() && !desc.isEmpty() && !trx.isEmpty() && !nameFile.isEmpty();
+    }
+
+    private void setDataView() {
+        if (hawkStorage.getRequestModel() != null){
+            if (hawkStorage.getRequestModel().getNameTrxType() != null && !hawkStorage.getRequestModel().getNameTrxType().isEmpty()){
+                btnSearchTrx.setText(requestModel.getNameTrxType());
+            }
+
+            if (requestModel.getDescription() != null && !requestModel.getDescription().isEmpty()){
+                etDescFund.setText(requestModel.getDescription());
+            }
+
+            if (requestModel.getNameFile() != null && !requestModel.getNameFile().isEmpty()){
+                tvSelectAFile.setText(requestModel.getNameFile());
+            }
+
+            if (requestModel.getAmount() != null && !requestModel.getAmount().isEmpty()) {
+                etAmountFund.setText(requestModel.getAmount());
+            }
+        }
+    }
+
+    private void setRequestModel() {
+        hawkStorage = new HawkStorage(this);
+        if (hawkStorage.getRequestModel() != null){
+            requestModel = hawkStorage.getRequestModel();
+        }
     }
 
     private void setCurrencyEtAmountFund() {
         etAmountFund.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -104,6 +158,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
             @Override
             public void afterTextChanged(Editable s) {
+
             }
         });
     }
@@ -120,10 +175,14 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         if (bitmap != null){
                             Uri tempUri = Utils.getImageUri(this, bitmap);
                             String realPath = Utils.getRealPathImageFromURI(this, tempUri);
-                            requestModel.setFileDataUri(tempUri);
-                            requestModel.setImage(true);
-
                             File file = new  File(realPath);
+
+                            requestModel.setFileDataUri(tempUri.toString());
+                            requestModel.setImage(true);
+                            requestModel.setNameFile(file.getName());
+
+                            hawkStorage.setRequestModel(requestModel);
+
                             tvSelectAFile.setText(file.getName());
                         }else {
                             Toast.makeText(this, "Failed to capture image", Toast.LENGTH_SHORT).show();
@@ -138,6 +197,9 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         if (trxItem != null){
                             btnSearchTrx.setText(trxItem.getDescription());
                             requestModel.setTrxTypeId(trxItem.getPumTrxTypeId());
+                            requestModel.setNameTrxType(trxItem.getDescription());
+
+                            hawkStorage.setRequestModel(requestModel);
                         }
                     }
                 }
@@ -147,9 +209,14 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                     Uri uriSelectedImage = data.getData();
                     if (uriSelectedImage != null){
                         String realPath = Utils.getRealPathImageFromURI(this, uriSelectedImage);
-                        requestModel.setFileDataUri(uriSelectedImage);
-                        requestModel.setImage(true);
                         File file = new  File(realPath);
+
+                        requestModel.setFileDataUri(uriSelectedImage.toString());
+                        requestModel.setImage(true);
+                        requestModel.setNameFile(file.getName());
+
+                        hawkStorage.setRequestModel(requestModel);
+
                         tvSelectAFile.setText(file.getName());
                     }else {
                         Toast.makeText(this, "Failed to get image", Toast.LENGTH_SHORT).show();
@@ -162,15 +229,18 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
                     if (selectedFile != null){
                         String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
-                        requestModel.setFileDataUri(selectedFile);
-                        requestModel.setImage(false);
+                        File file = new  File(realPath);
 
-                        String path = selectedFile.getPath();
+                        requestModel.setFileDataUri(selectedFile.toString());
+                        requestModel.setImage(false);
+                        requestModel.setNameFile(file.getName());
+
+                        hawkStorage.setRequestModel(requestModel);
+
+//                        String path = selectedFile.getPath();
 //                        requestModel.setPathDocument(path);
 
-                        File file = new  File(realPath);
                         tvSelectAFile.setText(file.getName());
-                        tvSelectAFile.setText(file.getAbsolutePath());
                     }else {
                         Toast.makeText(this, "Failed to get files", Toast.LENGTH_SHORT).show();
                     }
@@ -215,23 +285,9 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         }
     }
 
-    private void getDataIntent() {
-        if (getIntent() != null){
-            requestModel = getIntent().getParcelableExtra(EXTRA_DOCUMENT_DETAIL);
-        }
-    }
-
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-        finish();
-
-    }
-
     @OnClick(R.id.btnBackFund)
     void btnBackFund(){
-       onBackPressed();
+        onBackPressed();
     }
 
     @OnClick(R.id.btnSearchTrx)
@@ -252,23 +308,21 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         String trx = btnSearchTrx.getText().toString().trim();
         String nameFile = tvSelectAFile.getText().toString().trim();
 
-        if (checkValid(amount, desc, trx, nameFile)){
-            if (checkAmount(amount)){
-                requestModel.setDescription(desc);
-                requestModel.setAmount(amount);
-                requestModel.setNameTrxType(trx);
-                requestModel.setNameFile(nameFile);
+        if (checkValid(amount, desc, trx)){
+            requestModel.setDescription(desc);
+            requestModel.setAmount(amount);
+            requestModel.setNameTrxType(trx);
+            requestModel.setNameFile(nameFile);
 
-                Intent intent = new Intent(this, ReqValidationActivity.class);
-                intent.putExtra(ReqValidationActivity.EXTRA_DATA_REQUEST, requestModel);
-                startActivity(intent);
-                Animatoo.animateSlideLeft(this);
-            }
+            hawkStorage.setRequestModel(requestModel);
+
+            Intent intent = new Intent(this, ReqValidationActivity.class);
+            startActivity(intent);
         }
     }
 
 
-    private Boolean checkValid(String amount, String desc, String trx, String nameFile) {
+    private Boolean checkValid(String amount, String desc, String trx) {
         if (trx.isEmpty()){
             Toast.makeText(this, "Trx is still empty", Toast.LENGTH_SHORT).show();
             btnSearchTrx.setError("Trx is still empty");
@@ -300,14 +354,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             }else {
                 tvErrorAmount.setError(null);
             }
-        }
-
-        if (nameFile.isEmpty()){
-            Toast.makeText(this, "File is still empty", Toast.LENGTH_SHORT).show();
-            tvSelectAFile.setError("File is still empty");
-            return false;
-        }else {
-            tvSelectAFile.setError(null);
         }
 
         return true;
@@ -348,9 +394,10 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                     showGallery();
                 }
             }else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_FILES){
-                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_FILES)){
-                    showDocument();
-                }
+//                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_FILES)){
+//                    showDocument();
+//                }
+                Toast.makeText(this, "This feature is not available", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -110,6 +110,7 @@ public class User{
 		this.menuId = menuId;
 	}
 
+
 	public String getName() {
 		return name;
 	}

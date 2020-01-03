@@ -41,6 +41,10 @@ public class ApprovalDetailHistoryActivity extends AppCompatActivity implements 
     TextView tvTransactionType;
     @BindView(R.id.tvDescription)
     TextView tvDescription;
+    @BindView(R.id.tvReason)
+    TextView tvReason;
+    @BindView(R.id.tvReasonTitle)
+    TextView tvReasonTitle;
     @BindView(R.id.tvAmount)
     TextView tvAmount;
     @BindView(R.id.loading)
@@ -79,11 +83,20 @@ public class ApprovalDetailHistoryActivity extends AppCompatActivity implements 
         tvUseDate.setText(dataApproval.getUseDate());
         tvTransactionType.setText(dataApproval.getPumTrxTypeId());
         tvDescription.setText(dataApproval.getDescription());
+        tvReason.setText(dataApproval.getReason());
         tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormatter(String.valueOf(dataApproval.getAmount()))));
         scrollView.setVisibility(View.VISIBLE);
-        if(status.equalsIgnoreCase("R")){
+
+        if(status.equalsIgnoreCase("R"))
+        {
             ivType.setImageResource(R.drawable.txt_rejected);
-        }else ivType.setImageResource(R.drawable.txt_approved);
+
+        }
+        else {
+            ivType.setImageResource(R.drawable.txt_approved);
+            tvReason.setVisibility(View.GONE);
+            tvReasonTitle.setVisibility(View.GONE);
+        }
     }
 
     @Override

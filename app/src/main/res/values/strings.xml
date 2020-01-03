@@ -74,13 +74,14 @@
     <string name="trx_number">Trx Number</string>
     <string name="example_trx_number">200100300/107/2019</string>
     <string name="status">Status</string>
-    <string name="New">New</string>
     <string name="create_responsibility">Create Responsibility</string>
     <string name="pum_number">PUM Number</string>
     <string name="transaction_type">Transaction Type</string>
     <string name="example_transaction_type">Stores Needs 1</string>
     <string name="description">Description</string>
+    <string name="reason_reject">Reason of Reject</string>
     <string name="example_description">This Description will be appear in this field . . .</string>
+    <string name="example_reason">This Reason will be appear in this field . . .</string>
     <string name="amount">Amount</string>
     <string name="example_amount">Rp 40.000.000</string>
     <string name="amount_remaining">Amount Remaining</string>
@@ -93,7 +94,7 @@
     <string name="response_cart">Response Cart</string>
     <string name="example_store_code">IDM123</string>
     <string name="cancel">Cancel</string>
-    <string name="submit">Submit</string>
+    <string name="create_pum">Create Pum</string>
     <string name="create_another_response">Create another response</string>
     <string name="partial_response_sent">Partial Response Sent !</string>
     <string name="full_response_sent">Full Response Sent !</string>
@@ -209,6 +210,26 @@
     <string name="view">view</string>
     <string name="reset">reset</string>
     <string name="use_date_greater_than_resp_date">Use date cannot be greater than resp date</string>
+
+
+<!--    Response-->
+    <string name="you_have_not_selected_transaction_type">You have not selected the transaction type</string>
+    <string name="your_desc_is_empty">Your description is empty</string>
+    <string name="your_amount_is_empty">Your amount is empty</string>
+    <string name="your_file_is_empty">Your file is empty</string>
+    <string name="you_have_not_selected_store_code">You have not selected store code</string>
+    <string name="data_is_empty">Data is Empty</string>
+    <string name="submit">submit</string>
+    <string name="new_text">New</string>
+    <string name="partial_text">Partial</string>
+    <string name="full_text">Full</string>
+
+<!--    PIN-->
+    <string name="nik_demo">2004002419</string>
+    <string name="pass_demo">123456</string>
+    <string name="pass_star">*</string>
+
+
 
 
 </resources>

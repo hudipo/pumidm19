@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".features.response.subfeatures.responsecartfull.ResponseCartFullActivity">
+    tools:context=".features.response.activity.ResponseCartFullActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp32"
+                tools:ignore="ContentDescription"
                 android:layout_marginStart="@dimen/main_margin"
                 android:layout_marginEnd="52dp"
                 android:layout_marginBottom="42dp"
@@ -58,6 +59,7 @@
                 android:id="@+id/btnAddResponse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:ignore="ContentDescription"
                 android:layout_marginTop="@dimen/dp18"
                 android:layout_marginEnd="@dimen/main_margin"
                 android:background="@android:color/transparent"
@@ -111,5 +113,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnSubmit"
         app:layout_constraintTop_toTopOf="@id/btnSubmit" />
+
+    <TextView
+        android:id="@+id/tvIsEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_is_empty"
+        android:textSize="@dimen/textAppearanceSubtitle"
+        android:fontFamily="@font/msemibold"
+        android:textColor="@color/redError"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/pbCart"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

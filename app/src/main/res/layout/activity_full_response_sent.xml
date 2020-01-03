@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/main_padding"
-    tools:context=".features.response.subfeatures.fullresponsesent.FullResponseSentActivity">
+    tools:context=".features.response.activity.FullResponseSentActivity">
 
 
     <com.airbnb.lottie.LottieAnimationView

@@ -11,10 +11,11 @@ public class RequestModel implements Parcelable {
     private String useDate;
     private String respDate;
     private String docNum;
+    private int positionDocType;
     private int trxTypeId;
     private String description;
     private String amount;
-    private Uri fileDataUri;
+    private String fileDataUri;
     private String pin;
     private int orgId;
     private int userId;
@@ -35,7 +36,7 @@ public class RequestModel implements Parcelable {
         trxTypeId = in.readInt();
         description = in.readString();
         amount = in.readString();
-        fileDataUri = in.readParcelable(Uri.class.getClassLoader());
+        fileDataUri = in.readString();
         pin = in.readString();
         orgId = in.readInt();
         userId = in.readInt();
@@ -45,6 +46,7 @@ public class RequestModel implements Parcelable {
         nameFile = in.readString();
         isImage = in.readByte() != 0;
         pathDocument = in.readString();
+        positionDocType = in.readInt();
     }
 
     public static final Creator<RequestModel> CREATOR = new Creator<RequestModel>() {
@@ -174,11 +176,11 @@ public class RequestModel implements Parcelable {
         this.amount = amount;
     }
 
-    public Uri getFileDataUri() {
+    public String getFileDataUri() {
         return fileDataUri;
     }
 
-    public void setFileDataUri(Uri fileDataUri) {
+    public void setFileDataUri(String fileDataUri) {
         this.fileDataUri = fileDataUri;
     }
 
@@ -206,6 +208,14 @@ public class RequestModel implements Parcelable {
         this.userId = userId;
     }
 
+    public int getPositionDocType() {
+        return positionDocType;
+    }
+
+    public void setPositionDocType(int positionDocType) {
+        this.positionDocType = positionDocType;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -221,7 +231,7 @@ public class RequestModel implements Parcelable {
         dest.writeInt(trxTypeId);
         dest.writeString(description);
         dest.writeString(amount);
-        dest.writeParcelable(fileDataUri, flags);
+        dest.writeString(fileDataUri);
         dest.writeString(pin);
         dest.writeInt(orgId);
         dest.writeInt(userId);
@@ -231,5 +241,6 @@ public class RequestModel implements Parcelable {
         dest.writeString(nameFile);
         dest.writeByte((byte) (isImage ? 1 : 0));
         dest.writeString(pathDocument);
+        dest.writeInt(positionDocType);
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.response.subfeatures.createresponse.CreateResponseActivity">
+    tools:context=".features.response.activity.CreateResponseActivity">
 
     <View
         android:id="@+id/topView"
@@ -17,12 +17,15 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="34dp"
+        tools:ignore="ContentDescription"
         android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
         android:src="@drawable/left_arrow"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@id/tvTitle"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.60"
         app:layout_constraintStart_toStartOf="@id/topView"
         app:layout_constraintTop_toTopOf="@id/topView" />
 
@@ -110,12 +113,14 @@
 
             <TextView
                 android:id="@+id/tvTransactionType"
-                style="@style/TextAppearance.Headline6.Dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp6"
                 android:fontFamily="@font/mregular"
                 android:text="@string/example_transaction_type"
+                android:textSize="@dimen/textAppearanceSubtitle"
+                android:textColor="@color/black"
+                android:maxLines="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTransactionType" />

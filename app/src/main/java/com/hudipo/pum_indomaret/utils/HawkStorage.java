@@ -2,6 +2,7 @@ package com.hudipo.pum_indomaret.utils;
 
 import android.content.Context;
 
+import com.hudipo.pum_indomaret.model.RequestModel;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.model.login.User;
 import com.hudipo.pum_indomaret.model.trxtype.TrxTypeResponse;
@@ -15,10 +16,24 @@ public class HawkStorage {
     private static final String DEPARTMENT_DATA = "DEPARTMENT_DATA";
     private static final String TRX_TYPE_DATA = "TRX_TYPE_DATA";
     private static final String STATUS_TYPE_DATA = "STATUS_TYPE";
+    private static final String REQUEST_MODEL = "REQUEST_MODEL";
 
     public HawkStorage(Context context) {
         Hawk.init(context).build();
     }
+
+    public void setRequestModel(RequestModel requestModel){
+        Hawk.put(REQUEST_MODEL, requestModel);
+    }
+
+    public void deleteRequestModel(){
+        Hawk.delete(REQUEST_MODEL);
+    }
+
+    public RequestModel getRequestModel(){
+        return Hawk.get(REQUEST_MODEL);
+    }
+
 
     public void setUserData(User userData){
         Hawk.put(USER_DATA, userData);

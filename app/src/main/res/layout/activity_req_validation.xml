@@ -17,6 +17,7 @@
         android:id="@+id/imgBack"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp32"
+        tools:ignore="ContentDescription"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
@@ -343,7 +344,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/bg_rounded_top_submit"
-        android:text="@string/submit"
+        android:text="@string/create_pum"
         android:textColor="@color/white"
         android:textSize="@dimen/textAppearanceSubtitle"
         android:textStyle="bold"
@@ -352,18 +353,18 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/pbReqValidation"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="62dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loading.json"
-        app:lottie_loop="true" />
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/pbReqValidation"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginTop="62dp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_fileName="loading.json"-->
+<!--        app:lottie_loop="true" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

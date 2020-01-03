@@ -5,13 +5,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.setting.fragment.CurrentPinFragment;
 import com.hudipo.pum_indomaret.features.setting.fragment.FragmentCallback;
@@ -88,22 +89,27 @@ public class ChangePinActivity extends AppCompatActivity implements FragmentCall
         }
     }
 
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-        finish();
-
-    }
-
     @OnClick(R.id.ivBack)
     void back(){
-        onBackPressed();
+        finish();
     }
 
     @Override
     public void showLoading() {
         loading.setVisibility(View.VISIBLE);
+        hideKeyboard();
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(this);
+        }
+        assert imm != null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override

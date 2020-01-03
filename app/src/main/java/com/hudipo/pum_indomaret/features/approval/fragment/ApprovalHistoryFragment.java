@@ -117,8 +117,8 @@ public class ApprovalHistoryFragment extends Fragment implements ApprovalHistory
 
     @Override
     public void error(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-        tvError.setText(message);
+//        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        tvError.setText(R.string.data_is_empty);
         tvError.setVisibility(View.VISIBLE);
     }
 

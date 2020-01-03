@@ -115,7 +115,7 @@ public class ApprovalFilterActivity extends AppCompatActivity implements DatePic
         startDate = tvTrxStartDate.getText().toString();
         untilDate = tvTrxStartDate.getText().toString();
         if (startDate.equals("---")){
-            toast("Please Select Start Date!");
+            toast("Please Select Start Date");
         }else if (untilDate.equals("---")){
             toast("Please Select Until Date");
         }else {

@@ -18,8 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
@@ -27,6 +28,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.login.LoginActivity;
 import com.hudipo.pum_indomaret.features.setting.presenter.SettingPresenter;
 import com.hudipo.pum_indomaret.features.setting.view.SettingContract;
+import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.model.OptionItem;
 import com.hudipo.pum_indomaret.model.login.User;
 import com.hudipo.pum_indomaret.utils.CheckPermission;
@@ -54,10 +56,15 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     TextView tvName;
     @BindView(R.id.tvEmpNum)
     TextView tvEmpNum;
+
     @BindView(R.id.tvPosition)
     TextView tvPosition;
-    @BindView(R.id.loading)
-    LottieAnimationView loading;
+
+    @BindView(R.id.tvRespName)
+    TextView tvRespName;
+
+//    @BindView(R.id.loading)
+//    LottieAnimationView loading;
 
     private static final String TAG = "SettingActivity";
     private ArrayList<OptionItem> optionUploadImages = new ArrayList<>();
@@ -65,6 +72,7 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     private final int REQUEST_CODE_CAMERA = 101;
     private final int REQUEST_CODE_GALLERY = 102;
     private SettingPresenter presenter;
+    private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +81,7 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
         ButterKnife.bind(this);
 
         presenter = new SettingPresenter(this);
-        
+
         initHawkStorage();
         addOptionItem();
 
@@ -98,14 +106,11 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     @OnClick(R.id.btnChangePin)
     void changePin(){
         StartActivity.goTo(this, ChangePinActivity.class);
-        Animatoo.animateSlideLeft(this);
     }
-    
+
     @OnClick(R.id.btnLogout)
     void logout(){
-        StartActivity.goTo(this, LoginActivity.class);
-        hawkStorage.deleteAll();
-        finishAffinity();
+        presenter.logout();
     }
 
     @Override
@@ -195,17 +200,9 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
         }
     }
 
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-        finish();
-
-    }
-
     @OnClick(R.id.ivBack)
     void back(){
-       onBackPressed();
+        finish();
     }
 
     @Override
@@ -213,27 +210,45 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
         if(userData!=null){
             Glide.with(this)
                     .load(userData.getPhotoProfile())
+                    .apply(RequestOptions.skipMemoryCacheOf(true))
+                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .into(ciPhotoProfile);
             tvName.setText(userData.getName());
             tvPosition.setText(userData.getPosition());
             tvEmpNum.setText(userData.getEmpNum());
+            tvRespName.setText(userData.getRespName());
+            if (tvRespName.getText().toString().matches("SUPERUSER_MENU")){
+                tvRespName.setText("USER");
+            }else if(tvRespName.getText().toString().matches("APPROVAL_MENU")){
+                tvRespName.setText("APPROVAL");
+            }
         }
     }
 
     @Override
     public void showLoading() {
-        loading.setVisibility(View.VISIBLE);
+        loadingProgress.showCustomDialog(this);
     }
 
     @Override
     public void dismissLoading() {
-        loading.setVisibility(View.GONE);
+        loadingProgress.closeCustomDialog();
     }
 
     @Override
     public void toast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void finishActivity() {
+        StartActivity.goTo(this, LoginActivity.class);
+        hawkStorage.deleteAll();
+        finishAffinity();
+    }
+
     @Override
     public void onAttachView() {
         presenter.onAttach(this);

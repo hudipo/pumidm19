@@ -43,6 +43,9 @@ public class DataApproval {
 	@SerializedName("DESCRIPTION")
 	private String description;
 
+	@SerializedName("REASON_APPROVE")
+	private String reason;
+
 	@SerializedName("AMOUNT")
 	private int amount;
 
@@ -99,6 +102,10 @@ public class DataApproval {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public String getReason() {
+		return reason;
 	}
 
 	public int getAmount() {

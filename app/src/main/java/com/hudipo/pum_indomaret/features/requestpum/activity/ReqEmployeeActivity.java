@@ -2,15 +2,19 @@ package com.hudipo.pum_indomaret.features.requestpum.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.gson.Gson;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.searchdept.SearchDeptActivity;
 import com.hudipo.pum_indomaret.model.RequestModel;
 import com.hudipo.pum_indomaret.model.departement.DepartmentItem;
@@ -36,8 +40,8 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     TextView tvEmployeeName;
 
     private HawkStorage hawkStorage;
+    private RequestModel requestModel;
     private DatePickerFragment datePickerFragment = new DatePickerFragment();
-    private RequestModel requestModel = new RequestModel();
 
     private String TAG_USE_DATE = "tag_use_date";
     private int REQUEST_CODE_SEARCH_DEPT = 100;
@@ -52,9 +56,30 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_req_employee);
         ButterKnife.bind(this);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         initHawkStorage();
         initView();
+        setDataView();
+    }
+
+    private void setDataView() {
+        if (hawkStorage.getRequestModel() != null){
+            if (hawkStorage.getRequestModel().getNameEmpDept() != null && !hawkStorage.getRequestModel().getNameEmpDept().isEmpty()){
+                btnSearchDept.setText(hawkStorage.getRequestModel().getNameEmpDept());
+            }
+
+            if (hawkStorage.getRequestModel().getUseDate() != null && !hawkStorage.getRequestModel().getUseDate().isEmpty()){
+                tvUseDate.setText(PumDateFormat.rawDateFormatView(hawkStorage.getRequestModel().getUseDate()));
+            }
+
+            if (hawkStorage.getRequestModel().getRespDate() != null && !hawkStorage.getRequestModel().getRespDate().isEmpty()){
+                tvRespDate.setText(PumDateFormat.rawDateFormatView(hawkStorage.getRequestModel().getRespDate()));
+            }
+        }
     }
 
     @Override
@@ -67,27 +92,49 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
                     if (departmentItem != null){
                         btnSearchDept.setText(departmentItem.getDescription());
                         requestModel.setEmpDeptId(departmentItem.getDeptId());
+                        requestModel.setNameEmpDept(departmentItem.getDescription());
+
+                        hawkStorage.setRequestModel(requestModel);
                     }
                 }
             }
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (hawkStorage.getRequestModel() != null){
+           showDialogToHome();
+
+       }else {
+           super.onBackPressed();
+           startActivity(new Intent(this, HomeActivity.class));
+           finish();
+       }
+
+    }
+
+    private void showDialogToHome() {
+        new AlertDialog.Builder(this,R.style.CustomDialogTheme)
+                .setTitle("Alert")
+                .setMessage("Are you sure to leave Request menu ? \nAll data that you have entered will be deleted")
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                    hawkStorage.deleteRequestModel();
+                    finish();
+                    dialogInterface.dismiss();
+
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
     /**
      * OnClick Listener
      * */
 
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideRight(this); //fire the slide left animation
-        finish();
-
-    }
-
     @OnClick(R.id.btnBack)
     void btnBack(){
-        onBackPressed();
+       onBackPressed();
     }
 
     @OnClick(R.id.btnRespDate)
@@ -104,7 +151,6 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     @OnClick(R.id.btnSearchDepartment)
     void setBtnSearchDept(){
         startActivityForResult(new Intent(this, SearchDeptActivity.class), REQUEST_CODE_SEARCH_DEPT);
-        Animatoo.animateSlideUp(this);
     }
 
     @OnClick(R.id.btnNext)
@@ -126,7 +172,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
             requestModel.setUseDate(PumDateFormat.dateFormatServer(useDate));
             requestModel.setRespDate(PumDateFormat.dateFormatServer(respDate));
 
-            intent.putExtra(ReqDocumentActivity.KEY_DATA_REQUEST_EMPLOYEE, requestModel);
+            hawkStorage.setRequestModel(requestModel);
             startActivity(intent);
             Animatoo.animateSlideLeft(this);
         }
@@ -142,8 +188,12 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         String time = PumDateFormat.dateFormatView(year, month, dayOfMonth);
         if (tag.equals(TAG_USE_DATE)){
             tvUseDate.setText(time);
+            requestModel.setUseDate(PumDateFormat.dateFormatServer(time));
+            hawkStorage.setRequestModel(requestModel);
         }else {
             tvRespDate.setText(time);
+            requestModel.setRespDate(PumDateFormat.dateFormatServer(time));
+            hawkStorage.setRequestModel(requestModel);
         }
     }
 
@@ -193,6 +243,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         return isValid;
     }
 
@@ -202,6 +253,11 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     private void initHawkStorage() {
         hawkStorage = new HawkStorage(this);
+        if (hawkStorage.getRequestModel() != null){
+            requestModel = hawkStorage.getRequestModel();
+        }else {
+            requestModel = new RequestModel();
+        }
     }
 }
 

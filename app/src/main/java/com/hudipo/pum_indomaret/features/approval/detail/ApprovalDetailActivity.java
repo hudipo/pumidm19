@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +66,11 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
     LottieAnimationView loading;
     @BindView(R.id.scrollView)
     NestedScrollView scrollView;
+    @BindView(R.id.textViewFileUpload)
+    TextView textViewFileUpload;
+    @BindView(R.id.btnDetail)
+    Button btnDetail;
+
 
     private ApprovalDetailPresenter presenter;
     private Integer pumTrxId;
@@ -192,6 +199,14 @@ public class ApprovalDetailActivity extends AppCompatActivity implements Approva
         tvDescription.setText(dataApproval.getDescription());
         tvAmount.setText(String.format("%s %s", getString(R.string.rp), Global.priceFormatter(String.valueOf(dataApproval.getAmount()))));
         tvFileUploaded.setText(dataApproval.getUploadData());
+        if (tvFileUploaded.getText().toString().matches("")) {
+
+           tvFileUploaded.setVisibility(View.INVISIBLE);
+           textViewFileUpload.setVisibility(View.INVISIBLE);
+           btnDetail.setVisibility(View.INVISIBLE);
+
+        }
+
         scrollView.setVisibility(View.VISIBLE);
     }
 

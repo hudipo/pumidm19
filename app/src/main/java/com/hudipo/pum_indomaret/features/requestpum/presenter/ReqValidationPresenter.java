@@ -81,19 +81,20 @@ public class ReqValidationPresenter implements ReqValidationContract.ReqValidati
 
             //Configuration for file
             String realPath;
-            if (requestModel.isImage()){
-                realPath = Utils.getRealPathImageFromURI(context, requestModel.getFileDataUri());
-            }else {
-                realPath = requestModel.getPathDocument();
-            }
-            File file = new File(realPath);
+            File file;
+            MultipartBody.Part bodyFile = null;
+            if (requestModel.getFileDataUri() != null && !requestModel.getFileDataUri().isEmpty()){
+                if (requestModel.isImage()){
+                    realPath = Utils.getRealPathImageFromURI(context, Uri.parse(requestModel.getFileDataUri()));
+                }else {
+                    realPath = requestModel.getPathDocument();
+                }
+                file = new File(realPath);
+                String typeFile = context.getContentResolver().getType(Uri.parse(requestModel.getFileDataUri()));
 
-            String typeFile = context.getContentResolver().getType(requestModel.getFileDataUri());
-            Log.d("coba", "realpath: "+realPath);
-            Log.d("coba", "type: "+typeFile);
-            Log.d("coba", "uri: "+requestModel.getFileDataUri());
-            RequestBody requestFile = RequestBody.create(file, MediaType.parse(Objects.requireNonNull(typeFile)));
-            MultipartBody.Part bodyFile = MultipartBody.Part.createFormData("file_data", file.getName(), requestFile);
+                RequestBody requestFile = RequestBody.create(file, MediaType.parse(Objects.requireNonNull(typeFile)));
+                bodyFile = MultipartBody.Part.createFormData("file_data", file.getName(), requestFile);
+            }
 
             composite.add(new ApiServices().getApiPumServices()
                     .createPum(params, bodyFile)
