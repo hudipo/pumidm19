@@ -77,6 +77,8 @@ public class ResponseAdapter extends RecyclerView.Adapter<ResponseAdapter.ViewHo
             if (tvStatus.getText().toString().matches("N")){
                 tvStatus.setText(R.string.new_text);
                 btnEye.setClickable(false);
+                btnFlag.setClickable(true);
+                btnFlag.getBackground().setAlpha(255);
                 btnEye.getBackground().setAlpha(99);
 
             }else if (tvStatus.getText().toString().matches("F")){

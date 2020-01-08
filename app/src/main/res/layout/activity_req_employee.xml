@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBase"
     tools:context=".features.requestpum.activity.ReqEmployeeActivity">
 
     <View
@@ -17,6 +18,7 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp32"
+        tools:ignore="ContentDescription"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="42dp"
         android:background="@android:color/transparent"
@@ -154,6 +156,7 @@
                 android:id="@+id/btnUseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                tools:ignore="ContentDescription"
                 android:layout_weight="0"
                 android:layout_marginStart="0dp"
                 android:background="@drawable/bg_rounded_border_black_solid_green"
@@ -192,6 +195,7 @@
                 android:id="@+id/btnRespDate"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                tools:ignore="ContentDescription"
                 android:layout_weight="0"
                 android:layout_marginStart="0dp"
                 android:background="@drawable/bg_rounded_red"

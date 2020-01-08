@@ -14,8 +14,8 @@
         <item>Approval</item>
         <item>Status</item>
         <item>Response</item>
-        <item>Settings</item>
-        <item>Reports</item>
+        <item>Setting</item>
+        <item>Report</item>
     </string-array>
 
     <array name="data_image">

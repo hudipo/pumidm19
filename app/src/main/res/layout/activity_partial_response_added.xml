@@ -72,7 +72,7 @@
             android:layout_marginEnd="@dimen/dp6"
             android:background="@drawable/bg_circle_color_accent"
             android:padding="@dimen/dp6"
-            android:text="@string/view_request"
+            android:text="@string/view_response_cart"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="@dimen/textAppearanceSubtitle1"
