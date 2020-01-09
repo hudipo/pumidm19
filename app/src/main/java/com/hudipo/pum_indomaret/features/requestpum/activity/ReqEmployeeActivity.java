@@ -204,11 +204,21 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
      *  */
 
     private Boolean checkValidateData(String useDate, String respDate, String searchDept) {
-        boolean isValid = true;
+
+        if (searchDept.isEmpty()){
+            Toast.makeText(this, getString(R.string.please_input_dept), Toast.LENGTH_SHORT).show();
+            btnSearchDept.setError(getString(R.string.please_input_dept));
+            return false;
+        }else {
+            btnSearchDept.setError(null);
+        }
+
+
+
         if (useDate.isEmpty()){
-            tvUseDate.setError(getString(R.string.please_input_date));
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
-            isValid = false;
+            tvUseDate.setError(getString(R.string.please_input_date));
+            return false;
         }else {
             tvUseDate.setError(null);
         }
@@ -216,35 +226,28 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         if (respDate.isEmpty()){
             tvRespDate.setError(getString(R.string.please_input_date));
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
-            isValid = false;
+            return false;
         }else {
             tvRespDate.setError(null);
         }
 
-        if (searchDept.isEmpty()){
-            Toast.makeText(this, getString(R.string.please_input_dept), Toast.LENGTH_SHORT).show();
-            btnSearchDept.setError(getString(R.string.please_input_dept));
-            isValid = false;
-        }else {
-            btnSearchDept.setError(null);
-        }
-
         try {
             if (PumDateFormat.comparisionDateBefore(useDate, respDate)){
-                isValid  = true;
                 tvRespDate.setError(null);
                 tvUseDate.setError(null);
+                return true;
+
             }else {
                 Toast.makeText(this, R.string.use_date_greater_than_resp_date, Toast.LENGTH_SHORT).show();
-                isValid = false;
                 tvRespDate.setError(getString(R.string.use_date_greater_than_resp_date));
                 tvUseDate.setError(getString(R.string.use_date_greater_than_resp_date));
+                return false;
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return isValid;
+        return true;
     }
 
     private void initView() {

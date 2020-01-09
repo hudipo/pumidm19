@@ -134,8 +134,8 @@ public class ReqValidationActivity extends AppCompatActivity implements ReqValid
     @OnClick(R.id.btnSubmitReq)
     void onClick(){
         new AlertDialog.Builder(this,R.style.CustomDialogTheme)
-                .setTitle("Submit")
-                .setMessage("Are you sure want to make this request?")
+                .setTitle("Confirmation")
+                .setMessage("Are you sure want to create this PUM Request ?")
                 .setPositiveButton("Yes", (dialogInterface, i) -> {
                     if (requestModel != null){
                         Intent intent = new Intent(this, PinActivity.class);
