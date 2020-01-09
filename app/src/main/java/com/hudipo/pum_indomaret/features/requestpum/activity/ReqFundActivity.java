@@ -343,23 +343,29 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             Toast.makeText(this, "Amount is still empty", Toast.LENGTH_SHORT).show();
             etAmountFund.setError("Amount is still empty");
             return false;
-        }else {
-            etAmountFund.setError(null);
-            if (!checkAmount(amount)){
-                String textError = "Your max amount request is "+hawkStorage.getUserData().getMaxAmount();
-                showErrorAmountDialog();
+        }else if(!checkAmountMax(amount)) {
+                etAmountFund.setError(null);
+                String textError = "Your input amount is over the limit";
                 tvErrorAmount.setText(textError);
                 tvErrorAmount.setVisibility(View.VISIBLE);
                 return false;
-            }else {
-                tvErrorAmount.setError(null);
-            }
+        }else if(!checkAmountMin(amount)) {
+            etAmountFund.setError(null);
+            String textError = "Your input amount is too small ";
+            tvErrorAmount.setText(textError);
+            tvErrorAmount.setVisibility(View.VISIBLE);
+            return false;
         }
+        else {
+                tvErrorAmount.setError(null);
+
+        }
+
 
         return true;
     }
 
-    private Boolean checkAmount(String amount) {
+    private Boolean checkAmountMax(String amount) {
         boolean isValid = false;
         if (!amount.isEmpty()){
             Double totalAmount = Double.valueOf(amount);
@@ -374,13 +380,36 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         return isValid;
     }
 
-    private void showErrorAmountDialog() {
-        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
-                .setTitle("Sorry...")
-                .setMessage("Your amount is over the limit, Please contact Finance division")
-                .setCancelable(true)
-                .show();
+    private Boolean checkAmountMin(String amount) {
+        boolean isValid = false;
+        if (!amount.isEmpty()){
+            Double totalAmount = Double.valueOf(amount);
+            if (totalAmount < hawkStorage.getUserData().getMinAmount() ){
+
+                isValid = false;
+            }else {
+                isValid = true;
+                tvErrorAmount.setVisibility(View.INVISIBLE);
+            }
+        }
+        return isValid;
     }
+
+//    private void showErrorAmountDialog() {
+//        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
+//                .setTitle("Sorry...")
+//                .setMessage("Your amount is over the limit, Please contact Finance division")
+//                .setCancelable(true)
+//                .show();
+//    }
+//
+//    private void showErrorMinAmountDialog() {
+//        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
+//                .setTitle("Sorry...")
+//                .setMessage("Your amount is under the limit")
+//                .setCancelable(true)
+//                .show();
+//    }
 
     @Override
     public void onOptionItemSelected(OptionItem optionItem, int requestCode) {

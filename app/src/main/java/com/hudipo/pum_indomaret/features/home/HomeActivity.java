@@ -83,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
     private HomeAdapter adapter;
     private LocalBroadcastManager localBroadcastManager;
     boolean doubleBackToExitPressedOnce = false;
+    private int menuId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,62 +112,114 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+
     private void checkMenu() {
-        switch (hawkStorage.getUserData().getMenuId()){
-            case 28 :
-            case 71 :
-            case 72 :
+        menuId = hawkStorage.getUserData().getMenuId();
+        Log.d(TAG, "checkMenu: " + menuId);
+        switch (menuId) {
+
+            case 30:
+            case 64:
                 adapter.removeItem(HomeAdapter.request);
-                adapter.removeItem(HomeAdapter.approval);
-                adapter.removeItem(HomeAdapter.response);
                 adapter.removeItem(HomeAdapter.status);
+                adapter.removeItem(HomeAdapter.response);
+                break;
+            case 28 :
+            case 71:
+            case 72:
+                adapter.removeItem(HomeAdapter.reports);
+                adapter.removeItem(HomeAdapter.response);
+                adapter.removeItem(HomeAdapter.approval);
+                adapter.removeItem(HomeAdapter.request);
                 break;
             case 29 :
             case 65 :
             case 69 :
-                adapter.removeItem(HomeAdapter.approval);
+                adapter.removeItem((HomeAdapter.status));
                 break;
-            case 30 :
-            case 64 :
-                adapter.removeItem(HomeAdapter.status);
-                adapter.removeItem(HomeAdapter.request);
-                adapter.removeItem(HomeAdapter.response);
-                break;
-            case 37 :
-                adapter.removeItem(HomeAdapter.request);
-                adapter.removeItem(HomeAdapter.approval);
-                adapter.removeItem(HomeAdapter.response);
-                adapter.removeItem(HomeAdapter.reports);
-                adapter.removeItem(HomeAdapter.status);
-                adapter.removeItem(HomeAdapter.settings);
-                break;
+
+//            case 28:
+//                menuId = 28;
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.approval);
+//                adapter.removeItem(HomeAdapter.response);
+//                adapter.removeItem(HomeAdapter.response);
+//                adapter.removeItem(HomeAdapter.status);
+//                break;
+//            case 29:
+//                menuId = 29;
+//                adapter.removeItem(HomeAdapter.approval);
+//                break;
+//            case 30:
+//                menuId = 30;
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.reports);
+//                adapter.removeItem(HomeAdapter.response);
+//                break;
+//            case 37:
+//                menuId = 37;
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.status);
+//                adapter.removeItem(HomeAdapter.approval);
+//                adapter.removeItem(HomeAdapter.reports);
+//                adapter.removeItem(HomeAdapter.response);
+//                break;
+//            case 64:
+//                menuId = 64;
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.reports);
+//                adapter.removeItem(HomeAdapter.response);
+//                break;
+//            case 65:
+//                menuId = 65;
+//                adapter.removeItem(HomeAdapter.approval);
+//                break;
+//            case 69:
+//                menuId = 69;
+//                adapter.removeItem(HomeAdapter.approval);
+//                break;
+//
+//            case 71:
+//                menuId = 71;
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.status);
+//                adapter.removeItem(HomeAdapter.approval);
+//                adapter.removeItem(HomeAdapter.response);
+//                break;
+//            case 72:
+//                menuId = 72;
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.status);
+//                adapter.removeItem(HomeAdapter.approval);
+//                adapter.removeItem(HomeAdapter.response);
+//                break;
         }
     }
 
     private void initAdapter() {
         adapter = new HomeAdapter(homeItem -> {
-            switch (homeItem.getId()){
-                case 0 :
+            switch (homeItem.getId()) {
+                case 0:
                     startActivity(new Intent(this, ReqEmployeeActivity.class));
                     Animatoo.animateZoom(this);
                     break;
-                case 1 :
+                case 1:
                     startActivity(new Intent(this, ApprovalActivity.class));
                     Animatoo.animateZoom(this);
                     break;
-                case 2 :
+                case 2:
                     startActivity(new Intent(this, StatusActivity.class));
                     Animatoo.animateZoom(this);
                     break;
-                case 3 :
+                case 3:
                     startActivity(new Intent(this, ResponseActivity.class));
                     Animatoo.animateZoom(this);
                     break;
-                case 4 :
+                case 4:
                     startActivity(new Intent(this, SettingActivity.class));
                     Animatoo.animateZoom(this);
                     break;
-                case 5 :
+                case 5:
                     startActivity(new Intent(this, ReportActivity.class));
                     Animatoo.animateZoom(this);
                     break;
@@ -190,11 +243,11 @@ public class HomeActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(trxTypeResponse -> {
-                    if (trxTypeResponse != null){
+                    if (trxTypeResponse != null) {
                         hawkStorage.setTrxTypeData(trxTypeResponse);
                     }
                 }, throwable -> {
-                    Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "error : " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 }));
     }
 
@@ -204,28 +257,27 @@ public class HomeActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(departmentResponse -> {
-                    if (departmentResponse != null){
+                    if (departmentResponse != null) {
                         hawkStorage.setDepartmentData(departmentResponse);
                     }
-                }, throwable -> Toast.makeText(this, "error : "+throwable.getMessage(), Toast.LENGTH_SHORT).show()));
+                }, throwable -> Toast.makeText(this, "error : " + throwable.getMessage(), Toast.LENGTH_SHORT).show()));
     }
 
     private void setView() {
         HawkStorage hawkStorage = new HawkStorage(this);
-        if (hawkStorage.getUserData() != null){
+        if (hawkStorage.getUserData() != null) {
             tvNameHome.setText(hawkStorage.getUserData().getName());
             tvPositionHome.setText(hawkStorage.getUserData().getPosition());
             tvRespName.setText(hawkStorage.getUserData().getRespName());
             tvEmpNumHome.setText(hawkStorage.getUserData().getEmpNum());
-            if (tvRespName.getText().toString().matches("SUPERUSER_MENU")){
+            if (tvRespName.getText().toString().matches("SUPERUSER_MENU")) {
                 tvRespName.setText("USER");
-            }else if(tvRespName.getText().toString().matches("APPROVAL_MENU")){
+            } else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
                 tvRespName.setText("APPROVAL");
             }
 
         }
     }
-
 
 
     private void initFirebase() {
@@ -238,7 +290,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     // Get new Instance ID token
                     String token = Objects.requireNonNull(task.getResult()).getToken();
-                    Log.d("firebase", "onComplete: "+token);
+                    Log.d("firebase", "onComplete: " + token);
                     uploadToken(token);
                 });
     }
@@ -249,16 +301,16 @@ public class HomeActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    Log.d(TAG, "uploadToken: "+response);
+                    Log.d(TAG, "uploadToken: " + response);
                 }, throwable -> {
-                    Log.d(TAG, "uploadToken: "+throwable.getMessage());
+                    Log.d(TAG, "uploadToken: " + throwable.getMessage());
                 }));
     }
 
     //terima brodcast
     private BroadcastReceiver listener = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent ) {
+        public void onReceive(Context context, Intent intent) {
             String token = intent.getStringExtra("token");
             uploadToken(token);
         }
@@ -298,7 +350,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }

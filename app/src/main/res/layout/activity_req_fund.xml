@@ -184,9 +184,10 @@
         android:textSize="12sp"
         android:text="@string/example_error_amount_request"
         android:textColor="@color/redError"
-        android:layout_marginStart="@dimen/main_margin"
+        android:layout_marginStart="@dimen/dp6"
         android:layout_marginEnd="@dimen/main_margin"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etDescFund"
@@ -195,7 +196,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal">
 
             <TextView

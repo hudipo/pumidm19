@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:maxLines="1"
+    android:layout_margin="2dp"
     android:paddingStart="@dimen/dp12"
     android:paddingTop="@dimen/dp6"
     android:paddingEnd="@dimen/dp12"

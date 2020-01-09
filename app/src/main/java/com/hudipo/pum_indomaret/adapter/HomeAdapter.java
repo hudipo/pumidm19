@@ -22,12 +22,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
     private ItemClickListener itemClickListener;
     private ArrayList<HomeModel> listDataHome;
-    static public int request = 0;
-    static public int approval = 1;
-    static public int status = 2;
-    static public int response = 3;
-    static public int settings = 4;
-    static public int reports = 5;
+    static public int request=0;
+    static public int approval=0;
+    static public int status=1;
+    static public int response=1;
+    static public int settings=2;
+    static public int reports=2;
 
     public HomeAdapter(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;

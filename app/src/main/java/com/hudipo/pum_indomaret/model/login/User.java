@@ -16,6 +16,9 @@ public class User{
 	@SerializedName("MAX_AMOUNT")
 	private Double maxAmount;
 
+	@SerializedName("MIN_AMOUNT")
+	private Double minAmount;
+
 	@SerializedName("EMP_NUM")
 	private String empNum;
 
@@ -84,6 +87,14 @@ public class User{
 
 	public void setMaxAmount(Double maxAmount) {
 		this.maxAmount = maxAmount;
+	}
+
+	public Double getMinAmount() {
+		return minAmount;
+	}
+
+	public void setMinAmount(Double minAmount) {
+		this.minAmount = minAmount;
 	}
 
 	public String getEmpNum() {
