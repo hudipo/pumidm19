@@ -232,29 +232,29 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintVertical_bias="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/container">
+        app:layout_constraintTop_toBottomOf="@id/container"
+        app:layout_constraintVertical_bias="1">
 
         <Button
-            android:id="@+id/btnView"
+            android:id="@+id/btnReset"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/main_margin"
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginEnd="8dp"
+
             android:layout_marginBottom="@dimen/main_margin"
             android:layout_weight="1"
-            android:background="@drawable/bg_circle_color_accent"
-            android:text="@string/view"
+            android:background="@drawable/bg_rounded_red_30dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/reset"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle"
-            android:textStyle="bold"
-            />
+            android:textSize="@dimen/textAppearanceSubtitle1" />
 
         <Button
-            android:id="@+id/btnReset"
+            android:id="@+id/btnView"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -262,12 +262,13 @@
             android:layout_marginEnd="@dimen/main_margin"
             android:layout_marginBottom="@dimen/main_margin"
             android:layout_weight="1"
-            android:background="@drawable/bg_rounded_red_30dp"
-            android:text="@string/reset"
+            android:background="@drawable/bg_circle_color_accent"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/view"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle"
-            android:textStyle="bold" />
+            android:textSize="@dimen/textAppearanceSubtitle1" />
+
 
     </LinearLayout>
 

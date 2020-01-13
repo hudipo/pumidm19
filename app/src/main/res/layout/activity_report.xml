@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBase"
-    android:id="@+id/parentView"
     tools:context=".features.report.view.ReportActivity">
 
     <View
@@ -19,7 +19,6 @@
         android:id="@+id/imgBack"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp32"
-        tools:ignore="ContentDescription"
         android:layout_marginEnd="@dimen/dp62"
         android:layout_marginBottom="@dimen/dp42"
         android:background="@android:color/transparent"
@@ -27,7 +26,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toStartOf="@id/activityTitle"
         app:layout_constraintStart_toStartOf="@id/topView"
-        app:layout_constraintTop_toTopOf="@id/topView" />
+        app:layout_constraintTop_toTopOf="@id/topView"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/activityTitle"
@@ -56,8 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp16"
-            android:layout_marginEnd="@dimen/dp16"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/dp16"
             android:background="@drawable/bg_container"
             android:orientation="vertical"
             android:paddingStart="@dimen/dp12"
@@ -133,7 +133,6 @@
                     android:id="@+id/imgStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_border_black_solid_green"
@@ -141,7 +140,8 @@
                     android:paddingTop="@dimen/dp8"
                     android:paddingRight="2dp"
                     android:paddingBottom="@dimen/dp8"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/calendar"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -179,7 +179,6 @@
                     android:id="@+id/imgEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_red"
@@ -187,7 +186,8 @@
                     android:paddingTop="@dimen/dp8"
                     android:paddingRight="2dp"
                     android:paddingBottom="@dimen/dp8"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/calendar"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -226,7 +226,6 @@
                     android:id="@+id/imgValidStartDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_border_black_solid_green"
@@ -234,7 +233,8 @@
                     android:paddingTop="@dimen/dp8"
                     android:paddingRight="2dp"
                     android:paddingBottom="@dimen/dp8"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/calendar"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -272,7 +272,6 @@
                     android:id="@+id/imgValidEndDate"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    tools:ignore="ContentDescription"
                     android:layout_marginStart="0dp"
                     android:layout_weight="0"
                     android:background="@drawable/bg_rounded_red"
@@ -280,7 +279,8 @@
                     android:paddingTop="@dimen/dp8"
                     android:paddingRight="2dp"
                     android:paddingBottom="@dimen/dp8"
-                    android:src="@drawable/calendar" />
+                    android:src="@drawable/calendar"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
@@ -335,8 +335,8 @@
 
                 <Spinner
                     android:id="@+id/spnRespStatus"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:background="@drawable/bg_rounded_border_black_solid_black"
                     android:enabled="false"
@@ -427,7 +427,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-
         <Button
             android:id="@+id/btnResetReport"
             android:layout_width="120dp"
@@ -438,11 +437,11 @@
             android:layout_marginBottom="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_rounded_red_30dp"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="@string/reset"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle1"
-            android:fontFamily="@font/montserrat_semibold" />
+            android:textSize="@dimen/textAppearanceSubtitle1" />
 
         <Button
             android:id="@+id/btnViewRep"
@@ -454,28 +453,13 @@
             android:layout_marginBottom="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/bg_circle_color_accent"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="@string/view"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/textAppearanceSubtitle1"
-            android:fontFamily="@font/montserrat_semibold" />
+            android:textSize="@dimen/textAppearanceSubtitle1" />
 
     </LinearLayout>
-
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/pbReport"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="62dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loading.json"
-        app:lottie_loop="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

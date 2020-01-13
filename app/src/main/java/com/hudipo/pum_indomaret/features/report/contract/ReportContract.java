@@ -8,8 +8,8 @@ public interface ReportContract {
         void setDate(String date);
         void showDatePicker(int day, int month, int year);
         void toast(String message);
-        void showLoading();
-        void hideLoading();
+        void showProgress();
+        void hideProgress();
         void showPdf(Uri uri);
         void askToDownload();
     }

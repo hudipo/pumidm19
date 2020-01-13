@@ -48,8 +48,9 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     /**
      * All function from
-     * @see  AppCompatActivity
-     * */
+     *
+     * @see AppCompatActivity
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +68,16 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     }
 
     private void setDataView() {
-        if (hawkStorage.getRequestModel() != null){
-            if (hawkStorage.getRequestModel().getNameEmpDept() != null && !hawkStorage.getRequestModel().getNameEmpDept().isEmpty()){
+        if (hawkStorage.getRequestModel() != null) {
+            if (hawkStorage.getRequestModel().getNameEmpDept() != null && !hawkStorage.getRequestModel().getNameEmpDept().isEmpty()) {
                 btnSearchDept.setText(hawkStorage.getRequestModel().getNameEmpDept());
             }
 
-            if (hawkStorage.getRequestModel().getUseDate() != null && !hawkStorage.getRequestModel().getUseDate().isEmpty()){
+            if (hawkStorage.getRequestModel().getUseDate() != null && !hawkStorage.getRequestModel().getUseDate().isEmpty()) {
                 tvUseDate.setText(PumDateFormat.rawDateFormatView(hawkStorage.getRequestModel().getUseDate()));
             }
 
-            if (hawkStorage.getRequestModel().getRespDate() != null && !hawkStorage.getRequestModel().getRespDate().isEmpty()){
+            if (hawkStorage.getRequestModel().getRespDate() != null && !hawkStorage.getRequestModel().getRespDate().isEmpty()) {
                 tvRespDate.setText(PumDateFormat.rawDateFormatView(hawkStorage.getRequestModel().getRespDate()));
             }
         }
@@ -85,11 +86,11 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SEARCH_DEPT){
-            if (resultCode == SearchDeptActivity.RESULT_CODE){
-                if (data != null){
+        if (requestCode == REQUEST_CODE_SEARCH_DEPT) {
+            if (resultCode == SearchDeptActivity.RESULT_CODE) {
+                if (data != null) {
                     DepartmentItem departmentItem = (DepartmentItem) data.getSerializableExtra(SearchDeptActivity.DATA_SELECTED_VALUE);
-                    if (departmentItem != null){
+                    if (departmentItem != null) {
                         btnSearchDept.setText(departmentItem.getDescription());
                         requestModel.setEmpDeptId(departmentItem.getDeptId());
                         requestModel.setNameEmpDept(departmentItem.getDescription());
@@ -103,19 +104,19 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void onBackPressed() {
-        if (hawkStorage.getRequestModel() != null){
-           showDialogToHome();
+        if (hawkStorage.getRequestModel() != null) {
+            showDialogToHome();
 
-       }else {
-           super.onBackPressed();
-           startActivity(new Intent(this, HomeActivity.class));
-           finish();
-       }
+        } else {
+            super.onBackPressed();
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
 
     }
 
     private void showDialogToHome() {
-        new AlertDialog.Builder(this,R.style.CustomDialogTheme)
+        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("Alert")
                 .setMessage("Are you sure to leave Request menu ? \nAll data that you have entered will be deleted")
                 .setPositiveButton("Yes", (dialogInterface, i) -> {
@@ -130,31 +131,31 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     /**
      * OnClick Listener
-     * */
+     */
 
     @OnClick(R.id.btnBack)
-    void btnBack(){
-       onBackPressed();
+    void btnBack() {
+        onBackPressed();
     }
 
     @OnClick(R.id.btnRespDate)
-    void btnRespDate(){
+    void btnRespDate() {
         String TAG_RESP_DATE = "tag_resp_date";
         datePickerFragment.show(getSupportFragmentManager(), TAG_RESP_DATE);
     }
 
     @OnClick(R.id.btnUseDate)
-    void btnUseDate(){
+    void btnUseDate() {
         datePickerFragment.show(getSupportFragmentManager(), TAG_USE_DATE);
     }
 
     @OnClick(R.id.btnSearchDepartment)
-    void setBtnSearchDept(){
+    void setBtnSearchDept() {
         startActivityForResult(new Intent(this, SearchDeptActivity.class), REQUEST_CODE_SEARCH_DEPT);
     }
 
     @OnClick(R.id.btnNext)
-    void btnNext(){
+    void btnNext() {
         int idEmp = hawkStorage.getUserData().getEmpId();
         int orgId = hawkStorage.getUserData().getOrgId();
         int userId = hawkStorage.getUserData().getUserId();
@@ -162,7 +163,7 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
         String respDate = tvRespDate.getText().toString().trim();
         String nameSearchDept = btnSearchDept.getText().toString().trim();
 
-        if (checkValidateData(useDate, respDate, nameSearchDept)){
+        if (checkValidateData(useDate, respDate, nameSearchDept)) {
             Intent intent = new Intent(this, ReqDocumentActivity.class);
 
             requestModel.setNameEmpDept(nameSearchDept);
@@ -180,17 +181,18 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     /**
      * Function from
+     *
      * @see com.hudipo.pum_indomaret.utils.DatePickerFragment.DialogDataListener
-     * */
+     */
 
     @Override
     public void onDialogSet(String tag, int year, int month, int dayOfMonth) {
         String time = PumDateFormat.dateFormatView(year, month, dayOfMonth);
-        if (tag.equals(TAG_USE_DATE)){
+        if (tag.equals(TAG_USE_DATE)) {
             tvUseDate.setText(time);
             requestModel.setUseDate(PumDateFormat.dateFormatServer(time));
             hawkStorage.setRequestModel(requestModel);
-        }else {
+        } else {
             tvRespDate.setText(time);
             requestModel.setRespDate(PumDateFormat.dateFormatServer(time));
             hawkStorage.setRequestModel(requestModel);
@@ -199,45 +201,44 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
 
     /**
-     *  All function from
-     *  @see ReqEmployeeActivity
-     *  */
+     * All function from
+     *
+     * @see ReqEmployeeActivity
+     */
 
     private Boolean checkValidateData(String useDate, String respDate, String searchDept) {
 
-        if (searchDept.isEmpty()){
+        if (searchDept.isEmpty()) {
             Toast.makeText(this, getString(R.string.please_input_dept), Toast.LENGTH_SHORT).show();
             btnSearchDept.setError(getString(R.string.please_input_dept));
             return false;
-        }else {
+        } else {
             btnSearchDept.setError(null);
         }
 
-
-
-        if (useDate.isEmpty()){
+        if (useDate.isEmpty()) {
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             tvUseDate.setError(getString(R.string.please_input_date));
             return false;
-        }else {
+        } else {
             tvUseDate.setError(null);
         }
 
-        if (respDate.isEmpty()){
+        if (respDate.isEmpty()) {
             tvRespDate.setError(getString(R.string.please_input_date));
             Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             return false;
-        }else {
+        } else {
             tvRespDate.setError(null);
         }
 
         try {
-            if (PumDateFormat.comparisionDateBefore(useDate, respDate)){
+            if (PumDateFormat.comparisionDateBefore(useDate, respDate)) {
                 tvRespDate.setError(null);
                 tvUseDate.setError(null);
                 return true;
 
-            }else {
+            } else {
                 Toast.makeText(this, R.string.use_date_greater_than_resp_date, Toast.LENGTH_SHORT).show();
                 tvRespDate.setError(getString(R.string.use_date_greater_than_resp_date));
                 tvUseDate.setError(getString(R.string.use_date_greater_than_resp_date));
@@ -256,9 +257,9 @@ public class ReqEmployeeActivity extends AppCompatActivity implements DatePicker
 
     private void initHawkStorage() {
         hawkStorage = new HawkStorage(this);
-        if (hawkStorage.getRequestModel() != null){
+        if (hawkStorage.getRequestModel() != null) {
             requestModel = hawkStorage.getRequestModel();
-        }else {
+        } else {
             requestModel = new RequestModel();
         }
     }

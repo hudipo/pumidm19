@@ -21,6 +21,7 @@ import com.hudipo.pum_indomaret.features.setting.fragment.NewPinFragment;
 import com.hudipo.pum_indomaret.features.setting.presenter.ChangePinPresenter;
 import com.hudipo.pum_indomaret.features.setting.view.ChangePinContract;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
+import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.Global;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
@@ -31,8 +32,7 @@ import butterknife.OnClick;
 import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_PIN;
 
 public class ChangePinActivity extends AppCompatActivity implements FragmentCallback, ChangePinContract.ChangePinView {
-    @BindView(R.id.loading)
-    LottieAnimationView loading;
+
 
     public static final int CURRENT = 0;
     public static final int NEW = 1;
@@ -41,6 +41,7 @@ public class ChangePinActivity extends AppCompatActivity implements FragmentCall
     private String newPin = "";
 
     private ChangePinPresenter presenter;
+    private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +92,20 @@ public class ChangePinActivity extends AppCompatActivity implements FragmentCall
 
     @OnClick(R.id.ivBack)
     void back(){
+        onBackPressed();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        hideKeyboard();
+        super.onBackPressed();
         finish();
     }
 
     @Override
     public void showLoading() {
-        loading.setVisibility(View.VISIBLE);
+        loadingProgress.showCustomDialog(this);
         hideKeyboard();
     }
 
@@ -114,7 +123,7 @@ public class ChangePinActivity extends AppCompatActivity implements FragmentCall
 
     @Override
     public void dismissLoading() {
-        loading.setVisibility(View.GONE);
+        loadingProgress.closeCustomDialog();
     }
 
     @Override

@@ -70,7 +70,7 @@ public class ReportPresenterImpl implements ReportContract.ReportPresenter {
 
     @Override
     public void checkData(int reportType, String startDate, String endDate, String validStartDate, String validEndDate, String pumStatus, String respStatus, String groupBy) {
-        reportView.showLoading();
+        reportView.showProgress();
         User user = hawkStorage.getUserData();
         RequestBody report_type = RequestBody.create(String.valueOf(reportType), MediaType.parse("text/plain"));
         RequestBody user_id = RequestBody.create(String.valueOf(user.getUserId()), MediaType.parse("text/plain"));
@@ -116,13 +116,17 @@ public class ReportPresenterImpl implements ReportContract.ReportPresenter {
             @Override
             public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    reportView.hideLoading();
+                    reportView.hideProgress();
                     reportView.askToDownload();
-                } else reportView.toast("No data available!");
+                } else {
+                    reportView.hideProgress();
+                    reportView.toast("No data available!");
+                }
             }
 
             @Override
             public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
+                reportView.hideProgress();
                 reportView.toast(t.getMessage());
             }
         });
@@ -131,7 +135,7 @@ public class ReportPresenterImpl implements ReportContract.ReportPresenter {
 
     @Override
     public void downloadData() {
-        reportView.showLoading();
+        reportView.showProgress();
         Call<ResponseBody> call = services.getApiPumServices().getReportFile(params);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -144,7 +148,7 @@ public class ReportPresenterImpl implements ReportContract.ReportPresenter {
                         fileName = fileName.replace("\"", "");
                         writtenToDisk = writeResponseBodyToDisk(response.body(), fileName);
                         if (writtenToDisk) {
-                            reportView.hideLoading();
+                            reportView.hideProgress();
                             reportView.showPdf(fileUri);
                         } else {
                             reportView.toast("Failed to save into memory!");

@@ -20,15 +20,17 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
+import com.hudipo.pum_indomaret.utils.StartActivity;
 
 import java.util.Objects;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseService";
+
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-        Log.d(TAG, "onNewToken: "+s);
+        Log.d(TAG, "onNewToken: " + s);
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
         Intent intent = new Intent("FIREBASE_TOKEN");
         intent.putExtra("token", s);
@@ -39,24 +41,30 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
         sendNotification(remoteMessage);
-        Log.d(TAG, "onMessageReceived: "+remoteMessage);
+        Log.d(TAG, "onMessageReceived: " + remoteMessage);
     }
 
     private void sendNotification(RemoteMessage remoteMessage) {
         String title = getString(R.string.app_name);
-        String body="";
-        if(remoteMessage.getNotification()!=null){
+        String body = "";
+        if (remoteMessage.getNotification() != null) {
             title = remoteMessage.getNotification().getTitle();
             body = remoteMessage.getNotification().getBody();
         }
 
         Intent intent;
-        if(Objects.requireNonNull(body).contains("Rejected")){
+        if (Objects.requireNonNull(body).contains("Rejected")) {
             intent = new Intent(this, StatusActivity.class);
-        }else if(body.contains("new")){
+
+        } else if (body.contains("Approved")) {
+            intent = new Intent(this, StatusActivity.class);
+
+        } else if (body.contains("new")) {
             intent = new Intent(this, ApprovalActivity.class);
-        }else {
+
+        } else {
             intent = new Intent(this, HomeActivity.class);
+
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

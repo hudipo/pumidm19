@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
@@ -28,6 +29,7 @@ import com.hudipo.pum_indomaret.features.report.presenter.ReportPresenterImpl;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.utils.PumDateFormat;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,16 +48,14 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     private static final int VALID_END_DATE_CODE = 3;
     private static int dateCode;
     private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
-    Map<String,Integer> reportTypeMap = new HashMap<>();
-    Map<String,String> pumStatusMap = new HashMap<>();
-    Map<String,String> respStatusMap = new HashMap<>();
-    Map<String,String>groupByMap = new HashMap<>();
+    Map<String, Integer> reportTypeMap = new HashMap<>();
+    Map<String, String> pumStatusMap = new HashMap<>();
+    Map<String, String> respStatusMap = new HashMap<>();
+    Map<String, String> groupByMap = new HashMap<>();
 
     @BindView(R.id.parentView)
     ConstraintLayout parentView;
 
-    @BindView(R.id.pbReport)
-    LottieAnimationView progressBar;
     @BindView(R.id.spnReportTypeRep)
     Spinner spnReportType;
     @BindView(R.id.spnPumStatus)
@@ -80,18 +80,30 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     TextView tvGroupByLabel;
 
     @OnClick(R.id.btnViewRep)
-    void viewRep(){
-        if (progressBar.getVisibility()==View.GONE){
-            if (formValidity(tvStartDate.getText().toString(),tvEndDate.getText().toString(),tvValidStartDate.getText().toString(),tvValidEndDate.getText().toString())){
-                callReportApi(false);
-            }else {
-                toast("Please fill all the form!");
-            }
+    void viewRep() {
+
+        if (formValidity(tvStartDate.getText().toString(), tvEndDate.getText().toString(), tvValidStartDate.getText().toString(), tvValidEndDate.getText().toString())) {
+            callReportApi(false);
+        } else {
+            toast("Please fill all the form!");
         }
+
+
+    }
+
+    @OnClick(R.id.btnResetReport)
+    void resetView() {
+        tvStartDate.setText("");
+        tvEndDate.setText("");
+        tvValidStartDate.setText("");
+        tvValidEndDate.setText("");
+        spnRespStatus.setSelection(0);
+        spnPumStatus.setSelection(0);
+        spnGroupBy.setSelection(0);
     }
 
     private void callReportApi(boolean b) {
-        if (spnReportType.getSelectedItem().toString().equals("Pertanggungjawaban PUM")){
+        if (spnReportType.getSelectedItem().toString().equals("Pertanggungjawaban PUM")) {
             presenter.checkData(2,
                     PumDateFormat.dateFormatServer(tvStartDate.getText().toString().trim()),
                     PumDateFormat.dateFormatServer(tvEndDate.getText().toString().trim()),
@@ -100,7 +112,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
                     "I",
                     respStatusMap.get(spnRespStatus.getSelectedItem().toString()),
                     "-");
-        }else {
+        } else {
             presenter.checkData(1,
                     PumDateFormat.dateFormatServer(tvStartDate.getText().toString().trim()),
                     PumDateFormat.dateFormatServer(tvEndDate.getText().toString().trim()),
@@ -114,29 +126,30 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
 
     @OnClick(R.id.imgBack)
-    void onBackClick(){
+    void onBackClick() {
         super.onBackPressed();
     }
 
     @OnClick(R.id.imgStartDate)
-    void onImgStartDateClicked(){
+    void onImgStartDateClicked() {
         dateCode = START_DATE_CODE;
         presenter.initDatePicker();
     }
 
     @OnClick(R.id.imgValidStartDate)
-    void onImgValidStartDate(){
+    void onImgValidStartDate() {
         dateCode = VALID_START_DATE_CODE;
         presenter.initDatePicker();
     }
+
     @OnClick(R.id.imgValidEndDate)
-    void onImgValidEndDate(){
+    void onImgValidEndDate() {
         dateCode = VALID_END_DATE_CODE;
         presenter.initDatePicker();
     }
 
     @OnClick(R.id.imgEndDate)
-    void onImgEndDateClicked(){
+    void onImgEndDateClicked() {
         dateCode = END_DATE_CODE;
         presenter.initDatePicker();
     }
@@ -153,23 +166,23 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         presenter = new ReportPresenterImpl(this, this);
         mDateSetListener = (view, year, month, dayOfMonth) -> presenter.onDateSet(year, month, dayOfMonth);
         setViewData();
+        resetView();
     }
-
 
 
     @Override
     public void setDate(String date) {
-        switch (dateCode){
-            case START_DATE_CODE :
+        switch (dateCode) {
+            case START_DATE_CODE:
                 tvStartDate.setText(date);
                 break;
-            case END_DATE_CODE :
+            case END_DATE_CODE:
                 tvEndDate.setText(date);
                 break;
-            case VALID_START_DATE_CODE :
+            case VALID_START_DATE_CODE:
                 tvValidStartDate.setText(date);
                 break;
-            case VALID_END_DATE_CODE :
+            case VALID_END_DATE_CODE:
                 tvValidEndDate.setText(date);
                 break;
         }
@@ -203,28 +216,28 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         groupByList.add("Department");
         groupByList.add("Create Data");
 
-        reportTypeMap.put("Pertanggungjawaban PUM",2);
-        reportTypeMap.put("Permohonan Uang Muka",1);
+        reportTypeMap.put("Pertanggungjawaban PUM", 2);
+        reportTypeMap.put("Permohonan Uang Muka", 1);
 
-        pumStatusMap.put("New","N");
-        pumStatusMap.put("Approve 1","App1");
-        pumStatusMap.put("Approve 2","App2");
-        pumStatusMap.put("Approve 3","App3");
-        pumStatusMap.put("Approve 4","App4");
-        pumStatusMap.put("Approved","A");
-        pumStatusMap.put("Invoiced","I");
-        pumStatusMap.put("All","ALL");
+        pumStatusMap.put("New", "N");
+        pumStatusMap.put("Approve 1", "App1");
+        pumStatusMap.put("Approve 2", "App2");
+        pumStatusMap.put("Approve 3", "App3");
+        pumStatusMap.put("Approve 4", "App4");
+        pumStatusMap.put("Approved", "A");
+        pumStatusMap.put("Invoiced", "I");
+        pumStatusMap.put("All", "ALL");
 
-        respStatusMap.put("All","ALL");
-        respStatusMap.put("New","N");
-        respStatusMap.put("Full","F");
+        respStatusMap.put("All", "ALL");
+        respStatusMap.put("New", "N");
+        respStatusMap.put("Full", "F");
         respStatusMap.put("Partial", "P");
-        respStatusMap.put("Invoiced","I");
+        respStatusMap.put("Invoiced", "I");
 
-        groupByMap.put("-","-");
-        groupByMap.put("Employee","E");
-        groupByMap.put("Department","D");
-        groupByMap.put("Create Data","C");
+        groupByMap.put("-", "-");
+        groupByMap.put("Employee", "E");
+        groupByMap.put("Department", "D");
+        groupByMap.put("Create Data", "C");
 
 
         ArrayAdapter<String> spnReportTypeAdapter = new ArrayAdapter<>(this,
@@ -234,12 +247,12 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         spnReportType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (spnReportType.getSelectedItem().toString().equals("Pertanggungjawaban PUM")){
+                if (spnReportType.getSelectedItem().toString().equals("Pertanggungjawaban PUM")) {
                     spnPumStatus.setVisibility(View.GONE);
                     spnGroupBy.setVisibility(View.GONE);
                     tvPumStatusLabel.setVisibility(View.GONE);
                     tvGroupByLabel.setVisibility(View.GONE);
-                }else {
+                } else {
                     spnPumStatus.setVisibility(View.VISIBLE);
                     spnGroupBy.setVisibility(View.VISIBLE);
                     tvPumStatusLabel.setVisibility(View.VISIBLE);
@@ -279,8 +292,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
     @Override
     public void toast(String message) {
-        loadingProgress.closeCustomDialog();
-        new AlertDialog.Builder(this,R.style.CustomDialogTheme)
+        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
                 .setTitle("Attention!")
                 .setMessage(message)
                 .setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss())
@@ -288,21 +300,19 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
     }
 
     @Override
-    public void showLoading() {
-        parentView.setClickable(false);
+    public void showProgress() {
         loadingProgress.showCustomDialog(this);
     }
 
     @Override
-    public void hideLoading() {
-        parentView.setClickable(true);
+    public void hideProgress() {
         loadingProgress.closeCustomDialog();
     }
 
     @Override
     public void showPdf(Uri fileUri) {
-        Intent intent = new Intent(ReportActivity.this,ReportPDFActivity.class);
-        intent.putExtra("PDF_URI",fileUri.toString());
+        Intent intent = new Intent(ReportActivity.this, ReportPDFActivity.class);
+        intent.putExtra("PDF_URI", fileUri.toString());
         startActivity(intent);
 //        Intent intent = new Intent(Intent.ACTION_VIEW);
 //        intent.setDataAndType(fileUri,"application/pdf");
@@ -317,7 +327,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
     @Override
     public void askToDownload() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialogTheme);
         builder.setTitle("View")
                 .setMessage("This report will be downloaded as a PDF file and saved on your phone")
                 .setNeutralButton("Download", (dialogInterface, i) -> {
@@ -340,8 +350,41 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         super.onDestroy();
     }
 
-    private boolean formValidity(String startDate, String endDate, String validStartDate, String validEndDate){
-        return startDate != null && endDate != null && validStartDate != null && validEndDate != null && startDate.length() > 0
-                && endDate.length() > 0 && validStartDate.length() > 0 && validEndDate.length() > 0;
+
+    private boolean formValidity(String startDate, String endDate, String validStartDate, String validEndDate) {
+//
+//        return startDate != null && endDate != null && validStartDate != null && validEndDate != null && startDate.length() > 0
+//                && endDate.length() > 0 && validStartDate.length() > 0 && validEndDate.length() > 0;
+
+        if (startDate.isEmpty()) {
+            tvStartDate.setError(getString(R.string.please_input_date));
+            return false;
+        } else {
+            tvStartDate.setError(null);
+        }
+
+        if (endDate.isEmpty()) {
+            tvEndDate.setError(getString(R.string.please_input_date));
+            return false;
+        } else {
+            tvEndDate.setError(null);
+        }
+
+        if (validStartDate.isEmpty()) {
+            tvValidStartDate.setError(getString(R.string.please_input_date));
+            return false;
+        } else {
+            tvValidStartDate.setError(null);
+        }
+
+        if (validEndDate.isEmpty()) {
+            tvValidEndDate.setError(getString(R.string.please_input_date));
+            return false;
+        } else {
+            tvValidEndDate.setError(null);
+        }
+
+        return true;
+
     }
 }
