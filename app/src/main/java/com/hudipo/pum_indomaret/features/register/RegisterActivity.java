@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.login.LoginActivity;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
+import com.hudipo.pum_indomaret.model.register.RegisterResponse;
 import com.hudipo.pum_indomaret.utils.CustomKeyboard;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
@@ -46,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
     private RegisterPresenter registerPresenter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,21 +55,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         ButterKnife.bind(this);
 
         onAttachView();
-        keyboardPinReg();
+
     }
 
-    private void keyboardPinReg() {
-        etPinReg.setCursorVisible(false);
-        etPinReg.setOnFocusChangeListener((view, b) -> {
-            if (view.equals(etPinReg) && b) {
-                InputMethodManager inputManager = (InputMethodManager) getSystemService(
-                        android.content.Context.INPUT_METHOD_SERVICE);
-                Objects.requireNonNull(inputManager).hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
-                showKeyboard();
-            }
-        });
-    }
+
 
     @Override
     protected void onDestroy() {
@@ -91,24 +82,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         Animatoo.animateSlideLeft(this);
     }
 
-    @SuppressLint("InflateParams")
-    private void showKeyboard() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Objects.requireNonNull(this));
-        LayoutInflater inflater = this.getLayoutInflater();
-        View custom_dialog = inflater.inflate(R.layout.show_keyboard, null);
-        CustomKeyboard customKeyboard = custom_dialog.findViewById(R.id.customKeyboard);
-        alertDialog.setView(custom_dialog);
-        alertDialog.setOnDismissListener(dialogInterface -> etPinReg.clearFocus());
-
-        alertDialog.setPositiveButton("OK", (dialogInterface, i) -> {
-            etPinReg.setText(customKeyboard.getInputText());
-            dialogInterface.dismiss();
-        });
-
-        alertDialog.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
-
-        alertDialog.show();
-    }
 
     private boolean validate() {
         boolean isValid = true;
@@ -148,17 +121,23 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         loadingProgress.closeCustomDialog();
     }
 
+
+
     @Override
     public void failedRegister(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message , Toast.LENGTH_LONG).show();
+
+
     }
+
+
 
     @Override
     public void registerSuccess(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message,  Toast.LENGTH_LONG).show();
         StartActivity.goTo(this, LoginActivity.class);
         Animatoo.animateSlideLeft(this);
-        finish();
+
     }
 
     @Override

@@ -223,6 +223,8 @@
     <string name="new_text">New</string>
     <string name="partial_text">Partial</string>
     <string name="full_text">Full</string>
+    <string name="approved_text">Approved</string>
+    <string name="invoice_text">Invoiced</string>
 
 <!--    PIN-->
     <string name="nik_demo">2004002419</string>

@@ -44,6 +44,7 @@
             android:drawablePadding="8dp"
             android:hint="@string/nik"
             android:text="2007008556"
+            android:maxLength="10"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="numberSigned"
             android:textColor="@color/white"
@@ -57,7 +58,6 @@
         android:layout_marginStart="@dimen/margin_horizontal_login"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/margin_horizontal_login"
-
         app:errorEnabled="true"
         app:errorTextAppearance="@style/ErrorAppearanceLogin"
         app:hintEnabled="false"
@@ -106,6 +106,7 @@
             android:drawablePadding="8dp"
             android:hint="@string/pin"
             android:text="123456"
+            android:maxLength="6"
             android:fontFamily="@font/montserrat_regular"
             android:inputType="numberPassword"
             android:textColor="@color/white"

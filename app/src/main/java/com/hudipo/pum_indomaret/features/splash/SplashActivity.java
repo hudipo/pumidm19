@@ -35,6 +35,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void delayAndGoTo() {
-        new Handler().postDelayed(this::checkLogin,1000);
+        new Handler().postDelayed(this::checkLogin,800);
     }
 }

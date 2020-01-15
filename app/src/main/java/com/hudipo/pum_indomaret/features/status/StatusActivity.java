@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -42,6 +43,8 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     SwipeRefreshLayout swipeRefreshStatus;
     @BindView(R.id.etSearchByPumNumber)
     EditText etSearch;
+    @BindView(R.id.tvError)
+    TextView tvError;
 
     @OnClick(R.id.btnFilterStatus)
     void goToStatusFilterAct(){

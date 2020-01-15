@@ -1,5 +1,9 @@
 package com.hudipo.pum_indomaret.features.register;
 
+import android.content.Intent;
+import android.util.Log;
+
+import com.hudipo.pum_indomaret.features.login.LoginActivity;
 import com.hudipo.pum_indomaret.model.register.RegisterResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.networking.RetrofitClient;
@@ -15,6 +19,8 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class RegisterPresenter implements RegisterContract.RegisterPresenterView<RegisterContract.RegisterView>{
 
@@ -54,9 +60,9 @@ public class RegisterPresenter implements RegisterContract.RegisterPresenterView
                         RegisterResponse registerResponse = response.body();
                         if (registerResponse != null){
                             if (!registerResponse.isError()){
-                                mView.failedRegister(registerResponse.getMessage());
-                            }else {
                                 mView.registerSuccess(registerResponse.getMessage());
+                            }else {
+                                mView.failedRegister(registerResponse.getMessage());
                             }
                         }
                     }else {

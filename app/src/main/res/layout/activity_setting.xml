@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/tvName"
-        style="@style/TextAppearance.Headline5.Light"
+        style="@style/TextAppearance.Headline6.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_margin"

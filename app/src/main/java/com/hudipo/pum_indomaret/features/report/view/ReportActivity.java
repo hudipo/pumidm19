@@ -84,9 +84,8 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
         if (formValidity(tvStartDate.getText().toString(), tvEndDate.getText().toString(), tvValidStartDate.getText().toString(), tvValidEndDate.getText().toString())) {
             callReportApi(false);
-        } else {
-            toast("Please fill all the form!");
         }
+
 
 
     }
@@ -357,6 +356,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 //                && endDate.length() > 0 && validStartDate.length() > 0 && validEndDate.length() > 0;
 
         if (startDate.isEmpty()) {
+            Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             tvStartDate.setError(getString(R.string.please_input_date));
             return false;
         } else {
@@ -364,6 +364,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         }
 
         if (endDate.isEmpty()) {
+            Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             tvEndDate.setError(getString(R.string.please_input_date));
             return false;
         } else {
@@ -371,6 +372,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         }
 
         if (validStartDate.isEmpty()) {
+            Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             tvValidStartDate.setError(getString(R.string.please_input_date));
             return false;
         } else {
@@ -378,6 +380,7 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
         }
 
         if (validEndDate.isEmpty()) {
+            Toast.makeText(this, getString(R.string.please_input_date), Toast.LENGTH_SHORT).show();
             tvValidEndDate.setError(getString(R.string.please_input_date));
             return false;
         } else {

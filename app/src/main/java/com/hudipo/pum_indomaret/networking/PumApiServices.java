@@ -5,6 +5,7 @@ import com.hudipo.pum_indomaret.model.approval.ApprovalListResponse;
 import com.hudipo.pum_indomaret.model.approval.ApproveResponse;
 import com.hudipo.pum_indomaret.model.approval.detail.ApprovalDetailResponse;
 import com.hudipo.pum_indomaret.model.approval.history.ApprovalHistoryListResponse;
+import com.hudipo.pum_indomaret.model.cekavailablepum.CekAvailablePumResponse;
 import com.hudipo.pum_indomaret.model.createpum.CreatePumResponse;
 import com.hudipo.pum_indomaret.model.departement.DepartmentResponse;
 import com.hudipo.pum_indomaret.features.status.model.StatusResponse;
@@ -54,6 +55,10 @@ public interface PumApiServices {
     @Multipart
     @POST("registerpin")
     Observable<Response<RegisterResponse>> register(@PartMap HashMap<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST("cekavailablepum")
+    Observable<Response<CekAvailablePumResponse>> cekAvaPum(@Field("emp_id") int emp_id, @Field("max_create_pum") int max_create_pum);
 
     @FormUrlEncoded
     @POST("getdept")

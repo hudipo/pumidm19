@@ -1,6 +1,5 @@
 package com.hudipo.pum_indomaret.features.home;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,10 +8,12 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -41,6 +42,7 @@ import com.hudipo.pum_indomaret.model.login.User;
 import com.hudipo.pum_indomaret.model.setting.UploadProfilePicResponse;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 import com.hudipo.pum_indomaret.networking.RetrofitClient;
+import com.hudipo.pum_indomaret.utils.Global;
 import com.hudipo.pum_indomaret.utils.HawkStorage;
 
 import java.io.IOException;
@@ -112,6 +114,25 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void checkAvaPum() {
+        composite.add(new ApiServices().getApiPumServices()
+                .cekAvaPum(hawkStorage.getUserData().getEmpId(), hawkStorage.getUserData().getMaxCreatePum())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    if (response.code() != 200) {
+                        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
+                                .setTitle("Sorry")
+                                .setMessage("Your Request PUM has reached the maximum number")
+                                .setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss())
+                                .show();
+
+                    } else {
+                        startActivity(new Intent(this, ReqEmployeeActivity.class));
+                        Animatoo.animateZoom(this);
+                    }
+                }));
+    }
 
     private void checkMenu() {
         menuId = hawkStorage.getUserData().getMenuId();
@@ -124,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
                 adapter.removeItem(HomeAdapter.status);
                 adapter.removeItem(HomeAdapter.response);
                 break;
-            case 28 :
+            case 28:
             case 71:
             case 72:
                 adapter.removeItem(HomeAdapter.reports);
@@ -132,9 +153,9 @@ public class HomeActivity extends AppCompatActivity {
                 adapter.removeItem(HomeAdapter.approval);
                 adapter.removeItem(HomeAdapter.request);
                 break;
-            case 29 :
-            case 65 :
-            case 69 :
+            case 29:
+            case 65:
+            case 69:
                 adapter.removeItem((HomeAdapter.status));
                 break;
 
@@ -200,8 +221,7 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new HomeAdapter(homeItem -> {
             switch (homeItem.getId()) {
                 case 0:
-                    startActivity(new Intent(this, ReqEmployeeActivity.class));
-                    Animatoo.animateZoom(this);
+                    checkAvaPum();
                     break;
                 case 1:
                     startActivity(new Intent(this, ApprovalActivity.class));
@@ -270,6 +290,9 @@ public class HomeActivity extends AppCompatActivity {
             tvPositionHome.setText(hawkStorage.getUserData().getPosition());
             tvRespName.setText(hawkStorage.getUserData().getRespName());
             tvEmpNumHome.setText(hawkStorage.getUserData().getEmpNum());
+            if (tvPositionHome.getText().toString().matches("")) {
+                tvPositionHome.setVisibility(View.GONE);
+            }
             if (tvRespName.getText().toString().matches("SUPERUSER_MENU")) {
                 tvRespName.setText("USER");
             } else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
@@ -278,7 +301,6 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
-
 
     private void initFirebase() {
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -320,11 +342,12 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         localBroadcastManager.registerReceiver(listener, new IntentFilter("FIREBASE_TOKEN"));
-
+        String url = hawkStorage.getUserData().getPhotoProfile() + "?" + Global.getRandomString();
         Glide.with(this)
-                .load(hawkStorage.getUserData().getPhotoProfile())
+                .load(url)
                 .apply(RequestOptions.skipMemoryCacheOf(true))
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+                .placeholder(R.drawable.person)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(ciPhotoProfile);
@@ -346,12 +369,6 @@ public class HomeActivity extends AppCompatActivity {
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 1800);
     }
 }

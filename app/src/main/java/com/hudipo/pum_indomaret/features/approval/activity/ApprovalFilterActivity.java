@@ -78,16 +78,9 @@ public class ApprovalFilterActivity extends AppCompatActivity implements DatePic
         spTrxStatus.setAdapter(dataAdapter);
     }
 
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        Animatoo.animateSlideDown(this); //fire the slide left animation
-        finish();
-    }
-
     @OnClick(R.id.ivBack)
     void back(){
-        onBackPressed();
+        finish();
     }
 
     @OnClick(R.id.btnSubmit)
@@ -105,17 +98,15 @@ public class ApprovalFilterActivity extends AppCompatActivity implements DatePic
                 returnIntent.putExtra(EXTRA_STATUS,temp);
             }
             setResult(Activity.RESULT_OK,returnIntent);
-
             finish();
-            Animatoo.animateSlideUp(this);
         }
     }
 
     private boolean validate() {
         startDate = tvTrxStartDate.getText().toString();
-        untilDate = tvTrxStartDate.getText().toString();
+        untilDate = tvTrxUntilDate.getText().toString();
         if (startDate.equals("---")){
-            toast("Please Select Start Date");
+            toast("Please Select Start Date!");
         }else if (untilDate.equals("---")){
             toast("Please Select Until Date");
         }else {

@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
     @Override
     public void loginSuccess() {
         StartActivity.goTo(this, HomeActivity.class);
-        Animatoo.animateSlideLeft(this);
+        Animatoo.animateZoom(this);
         finishAffinity();
     }
 

@@ -1,5 +1,6 @@
 package com.hudipo.pum_indomaret.service;
 
+import android.app.FragmentManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,12 +13,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.activity.ApprovalActivity;
+import com.hudipo.pum_indomaret.features.approval.fragment.ApprovalFragment;
 import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
 import com.hudipo.pum_indomaret.utils.StartActivity;
@@ -26,6 +29,7 @@ import java.util.Objects;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseService";
+
 
     @Override
     public void onNewToken(@NonNull String s) {
@@ -36,6 +40,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.putExtra("token", s);
         localBroadcastManager.sendBroadcast(intent);
     }
+
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
@@ -60,7 +65,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent = new Intent(this, StatusActivity.class);
 
         } else if (body.contains("new")) {
-            intent = new Intent(this, ApprovalActivity.class);
+            intent = new Intent(this,ApprovalActivity.class);
+
 
         } else {
             intent = new Intent(this, HomeActivity.class);

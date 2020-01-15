@@ -89,6 +89,16 @@ public class ResponseAdapter extends RecyclerView.Adapter<ResponseAdapter.ViewHo
             }else if (tvStatus.getText().toString().matches("P")){
                 tvStatus.setText(R.string.partial_text);
 
+            }else if (tvStatus.getText().toString().matches("A")){
+                tvStatus.setText(R.string.approved_text);
+                btnFlag.setClickable(false);
+                btnFlag.getBackground().setAlpha(99);
+
+            }else if (tvStatus.getText().toString().matches("I")){
+                tvStatus.setText(R.string.invoice_text);
+                btnFlag.setClickable(false);
+                btnFlag.getBackground().setAlpha(99);
+
             }
 
             this.itemResponse = itemResponse;

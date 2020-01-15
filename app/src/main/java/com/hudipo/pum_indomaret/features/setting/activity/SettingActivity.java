@@ -99,29 +99,29 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     }
 
     @OnClick(R.id.btnChangePhoto)
-    void changePhoto(){
+    void changePhoto() {
         Global.openPicker(getSupportFragmentManager(), optionUploadImages, RequestCode.CODE_OPTION_UPLOAD_IMAGE, "Choose file from");
     }
 
     @OnClick(R.id.btnChangePin)
-    void changePin(){
+    void changePin() {
         StartActivity.goTo(this, ChangePinActivity.class);
     }
 
     @OnClick(R.id.btnLogout)
-    void logout(){
+    void logout() {
         presenter.logout();
     }
 
     @Override
     public void onOptionItemSelected(OptionItem optionItem, int requestCode) {
-        if (requestCode == RequestCode.CODE_OPTION_UPLOAD_IMAGE){
-            if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_CAMERA){
-                if (CheckPermission.checkPermissionCamera(this, REQUEST_CODE_CAMERA)){
+        if (requestCode == RequestCode.CODE_OPTION_UPLOAD_IMAGE) {
+            if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_CAMERA) {
+                if (CheckPermission.checkPermissionCamera(this, REQUEST_CODE_CAMERA)) {
                     showCamera();
                 }
-            }else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_GALLERY){
-                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_GALLERY)){
+            } else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_GALLERY) {
+                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_GALLERY)) {
                     showGallery();
                 }
             }
@@ -131,22 +131,22 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CODE_CAMERA:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         showCamera();
                     }
-                }else {
+                } else {
                     Toast.makeText(this, "Access camera is denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case REQUEST_CODE_GALLERY:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                         showGallery();
-                    }else {
+                    } else {
                         Toast.makeText(this, "Access gallery is denied", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -171,8 +171,8 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
         super.onActivityResult(requestCode, resultCode, data);
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
             Image image = ImagePicker.getFirstImageOrNull(data);
-            if(image!=null) runCrop(image.getPath());
-        }else if(resultCode == RESULT_OK && requestCode==UCrop.REQUEST_CROP){
+            if (image != null) runCrop(image.getPath());
+        } else if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             if (data != null) {
                 Uri uri = UCrop.getOutput(data);
                 String path = Utils.getRealPathImageFromURI(SettingActivity.this, uri);
@@ -181,9 +181,9 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
         }
     }
 
-    private void runCrop(String path){
+    private void runCrop(String path) {
         Uri uri = Uri.fromFile(new File(path));
-        String fileName = System.currentTimeMillis()+".png";
+        String fileName = System.currentTimeMillis() + ".png";
 
         File storageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), getString(R.string.app_name));
@@ -195,33 +195,38 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
             UCrop.of(uri, Uri.fromFile(new File(storageDir, fileName)))
                     .withAspectRatio(1, 1)
                     .start(this, UCrop.REQUEST_CROP);
-        }else {
+        } else {
             Toast.makeText(this, getString(R.string.something_wrong), Toast.LENGTH_SHORT).show();
         }
     }
 
     @OnClick(R.id.ivBack)
-    void back(){
+    void back() {
         finish();
     }
 
     @Override
     public void showData(User userData) {
-        if(userData!=null){
+        if (userData != null) {
+            String url = userData.getPhotoProfile() + "?" + Global.getRandomString();
             Glide.with(this)
-                    .load(userData.getPhotoProfile())
+                    .load(url)
                     .apply(RequestOptions.skipMemoryCacheOf(true))
                     .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.drawable.person)
                     .skipMemoryCache(true)
                     .into(ciPhotoProfile);
             tvName.setText(userData.getName());
             tvPosition.setText(userData.getPosition());
             tvEmpNum.setText(userData.getEmpNum());
             tvRespName.setText(userData.getRespName());
-            if (tvRespName.getText().toString().matches("SUPERUSER_MENU")){
+            if (tvPosition.getText().toString().matches("")) {
+                tvPosition.setVisibility(View.GONE);
+            }
+            if (tvRespName.getText().toString().matches("SUPERUSER_MENU")) {
                 tvRespName.setText("USER");
-            }else if(tvRespName.getText().toString().matches("APPROVAL_MENU")){
+            } else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
                 tvRespName.setText("APPROVAL");
             }
         }
