@@ -248,7 +248,7 @@ public class ApprovalFragment extends Fragment implements ApprovalContract.Appro
     public void error(String message) {
         if (isAdded())
 //            Global.toast(getContext(), message);
-        tvError.setText(R.string.data_is_empty);
+            tvError.setText(R.string.data_is_empty);
         tvError.setVisibility(View.VISIBLE);
     }
 

@@ -146,7 +146,7 @@ public class SearchDeptActivity extends AppCompatActivity implements SearchDeptC
 
     @Override
     public void setDataEmpty() {
-        Toast.makeText(this, "DocData kosong", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Data Empty", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -29,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterContract.RegisterView{
+public class RegisterActivity extends AppCompatActivity implements RegisterContract.RegisterView {
 
     @BindView(R.id.etNIKReg)
     EditText etNIKReg;
@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -77,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     @OnClick(R.id.tvLogin)
-    void login(){
+    void login() {
         startActivity(new Intent(this, LoginActivity.class));
         Animatoo.animateSlideLeft(this);
     }
@@ -102,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         if (etPinReg.getText().toString().isEmpty()) {
             tilPinReg.setError(getString(R.string.err_null_pin));
             isValid = false;
-        } else if (etPinReg.getText().toString().length()<6) {
+        } else if (etPinReg.getText().toString().length() < 6) {
             tilPinReg.setError(getString(R.string.err_pin));
             isValid = false;
         } else {
@@ -122,19 +121,17 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
 
-
     @Override
     public void failedRegister(String message) {
-        Toast.makeText(this, message , Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
 
     }
 
 
-
     @Override
     public void registerSuccess(String message) {
-        Toast.makeText(this, message,  Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         StartActivity.goTo(this, LoginActivity.class);
         Animatoo.animateSlideLeft(this);
 

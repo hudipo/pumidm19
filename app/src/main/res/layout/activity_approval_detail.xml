@@ -21,10 +21,10 @@
             android:id="@+id/ivBack"
             android:layout_width="@dimen/dp32"
             android:layout_height="@dimen/dp32"
-            tools:ignore="ContentDescription"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:src="@drawable/left_arrow" />
+            android:src="@drawable/left_arrow"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/title_page"
@@ -214,9 +214,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:fontFamily="@font/montserrat_regular"
+                            android:maxLines="2"
                             android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval"
-                            android:maxLines="2"
                             tools:text="Store Needs 1" />
 
                         <TextView
@@ -234,10 +234,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:fontFamily="@font/montserrat_regular"
+                            android:maxLength="50"
+                            android:maxLines="2"
                             android:textColor="@color/black"
                             android:textSize="@dimen/font_body_item_approval"
-                            android:maxLines="2"
-                            android:maxLength="50"
                             tools:text="This is Text Description" />
 
                         <TextView
@@ -272,8 +272,7 @@
                                 android:text="@string/file_uploaded"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/font_title_item_approval"
-                                android:textStyle="bold"
-                                />
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tvFileUploaded"
@@ -301,6 +300,7 @@
                                 android:backgroundTint="@color/colorPrimary"
                                 android:fontFamily="@font/montserrat_semibold"
                                 android:text="@string/detail"
+                                android:textSize="@dimen/textAppearanceCaption"
                                 android:textColor="@color/white"
 
                                 />
@@ -310,29 +310,78 @@
                             android:id="@+id/linearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp72"
+                            android:layout_marginTop="@dimen/dp62"
+                            android:baselineAligned="false"
                             android:orientation="horizontal"
                             android:paddingTop="12dp">
 
-                            <ImageButton
-                                android:id="@+id/btnApprove"
+                            <RelativeLayout
                                 android:layout_width="0dp"
-                                android:layout_height="45dp"
-                                tools:ignore="ContentDescription"
-                                android:layout_marginEnd="12dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:background="@drawable/bg_approve"
-                                android:src="@drawable/ic_approve" />
+                                android:layout_marginEnd="@dimen/dp12">
 
-                            <ImageButton
-                                android:id="@+id/btnReject"
+                                <LinearLayout
+                                    android:id="@+id/btnApprove"
+                                    android:layout_width="@dimen/width_button_approve"
+                                    android:layout_height="48dp"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:baselineAligned="false"
+                                    android:background="@drawable/bg_approve"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    android:orientation="horizontal"
+                                    android:paddingTop="6dp"
+                                    android:paddingBottom="6dp">
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:gravity="center"
+                                        android:text="@string/approve"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/textAppearanceCaption" />
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                            <RelativeLayout
                                 android:layout_width="0dp"
-                                android:layout_height="45dp"
-                                tools:ignore="ContentDescription"
-                                android:layout_marginStart="12dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:background="@drawable/bg_reject2"
-                                android:src="@drawable/ic_reject" />
+                                android:layout_marginStart="@dimen/dp32">
+
+                                <LinearLayout
+                                    android:id="@+id/btnReject"
+                                    android:layout_width="@dimen/width_button_approve"
+                                    android:layout_height="48dp"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:background="@drawable/bg_reject2"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    android:orientation="horizontal"
+                                    android:paddingTop="6dp"
+                                    android:paddingBottom="6dp">
+
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:text="@string/reject"
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+                                        android:textAlignment="center"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/white"
+                                        android:textSize="@dimen/textAppearanceCaption" />
+                                </LinearLayout>
+                            </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
@@ -342,12 +391,12 @@
                     android:id="@+id/loading"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
-                    app:lottie_loop="true"
-                    android:visibility="gone"
-                    app:lottie_fileName="loading.json"
-                    app:lottie_autoPlay="true"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="62dp"
-                    android:layout_centerInParent="true"/>
+                    android:visibility="gone"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="loading.json"
+                    app:lottie_loop="true" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

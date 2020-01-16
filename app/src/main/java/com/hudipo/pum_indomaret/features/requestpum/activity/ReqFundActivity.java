@@ -395,22 +395,6 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         return isValid;
     }
 
-//    private void showErrorAmountDialog() {
-//        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
-//                .setTitle("Sorry...")
-//                .setMessage("Your amount is over the limit, Please contact Finance division")
-//                .setCancelable(true)
-//                .show();
-//    }
-//
-//    private void showErrorMinAmountDialog() {
-//        new AlertDialog.Builder(this, R.style.CustomDialogTheme)
-//                .setTitle("Sorry...")
-//                .setMessage("Your amount is under the limit")
-//                .setCancelable(true)
-//                .show();
-//    }
-
     @Override
     public void onOptionItemSelected(OptionItem optionItem, int requestCode) {
         if (requestCode == RequestCode.CODE_OPTION_UPLOAD_FILE){

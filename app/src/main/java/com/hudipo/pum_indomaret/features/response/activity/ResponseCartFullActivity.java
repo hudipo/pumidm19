@@ -245,10 +245,10 @@ public class ResponseCartFullActivity extends AppCompatActivity {
         return MultipartBody.Part.createFormData("image[]", file.getName(), requestFileUri);
     }
 
-    @OnClick(R.id.btnCancel)
-    void btnCancel(){
-        Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-    }
+//    @OnClick(R.id.btnCancel)
+//    void btnCancel(){
+//        Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+//    }
 
     private RequestBody convertToRequestBody(String value){
         return RequestBody.create(value, MediaType.parse("text/plain"));
