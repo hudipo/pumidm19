@@ -102,9 +102,23 @@ public class HomeActivity extends AppCompatActivity {
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         ciPhotoProfile.setOnClickListener(view ->
                 startActivity(new Intent(this, SettingActivity.class))
+
         );
+        Animatoo.animateZoom(this);
 
         initFirebase();
+        Log.d(TAG, "onCreate: "+getIntent().getStringExtra("kodeNotif"));
+        //jika dari notificaton
+        if(getIntent().getStringExtra("kodeNotif") != null){
+            Log.d("fakhri", "onCreate: masuk");
+            String notificationId = getIntent().getStringExtra("kodeNotif");
+            assert notificationId != null;
+            if(notificationId.equals("1")){
+                startActivity(new Intent(this, ApprovalActivity.class));
+            }else if(notificationId.equals("2")){
+                startActivity(new Intent(this, StatusActivity.class));
+            }
+        }
     }
 
     private void initSwipeRefresh() {

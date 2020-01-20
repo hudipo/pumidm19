@@ -25,6 +25,7 @@ import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.status.StatusActivity;
 import com.hudipo.pum_indomaret.utils.StartActivity;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -47,33 +48,35 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         sendNotification(remoteMessage);
         Log.d(TAG, "onMessageReceived: " + remoteMessage);
+        Log.d(TAG, "onMessageReceived: "+remoteMessage.getData());
+
     }
 
     private void sendNotification(RemoteMessage remoteMessage) {
         String title = getString(R.string.app_name);
-        String body = "";
-        if (remoteMessage.getNotification() != null) {
+        String body="";
+        if(remoteMessage.getNotification()!=null){
             title = remoteMessage.getNotification().getTitle();
             body = remoteMessage.getNotification().getBody();
         }
+        Map<String, String> data = remoteMessage.getData();
+
+        int notificationId = 0;
+        if(data.get("kodeNotif")!=null){
+            notificationId = Integer.parseInt(Objects.requireNonNull(data.get("kodeNotif")));
+            Log.d(TAG, "sendNotification: ");
+        }
 
         Intent intent;
-        if (Objects.requireNonNull(body).contains("Rejected")) {
+        if(notificationId == 1){
+            intent = new Intent(this, ApprovalActivity.class);
+        }else if(notificationId == 2){
             intent = new Intent(this, StatusActivity.class);
-
-        } else if (body.contains("Approved")) {
-            intent = new Intent(this, StatusActivity.class);
-
-        } else if (body.contains("new")) {
-            intent = new Intent(this,ApprovalActivity.class);
-
-
         } else {
             intent = new Intent(this, HomeActivity.class);
-
         }
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, notificationId /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
         String channelId = "Default";
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -99,6 +102,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         assert notificationManager != null;
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(notificationId, notificationBuilder.build());
     }
 }

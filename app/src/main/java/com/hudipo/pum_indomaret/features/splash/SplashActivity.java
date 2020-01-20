@@ -1,7 +1,10 @@
 package com.hudipo.pum_indomaret.features.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -18,23 +21,24 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         delayAndGoTo();
+        Log.d("fakhri", "onCreate: "+getIntent().getExtras());
 
     }
 
     private void checkLogin() {
         HawkStorage hawkStorage = new HawkStorage(this);
         if (hawkStorage.getLogin()){
-            StartActivity.goTo(this, HomeActivity.class);
-            Animatoo.animateZoom(this);
+            Intent intent = new Intent(this,HomeActivity.class);
+            intent.putExtra("kodeNotif", getIntent().getStringExtra("kodeNotif"));
+            startActivity(intent);
             finish();
         }else {
             StartActivity.goTo(this, LoginActivity.class);
-            Animatoo.animateZoom(this);
             finish();
         }
     }
 
     private void delayAndGoTo() {
-        new Handler().postDelayed(this::checkLogin,800);
+        new Handler().postDelayed(this::checkLogin,1200);
     }
 }
