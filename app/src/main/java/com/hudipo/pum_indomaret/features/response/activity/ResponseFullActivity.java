@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,9 +39,6 @@ import com.hudipo.pum_indomaret.utils.Key;
 import com.hudipo.pum_indomaret.utils.RequestCode;
 import com.hudipo.pum_indomaret.utils.Utils;
 import com.hudipo.pum_indomaret.utils.spinner.CustomSpinnerFragment;
-import com.yalantis.ucrop.util.FileUtils;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.text.NumberFormat;
@@ -65,7 +62,7 @@ public class ResponseFullActivity extends AppCompatActivity implements CustomSpi
     @BindView(R.id.etAmount)
     EditText etAmount;
     @BindView(R.id.etUploadFile)
-    TextView etUploadFile;
+    EditText etUploadFile;
     @BindView(R.id.btnStoreCode)
     Button btnStoreCode;
 
@@ -205,6 +202,7 @@ public class ResponseFullActivity extends AppCompatActivity implements CustomSpi
 
                         submitResponseItem.setRealPath(realPath);
                         submitResponseItem.setTypeFile(typeFile);
+                        Log.d("coba", "realpath: "+realPath);
 
                         File file = new  File(realPath);
                         etUploadFile.setText(file.getName());
@@ -214,21 +212,24 @@ public class ResponseFullActivity extends AppCompatActivity implements CustomSpi
                 }
                 break;
             case REQUEST_CODE_FILES:
-                if (data != null){
+                if (data != null) {
+//                    ArrayList<MediaFile> files = data.getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
+//                    if (files != null) {
+//                        Log.d("coba", "files: "+files.get(0).getPath());
+//                    }
                     Uri selectedFile = data.getData();
+                    String[] filePathColumn = {MediaStore.Files.FileColumns.DATA};
 
-                    if (selectedFile != null){
-                        String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
-                        Log.d("coba", "real path: "+ FileUtils.getPath(this, selectedFile));
-                        Log.d("coba", "real path: "+ selectedFile.getPath());
+                    assert selectedFile != null;
+                    Cursor cursor = getContentResolver().query(selectedFile, filePathColumn, null, null, null);
+                    assert cursor != null;
+                    cursor.moveToFirst();
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String mediaPath = cursor.getString(columnIndex);
+                    Log.d("coba", "files: "+mediaPath);
+                    Log.d("coba", "files: "+MediaStore.Files.getContentUri(selectedFile.toString()).getPath());
+                    cursor.close();
 
-                        File file = new  File(realPath);
-
-                        Log.d("coba", "real path: "+ file.getAbsolutePath());
-                        etUploadFile.setText(file.getName());
-                    }else {
-                        Toast.makeText(this, "Failed to get files", Toast.LENGTH_SHORT).show();
-                    }
                 }
                 break;
             case REQUEST_CODE_SEARCH_STORE_CODE:
@@ -254,10 +255,17 @@ public class ResponseFullActivity extends AppCompatActivity implements CustomSpi
                     showGallery();
                 }
             }else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_FILES){
-//                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_FILES)){
-//                    showDocument();
-//                }
-                Toast.makeText(this, "This feature is not available", Toast.LENGTH_SHORT).show();
+                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_FILES)){
+//                    Intent intent = new Intent(this, FilePickerActivity.class);
+//                    intent.putExtra(FilePickerActivity.CONFIGS, new Configurations.Builder()
+//                            .setCheckPermission(true)
+//                            .setShowFiles(true)
+//                            .setSuffixes("pdf")
+//                            .build());
+//                    startActivityForResult(intent, REQUEST_CODE_FILES);
+                    showDocument();
+                }
+//                Toast.makeText(this, "This feature is not available", Toast.LENGTH_SHORT).show();
             }
         }else if (requestCode == RequestCode.CODE_OPTION_TRANSACTION_TYPE){
             btnTransactionType.setText(optionItem.getValue().toString());

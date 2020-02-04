@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.report.contract.ReportContract;
 import com.hudipo.pum_indomaret.features.report.presenter.ReportPresenterImpl;
 import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
@@ -86,8 +87,6 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
             callReportApi(false);
         }
 
-
-
     }
 
     @OnClick(R.id.btnResetReport)
@@ -126,7 +125,14 @@ public class ReportActivity extends AppCompatActivity implements ReportContract.
 
     @OnClick(R.id.imgBack)
     void onBackClick() {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
     @OnClick(R.id.imgStartDate)

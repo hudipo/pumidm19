@@ -98,17 +98,18 @@
             android:layout_marginTop="@dimen/main_margin"
             android:background="@drawable/bg_rounded_border_black_solid_black"
             android:drawableStart="@drawable/ic_search_black_24dp"
+            android:hint="@string/transaction_type"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.Body1.Dark"
             android:drawablePadding="@dimen/dp6"
             android:fontFamily="@font/mlight"
             android:paddingStart="@dimen/main_padding"
             android:paddingEnd="@dimen/main_padding"
-            android:text="@string/transaction_type"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.Body1.Dark"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <EditText
             android:id="@+id/etDescription"
@@ -203,7 +204,7 @@
             android:layout_marginBottom="@dimen/main_margin"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/etUploadFile"
                 style="@style/TextAppearance.Body1.Dark"
                 android:layout_width="0dp"

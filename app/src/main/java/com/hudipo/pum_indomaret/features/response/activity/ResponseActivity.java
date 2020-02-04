@@ -117,7 +117,7 @@ public class ResponseActivity extends AppCompatActivity implements ResponseContr
 
     @Override
     public void showError(String message) {
-        Toast.makeText(this, "error : " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.err_internet), Toast.LENGTH_SHORT).show();
     }
 
     @Override

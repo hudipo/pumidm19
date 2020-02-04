@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -24,6 +25,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.hbisoft.pickit.PickiT;
+import com.hbisoft.pickit.PickiTCallbacks;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.searchtrx.SearchTrxActivity;
 import com.hudipo.pum_indomaret.model.OptionItem;
@@ -46,7 +49,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerFragment.SpinnerListener {
+public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerFragment.SpinnerListener, PickiTCallbacks {
 
     @BindView(R.id.btnSearchTrx)
     Button btnSearchTrx;
@@ -65,6 +68,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     private final int REQUEST_CODE_FILES = 103;
     private RequestModel requestModel;
     HawkStorage hawkStorage;
+    PickiT pickiT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         setContentView(R.layout.activity_req_fund);
         ButterKnife.bind(this);
 
+        pickiT = new PickiT(this, this);
         setCurrencyEtAmountFund();
     }
 
@@ -91,7 +96,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
         String trx = btnSearchTrx.getText().toString().trim();
         String nameFile = tvSelectAFile.getText().toString().trim();
 
-        if (checkDataNotNull(amount, desc, trx, nameFile)){
+        if (checkDataNotNull(amount, desc, trx, nameFile)) {
             requestModel.setDescription(desc);
             requestModel.setAmount(amount);
             requestModel.setNameTrxType(trx);
@@ -107,16 +112,16 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     }
 
     private void setDataView() {
-        if (hawkStorage.getRequestModel() != null){
-            if (hawkStorage.getRequestModel().getNameTrxType() != null && !hawkStorage.getRequestModel().getNameTrxType().isEmpty()){
+        if (hawkStorage.getRequestModel() != null) {
+            if (hawkStorage.getRequestModel().getNameTrxType() != null && !hawkStorage.getRequestModel().getNameTrxType().isEmpty()) {
                 btnSearchTrx.setText(requestModel.getNameTrxType());
             }
 
-            if (requestModel.getDescription() != null && !requestModel.getDescription().isEmpty()){
+            if (requestModel.getDescription() != null && !requestModel.getDescription().isEmpty()) {
                 etDescFund.setText(requestModel.getDescription());
             }
 
-            if (requestModel.getNameFile() != null && !requestModel.getNameFile().isEmpty()){
+            if (requestModel.getNameFile() != null && !requestModel.getNameFile().isEmpty()) {
                 tvSelectAFile.setText(requestModel.getNameFile());
             }
 
@@ -128,7 +133,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
     private void setRequestModel() {
         hawkStorage = new HawkStorage(this);
-        if (hawkStorage.getRequestModel() != null){
+        if (hawkStorage.getRequestModel() != null) {
             requestModel = hawkStorage.getRequestModel();
         }
     }
@@ -143,7 +148,7 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String cleanString = s.toString().replaceAll("[$,.]", "");
 
-                if (!cleanString.isEmpty()){
+                if (!cleanString.isEmpty()) {
                     etAmountFund.removeTextChangedListener(this);
 
                     double parsed = Double.parseDouble(cleanString);
@@ -166,16 +171,16 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CODE_CAMERA:
                 if (data != null) {
                     Bundle extras = data.getExtras();
-                    if (extras != null){
+                    if (extras != null) {
                         Bitmap bitmap = (Bitmap) extras.get("data");
-                        if (bitmap != null){
+                        if (bitmap != null) {
                             Uri tempUri = Utils.getImageUri(this, bitmap);
                             String realPath = Utils.getRealPathImageFromURI(this, tempUri);
-                            File file = new  File(realPath);
+                            File file = new File(realPath);
 
                             requestModel.setFileDataUri(tempUri.toString());
                             requestModel.setImage(true);
@@ -184,17 +189,17 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                             hawkStorage.setRequestModel(requestModel);
 
                             tvSelectAFile.setText(file.getName());
-                        }else {
+                        } else {
                             Toast.makeText(this, "Failed to capture image", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 break;
             case REQUEST_CODE_SEARCH_TRX:
-                if (resultCode == Activity.RESULT_OK){
-                    if (data != null){
+                if (resultCode == Activity.RESULT_OK) {
+                    if (data != null) {
                         TrxItem trxItem = data.getParcelableExtra(SearchTrxActivity.EXTRA_SELECTED);
-                        if (trxItem != null){
+                        if (trxItem != null) {
                             btnSearchTrx.setText(trxItem.getDescription());
                             requestModel.setTrxTypeId(trxItem.getPumTrxTypeId());
                             requestModel.setNameTrxType(trxItem.getDescription());
@@ -205,11 +210,11 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                 }
                 break;
             case REQUEST_CODE_GALLERY:
-                if (data != null){
+                if (data != null) {
                     Uri uriSelectedImage = data.getData();
-                    if (uriSelectedImage != null){
+                    if (uriSelectedImage != null) {
                         String realPath = Utils.getRealPathImageFromURI(this, uriSelectedImage);
-                        File file = new  File(realPath);
+                        File file = new File(realPath);
 
                         requestModel.setFileDataUri(uriSelectedImage.toString());
                         requestModel.setImage(true);
@@ -218,30 +223,37 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
                         hawkStorage.setRequestModel(requestModel);
 
                         tvSelectAFile.setText(file.getName());
-                    }else {
+                    } else {
                         Toast.makeText(this, "Failed to get image", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
             case REQUEST_CODE_FILES:
-                if (data != null){
+                if (data != null) {
                     Uri selectedFile = data.getData();
 
-                    if (selectedFile != null){
-                        String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
-                        File file = new  File(realPath);
-
+                    if (selectedFile != null) {
                         requestModel.setFileDataUri(selectedFile.toString());
                         requestModel.setImage(false);
-                        requestModel.setNameFile(file.getName());
-
-                        hawkStorage.setRequestModel(requestModel);
+////                        String realPath = Utils.getRealPathDocumentFromUri(this, selectedFile);
+//                        String realPath = FileUtils.getPath(this, selectedFile);
+//                        File file = new  File(realPath);
+//
+//                        requestModel.setFileDataUri(selectedFile.toString());
+//                        requestModel.setImage(false);
+//                        requestModel.setNameFile(file.getName());
+//                        requestModel.setPathDocument(realPath);
+//
+//                        hawkStorage.setRequestModel(requestModel);
 
 //                        String path = selectedFile.getPath();
 //                        requestModel.setPathDocument(path);
 
-                        tvSelectAFile.setText(file.getName());
-                    }else {
+//                        tvSelectAFile.setText(file.getName());
+
+                        pickiT.getPath(data.getData(), Build.VERSION.SDK_INT);
+
+                    } else {
                         Toast.makeText(this, "Failed to get files", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -252,32 +264,32 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CODE_CAMERA:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         showCamera();
                     }
-                }else {
+                } else {
                     Toast.makeText(this, "Access camera is denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case REQUEST_CODE_GALLERY:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                         showGallery();
-                    }else {
+                    } else {
                         Toast.makeText(this, "Access gallery is denied", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
             case REQUEST_CODE_FILES:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                         showDocument();
-                    }else {
+                    } else {
                         Toast.makeText(this, "Access to document is denied", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -286,29 +298,29 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     }
 
     @OnClick(R.id.btnBackFund)
-    void btnBackFund(){
+    void btnBackFund() {
         onBackPressed();
     }
 
     @OnClick(R.id.btnSearchTrx)
-    void btnSearchTrx(){
+    void btnSearchTrx() {
         Intent intent = new Intent(this, SearchTrxActivity.class);
         startActivityForResult(intent, REQUEST_CODE_SEARCH_TRX);
     }
 
     @OnClick(R.id.btnUploadFile)
-    void btnUploadFile(){
+    void btnUploadFile() {
         Global.openPicker(getSupportFragmentManager(), Repository.getDataChooseFile(), RequestCode.CODE_OPTION_UPLOAD_FILE, "Choose file from");
     }
 
     @OnClick(R.id.btnNextFund)
-    void btnNextFund(){
+    void btnNextFund() {
         String amount = etAmountFund.getText().toString().trim().replace(".", "");
         String desc = etDescFund.getText().toString().trim();
         String trx = btnSearchTrx.getText().toString().trim();
         String nameFile = tvSelectAFile.getText().toString().trim();
 
-        if (checkValid(amount, desc, trx)){
+        if (checkValid(amount, desc, trx)) {
             requestModel.setDescription(desc);
             requestModel.setAmount(amount);
             requestModel.setNameTrxType(trx);
@@ -323,41 +335,40 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
 
     private Boolean checkValid(String amount, String desc, String trx) {
-        if (trx.isEmpty()){
+        if (trx.isEmpty()) {
             Toast.makeText(this, "Trx is still empty", Toast.LENGTH_SHORT).show();
             btnSearchTrx.setError("Trx is still empty");
             return false;
-        }else {
+        } else {
             btnSearchTrx.setError(null);
         }
 
-        if (desc.isEmpty()){
+        if (desc.isEmpty()) {
             Toast.makeText(this, "Description is still empty", Toast.LENGTH_SHORT).show();
             etDescFund.setError("Description is still empty");
             return false;
-        }else {
+        } else {
             etDescFund.setError(null);
         }
 
-        if (amount.isEmpty()){
+        if (amount.isEmpty()) {
             Toast.makeText(this, "Amount is still empty", Toast.LENGTH_SHORT).show();
             etAmountFund.setError("Amount is still empty");
             return false;
-        }else if(!checkAmountMax(amount)) {
-                etAmountFund.setError(null);
-                String textError = "Your input amount is over the limit";
-                tvErrorAmount.setText(textError);
-                tvErrorAmount.setVisibility(View.VISIBLE);
-                return false;
-        }else if(!checkAmountMin(amount)) {
+        } else if (!checkAmountMax(amount)) {
+            etAmountFund.setError(null);
+            String textError = "Your input amount is over the limit";
+            tvErrorAmount.setText(textError);
+            tvErrorAmount.setVisibility(View.VISIBLE);
+            return false;
+        } else if (!checkAmountMin(amount)) {
             etAmountFund.setError(null);
             String textError = "Your input amount is too small ";
             tvErrorAmount.setText(textError);
             tvErrorAmount.setVisibility(View.VISIBLE);
             return false;
-        }
-        else {
-                tvErrorAmount.setError(null);
+        } else {
+            tvErrorAmount.setError(null);
 
         }
 
@@ -367,12 +378,12 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
     private Boolean checkAmountMax(String amount) {
         boolean isValid = false;
-        if (!amount.isEmpty()){
+        if (!amount.isEmpty()) {
             Double totalAmount = Double.valueOf(amount);
-            if (totalAmount > hawkStorage.getUserData().getMaxAmount()){
+            if (totalAmount > hawkStorage.getUserData().getMaxAmount()) {
 
                 isValid = false;
-            }else {
+            } else {
                 isValid = true;
                 tvErrorAmount.setVisibility(View.INVISIBLE);
             }
@@ -382,12 +393,12 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
     private Boolean checkAmountMin(String amount) {
         boolean isValid = false;
-        if (!amount.isEmpty()){
+        if (!amount.isEmpty()) {
             Double totalAmount = Double.valueOf(amount);
-            if (totalAmount < hawkStorage.getUserData().getMinAmount() ){
+            if (totalAmount < hawkStorage.getUserData().getMinAmount()) {
 
                 isValid = false;
-            }else {
+            } else {
                 isValid = true;
                 tvErrorAmount.setVisibility(View.INVISIBLE);
             }
@@ -397,33 +408,30 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
 
     @Override
     public void onOptionItemSelected(OptionItem optionItem, int requestCode) {
-        if (requestCode == RequestCode.CODE_OPTION_UPLOAD_FILE){
-            if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_CAMERA){
-                if (CheckPermission.checkPermissionCamera(this, REQUEST_CODE_CAMERA)){
+        if (requestCode == RequestCode.CODE_OPTION_UPLOAD_FILE) {
+            if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_CAMERA) {
+                if (CheckPermission.checkPermissionCamera(this, REQUEST_CODE_CAMERA)) {
                     showCamera();
                 }
-            }else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_GALLERY){
-                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_GALLERY)){
+            } else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_GALLERY) {
+                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_GALLERY)) {
                     showGallery();
                 }
-            }else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_FILES){
-//                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_FILES)){
-//                    showDocument();
-//                }
-                Toast.makeText(this, "This feature is not available", Toast.LENGTH_SHORT).show();
+            } else if (optionItem.getKey() == Key.KEY_UPLOAD_FILE_WITH_FILES) {
+                if (CheckPermission.checkPermissionStorage(this, REQUEST_CODE_FILES)) {
+                    showDocument();
+                }
+//                Toast.makeText(this, "This feature is not available", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void showDocument() {
-        String[] mimeTypes = {"application/msword",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        String[] mimeTypes = {
                 "application/pdf"};
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/pdf");
-        intent.setType("application/msword");
-        intent.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.documen");
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
 
         startActivityForResult(intent, REQUEST_CODE_FILES);
@@ -444,6 +452,34 @@ public class ReqFundActivity extends AppCompatActivity implements CustomSpinnerF
     }
 
 
+    @Override
+    public void PickiTonStartListener() {
+
+    }
+
+    @Override
+    public void PickiTonProgressUpdate(int progress) {
+
+    }
+
+    @Override
+    public void PickiTonCompleteListener(String path, boolean wasDriveFile, boolean wasUnknownProvider, boolean wasSuccessful, String Reason) {
+
+        File file = new File(path);
+        int fileSize = Integer.parseInt(String.valueOf(file.length() / 1024));
+        if (fileSize <= (3 * 1024)) {
+
+            requestModel.setNameFile(file.getName());
+            requestModel.setPathDocument(path);
+            hawkStorage.setRequestModel(requestModel);
+
+            requestModel.setPathDocument(path);
+
+            tvSelectAFile.setText(file.getName());
+        } else {
+            Toast.makeText(this, "Max File is 3MB", Toast.LENGTH_LONG).show();
+        }
+    }
 }
 
 

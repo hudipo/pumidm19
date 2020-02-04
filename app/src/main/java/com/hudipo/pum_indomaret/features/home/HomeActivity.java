@@ -107,15 +107,15 @@ public class HomeActivity extends AppCompatActivity {
         Animatoo.animateZoom(this);
 
         initFirebase();
-        Log.d(TAG, "onCreate: "+getIntent().getStringExtra("kodeNotif"));
+        Log.d(TAG, "onCreate: " + getIntent().getStringExtra("kodeNotif"));
         //jika dari notificaton
-        if(getIntent().getStringExtra("kodeNotif") != null){
+        if (getIntent().getStringExtra("kodeNotif") != null) {
             Log.d("fakhri", "onCreate: masuk");
             String notificationId = getIntent().getStringExtra("kodeNotif");
             assert notificationId != null;
-            if(notificationId.equals("1")){
+            if (notificationId.equals("1")) {
                 startActivity(new Intent(this, ApprovalActivity.class));
-            }else if(notificationId.equals("2")){
+            } else if (notificationId.equals("2")) {
                 startActivity(new Intent(this, StatusActivity.class));
             }
         }
@@ -235,7 +235,9 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new HomeAdapter(homeItem -> {
             switch (homeItem.getId()) {
                 case 0:
-                    checkAvaPum();
+//                    checkAvaPum();
+                    startActivity(new Intent(this, ReqEmployeeActivity.class));
+                    Animatoo.animateZoom(this);
                     break;
                 case 1:
                     startActivity(new Intent(this, ApprovalActivity.class));
@@ -281,7 +283,7 @@ public class HomeActivity extends AppCompatActivity {
                         hawkStorage.setTrxTypeData(trxTypeResponse);
                     }
                 }, throwable -> {
-                    Toast.makeText(this, "error : " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.err_internet), Toast.LENGTH_SHORT).show();
                 }));
     }
 
@@ -294,7 +296,9 @@ public class HomeActivity extends AppCompatActivity {
                     if (departmentResponse != null) {
                         hawkStorage.setDepartmentData(departmentResponse);
                     }
-                }, throwable -> Toast.makeText(this, "error : " + throwable.getMessage(), Toast.LENGTH_SHORT).show()));
+                }, throwable -> {
+                    Toast.makeText(this, getString(R.string.err_internet), Toast.LENGTH_SHORT).show();
+                }));
     }
 
     private void setView() {
@@ -383,6 +387,6 @@ public class HomeActivity extends AppCompatActivity {
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 1800);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 1000);
     }
 }

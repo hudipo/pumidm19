@@ -25,6 +25,7 @@ import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
 import com.hudipo.pum_indomaret.R;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 import com.hudipo.pum_indomaret.features.login.LoginActivity;
 import com.hudipo.pum_indomaret.features.setting.presenter.SettingPresenter;
 import com.hudipo.pum_indomaret.features.setting.view.SettingContract;
@@ -268,5 +269,17 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
     protected void onDestroy() {
         super.onDestroy();
         onDetachView();
+    }
+
+    @OnClick(R.id.ivBack)
+    void onBackClick(){
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 }

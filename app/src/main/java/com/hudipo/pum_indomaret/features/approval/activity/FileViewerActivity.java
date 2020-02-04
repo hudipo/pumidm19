@@ -35,6 +35,7 @@ import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.presenter.ApprovalPresenter;
 import com.hudipo.pum_indomaret.features.approval.presenter.FileViewerPresenter;
 import com.hudipo.pum_indomaret.features.approval.view.FileViewerContract;
+import com.hudipo.pum_indomaret.helper.CustomLoadingProgress;
 import com.hudipo.pum_indomaret.networking.ApiServices;
 
 import java.io.File;
@@ -58,12 +59,11 @@ import static com.hudipo.pum_indomaret.utils.Extra.EXTRA_URL;
 public class FileViewerActivity extends AppCompatActivity implements FileViewerContract.FileViewerView {
     @BindView(R.id.photoView)
     PhotoView photoView;
-    @BindView(R.id.loading)
-    ProgressBar loading;
     @BindView(R.id.webView)
     WebView webView;
     private String url;
     private FileViewerPresenter presenter;
+    private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
 
     private static final int REQ_RW_STORAGE = 100;
 
@@ -173,12 +173,12 @@ public class FileViewerActivity extends AppCompatActivity implements FileViewerC
 
     @Override
     public void showLoading() {
-        loading.setVisibility(View.VISIBLE);
+        loadingProgress.showCustomDialog(this);
     }
 
     @Override
     public void dismissLoading() {
-        loading.setVisibility(View.GONE);
+        loadingProgress.closeCustomDialog();
     }
 
     @Override

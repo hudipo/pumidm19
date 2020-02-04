@@ -18,7 +18,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -61,7 +60,7 @@ public class ResponsePartialActivity extends AppCompatActivity implements Custom
     @BindView(R.id.etAmount)
     EditText etAmount;
     @BindView(R.id.etUploadFile)
-    TextView etUploadFile;
+    EditText etUploadFile;
     @BindView(R.id.btnStoreCode)
     Button btnStoreCode;
 

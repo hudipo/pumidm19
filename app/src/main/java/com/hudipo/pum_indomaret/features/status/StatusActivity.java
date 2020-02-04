@@ -69,6 +69,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
         startListener();
     }
 
+    //search bar
     private void startListener() {
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,7 +142,7 @@ public class StatusActivity extends AppCompatActivity implements StatusContract.
     public void toast(String stringMessage) {
         new AlertDialog.Builder(this,R.style.CustomDialogTheme)
                 .setTitle("Attention!")
-                .setMessage(stringMessage)
+                .setMessage(getString(R.string.err_internet))
                 .setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss())
                 .show();
     }

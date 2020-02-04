@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hudipo.pum_indomaret.R;
 import com.hudipo.pum_indomaret.features.approval.fragment.ApprovalFragment;
 import com.hudipo.pum_indomaret.features.approval.fragment.ApprovalHistoryFragment;
+import com.hudipo.pum_indomaret.features.home.HomeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,6 +79,7 @@ public class ApprovalActivity extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
 //        Animatoo.animateSlideRight(this); //fire the slide left animation
+        startActivity(new Intent(this, HomeActivity.class));
         finish();
 
     }

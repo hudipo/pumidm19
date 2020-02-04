@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.text.NumberFormat;
@@ -36,13 +37,17 @@ public class Utils {
     static public String getRealPathDocumentFromUri(Context context, Uri uri){
         String path = "";
         if (context.getContentResolver() != null) {
-            try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            try (Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
-                    int idx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                    path = cursor.getString(idx);
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String mediaPath = cursor.getString(columnIndex);
+                    Log.d("coba", "path : "+mediaPath);
+                    path = mediaPath;
                 }
             }
         }
+
         return path;
     }
 
