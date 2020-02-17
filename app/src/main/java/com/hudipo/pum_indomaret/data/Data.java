@@ -29,7 +29,7 @@ public class Data {
         ArrayList<String> documentTypeList = new ArrayList<>();
         documentTypeList.add("Doc Type");
         documentTypeList.add("-");
-        documentTypeList.add("SP");
+        documentTypeList.add("Surat Pesanan (SP)");
         documentTypeList.add("PP");
         documentTypeList.add("PO");
         return documentTypeList;

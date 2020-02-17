@@ -44,7 +44,7 @@ public interface StatusContract {
     interface StatusFilterInteractor {
 
         interface OnFinishedListenerStatusFilter {
-            void onStatusListFetched(ArrayList<String > statusList);
+            void onStatusListFetched(ArrayList<String> statusList);
 
             void onFailure(String errorMessage);
         }

@@ -137,4 +137,13 @@ public class Repository {
 
         return optionUploadFiles;
     }
+
+    static public ArrayList<OptionItem> getDataChooseFileRes(){
+        ArrayList<OptionItem> optionUploadFiles = new ArrayList<>();
+        optionUploadFiles.add(new OptionItem(Key.KEY_UPLOAD_FILE_WITH_CAMERA, R.drawable.camera, "Camera", "camera"));
+        optionUploadFiles.add(new OptionItem(Key.KEY_UPLOAD_FILE_WITH_GALLERY, R.drawable.gallery, "Gallery", "gallery"));
+//        optionUploadFiles.add(new OptionItem(Key.KEY_UPLOAD_FILE_WITH_FILES, R.drawable.files, "Files", "files"));
+
+        return optionUploadFiles;
+    }
 }

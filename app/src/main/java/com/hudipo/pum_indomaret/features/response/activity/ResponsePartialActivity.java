@@ -245,7 +245,7 @@ public class ResponsePartialActivity extends AppCompatActivity implements Custom
 
     @OnClick(R.id.btnUploadFile)
     void btnUploadFile(){
-        Global.openPicker(getSupportFragmentManager(), Repository.getDataChooseFile(), RequestCode.CODE_OPTION_UPLOAD_FILE, "Choose file from");
+        Global.openPicker(getSupportFragmentManager(), Repository.getDataChooseFileRes(), RequestCode.CODE_OPTION_UPLOAD_FILE, "Choose file from");
     }
 
     @OnClick(R.id.btnAdd)

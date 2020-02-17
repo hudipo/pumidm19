@@ -84,7 +84,6 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                     }
                 }
             }, throwable -> {
-                Log.d("fakhri", "getData: "+throwable.getMessage());
                 mView.dismissLoading();
                 mView.error(context.getString(R.string.err_server));
             })
@@ -146,7 +145,6 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                         }
                     }
                 }, throwable -> {
-                    Log.d("fakhri", "getData: "+throwable.getMessage());
                     mView.dismissLoading();
                     mView.error(context.getString(R.string.err_server));
                 })
@@ -201,7 +199,7 @@ public class ApprovalPresenter implements ApprovalContract.ApprovalPresenterView
                     }
 
                 }, throwable -> {
-                    Log.d("fakhri", "getData: "+throwable.getMessage());
+//                    Log.d("danny", "getData: "+throwable.getMessage());
                     mView.dismissLoading();
                     mView.error(context.getString(R.string.err_server));
                 })

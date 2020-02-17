@@ -136,7 +136,6 @@ public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalD
                     }
 
                 }, throwable -> {
-                    Log.d("fakhri", "getData: "+throwable.getMessage());
                     mView.dismissLoading();
                     mView.error(context.getString(R.string.err_server));
                 })
@@ -193,7 +192,6 @@ public class ApprovalDetailPresenter implements ApprovalDetailContract.ApprovalD
                     }
 
                 }, throwable -> {
-                    Log.d("fakhri", "getData: "+throwable.getMessage());
                     mView.dismissLoading();
                     mView.error(context.getString(R.string.err_server));
                 })

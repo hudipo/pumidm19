@@ -153,12 +153,16 @@ public class HomeActivity extends AppCompatActivity {
         Log.d(TAG, "checkMenu: " + menuId);
         switch (menuId) {
 
-            case 30:
-            case 64:
-                adapter.removeItem(HomeAdapter.request);
+            //danny
+            case 27:
                 adapter.removeItem(HomeAdapter.status);
-                adapter.removeItem(HomeAdapter.response);
                 break;
+//            case 30:
+//            case 64:
+//                adapter.removeItem(HomeAdapter.request);
+//                adapter.removeItem(HomeAdapter.status);
+//                adapter.removeItem(HomeAdapter.response);
+//                break;
             case 28:
             case 71:
             case 72:
@@ -167,67 +171,14 @@ public class HomeActivity extends AppCompatActivity {
                 adapter.removeItem(HomeAdapter.approval);
                 adapter.removeItem(HomeAdapter.request);
                 break;
-            case 29:
-            case 65:
-            case 69:
-                adapter.removeItem((HomeAdapter.status));
+
+                //jefri
+            case 68:
+                adapter.removeItem(HomeAdapter.request);
+                adapter.removeItem(HomeAdapter.status);
+                adapter.removeItem(HomeAdapter.response);
                 break;
 
-//            case 28:
-//                menuId = 28;
-//                adapter.removeItem(HomeAdapter.request);
-//                adapter.removeItem(HomeAdapter.approval);
-//                adapter.removeItem(HomeAdapter.response);
-//                adapter.removeItem(HomeAdapter.response);
-//                adapter.removeItem(HomeAdapter.status);
-//                break;
-//            case 29:
-//                menuId = 29;
-//                adapter.removeItem(HomeAdapter.approval);
-//                break;
-//            case 30:
-//                menuId = 30;
-//                adapter.removeItem(HomeAdapter.request);
-//                adapter.removeItem(HomeAdapter.reports);
-//                adapter.removeItem(HomeAdapter.response);
-//                break;
-//            case 37:
-//                menuId = 37;
-//                adapter.removeItem(HomeAdapter.request);
-//                adapter.removeItem(HomeAdapter.status);
-//                adapter.removeItem(HomeAdapter.approval);
-//                adapter.removeItem(HomeAdapter.reports);
-//                adapter.removeItem(HomeAdapter.response);
-//                break;
-//            case 64:
-//                menuId = 64;
-//                adapter.removeItem(HomeAdapter.request);
-//                adapter.removeItem(HomeAdapter.reports);
-//                adapter.removeItem(HomeAdapter.response);
-//                break;
-//            case 65:
-//                menuId = 65;
-//                adapter.removeItem(HomeAdapter.approval);
-//                break;
-//            case 69:
-//                menuId = 69;
-//                adapter.removeItem(HomeAdapter.approval);
-//                break;
-//
-//            case 71:
-//                menuId = 71;
-//                adapter.removeItem(HomeAdapter.request);
-//                adapter.removeItem(HomeAdapter.status);
-//                adapter.removeItem(HomeAdapter.approval);
-//                adapter.removeItem(HomeAdapter.response);
-//                break;
-//            case 72:
-//                menuId = 72;
-//                adapter.removeItem(HomeAdapter.request);
-//                adapter.removeItem(HomeAdapter.status);
-//                adapter.removeItem(HomeAdapter.approval);
-//                adapter.removeItem(HomeAdapter.response);
-//                break;
         }
     }
 
@@ -310,10 +261,18 @@ public class HomeActivity extends AppCompatActivity {
             tvEmpNumHome.setText(hawkStorage.getUserData().getEmpNum());
             if (tvPositionHome.getText().toString().matches("")) {
                 tvPositionHome.setVisibility(View.GONE);
+            }else if(tvPositionHome.getText().toString().matches("JR.MGR")){
+                tvPositionHome.setText("STAFF");
+            }else if(tvPositionHome.getText().toString().matches("MGR")){
+                tvPositionHome.setText("MANAGER");
+            }else if(tvPositionHome.getText().toString().matches("APP 2")){
+                tvPositionHome.setText("DIRECTOR");
             }
             if (tvRespName.getText().toString().matches("SUPERUSER_MENU")) {
                 tvRespName.setText("USER");
-            } else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
+            }else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
+                tvRespName.setText("APPROVAL");
+            }else if (tvRespName.getText().toString().matches("ADMIN_CABANG")) {
                 tvRespName.setText("APPROVAL");
             }
 

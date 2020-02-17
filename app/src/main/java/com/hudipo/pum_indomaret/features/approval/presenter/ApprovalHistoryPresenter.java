@@ -86,7 +86,6 @@ public class ApprovalHistoryPresenter implements ApprovalHistoryContract.Approva
                     }
 
                 }, throwable -> {
-                    Log.d("fakhri", "getData: "+throwable.getMessage());
                     mView.dismissLoading();
                     mView.error(context.getString(R.string.err_server));
                 })

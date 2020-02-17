@@ -24,6 +24,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
@@ -61,9 +62,10 @@ public class FileViewerActivity extends AppCompatActivity implements FileViewerC
     PhotoView photoView;
     @BindView(R.id.webView)
     WebView webView;
+    @BindView(R.id.loading)
+    LottieAnimationView loading;
     private String url;
     private FileViewerPresenter presenter;
-    private CustomLoadingProgress loadingProgress = new CustomLoadingProgress();
 
     private static final int REQ_RW_STORAGE = 100;
 
@@ -161,7 +163,7 @@ public class FileViewerActivity extends AppCompatActivity implements FileViewerC
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.d("fakhri", "onPageStarted: "+url);
+//            Log.d("fakhri", "onPageStarted: "+url);
             showLoading();
         }
     };
@@ -173,12 +175,13 @@ public class FileViewerActivity extends AppCompatActivity implements FileViewerC
 
     @Override
     public void showLoading() {
-        loadingProgress.showCustomDialog(this);
+        loading.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void dismissLoading() {
-        loadingProgress.closeCustomDialog();
+        loading.setVisibility(View.GONE);
     }
 
     @Override

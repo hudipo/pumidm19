@@ -224,10 +224,18 @@ public class SettingActivity extends AppCompatActivity implements CustomSpinnerF
             tvRespName.setText(userData.getRespName());
             if (tvPosition.getText().toString().matches("")) {
                 tvPosition.setVisibility(View.GONE);
+            }else if(tvPosition.getText().toString().matches("JR.MGR")){
+                tvPosition.setText("STAFF");
+            }else if(tvPosition.getText().toString().matches("MGR")){
+                tvPosition.setText("MANAGER");
+            }else if(tvPosition.getText().toString().matches("APP 2")){
+                tvPosition.setText("DIRECTOR");
             }
             if (tvRespName.getText().toString().matches("SUPERUSER_MENU")) {
                 tvRespName.setText("USER");
-            } else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
+            }else if (tvRespName.getText().toString().matches("APPROVAL_MENU")) {
+                tvRespName.setText("APPROVAL");
+            }else if (tvRespName.getText().toString().matches("ADMIN_CABANG")) {
                 tvRespName.setText("APPROVAL");
             }
         }

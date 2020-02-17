@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
+public class  HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
     private ItemClickListener itemClickListener;
     private ArrayList<HomeModel> listDataHome;

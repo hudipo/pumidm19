@@ -108,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/topView"
         android:layout_centerInParent="true"
+        android:text="@string/data_is_empty"
         android:gravity="center"
         android:textAllCaps="true"
         android:textColor="@color/redError"
